@@ -278,3 +278,51 @@ footer {
     }
 
 }
+/* เอฟเฟกต์ตอนแสดงผล */
+
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff5fa;
+    border-radius: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff4d88;
+    transition: all 0.3s ease;
+}
+
+/* แอนิเมชันเด้ง */
+
+.pop {
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ปุ่มเด้งเวลาเอาเมาส์ชี้ */
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* ปุ่มยุบตอนกด */
+
+button:active {
+    transform: scale(0.95);
+}

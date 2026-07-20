@@ -424,3 +424,23 @@ button:active {
     }
 
 }
+/* 🎵 ปุ่มเพลง */
+
+#musicBtn {
+
+    margin-top:20px;
+
+    background:#ffd6e7;
+
+    color:#ff4d88;
+
+    border:2px solid #ff9fc5;
+
+}
+
+
+#musicBtn:hover {
+
+    background:#ffc2dc;
+
+}

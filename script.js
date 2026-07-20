@@ -1,6 +1,7 @@
 // 🍜 รายการอาหาร
 
 const foods = [
+
     "🥘 หมูกระทะ",
     "🍲 ชาบู",
     "🐷 หมูย่างจิ้มแจ่ว",
@@ -21,46 +22,38 @@ const foods = [
     "🥗 สลัด",
     "🍧 ของหวาน",
     "🧋 ชานมไข่มุก"
+
 ];
 
 
-// เรียกปุ่มจาก HTML
+
+// เชื่อมกับ HTML
 
 const randomBtn = document.getElementById("randomBtn");
-
-
-// เรียกช่องผลลัพธ์
 
 const result = document.getElementById("result");
 
 
 
+
 // เมื่อกดปุ่มสุ่มอาหาร
 
-randomBtn.addEventListener("click", function () {
+randomBtn.addEventListener("click", function(){
 
 
-    // สร้างหัวใจลอย
+    // ❤️ หัวใจลอย
 
     createHeart();
 
 
-    // ปิดปุ่มชั่วคราว
 
-    randomBtn.disabled = true;
-
-
-
-    // ลบ Animation เก่า
+    // 🎲 แสดงกำลังสุ่ม
 
     result.classList.remove("pop");
 
 
-
-    // ข้อความระหว่างสุ่ม
-
     result.innerHTML = `
-    
+
     🎲 กำลังสุ่ม...
 
     <br>
@@ -71,9 +64,15 @@ randomBtn.addEventListener("click", function () {
 
 
 
+    // ปิดปุ่มกันกดรัว
+
+    randomBtn.disabled = true;
+
+
+
     // รอ 1 วินาที
 
-    setTimeout(function () {
+    setTimeout(function(){
 
 
 
@@ -84,8 +83,6 @@ randomBtn.addEventListener("click", function () {
         );
 
 
-
-        // เก็บเมนูที่ได้
 
         const selectedFood = foods[randomNumber];
 
@@ -105,19 +102,25 @@ randomBtn.addEventListener("click", function () {
 
 
 
-        // เล่น Animation
+        // ✨ Animation
 
         result.classList.add("pop");
 
 
 
-        // เปิดปุ่มกลับมา
+        // 🎊 Confetti
+
+        createConfetti();
+
+
+
+        // เปิดปุ่มอีกครั้ง
 
         randomBtn.disabled = false;
 
 
 
-    }, 1000);
+    },1000);
 
 
 });
@@ -126,9 +129,10 @@ randomBtn.addEventListener("click", function () {
 
 
 
-// ❤️ ฟังก์ชันสร้างหัวใจลอย
 
-function createHeart() {
+// ❤️ ฟังก์ชันหัวใจลอย
+
+function createHeart(){
 
 
     const heart = document.createElement("div");
@@ -141,27 +145,19 @@ function createHeart() {
 
 
 
-    // สุ่มตำแหน่งหัวใจ
-
     heart.style.left =
     Math.random() * 100 + "vw";
 
 
-
-    // สุ่มขนาดหัวใจ
 
     heart.style.fontSize =
     Math.random() * 20 + 20 + "px";
 
 
 
-    // ใส่ลงหน้าเว็บ
-
     document.body.appendChild(heart);
 
 
-
-    // ลบออกหลัง 3 วินาที
 
     setTimeout(function(){
 
@@ -171,49 +167,52 @@ function createHeart() {
 
 
 }
-// 🎵 ระบบเพลง
-
-const bgMusic = document.getElementById("bgMusic");
-
-const musicBtn = document.getElementById("musicBtn");
 
 
 
-let musicPlaying = false;
 
 
 
-musicBtn.addEventListener("click", function(){
+// 🎊 ฟังก์ชัน Confetti
+
+function createConfetti(){
+
+
+    for(let i = 0; i < 30; i++){
+
+
+        const confetti = document.createElement("div");
+
+
+        confetti.className = "confetti";
+
+
+        confetti.innerHTML = "🎊";
 
 
 
-    if(musicPlaying === false){
-
-
-        bgMusic.play();
-
-
-        musicBtn.innerHTML = "🔇 ปิดเพลง";
-
-
-        musicPlaying = true;
+        confetti.style.left =
+        Math.random() * 100 + "vw";
 
 
 
-    }else{
+        confetti.style.animationDuration =
+        Math.random() * 2 + 2 + "s";
 
 
-        bgMusic.pause();
+
+        document.body.appendChild(confetti);
 
 
-        musicBtn.innerHTML = "🎵 เปิดเพลง";
 
+        setTimeout(function(){
 
-        musicPlaying = false;
+            confetti.remove();
+
+        },3000);
 
 
     }
 
 
-
-});
+}

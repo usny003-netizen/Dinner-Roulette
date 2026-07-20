@@ -1,10 +1,10 @@
 /* =========================
    Dinner Picker ❤️
-   Cute Pastel Style
+   Cute Mobile App Style
 ========================= */
 
 
-/* ตั้งค่าทั้งหน้า */
+/* ตั้งค่าทั้งหมด */
 
 * {
     box-sizing: border-box;
@@ -13,72 +13,53 @@
 
 body {
 
-    font-family: "Arial", "Tahoma", sans-serif;
+    margin:0;
 
-    background: linear-gradient(
+    padding:20px;
+
+    min-height:100vh;
+
+    font-family:"Arial","Tahoma",sans-serif;
+
+    text-align:center;
+
+    color:#555;
+
+    background:
+
+    linear-gradient(
         135deg,
         #ffe6f2,
         #fff8e7
     );
 
-    min-height: 100vh;
+}
 
-    margin: 0;
 
-    padding: 20px;
 
-    text-align: center;
+/* 📱 กล่องแอป */
 
-    color: #555;
+.app {
+
+    max-width:420px;
+
+    margin:auto;
 
 }
 
 
 
-/* หัวเว็บ */
+/* 🧁 การ์ด */
 
-header {
+.card {
 
-    animation: fadeDown 1s ease;
+    background:white;
 
-}
+    padding:25px;
 
+    margin-bottom:20px;
 
-h1 {
-
-    color: #ff5c8a;
-
-    font-size: 42px;
-
-    text-shadow: 
-    2px 2px #ffd1df;
-
-}
-
-
-header p {
-
-    font-size: 20px;
-
-    color: #ff7aa2;
-
-}
-
-
-
-/* กล่องเนื้อหา */
-
-section {
-
-    background: rgba(255,255,255,0.9);
-
-    max-width: 500px;
-
-    margin: 25px auto;
-
-    padding: 25px;
-
-    border-radius: 30px;
+    border-radius:30px;
 
 
     box-shadow:
@@ -86,7 +67,7 @@ section {
     0 10px 25px rgba(255,105,150,0.15);
 
 
-    animation: pop 0.8s ease;
+    animation:fadeDown 0.8s ease;
 
 }
 
@@ -94,21 +75,43 @@ section {
 
 /* หัวข้อ */
 
-h2 {
+h1 {
 
-    color: #ff6699;
+    color:#ff5c8a;
+
+    font-size:35px;
+
+    text-shadow:
+
+    2px 2px #ffd1df;
 
 }
 
 
 
-/* รายการอาหาร */
+h2 {
+
+    color:#ff6699;
+
+}
+
+
+
+p {
+
+    font-size:18px;
+
+}
+
+
+
+/* 🍜 รายการอาหาร */
 
 ul {
 
-    padding: 0;
+    padding:0;
 
-    list-style: none;
+    list-style:none;
 
 }
 
@@ -116,41 +119,49 @@ ul {
 
 li {
 
-    background: #fff0f6;
+    background:#fff5fa;
 
-    margin: 12px 0;
+    margin:8px 0;
 
-    padding: 15px;
+    padding:12px;
 
-    border-radius: 20px;
+    border-radius:20px;
 
-    font-size: 18px;
+    border:2px solid #ffd6e5;
 
-
-    transition: 0.3s;
-
-
-    border: 2px solid #ffd6e5;
+    transition:0.3s;
 
 }
 
 
-
-/* เอฟเฟกต์เวลาเอาเมาส์ไปโดน */
 
 li:hover {
 
-    transform: translateY(-5px);
+    transform:translateY(-5px);
 
-    background: #ffe0ec;
+    background:#ffe0ec;
 
 }
 
 
 
-/* ปุ่ม */
+/* ❤️ ปุ่ม */
 
 button {
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    color:white;
 
 
     background:
@@ -162,28 +173,9 @@ button {
     );
 
 
-    color:white;
-
-
-    border:none;
-
-
-    padding:18px 40px;
-
-
-    font-size:22px;
-
-
-    border-radius:50px;
-
-
-    cursor:pointer;
-
-
     box-shadow:
 
     0 8px 15px rgba(255,77,136,0.3);
-
 
 
     transition:0.3s;
@@ -192,27 +184,37 @@ button {
 
 
 
-/* กดปุ่ม */
-
 button:hover {
 
-    transform: scale(1.1);
+    transform:translateY(-3px);
 
 }
 
 
 
-/* ผลลัพธ์ */
+button:active {
+
+    transform:scale(0.95);
+
+}
+
+
+
+/* ✨ ผลลัพธ์ */
 
 .result {
 
-    background:#fff5fa;
+    margin-top:20px;
 
     padding:20px;
 
+    background:#fff5fa;
+
     border-radius:20px;
 
-    font-size:25px;
+    font-size:26px;
+
+    font-weight:bold;
 
     color:#ff4d88;
 
@@ -220,27 +222,31 @@ button:hover {
 
 
 
-/* Footer */
+/* Animation ผลลัพธ์ */
 
-footer {
+.pop {
 
-    margin-top:40px;
-
-    color:#ff99bb;
+    animation:pop 0.5s ease;
 
 }
 
 
 
-/* Animation */
-
 @keyframes pop {
+
 
     0% {
 
-        transform:scale(0.8);
+        transform:scale(0.7);
 
         opacity:0;
+
+    }
+
+
+    60% {
+
+        transform:scale(1.15);
 
     }
 
@@ -257,178 +263,95 @@ footer {
 
 
 
-@keyframes fadeDown {
 
-
-    0% {
-
-        transform:translateY(-30px);
-
-        opacity:0;
-
-    }
-
-
-    100% {
-
-        transform:translateY(0);
-
-        opacity:1;
-
-    }
-
-}
-/* เอฟเฟกต์ตอนแสดงผล */
-
-.result {
-    margin-top: 20px;
-    padding: 20px;
-    background: #fff5fa;
-    border-radius: 20px;
-    font-size: 26px;
-    font-weight: bold;
-    color: #ff4d88;
-    transition: all 0.3s ease;
-}
-
-/* แอนิเมชันเด้ง */
-
-.pop {
-    animation: pop 0.5s ease;
-}
-
-@keyframes pop {
-
-    0% {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-
-    60% {
-        transform: scale(1.15);
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-/* ปุ่มเด้งเวลาเอาเมาส์ชี้ */
-
-button:hover {
-    transform: scale(1.08);
-}
-
-/* ปุ่มยุบตอนกด */
-
-button:active {
-    transform: scale(0.95);
-}
-.food-result {
-
-    animation: bounce 0.8s ease;
-
-}
-
-
-
-.food-result span {
-
-    display: inline-block;
-
-    margin-top: 10px;
-
-    padding: 15px 25px;
-
-    background: #ffe6f2;
-
-    border-radius: 30px;
-
-    color: #ff4d88;
-
-    font-size: 30px;
-
-}
-
-
-
-/* เอฟเฟกต์เด้ง */
-
-@keyframes bounce {
-
-    0% {
-
-        transform: scale(0.5);
-
-        opacity: 0;
-
-    }
-
-
-    50% {
-
-        transform: scale(1.2);
-
-    }
-
-
-    100% {
-
-        transform: scale(1);
-
-        opacity: 1;
-
-    }
-
-}
 /* ❤️ หัวใจลอย */
 
 .heart {
 
-    position: fixed;
+    position:fixed;
 
-    bottom: 20px;
+    bottom:20px;
 
-    font-size: 30px;
+    font-size:30px;
 
-    animation: floatHeart 3s ease-out forwards;
+    animation:floatHeart 3s ease-out forwards;
 
-    pointer-events: none;
+    pointer-events:none;
 
 }
 
 
-
-/* Animation หัวใจ */
 
 @keyframes floatHeart {
 
 
     0% {
 
-        transform: translateY(0) scale(1);
+        transform:translateY(0) scale(1);
 
-        opacity: 1;
+        opacity:1;
 
     }
 
 
     100% {
 
-        transform: translateY(-500px) scale(1.8);
+        transform:translateY(-500px) scale(1.8);
 
-        opacity: 0;
+        opacity:0;
 
     }
 
 }
+
+
+
+/* 🎊 Confetti */
+
+.confetti {
+
+    position:fixed;
+
+    top:-20px;
+
+    font-size:20px;
+
+    animation:fall 3s linear forwards;
+
+    pointer-events:none;
+
+}
+
+
+
+@keyframes fall {
+
+
+    0% {
+
+        transform:translateY(0) rotate(0);
+
+        opacity:1;
+
+    }
+
+
+    100% {
+
+        transform:translateY(100vh) rotate(720deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+
+
 /* 🎵 ปุ่มเพลง */
 
 #musicBtn {
-
-    margin-top:20px;
 
     background:#ffd6e7;
 
@@ -439,214 +362,40 @@ button:active {
 }
 
 
-#musicBtn:hover {
 
-    background:#ffc2dc;
-
-}
-/* 🎊 Confetti */
-
-.confetti {
-
-    position: fixed;
-
-    top: -20px;
-
-    width: 10px;
-
-    height: 20px;
-
-    animation: fall 3s linear forwards;
-
-    pointer-events: none;
-
-}
-
-
-/* การตกของกระดาษ */
-
-@keyframes fall {
-
-    0% {
-
-        transform: translateY(0) rotate(0deg);
-
-        opacity: 1;
-
-    }
-
-
-    100% {
-
-        transform: translateY(100vh) rotate(720deg);
-
-        opacity: 0;
-
-    }
-
-}
-/* 📱 Mobile App Style */
-
-
-body {
-
-    margin:0;
-
-    min-height:100vh;
-
-    background:#fff0f6;
-
-    font-family:
-
-    "Arial",
-
-    sans-serif;
-
-}
-
-
-
-/* กล่องแอป */
-
-.app {
-
-    max-width:420px;
-
-    margin:auto;
-
-    padding:20px;
-
-}
-
-
-
-/* การ์ด */
-
-.card {
-
-    background:white;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
-    border-radius:30px;
-
-    box-shadow:
-
-    0 10px 25px rgba(0,0,0,0.1);
-
-}
-
-
-
-/* หัวข้อ */
-
-h1 {
-
-    text-align:center;
-
-    color:#ff4d88;
-
-}
-
-
-
-h2 {
-
-    color:#ff6fa5;
-
-}
-
-
-
-/* ปุ่ม */
-
-button {
-
-
-    width:100%;
-
-
-    padding:15px;
-
-
-    border:none;
-
-
-    border-radius:50px;
-
-
-    background:#ff8fba;
-
-
-    color:white;
-
-
-    font-size:20px;
-
-
-    cursor:pointer;
-
-
-}
-
-
-
-/* รายการอาหาร */
-
-ul {
-
-    list-style:none;
-
-    padding:0;
-
-}
-
-
-li {
-
-    background:#fff5fa;
-
-    margin:8px 0;
-
-    padding:10px;
-
-    border-radius:15px;
-
-}
-
-
-
-/* มือถือ */
+/* 📱 มือถือ */
 
 @media(max-width:500px){
 
 
-    .app{
+    body {
 
         padding:15px;
 
     }
 
 
-    h1{
+    h1 {
 
         font-size:28px;
 
     }
 
 
+    .card {
+
+        padding:20px;
+
+    }
+
 }
-button:active{
-
-    transform:scale(0.95);
-
-}
 
 
-button:hover{
 
-    transform:translateY(-3px);
+/* Footer */
+
+footer {
+
+    color:#ff99bb;
 
 }

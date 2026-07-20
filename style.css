@@ -383,3 +383,44 @@ button:active {
     }
 
 }
+/* ❤️ หัวใจลอย */
+
+.heart {
+
+    position: fixed;
+
+    bottom: 20px;
+
+    font-size: 30px;
+
+    animation: floatHeart 3s ease-out forwards;
+
+    pointer-events: none;
+
+}
+
+
+
+/* Animation หัวใจ */
+
+@keyframes floatHeart {
+
+
+    0% {
+
+        transform: translateY(0) scale(1);
+
+        opacity: 1;
+
+    }
+
+
+    100% {
+
+        transform: translateY(-500px) scale(1.8);
+
+        opacity: 0;
+
+    }
+
+}

@@ -638,3 +638,15 @@ li {
 
 
 }
+button:active{
+
+    transform:scale(0.95);
+
+}
+
+
+button:hover{
+
+    transform:translateY(-3px);
+
+}

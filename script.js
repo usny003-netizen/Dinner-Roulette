@@ -50,22 +50,35 @@ const foods = [
 const randomBtn = document.getElementById("randomBtn");
 
 
-// เรียกช่องแสดงผล
+// เรียกพื้นที่แสดงผล
 
 const result = document.getElementById("result");
+
 
 
 // เมื่อกดปุ่ม
 
 randomBtn.addEventListener("click", function () {
 
-    // แสดงข้อความระหว่างสุ่ม
-    result.innerHTML = "🎲 กำลังสุ่ม...";
+
+    // ป้องกันกดรัว
+
+    randomBtn.disabled = true;
 
 
-    // ลบเอฟเฟกต์เก่า
+    // ใส่เอฟเฟกต์กำลังสุ่ม
 
     result.classList.remove("pop");
+
+    result.innerHTML = `
+
+    🎲 กำลังสุ่ม...
+
+    <br>
+
+    💕 รอแป๊บนะ
+
+    `;
 
 
 
@@ -79,8 +92,11 @@ randomBtn.addEventListener("click", function () {
         );
 
 
+        const selectedFood = foods[randomNumber];
 
-        // แสดงผล
+
+
+        // แสดงผลลัพธ์
 
         result.innerHTML = `
 
@@ -88,15 +104,21 @@ randomBtn.addEventListener("click", function () {
 
         <br><br>
 
-        ${foods[randomNumber]}
+        ❤️ ${selectedFood}
 
         `;
 
 
 
-        // เพิ่มเอฟเฟกต์
+        // เพิ่ม Animation
 
         result.classList.add("pop");
+
+
+
+        // เปิดให้กดใหม่
+
+        randomBtn.disabled = false;
 
 
 

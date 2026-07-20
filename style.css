@@ -485,3 +485,156 @@ button:active {
     }
 
 }
+/* 📱 Mobile App Style */
+
+
+body {
+
+    margin:0;
+
+    min-height:100vh;
+
+    background:#fff0f6;
+
+    font-family:
+
+    "Arial",
+
+    sans-serif;
+
+}
+
+
+
+/* กล่องแอป */
+
+.app {
+
+    max-width:420px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+
+
+/* การ์ด */
+
+.card {
+
+    background:white;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    border-radius:30px;
+
+    box-shadow:
+
+    0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+
+
+/* หัวข้อ */
+
+h1 {
+
+    text-align:center;
+
+    color:#ff4d88;
+
+}
+
+
+
+h2 {
+
+    color:#ff6fa5;
+
+}
+
+
+
+/* ปุ่ม */
+
+button {
+
+
+    width:100%;
+
+
+    padding:15px;
+
+
+    border:none;
+
+
+    border-radius:50px;
+
+
+    background:#ff8fba;
+
+
+    color:white;
+
+
+    font-size:20px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+/* รายการอาหาร */
+
+ul {
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+
+li {
+
+    background:#fff5fa;
+
+    margin:8px 0;
+
+    padding:10px;
+
+    border-radius:15px;
+
+}
+
+
+
+/* มือถือ */
+
+@media(max-width:500px){
+
+
+    .app{
+
+        padding:15px;
+
+    }
+
+
+    h1{
+
+        font-size:28px;
+
+    }
+
+
+}

@@ -1,1 +1,280 @@
+/* =========================
+   Dinner Picker ❤️
+   Cute Pastel Style
+========================= */
 
+
+/* ตั้งค่าทั้งหน้า */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: "Arial", "Tahoma", sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #ffe6f2,
+        #fff8e7
+    );
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #555;
+
+}
+
+
+
+/* หัวเว็บ */
+
+header {
+
+    animation: fadeDown 1s ease;
+
+}
+
+
+h1 {
+
+    color: #ff5c8a;
+
+    font-size: 42px;
+
+    text-shadow: 
+    2px 2px #ffd1df;
+
+}
+
+
+header p {
+
+    font-size: 20px;
+
+    color: #ff7aa2;
+
+}
+
+
+
+/* กล่องเนื้อหา */
+
+section {
+
+    background: rgba(255,255,255,0.9);
+
+    max-width: 500px;
+
+    margin: 25px auto;
+
+    padding: 25px;
+
+    border-radius: 30px;
+
+
+    box-shadow:
+
+    0 10px 25px rgba(255,105,150,0.15);
+
+
+    animation: pop 0.8s ease;
+
+}
+
+
+
+/* หัวข้อ */
+
+h2 {
+
+    color: #ff6699;
+
+}
+
+
+
+/* รายการอาหาร */
+
+ul {
+
+    padding: 0;
+
+    list-style: none;
+
+}
+
+
+
+li {
+
+    background: #fff0f6;
+
+    margin: 12px 0;
+
+    padding: 15px;
+
+    border-radius: 20px;
+
+    font-size: 18px;
+
+
+    transition: 0.3s;
+
+
+    border: 2px solid #ffd6e5;
+
+}
+
+
+
+/* เอฟเฟกต์เวลาเอาเมาส์ไปโดน */
+
+li:hover {
+
+    transform: translateY(-5px);
+
+    background: #ffe0ec;
+
+}
+
+
+
+/* ปุ่ม */
+
+button {
+
+
+    background:
+
+    linear-gradient(
+        45deg,
+        #ff7aa2,
+        #ff4d88
+    );
+
+
+    color:white;
+
+
+    border:none;
+
+
+    padding:18px 40px;
+
+
+    font-size:22px;
+
+
+    border-radius:50px;
+
+
+    cursor:pointer;
+
+
+    box-shadow:
+
+    0 8px 15px rgba(255,77,136,0.3);
+
+
+
+    transition:0.3s;
+
+}
+
+
+
+/* กดปุ่ม */
+
+button:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+
+/* ผลลัพธ์ */
+
+.result {
+
+    background:#fff5fa;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    font-size:25px;
+
+    color:#ff4d88;
+
+}
+
+
+
+/* Footer */
+
+footer {
+
+    margin-top:40px;
+
+    color:#ff99bb;
+
+}
+
+
+
+/* Animation */
+
+@keyframes pop {
+
+    0% {
+
+        transform:scale(0.8);
+
+        opacity:0;
+
+    }
+
+
+    100% {
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+@keyframes fadeDown {
+
+
+    0% {
+
+        transform:translateY(-30px);
+
+        opacity:0;
+
+    }
+
+
+    100% {
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+}

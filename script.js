@@ -57,23 +57,50 @@ const result = document.getElementById("result");
 
 // เมื่อกดปุ่ม
 
-randomBtn.addEventListener("click", function(){
+randomBtn.addEventListener("click", function () {
+
+    // แสดงข้อความระหว่างสุ่ม
+    result.innerHTML = "🎲 กำลังสุ่ม...";
 
 
-    let randomNumber = Math.floor(
-        Math.random() * foods.length
-    );
+    // ลบเอฟเฟกต์เก่า
+
+    result.classList.remove("pop");
 
 
-    result.innerHTML = `
 
-    🎉 วันนี้กิน...
+    setTimeout(function () {
 
-    <br><br>
 
-    ${foods[randomNumber]}
+        // สุ่มอาหาร
 
-    `;
+        const randomNumber = Math.floor(
+            Math.random() * foods.length
+        );
+
+
+
+        // แสดงผล
+
+        result.innerHTML = `
+
+        🎉 วันนี้กิน...
+
+        <br><br>
+
+        ${foods[randomNumber]}
+
+        `;
+
+
+
+        // เพิ่มเอฟเฟกต์
+
+        result.classList.add("pop");
+
+
+
+    }, 1000);
 
 
 });

@@ -171,3 +171,49 @@ function createHeart() {
 
 
 }
+// 🎵 ระบบเพลง
+
+const bgMusic = document.getElementById("bgMusic");
+
+const musicBtn = document.getElementById("musicBtn");
+
+
+
+let musicPlaying = false;
+
+
+
+musicBtn.addEventListener("click", function(){
+
+
+
+    if(musicPlaying === false){
+
+
+        bgMusic.play();
+
+
+        musicBtn.innerHTML = "🔇 ปิดเพลง";
+
+
+        musicPlaying = true;
+
+
+
+    }else{
+
+
+        bgMusic.pause();
+
+
+        musicBtn.innerHTML = "🎵 เปิดเพลง";
+
+
+        musicPlaying = false;
+
+
+    }
+
+
+
+});

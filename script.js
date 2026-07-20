@@ -1,4 +1,4 @@
-// รายการอาหาร
+// 🍜 รายการอาหารทั้งหมด
 
 const foods = [
 
@@ -10,59 +10,78 @@ const foods = [
 
     "🍗 ไก่ทอด",
 
-    "🍜 ก๋วยเตี๋ยว",
+    "🍜 ก๋วยเตี๋ยวเรือ",
 
-    "🍛 ข้าวมันไก่",
+    "🍛 กะเพราหมู",
+
+    "🍚 ข้าวมันไก่",
 
     "🍕 พิซซ่า",
 
     "🍣 ซูชิ",
 
-    "🍝 สปาเกตตี",
-
-    "🍔 แฮมเบอร์เกอร์",
+    "🍱 อาหารญี่ปุ่น",
 
     "🥩 ปิ้งย่าง",
 
     "🍜 ราเมง",
 
+    "🍝 สปาเกตตี",
+
+    "🍔 แฮมเบอร์เกอร์",
+
     "🌶️ อาหารเกาหลี",
 
-    "🧋 ชานมไข่มุก"
+    "🍗 ไก่เกาหลี",
+
+    "🍤 ต้มยำกุ้ง",
+
+    "🥗 สลัด",
+
+    "🧋 ชานมไข่มุก",
+
+    "🍰 เค้ก"
 
 ];
 
 
-
-// หา button
+// เรียกปุ่ม
 
 const button = document.querySelector("button");
 
 
-// หาที่แสดงผล
+// เรียกพื้นที่แสดงผล
 
 const result = document.querySelector(".result");
 
 
-
-// เมื่อกดปุ่ม
+// ฟังก์ชันสุ่มอาหาร
 
 button.addEventListener("click", function(){
 
 
-    // สุ่มตัวเลข
+    // สุ่มเลขจากจำนวนอาหาร
 
-    const randomNumber = Math.floor(
+    let randomFood = Math.floor(
         Math.random() * foods.length
     );
 
 
-    // เอาอาหารมาแสดง
+    // แสดงอาหาร
 
-    result.innerHTML = 
+    result.innerHTML = `
 
-    "🎉 วันนี้กิน...<br><br>" 
-    + foods[randomNumber];
+    🎉 วันนี้กิน...
+
+    <br><br>
+
+    <span>
+
+    ${foods[randomFood]}
+
+    </span>
+
+    `;
 
 
 });

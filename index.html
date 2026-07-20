@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="th">
 
 <head>
@@ -10,140 +9,196 @@
 
     <title>กินอะไรดีนะที่รัก ❤️</title>
 
+    <meta name="theme-color" content="#ff9fc5">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 
 <body>
 
 
-    <header>
+<div class="app">
 
-        <h1>🍜 วันนี้กินอะไรดี?</h1>
+
+    <!-- หัวเว็บ -->
+
+    <header class="card">
+
+        <h1>
+            🍜 วันนี้กินอะไรดี?
+        </h1>
+
 
         <p>
             สุ่มเมนูอาหารเย็นกับคนพิเศษกัน 💕
         </p>
 
+
     </header>
 
-<!-- 🎵 เพลงประกอบ -->
-
-<audio id="bgMusic" loop>
-
-    <source src="music/love.mp3" type="audio/mpeg">
-
-</audio>
-
-
-<button id="musicBtn">
-
-🎵 เปิดเพลง
-
-</button>
-
-    <main>
-
-
-        <section>
-
-            <h2>
-                🍽️ รายการอาหาร
-            </h2>
-
-
-            <ul>
-
-                <li>🥘 หมูกระทะ</li>
-
-                <li>🍲 ชาบู</li>
-
-                <li>🐷 หมูย่างจิ้มแจ่ว</li>
-
-                <li>🍗 ไก่ทอด</li>
-
-                <li>🍜 ก๋วยเตี๋ยว</li>
-
-                <li>🍛 ข้าวมันไก่</li>
-
-                <li>🍚 ข้าวผัด</li>
-
-                <li>🍝 สปาเกตตี</li>
-
-                <li>🍕 พิซซ่า</li>
-
-                <li>🍔 แฮมเบอร์เกอร์</li>
-
-                <li>🍣 ซูชิ</li>
-
-                <li>🍱 อาหารญี่ปุ่น</li>
-
-                <li>🥩 ปิ้งย่าง</li>
-
-                <li>🍜 ราเมง</li>
-
-                <li>🌶️ อาหารเกาหลี</li>
-
-                <li>🍗 ไก่เกาหลี</li>
-
-                <li>🍤 ต้มยำกุ้ง</li>
-
-                <li>🥗 สลัด</li>
-
-                <li>🍧 ของหวาน</li>
-
-                <li>🧋 ชานมไข่มุก</li>
-
-
-            </ul>
-
-
-        </section>
 
 
 
 
-        <section>
+    <!-- รายการอาหาร -->
+
+    <section class="card">
 
 
-            <h2>
-                🎲 ให้แฟนเป็นคนเลือก
-            </h2>
+        <h2>
+            🍽️ รายการอาหาร
+        </h2>
 
 
-            <button id="randomBtn">
-                ❤️ สุ่มอาหาร
-                </button>
+        <ul>
+
+            <li>🥘 หมูกระทะ</li>
+
+            <li>🍲 ชาบู</li>
+
+            <li>🐷 หมูย่างจิ้มแจ่ว</li>
+
+            <li>🍗 ไก่ทอด</li>
+
+            <li>🍜 ก๋วยเตี๋ยว</li>
+
+            <li>🍛 ข้าวมันไก่</li>
+
+            <li>🍚 ข้าวผัด</li>
+
+            <li>🍝 สปาเกตตี</li>
+
+            <li>🍕 พิซซ่า</li>
+
+            <li>🍔 แฮมเบอร์เกอร์</li>
+
+            <li>🍣 ซูชิ</li>
+
+            <li>🍱 อาหารญี่ปุ่น</li>
+
+            <li>🥩 ปิ้งย่าง</li>
+
+            <li>🍜 ราเมง</li>
+
+            <li>🌶️ อาหารเกาหลี</li>
+
+            <li>🍗 ไก่เกาหลี</li>
+
+            <li>🍤 ต้มยำกุ้ง</li>
+
+            <li>🥗 สลัด</li>
+
+            <li>🍧 ของหวาน</li>
+
+            <li>🧋 ชานมไข่มุก</li>
 
 
-            <h2>
+        </ul>
+
+
+    </section>
+
+
+
+
+
+    <!-- ส่วนสุ่มอาหาร -->
+
+    <section class="card">
+
+
+        <h2>
+            🎲 ให้แฟนเป็นคนเลือก
+        </h2>
+
+
+
+        <button id="randomBtn">
+
+            ❤️ สุ่มอาหาร
+
+        </button>
+
+
+
+
+
+        <h2>
+
             ✨ เมนูที่ได้ ✨
-            </h2>
 
-
-<p id="result" class="result">
-
-ยังไม่ได้สุ่ม
-
-</p>
-
-
-        </section>
+        </h2>
 
 
 
-    </main>
+
+        <p id="result" class="result">
+
+            ยังไม่ได้สุ่ม
+
+        </p>
 
 
 
-    <footer>
+    </section>
+
+
+
+
+
+    <!-- เพลง -->
+
+    <section class="card">
+
+
+        <h2>
+            🎵 เพลงของเรา
+        </h2>
+
+
+        <audio id="bgMusic" loop>
+
+
+            <source src="music/love.mp3" type="audio/mpeg">
+
+
+        </audio>
+
+
+        <button id="musicBtn">
+
+            🎵 เปิดเพลง
+
+        </button>
+
+
+    </section>
+
+
+
+
+
+    <footer class="card">
+
 
         ทำด้วยความรัก ❤️
+
 
     </footer>
 
 
-<script src="script.js"></script>
-</body>
 
+</div>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
 
 </html>

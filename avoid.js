@@ -1,48 +1,27 @@
 /* =================================
  Dinner Roulette V13 ❤️
- Smart Avoid Food System 🚫💕
+ Avoid Food System 🚫💕
 ================================= */
 
 
-
-let avoidFoods =
-
-JSON.parse(
-
-localStorage.getItem(
-"avoidList"
-
-)
-
+let avoidFoods = JSON.parse(
+localStorage.getItem("avoidList")
 )||[];
 
 
 
 
-
-
-
 // ===============================
-// GET LIST
+// GET
 // ===============================
-
 
 function getAvoidList(){
 
-
 return avoidFoods;
-
 
 }
 
-
-window.getAvoidList =
-getAvoidList;
-
-
-
-
-
+window.getAvoidList = getAvoidList;
 
 
 
@@ -51,24 +30,13 @@ getAvoidList;
 // CHECK
 // ===============================
 
-
 function isAvoid(food){
-
-
 
 return avoidFoods.includes(food);
 
-
-
 }
 
-
-window.isAvoid =
-isAvoid;
-
-
-
-
+window.isAvoid = isAvoid;
 
 
 
@@ -78,9 +46,7 @@ isAvoid;
 // ADD
 // ===============================
 
-
 function addAvoid(food){
-
 
 
 if(!food || food==="-")
@@ -89,59 +55,43 @@ return;
 
 
 
-
-
 if(isAvoid(food)){
 
 
-showAvoidMessage(
-"🚫 เมนูนี้ไม่เลือกอยู่แล้ว"
+showAvoidToast(
+"🚫 เมนูนี้อยู่ในรายการแล้ว"
 );
 
 
 return;
 
-
 }
-
-
 
 
 
 avoidFoods.push(food);
 
 
-
 saveAvoid();
-
 
 
 renderAvoid();
 
 
 
-showAvoidMessage(
-
-`🚫 ${food} ถูกซ่อนไว้`
-
+showAvoidToast(
+`🚫 ไม่เลือก ${food}`
 );
-
-
 
 
 
 refreshWheel();
 
 
-
 }
 
 
-
-window.addAvoid =
-addAvoid;
-
-
+window.addAvoid = addAvoid;
 
 
 
@@ -157,21 +107,18 @@ addAvoid;
 function saveAvoid(){
 
 
-
 localStorage.setItem(
 
 "avoidList",
 
 JSON.stringify(
 avoidFoods
-
 )
 
 );
 
 
 }
-
 
 
 
@@ -188,13 +135,13 @@ avoidFoods
 function removeAvoid(index){
 
 
+const food =
+avoidFoods[index];
+
 
 avoidFoods.splice(
-
 index,
-
 1
-
 );
 
 
@@ -202,13 +149,16 @@ index,
 saveAvoid();
 
 
-
 renderAvoid();
-
 
 
 refreshWheel();
 
+
+
+showAvoidToast(
+`❤️ ${food} กลับมาแล้ว`
+);
 
 
 }
@@ -217,8 +167,6 @@ refreshWheel();
 
 window.removeAvoid =
 removeAvoid;
-
-
 
 
 
@@ -238,11 +186,8 @@ function resetAvoid(){
 avoidFoods=[];
 
 
-
 localStorage.removeItem(
-
 "avoidList"
-
 );
 
 
@@ -250,19 +195,17 @@ localStorage.removeItem(
 renderAvoid();
 
 
-
 refreshWheel();
 
 
 
-showAvoidMessage(
+showAvoidToast(
 "❤️ คืนเมนูทั้งหมดแล้ว"
 );
 
 
 
 }
-
 
 
 window.resetAvoid =
@@ -274,10 +217,8 @@ resetAvoid;
 
 
 
-
-
 // ===============================
-// REFRESH WHEEL
+// UPDATE WHEEL
 // ===============================
 
 
@@ -289,50 +230,25 @@ if(typeof changeCategory==="function"){
 
 
 
-const active=
-
+let active =
 document.querySelector(
 ".category.active"
 );
 
 
 
-if(active){
-
-
-
 changeCategory(
 
-active.dataset.category || "all"
+active?.dataset.category || "all"
 
 );
 
 
-
-}
-
-else{
-
-
-changeCategory("all");
-
-
 }
 
 
 
 }
-
-
-
-
-}
-
-
-
-window.refreshWheel =
-refreshWheel;
-
 
 
 
@@ -350,8 +266,7 @@ function renderAvoid(){
 
 
 
-const list=
-
+const list =
 document.getElementById(
 "avoidList"
 );
@@ -364,11 +279,7 @@ return;
 
 
 
-
-
 list.innerHTML="";
-
-
 
 
 
@@ -378,11 +289,9 @@ if(avoidFoods.length===0){
 
 
 
-list.innerHTML=
+list.innerHTML=`
 
-`
-
-<li>
+<li class="empty-avoid">
 
 ❤️ ยังไม่มีเมนูที่ไม่กิน
 
@@ -390,13 +299,9 @@ list.innerHTML=
 
 `;
 
-
-
 return;
 
-
 }
-
 
 
 
@@ -408,24 +313,25 @@ avoidFoods.forEach(
 
 
 
-const li=
-
+const li =
 document.createElement(
 "li"
 );
 
 
 
+li.className=
+"avoid-card";
 
-li.innerHTML=
 
-`
 
-<div class="avoid-item">
+li.innerHTML=`
 
+<div class="avoid-food">
 
 🚫 ${food}
 
+</div>
 
 
 <button onclick="removeAvoid(${index})">
@@ -434,18 +340,11 @@ li.innerHTML=
 
 </button>
 
-
-
-</div>
-
 `;
 
 
 
-
-
 list.appendChild(li);
-
 
 
 });
@@ -461,22 +360,19 @@ list.appendChild(li);
 
 
 
-
 // ===============================
 // TOAST
 // ===============================
 
 
-function showAvoidMessage(text){
+function showAvoidToast(text){
 
 
 
-const old=
-
+const old =
 document.querySelector(
 ".avoid-toast"
 );
-
 
 
 if(old)
@@ -487,9 +383,7 @@ old.remove();
 
 
 
-
-const toast=
-
+const toast =
 document.createElement(
 "div"
 );
@@ -499,10 +393,7 @@ document.createElement(
 toast.className=
 "avoid-toast";
 
-
-
 toast.innerHTML=text;
-
 
 
 
@@ -514,24 +405,21 @@ toast
 
 
 
-
 setTimeout(()=>{
 
 
 toast.remove();
 
 
-},2200);
+},2000);
 
 
 
 }
 
 
-
-window.showAvoidMessage =
-showAvoidMessage;
-
+window.showAvoidToast =
+showAvoidToast;
 
 
 
@@ -556,23 +444,17 @@ renderAvoid();
 
 
 
-const resetBtn=
-
+const btn =
 document.getElementById(
 "resetAvoidBtn"
 );
 
 
 
-if(resetBtn){
+if(btn){
 
-
-
-resetBtn.onclick=
-
+btn.onclick =
 resetAvoid;
-
-
 
 }
 

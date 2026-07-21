@@ -1,6 +1,6 @@
 /* =================================
-   Dinner Roulette V3 ❤️
-   Wheel Game System 🎡
+   Dinner Roulette V4 ❤️
+   Wheel + Avoid System 🎡🚫
 ================================= */
 
 
@@ -10,14 +10,12 @@ const canvas = document.getElementById("wheel");
 if(canvas){
 
 
-
 const ctx = canvas.getContext("2d");
 
 
 
-
 // ===============================
-// DATA
+// FOOD DATA
 // ===============================
 
 
@@ -38,8 +36,6 @@ const foods = [
 
 
 
-
-
 const drinks=[
 
 "🧋 ชานมไข่มุก",
@@ -49,8 +45,6 @@ const drinks=[
 "🍓 น้ำผลไม้"
 
 ];
-
-
 
 
 
@@ -70,7 +64,6 @@ const desserts=[
 
 
 
-
 // ===============================
 // SOUND
 // ===============================
@@ -79,19 +72,7 @@ const desserts=[
 const clickSound =
 
 new Audio(
-
 "sounds/click.mp3"
-
-);
-
-
-
-const tickSound =
-
-new Audio(
-
-"sounds/tick.mp3"
-
 );
 
 
@@ -99,9 +80,15 @@ new Audio(
 const winSound =
 
 new Audio(
-
 "sounds/win.mp3"
+);
 
+
+
+const tickSound =
+
+new Audio(
+"sounds/tick.mp3"
 );
 
 
@@ -111,19 +98,11 @@ new Audio(
 
 
 
-// ===============================
-// VARIABLE
-// ===============================
-
-
 let spinning=false;
 
 let rotation=0;
 
-let currentIndex=0;
-
-let tickTimer;
-
+let currentFood="";
 
 
 
@@ -138,16 +117,13 @@ let tickTimer;
 // ===============================
 
 
-
 function drawWheel(){
 
 
 
-const mode =
+let mode =
 
 window.chooseMode || "ฉัน";
-
-
 
 
 
@@ -160,9 +136,9 @@ if(mode==="แฟน"){
 
 colors=[
 
-"#a8dcff",
+"#bde0fe",
 
-"#d9f3ff"
+"#caf0f8"
 
 ];
 
@@ -174,9 +150,9 @@ else if(mode==="สุ่ม"){
 
 colors=[
 
-"#d8b4fe",
+"#e0c3fc",
 
-"#f0abfc"
+"#fbc2eb"
 
 ];
 
@@ -203,21 +179,19 @@ colors=[
 
 
 
-
-const center =
+let center=
 
 canvas.width/2;
 
 
-const radius=center;
+
+let radius=center;
 
 
 
-const slice=
+let slice=
 
 (Math.PI*2)/foods.length;
-
-
 
 
 
@@ -239,9 +213,7 @@ canvas.height
 
 
 
-foods.forEach((food,i)=>{
-
-
+foods.forEach((food,index)=>{
 
 
 
@@ -266,19 +238,18 @@ center,
 
 radius,
 
-i*slice,
+index*slice,
 
-(i+1)*slice
+(index+1)*slice
 
 );
 
 
 
 
-
 ctx.fillStyle=
 
-colors[i%2];
+colors[index%2];
 
 
 
@@ -288,9 +259,8 @@ ctx.fill();
 
 
 
-
-
 ctx.save();
+
 
 
 ctx.translate(
@@ -305,7 +275,7 @@ center
 
 ctx.rotate(
 
-i*slice+slice/2
+index*slice+slice/2
 
 );
 
@@ -314,10 +284,10 @@ i*slice+slice/2
 ctx.textAlign="right";
 
 
-ctx.fillStyle="#555";
-
-
 ctx.font="18px Arial";
+
+
+ctx.fillStyle="#555";
 
 
 
@@ -333,12 +303,56 @@ radius-20,
 
 
 
-
-
 ctx.restore();
 
 
 
+});
+
+
+
+}
+
+
+
+
+window.drawWheel = drawWheel;
+
+
+
+drawWheel();
+
+
+
+
+
+
+
+
+
+// ===============================
+// RANDOM FOOD
+// เช็ก Avoid
+// ===============================
+
+
+function getRandomFood(){
+
+
+
+let available = foods.filter(food=>{
+
+
+if(typeof isAvoid==="function"){
+
+
+return !isAvoid(food);
+
+
+}
+
+
+return true;
 
 
 
@@ -348,15 +362,57 @@ ctx.restore();
 
 
 
+// ถ้าไม่เหลือเมนู
+
+if(available.length===0){
+
+
+
+if(typeof resetAvoidBtn !== "undefined"){
+
+
+alert(
+
+"หมดแล้วทุกเมนู ❤️ ล้างรายการไม่เอาได้เลย"
+
+);
+
+
+}
+
+
+
+return foods[
+
+Math.floor(
+
+Math.random()*foods.length
+
+)
+
+];
+
+
+
 }
 
 
 
 
-window.drawWheel=drawWheel;
+
+return available[
+
+Math.floor(
+
+Math.random()*available.length
+
+)
+
+];
 
 
-drawWheel();
+
+}
 
 
 
@@ -371,14 +427,12 @@ drawWheel();
 // ===============================
 
 
-
 const spinBtn =
 
 document.getElementById(
-
 "spinBtn"
-
 );
+
 
 
 
@@ -386,14 +440,10 @@ document.getElementById(
 if(spinBtn){
 
 
-spinBtn.onclick=
-
-spinWheel;
+spinBtn.onclick = spinWheel;
 
 
 }
-
-
 
 
 
@@ -412,9 +462,7 @@ return;
 
 
 
-
 spinning=true;
-
 
 
 
@@ -428,11 +476,21 @@ clickSound.play();
 
 
 
-currentIndex=
+currentFood =
 
-Math.floor(
+getRandomFood();
 
-Math.random()*foods.length
+
+
+
+
+
+
+let index=
+
+foods.indexOf(
+
+currentFood
 
 );
 
@@ -442,31 +500,20 @@ Math.random()*foods.length
 
 
 
-// เสียงติ๊ก
+let sliceAngle=
 
-
-tickTimer=setInterval(()=>{
-
-
-tickSound.currentTime=0;
-
-tickSound.play();
-
-
-},150);
+360 / foods.length;
 
 
 
 
 
 
+let target =
 
+360*7 +
 
-
-
-const sliceAngle=
-
-360/foods.length;
+(360-(index*sliceAngle));
 
 
 
@@ -474,30 +521,8 @@ const sliceAngle=
 
 
 
-const extra=
 
-360*7;
-
-
-
-
-
-const target =
-
-extra+
-
-(360-
-
-(currentIndex*sliceAngle));
-
-
-
-
-
-
-
-rotation+=target;
-
+rotation += target;
 
 
 
@@ -525,16 +550,33 @@ canvas.style.transform=
 
 
 
+let tick =
+
+setInterval(()=>{
+
+
+tickSound.currentTime=0;
+
+tickSound.play();
+
+
+},180);
+
+
+
+
+
+
+
 setTimeout(()=>{
 
 
 
-clearInterval(tickTimer);
+clearInterval(tick);
 
 
 
 spinning=false;
-
 
 
 
@@ -546,12 +588,12 @@ winSound.play();
 
 
 
+
 let result={
 
 
-food:
 
-foods[currentIndex],
+food:currentFood,
 
 
 
@@ -588,19 +630,14 @@ Math.random()*desserts.length
 
 
 
+
 showResult(result);
-
-
-
-createConfetti();
 
 
 
 
 
 },5000);
-
-
 
 
 
@@ -615,14 +652,11 @@ createConfetti();
 
 
 // ===============================
-// RESULT
+// SHOW RESULT
 // ===============================
 
 
-
 function showResult(data){
-
-
 
 
 
@@ -633,7 +667,6 @@ document.getElementById(
 ).innerHTML=
 
 data.food;
-
 
 
 
@@ -649,18 +682,13 @@ data.drink;
 
 
 
-
 document.getElementById(
 
 "dessertResult"
 
 ).innerHTML=
 
-data.dessert;
-
-
-
-
+data.drink;
 
 
 
@@ -669,9 +697,6 @@ window.currentDinnerSet=data;
 
 
 
-
-
-// History
 
 
 if(typeof saveDinnerHistory==="function"){
@@ -686,98 +711,6 @@ saveDinnerHistory(data);
 
 
 }
-
-
-
-
-
-
-
-
-
-// ===============================
-// CONFETTI 🎉
-// ===============================
-
-
-
-function createConfetti(){
-
-
-
-for(let i=0;i<30;i++){
-
-
-
-let item=document.createElement("div");
-
-
-
-item.innerHTML=
-
-["❤️","✨","🎉","⭐"][
-
-Math.floor(
-
-Math.random()*4
-
-)
-
-];
-
-
-
-item.style.position="fixed";
-
-
-item.style.left=
-
-Math.random()*100+"%";
-
-
-
-item.style.top="-20px";
-
-
-
-item.style.fontSize="30px";
-
-
-item.style.zIndex="9999";
-
-
-item.style.animation=
-
-"heartUp 2s forwards";
-
-
-
-
-
-document.body.appendChild(item);
-
-
-
-
-setTimeout(()=>{
-
-
-item.remove();
-
-
-},2000);
-
-
-
-
-}
-
-
-
-}
-
-
-
 
 
 

@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V12 ❤️
+ Dinner Roulette V15 ❤️
  Favorite Food System ⭐💕
 ================================= */
 
@@ -11,7 +11,6 @@ JSON.parse(
 
 localStorage.getItem(
 "favoriteFoods"
-
 )
 
 )||[];
@@ -23,7 +22,7 @@ localStorage.getItem(
 
 
 // ===============================
-// SAVE FAVORITE
+// SAVE FAVORITE ⭐
 // ===============================
 
 
@@ -39,13 +38,11 @@ return;
 
 
 
-// กันซ้ำ
+let exists =
 
-const exists =
+favoriteFoods.find(
 
-favoriteFoods.some(
-
-item=>
+item =>
 
 item.food === data.food
 
@@ -58,9 +55,10 @@ item.food === data.food
 if(exists){
 
 
+showToast(
 
-showFavoriteMessage(
-"⭐ เมนูนี้มีอยู่แล้ว"
+"⭐ เมนูนี้อยู่ในรายการโปรดแล้ว"
+
 );
 
 
@@ -74,17 +72,13 @@ return;
 
 
 
-favoriteFoods.push({
-
+favoriteFoods.unshift({
 
 food:data.food,
 
-
 drink:data.drink || "🥤 น้ำหวาน",
 
-
 dessert:data.dessert || "🍰 ของหวาน",
-
 
 date:
 
@@ -94,8 +88,9 @@ new Date()
 "th-TH"
 )
 
-
 });
+
+
 
 
 
@@ -114,27 +109,20 @@ favoriteFoods
 
 
 
+
+
+
+
 renderFavorite();
 
 
 
-showFavoriteMessage(
-
-`❤️ เพิ่ม ${data.food} แล้ว`
-
-);
 
 
+if(typeof saveLikeFood==="function"){
 
 
-if(typeof createHeart==="function"){
-
-
-createHeart();
-
-
-}
-
+saveLikeFood(data.food);
 
 
 }
@@ -143,9 +131,12 @@ createHeart();
 
 
 
+}
 
 
-window.saveFavorite =
+
+window.saveFavorite=
+
 saveFavorite;
 
 
@@ -157,7 +148,7 @@ saveFavorite;
 
 
 // ===============================
-// DISPLAY
+// RENDER ⭐
 // ===============================
 
 
@@ -165,7 +156,7 @@ function renderFavorite(){
 
 
 
-const list =
+const list=
 
 document.getElementById(
 "favoriteList"
@@ -196,7 +187,9 @@ list.innerHTML=
 `
 
 <li>
-ยังไม่มีเมนูโปรด ❤️
+
+⭐ ยังไม่มีเมนูโปรด
+
 </li>
 
 `;
@@ -213,13 +206,15 @@ return;
 
 
 
+
+
 favoriteFoods.forEach(
 
 (item,index)=>{
 
 
 
-let li=
+const li=
 
 document.createElement(
 "li"
@@ -235,7 +230,7 @@ li.innerHTML=
 
 <div>
 
-🍽️ ${item.food}
+⭐ ${item.food}
 
 <br>
 
@@ -243,18 +238,22 @@ li.innerHTML=
 
 <br>
 
-🍰 ${item.dessert}
+🍰 ${item.tdessert || item.dessert}
+
+<br>
+
+📅 ${item.date}
 
 </div>
 
 
-<button
 
-onclick="removeFavorite(${index})">
+<button onclick="removeFavorite(${index})">
 
-❌ ลบ
+🗑️ ลบ
 
 </button>
+
 
 `;
 
@@ -262,15 +261,11 @@ onclick="removeFavorite(${index})">
 
 
 
-list.appendChild(
-li
-);
+list.appendChild(li);
 
 
 
 });
-
-
 
 
 
@@ -303,6 +298,8 @@ index,
 
 
 
+
+
 localStorage.setItem(
 
 "favoriteFoods",
@@ -316,7 +313,19 @@ favoriteFoods
 
 
 
+
+
 renderFavorite();
+
+
+
+
+
+showToast(
+
+"🗑️ ลบเมนูแล้ว"
+
+);
 
 
 
@@ -324,7 +333,8 @@ renderFavorite();
 
 
 
-window.removeFavorite =
+window.removeFavorite=
+
 removeFavorite;
 
 
@@ -336,52 +346,60 @@ removeFavorite;
 
 
 // ===============================
-// MESSAGE
+// GET FAVORITE
 // ===============================
 
 
-function showFavoriteMessage(text){
+function getFavoriteFoods(){
 
 
 
-const msg=
-
-document.createElement(
-"div"
-);
-
-
-
-msg.className=
-
-"favorite-toast";
-
-
-
-msg.innerHTML=text;
-
-
-
-document.body.appendChild(
-msg
-);
-
-
-
-
-
-setTimeout(()=>{
-
-
-msg.remove();
-
-
-},2000);
-
+return favoriteFoods;
 
 
 
 }
+
+
+
+window.getFavoriteFoods=
+
+getFavoriteFoods;
+
+
+
+
+
+
+
+
+
+// ===============================
+// CHECK FAVORITE
+// ===============================
+
+
+function isFavorite(food){
+
+
+
+return favoriteFoods.some(
+
+item=>
+
+item.food===food
+
+);
+
+
+
+}
+
+
+
+window.isFavorite=
+
+isFavorite;
 
 
 

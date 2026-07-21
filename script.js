@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V11 ❤️
+ Dinner Roulette V12 ❤️
  Main Controller FINAL
 ================================= */
 
@@ -9,8 +9,9 @@ document.addEventListener(
 ()=>{
 
 
+
 // =====================
-// START
+// START SCREEN 💕
 // =====================
 
 
@@ -29,9 +30,11 @@ if(startBtn){
 startBtn.onclick=()=>{
 
 
-if(startScreen)
+if(startScreen){
 
 startScreen.style.display="none";
+
+}
 
 
 
@@ -44,18 +47,18 @@ if(music){
 
 music.volume=0.5;
 
+
 music.play()
+
 .catch(()=>{});
+
 
 }
 
 
-
-if(typeof createHeart==="function"){
 
 createHeart();
 
-}
 
 
 };
@@ -68,8 +71,11 @@ createHeart();
 
 
 
+
+
+
 // =====================
-// MUSIC
+// MUSIC SYSTEM 🎵
 // =====================
 
 
@@ -86,11 +92,14 @@ document.getElementById("musicSelect");
 
 
 
+
+
 if(musicBtn && music){
 
 
 
 musicBtn.onclick=()=>{
+
 
 
 if(music.paused){
@@ -100,6 +109,7 @@ music.play();
 
 
 musicBtn.innerHTML=
+
 "⏸️ ปิดเพลง";
 
 
@@ -112,6 +122,7 @@ music.pause();
 
 
 musicBtn.innerHTML=
+
 "🎵 เปิดเพลง";
 
 
@@ -127,13 +138,17 @@ musicBtn.innerHTML=
 
 
 
+
+
 if(musicSelect && music){
+
 
 
 musicSelect.onchange=()=>{
 
 
 music.src =
+
 musicSelect.value;
 
 
@@ -141,8 +156,13 @@ music.play();
 
 
 
-musicBtn.innerHTML =
+if(musicBtn){
+
+musicBtn.innerHTML=
+
 "⏸️ ปิดเพลง";
+
+}
 
 
 };
@@ -158,8 +178,10 @@ musicBtn.innerHTML =
 
 
 
+
+
 // =====================
-// AUTO SPIN
+// AUTO SPIN 🎡
 // =====================
 
 
@@ -179,6 +201,7 @@ if(autoBtn){
 autoBtn.onclick=()=>{
 
 
+
 if(autoRunning)
 
 return;
@@ -188,7 +211,9 @@ return;
 autoRunning=true;
 
 
+
 autoBtn.innerHTML=
+
 "🎡 กำลังสุ่ม...";
 
 
@@ -215,25 +240,30 @@ count++;
 
 
 
-if(count>=3){
+
+if(count>=5){
 
 
 
 clearInterval(timer);
 
 
+
 autoRunning=false;
 
 
+
 autoBtn.innerHTML=
+
 "💖 สุ่มจนกว่าจะถูกใจ";
+
 
 
 }
 
 
 
-},5500);
+},5200);
 
 
 
@@ -251,13 +281,19 @@ autoBtn.innerHTML=
 
 
 
+
+
 // =====================
-// LIKE
+// LIKE BUTTON 👍
 // =====================
+
 
 
 const likeBtn =
-document.getElementById("likeBtn");
+
+document.getElementById(
+"likeBtn"
+);
 
 
 
@@ -268,10 +304,13 @@ if(likeBtn){
 likeBtn.onclick=()=>{
 
 
+
 let food =
+
 document.getElementById(
 "foodResult"
 ).innerText;
+
 
 
 
@@ -280,6 +319,11 @@ if(food==="-" || !food)
 return;
 
 
+
+
+
+
+// SMART
 
 if(typeof saveLikeFood==="function"){
 
@@ -291,6 +335,10 @@ saveLikeFood(food);
 
 
 
+
+
+// MISSION
+
 if(typeof completeLikeMission==="function"){
 
 
@@ -301,30 +349,40 @@ completeLikeMission();
 
 
 
-if(typeof createHeart==="function"){
+
 
 
 createHeart();
 
 
-}
-
-
 
 };
 
+
+
 }
 
 
 
 
+
+
+
+
+
+
+
 // =====================
-// REROLL
+// REROLL / AVOID 🚫
 // =====================
+
 
 
 const rerollBtn =
-document.getElementById("rerollBtn");
+
+document.getElementById(
+"rerollBtn"
+);
 
 
 
@@ -335,10 +393,14 @@ if(rerollBtn){
 rerollBtn.onclick=()=>{
 
 
+
 let food =
+
 document.getElementById(
 "foodResult"
 ).innerText;
+
+
 
 
 
@@ -346,20 +408,28 @@ if(food!=="-" &&
 typeof addAvoid==="function"){
 
 
+
 addAvoid(food);
 
 
+
 }
+
+
+
 
 
 
 if(typeof spinWheel==="function"){
 
 
+
 spinWheel();
 
 
+
 }
+
 
 
 
@@ -375,13 +445,20 @@ spinWheel();
 
 
 
+
+
+
+
 // =====================
-// FAVORITE
+// FAVORITE ⭐
 // =====================
 
 
 const favoriteBtn =
-document.getElementById("favoriteBtn");
+
+document.getElementById(
+"favoriteBtn"
+);
 
 
 
@@ -392,10 +469,13 @@ if(favoriteBtn){
 favoriteBtn.onclick=()=>{
 
 
+
 let food =
+
 document.getElementById(
 "foodResult"
 ).innerText;
+
 
 
 
@@ -407,29 +487,97 @@ return;
 
 
 
+
+
 if(typeof saveFavorite==="function"){
 
 
 
 saveFavorite({
 
+
 food:food,
+
 
 drink:"🥤 น้ำหวาน",
 
+
 dessert:"🍰 ของหวาน"
 
+
+
 });
+
 
 
 }
 
 
 
-if(typeof createHeart==="function"){
 
 
 createHeart();
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// =====================
+// RESET SMART 🧠
+// =====================
+
+
+const resetSmartBtn =
+
+document.getElementById(
+"resetSmartBtn"
+);
+
+
+
+
+if(resetSmartBtn){
+
+
+
+resetSmartBtn.onclick=()=>{
+
+
+
+if(typeof resetSmart==="function"){
+
+
+resetSmart();
+
+
+}
+
+
+
+else{
+
+
+localStorage.removeItem(
+"smartFood"
+);
+
+
+
+location.reload();
 
 
 }
@@ -450,9 +598,12 @@ createHeart();
 
 
 
+
+
 // =====================
-// HEART
+// HEART EFFECT ❤️
 // =====================
+
 
 
 function createHeart(){
@@ -460,11 +611,15 @@ function createHeart(){
 
 
 let heart =
-document.createElement("div");
+
+document.createElement(
+"div"
+);
 
 
 
 heart.className="heart";
+
 
 
 heart.innerHTML="❤️";
@@ -472,7 +627,14 @@ heart.innerHTML="❤️";
 
 
 heart.style.left =
+
 Math.random()*90+"%";
+
+
+
+heart.style.bottom=
+
+"20px";
 
 
 
@@ -482,13 +644,17 @@ heart
 
 
 
+
+
 setTimeout(()=>{
 
 
 heart.remove();
 
 
+
 },2000);
+
 
 
 }
@@ -496,8 +662,12 @@ heart.remove();
 
 
 
-window.createHeart =
+
+window.createHeart=
+
 createHeart;
+
+
 
 
 

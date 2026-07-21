@@ -1,1 +1,1079 @@
+/* =================================
+   Dinner Roulette ❤️
+   Cute Mobile App Style V2.5
+================================= */
 
+
+
+/* RESET */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+
+body{
+
+
+    min-height:100vh;
+
+
+    font-family:
+
+    "Arial",
+    "Tahoma",
+    sans-serif;
+
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #ffd6e7,
+
+        #fff4d6
+
+    );
+
+
+
+    color:#555;
+
+
+    transition:0.5s;
+
+
+
+    overflow-x:hidden;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   START SCREEN
+========================== */
+
+
+#startScreen{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #ff9fc5,
+
+        #ffd6e7
+
+    );
+
+
+
+    z-index:999;
+
+
+
+}
+
+
+
+
+.start-box{
+
+
+    width:90%;
+
+
+    max-width:400px;
+
+
+    background:white;
+
+
+
+    padding:40px 25px;
+
+
+
+    border-radius:30px;
+
+
+
+    text-align:center;
+
+
+
+    box-shadow:
+
+    0 15px 40px
+
+    rgba(0,0,0,.15);
+
+
+
+    animation:
+
+    pop .6s ease;
+
+
+}
+
+
+
+
+.start-box h1{
+
+
+    color:#ff5c9d;
+
+
+    font-size:35px;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.start-box p{
+
+
+    margin-bottom:25px;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   APP
+========================== */
+
+
+.app{
+
+
+    display:block;
+
+
+    width:100%;
+
+
+    max-width:480px;
+
+
+    margin:auto;
+
+
+    padding:20px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   CARD
+========================== */
+
+
+.card{
+
+
+    background:
+
+    rgba(255,255,255,.9);
+
+
+
+    padding:20px;
+
+
+
+    margin-bottom:20px;
+
+
+
+    border-radius:25px;
+
+
+
+    box-shadow:
+
+
+    0 10px 30px
+
+    rgba(255,100,160,.15);
+
+
+
+    backdrop-filter:
+
+    blur(10px);
+
+
+
+    animation:
+
+    fade .5s ease;
+
+
+}
+
+
+
+
+
+
+
+.hero{
+
+
+    text-align:center;
+
+
+}
+
+
+
+.hero h1{
+
+
+    font-size:34px;
+
+
+    color:#ff5c9d;
+
+
+}
+
+
+
+.hero p{
+
+
+    margin-top:10px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   TEXT
+========================== */
+
+
+h2{
+
+
+    text-align:center;
+
+
+    margin-bottom:20px;
+
+
+    color:#ff5c9d;
+
+
+}
+
+
+
+h3{
+
+
+    font-size:22px;
+
+
+    color:#ff5c9d;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   BUTTON
+========================== */
+
+
+button{
+
+
+    width:100%;
+
+
+    padding:14px;
+
+
+
+    margin-top:12px;
+
+
+
+    border:none;
+
+
+
+    border-radius:50px;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #ff8fba,
+
+        #ff5c9d
+
+    );
+
+
+
+    color:white;
+
+
+
+    font-size:17px;
+
+
+
+    cursor:pointer;
+
+
+
+    transition:.3s;
+
+
+
+    box-shadow:
+
+    0 8px 20px
+
+    rgba(255,92,157,.3);
+
+
+
+}
+
+
+
+button:hover{
+
+
+    transform:
+
+    translateY(-3px);
+
+
+}
+
+
+
+button:active{
+
+
+    transform:
+
+    scale(.95);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   MODE
+========================== */
+
+
+.mode-group{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+}
+
+
+
+.mode{
+
+
+    flex:1;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+.mode.active{
+
+
+    background:
+
+    #ff5c9d;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   WHEEL
+========================== */
+
+
+.wheel-wrapper{
+
+
+    position:relative;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+
+#wheel{
+
+
+    width:100%;
+
+
+    max-width:420px;
+
+
+    border-radius:50%;
+
+
+
+    box-shadow:
+
+
+    0 15px 30px
+
+    rgba(0,0,0,.15);
+
+
+
+}
+
+
+
+#pointer{
+
+
+    position:absolute;
+
+
+    top:-15px;
+
+
+    z-index:5;
+
+
+
+    font-size:35px;
+
+
+    color:#ff5c9d;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   RESULT
+========================== */
+
+
+.result-box{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+
+    justify-content:center;
+
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+.result-box div{
+
+
+    flex:1;
+
+
+
+    background:
+
+    #fff0f6;
+
+
+
+    padding:15px;
+
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+
+
+.result-box span{
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   LIST
+========================== */
+
+
+ul{
+
+
+    list-style:none;
+
+
+}
+
+
+
+li{
+
+
+    background:
+
+    #fff0f6;
+
+
+
+    margin:10px 0;
+
+
+
+    padding:12px;
+
+
+
+    border-radius:15px;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   MUSIC
+========================== */
+
+
+audio{
+
+
+    width:100%;
+
+
+}
+
+
+
+select{
+
+
+    width:100%;
+
+
+    margin-top:15px;
+
+
+
+    padding:12px;
+
+
+
+    border-radius:20px;
+
+
+
+    border:none;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+   HEART EFFECT
+========================== */
+
+
+.heart{
+
+
+    position:fixed;
+
+
+    font-size:35px;
+
+
+    animation:
+
+    floatHeart 2s ease-out forwards;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+@keyframes floatHeart{
+
+
+from{
+
+
+    transform:
+
+    translateY(0)
+
+    scale(1);
+
+
+    opacity:1;
+
+
+}
+
+
+to{
+
+
+    transform:
+
+    translateY(-300px)
+
+    scale(1.5);
+
+
+
+    opacity:0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   ANIMATION
+========================== */
+
+
+@keyframes pop{
+
+
+from{
+
+
+    transform:
+
+    scale(.7);
+
+
+
+    opacity:0;
+
+
+}
+
+
+
+to{
+
+
+    transform:
+
+    scale(1);
+
+
+
+    opacity:1;
+
+
+}
+
+
+}
+
+
+
+@keyframes fade{
+
+
+from{
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(20px);
+
+
+}
+
+
+
+to{
+
+
+    opacity:1;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   DARK MODE 🌙
+========================== */
+
+
+body.dark{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #21152d,
+
+        #542a72
+
+    );
+
+
+
+    color:white;
+
+
+}
+
+
+
+body.dark .card{
+
+
+    background:
+
+
+    rgba(40,20,60,.9);
+
+
+
+    color:white;
+
+
+}
+
+
+
+body.dark h1,
+
+body.dark h2,
+
+body.dark h3{
+
+
+    color:#ffb7e0;
+
+
+}
+
+
+
+body.dark li,
+
+body.dark .result-box div{
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+}
+
+
+
+body.dark button{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #9b5de5,
+
+        #f15bb5
+
+    );
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+
+footer{
+
+
+    text-align:center;
+
+
+    font-size:14px;
+
+
+    color:#ff5c9d;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+
+@media(max-width:480px){
+
+
+
+.app{
+
+
+    padding:12px;
+
+
+}
+
+
+
+.hero h1{
+
+
+    font-size:28px;
+
+
+}
+
+
+
+#wheel{
+
+
+    width:300px;
+
+
+}
+
+
+
+.result-box{
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+.mode-group{
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+}

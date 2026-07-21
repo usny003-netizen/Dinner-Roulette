@@ -1,7 +1,7 @@
-/* =================================
+/* =========================================
  Dinner Roulette V10 ❤️
- Cute Romantic App Style
-================================= */
+ Cute Romantic Mobile App Theme
+========================================= */
 
 
 /* RESET */
@@ -22,13 +22,15 @@ body{
     "Arial",
     sans-serif;
 
+
     background:
 
     linear-gradient(
         135deg,
         #ffd6e7,
-        #fff3c4
+        #fff5cf
     );
+
 
     color:#555;
 
@@ -41,9 +43,10 @@ body{
 
 
 
-/* =========================
+
+/* =================================
  START SCREEN
-========================= */
+================================= */
 
 
 #startScreen{
@@ -52,11 +55,14 @@ body{
 
     inset:0;
 
+    z-index:9999;
+
     display:flex;
 
     justify-content:center;
 
     align-items:center;
+
 
     background:
 
@@ -65,8 +71,6 @@ body{
         #ff8fb8,
         #ffd6e7
     );
-
-    z-index:999;
 
 }
 
@@ -78,19 +82,22 @@ body{
 
     max-width:400px;
 
-    background:white;
-
     padding:40px 25px;
+
+    background:white;
 
     border-radius:35px;
 
+
     text-align:center;
+
 
     box-shadow:
 
     0 20px 50px
 
-    rgba(0,0,0,.15);
+    rgba(0,0,0,.2);
+
 
     animation:
 
@@ -124,18 +131,20 @@ body{
 
 
 
-/* =========================
+/* =================================
  APP
-========================= */
+================================= */
 
 
 .app{
+
+    width:100%;
 
     max-width:500px;
 
     margin:auto;
 
-    padding:20px;
+    padding:18px;
 
 }
 
@@ -143,9 +152,11 @@ body{
 
 
 
-/* =========================
+
+
+/* =================================
  CARD
-========================= */
+================================= */
 
 
 .card{
@@ -154,21 +165,28 @@ body{
 
     rgba(255,255,255,.9);
 
+
+    border-radius:30px;
+
+
     padding:22px;
+
 
     margin-bottom:20px;
 
-    border-radius:30px;
 
 
     box-shadow:
 
     0 12px 35px
 
-    rgba(255,92,157,.15);
+    rgba(255,92,157,.18);
 
 
-    backdrop-filter:blur(10px);
+
+    backdrop-filter:
+
+    blur(12px);
 
 
     animation:
@@ -176,8 +194,6 @@ body{
     fade .5s ease;
 
 }
-
-
 
 
 
@@ -200,6 +216,21 @@ body{
 
 
 
+.hero p{
+
+    margin-top:10px;
+
+}
+
+
+
+
+
+
+
+/* =================================
+ TEXT
+================================= */
 
 
 h2{
@@ -214,12 +245,9 @@ h2{
 
 
 
-
 h3{
 
     color:#ff5c9d;
-
-    margin-top:10px;
 
 }
 
@@ -229,9 +257,9 @@ h3{
 
 
 
-/* =========================
+/* =================================
  BUTTON
-========================= */
+================================= */
 
 
 button{
@@ -241,11 +269,15 @@ button{
 
     padding:14px;
 
+
     margin-top:12px;
+
 
     border:none;
 
+
     border-radius:50px;
+
 
 
     background:
@@ -257,11 +289,19 @@ button{
     );
 
 
+
     color:white;
 
-    font-size:17px;
+
+    font-size:16px;
+
 
     cursor:pointer;
+
+
+
+    transition:.3s;
+
 
 
     box-shadow:
@@ -269,9 +309,6 @@ button{
     0 8px 20px
 
     rgba(255,92,157,.3);
-
-
-    transition:.3s;
 
 
 }
@@ -285,6 +322,7 @@ button:hover{
     translateY(-3px);
 
 }
+
 
 
 button:active{
@@ -301,13 +339,12 @@ button:active{
 
 
 
-/* =========================
+/* =================================
  MODE
-========================= */
+================================= */
 
 
 .mode-group{
-
 
     display:flex;
 
@@ -319,7 +356,6 @@ button:active{
 
 .mode{
 
-
     flex:1;
 
     font-size:14px;
@@ -329,7 +365,6 @@ button:active{
 
 
 .mode.active{
-
 
     background:
 
@@ -346,21 +381,28 @@ input{
 
     width:100%;
 
+
     padding:13px;
+
 
     margin-top:15px;
 
 
+
     border:none;
+
 
     border-radius:20px;
 
 
-    background:#fff0f6;
-
     text-align:center;
 
+
+    background:#fff0f6;
+
+
     font-size:16px;
+
 
 }
 
@@ -370,11 +412,9 @@ input{
 
 
 
-
-
-/* =========================
+/* =================================
  CATEGORY
-========================= */
+================================= */
 
 
 .category-group{
@@ -393,11 +433,9 @@ input{
 .category{
 
 
-    width:auto;
-
     flex:1;
 
-    min-width:80px;
+    min-width:90px;
 
     font-size:13px;
 
@@ -407,9 +445,12 @@ input{
 
 
 
-/* =========================
+
+
+
+/* =================================
  WHEEL
-========================= */
+================================= */
 
 
 .wheel-wrapper{
@@ -417,14 +458,17 @@ input{
 
     position:relative;
 
+
     display:flex;
+
 
     justify-content:center;
 
-    margin:20px 0;
+
+    margin:25px 0;
+
 
 }
-
 
 
 
@@ -433,9 +477,12 @@ input{
 
     width:100%;
 
+
     max-width:420px;
 
+
     border-radius:50%;
+
 
 
     box-shadow:
@@ -445,10 +492,8 @@ input{
     rgba(0,0,0,.2);
 
 
-    transition:5s;
 
 }
-
 
 
 
@@ -457,11 +502,15 @@ input{
 
     position:absolute;
 
-    top:-18px;
 
-    z-index:5;
+    top:-20px;
+
+
+    z-index:10;
+
 
     font-size:40px;
+
 
     color:#ff5c9d;
 
@@ -471,9 +520,11 @@ input{
 
 
 
-/* =========================
+
+
+/* =================================
  RESULT
-========================= */
+================================= */
 
 
 .result-box{
@@ -481,7 +532,9 @@ input{
 
     display:flex;
 
+
     gap:10px;
+
 
 }
 
@@ -492,13 +545,28 @@ input{
 
     flex:1;
 
+
     background:#fff0f6;
+
 
     padding:15px;
 
+
     border-radius:20px;
 
+
     text-align:center;
+
+
+}
+
+
+
+.result-box span{
+
+
+    font-size:13px;
+
 
 }
 
@@ -506,9 +574,12 @@ input{
 
 
 
-/* =========================
+
+
+
+/* =================================
  LIST
-========================= */
+================================= */
 
 
 ul{
@@ -524,11 +595,15 @@ li{
 
     background:#fff0f6;
 
+
     margin:10px 0;
+
 
     padding:12px;
 
+
     border-radius:18px;
+
 
 }
 
@@ -536,9 +611,31 @@ li{
 
 
 
-/* =========================
+.deleteFav{
+
+
+    background:#ff7fae;
+
+
+    padding:8px 15px;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =================================
  DAILY MISSION
-========================= */
+================================= */
 
 
 .mission{
@@ -546,12 +643,16 @@ li{
 
     display:flex;
 
+
     justify-content:space-between;
+
 
     align-items:center;
 
 
+
     background:#fff0f6;
+
 
 
     padding:15px;
@@ -562,18 +663,25 @@ li{
 
     border-radius:20px;
 
-}
 
+}
 
 
 
 #missionScore{
 
 
+    text-align:center;
+
+
     margin-top:20px;
 
 
-    text-align:center;
+    padding:15px;
+
+
+    border-radius:25px;
+
 
 
     background:
@@ -585,14 +693,8 @@ li{
     );
 
 
+
     color:white;
-
-
-    padding:15px;
-
-
-    border-radius:25px;
-
 
 }
 
@@ -602,9 +704,11 @@ li{
 
 
 
-/* =========================
+
+
+/* =================================
  SHARE CARD
-========================= */
+================================= */
 
 
 #shareCard{
@@ -613,10 +717,11 @@ li{
     padding:30px;
 
 
+    border-radius:35px;
+
+
     text-align:center;
 
-
-    border-radius:35px;
 
 
     background:
@@ -624,13 +729,14 @@ li{
     linear-gradient(
         135deg,
         #ff9fc5,
-        #fff2c8
+        #fff1c7
     );
+
 
 
     box-shadow:
 
-    0 15px 35px
+    0 15px 40px
 
     rgba(255,92,157,.3);
 
@@ -641,9 +747,7 @@ li{
 
 #shareCard h1{
 
-
     color:#ff5c9d;
-
 
     margin-bottom:20px;
 
@@ -653,10 +757,9 @@ li{
 
 #shareCard p{
 
+    margin:12px;
 
     font-size:18px;
-
-    margin:12px;
 
 }
 
@@ -664,9 +767,13 @@ li{
 
 
 
-/* =========================
+
+
+
+
+/* =================================
  MUSIC
-========================= */
+================================= */
 
 
 select{
@@ -674,13 +781,18 @@ select{
 
     width:100%;
 
+
     padding:12px;
 
-    border-radius:20px;
+
+    margin-top:15px;
+
 
     border:none;
 
-    margin-top:15px;
+
+    border-radius:20px;
+
 
 }
 
@@ -689,9 +801,11 @@ select{
 
 
 
-/* =========================
+
+
+/* =================================
  HEART EFFECT
-========================= */
+================================= */
 
 
 .heart{
@@ -700,45 +814,57 @@ select{
     position:fixed;
 
 
+    bottom:20px;
+
+
     font-size:35px;
+
+
+    z-index:9999;
 
 
     pointer-events:none;
 
 
+
     animation:
 
-    heartFly 2s forwards;
+    heartFly 2s ease forwards;
+
 
 }
-
 
 
 
 @keyframes heartFly{
 
 
-from{
+0%{
 
 transform:
 
-translateY(0);
+translateY(0)
+
+scale(1);
 
 opacity:1;
 
 }
 
 
-to{
+100%{
 
 transform:
 
-translateY(-300px);
+translateY(-300px)
+
+scale(1.5);
 
 opacity:0;
 
 }
 
+
 }
 
 
@@ -747,9 +873,69 @@ opacity:0;
 
 
 
-/* =========================
- DARK MODE
-========================= */
+
+
+/* =================================
+ WIN EFFECT
+================================= */
+
+
+.win{
+
+
+    animation:
+
+    shake .5s;
+
+
+}
+
+
+
+@keyframes shake{
+
+
+0%{
+
+transform:translateX(0);
+
+}
+
+
+25%{
+
+transform:translateX(-10px);
+
+}
+
+
+50%{
+
+transform:translateX(10px);
+
+}
+
+
+100%{
+
+transform:translateX(0);
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =================================
+ DARK MODE 🌙
+================================= */
 
 
 body.dark{
@@ -759,15 +945,15 @@ body.dark{
 
     linear-gradient(
         135deg,
-        #24152f,
+        #21152d,
         #542a72
     );
 
 
     color:white;
 
-}
 
+}
 
 
 
@@ -783,7 +969,6 @@ body.dark .card{
 
 
 
-
 body.dark h1,
 
 body.dark h2,
@@ -793,25 +978,24 @@ body.dark h3{
 
     color:#ffb6dd;
 
-}
 
+}
 
 
 
 body.dark li,
 
-body.dark .result-box div,
+body.dark .mission,
 
-body.dark .mission{
+body.dark .result-box div{
 
 
     background:
 
     rgba(255,255,255,.12);
 
+
 }
-
-
 
 
 
@@ -822,7 +1006,9 @@ body.dark input{
 
     rgba(255,255,255,.1);
 
+
     color:white;
+
 
 }
 
@@ -830,9 +1016,13 @@ body.dark input{
 
 
 
-/* =========================
+
+
+
+
+/* =================================
  ANIMATION
-========================= */
+================================= */
 
 
 @keyframes pop{
@@ -856,7 +1046,6 @@ opacity:1;
 }
 
 }
-
 
 
 
@@ -886,13 +1075,14 @@ opacity:1;
 
 
 
-/* =========================
+
+
+/* =================================
  MOBILE
-========================= */
+================================= */
 
 
 @media(max-width:480px){
-
 
 
 .app{
@@ -921,7 +1111,6 @@ width:300px;
 
 .result-box{
 
-
 flex-direction:column;
 
 }
@@ -929,7 +1118,6 @@ flex-direction:column;
 
 
 .mode-group{
-
 
 flex-direction:column;
 
@@ -939,13 +1127,11 @@ flex-direction:column;
 
 .category-group{
 
-
 display:grid;
 
 grid-template-columns:1fr 1fr;
 
 }
-
 
 
 }

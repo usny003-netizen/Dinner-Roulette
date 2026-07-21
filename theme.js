@@ -1,33 +1,13 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Theme System 🌙
+ Dinner Roulette V12 ❤️
+ Theme System 🌙💕
 ================================= */
 
 
 
-const themeBtn =
+const themeKey =
 
-document.getElementById(
-"themeBtn"
-);
-
-
-
-
-
-// ===============================
-// LOAD THEME
-// ===============================
-
-
-let darkMode =
-
-localStorage.getItem(
-"darkMode"
-)
-
-==="true";
-
+"dinnerTheme";
 
 
 
@@ -45,7 +25,17 @@ function applyTheme(){
 
 
 
-if(darkMode){
+const theme =
+
+localStorage.getItem(
+themeKey
+);
+
+
+
+
+
+if(theme==="dark"){
 
 
 
@@ -55,22 +45,11 @@ document.body.classList.add(
 
 
 
-
-if(themeBtn){
-
-
-themeBtn.innerHTML=
-
-"☀️ Light Mode";
-
-
-}
+updateThemeButton(true);
 
 
 
 }
-
-
 
 else{
 
@@ -82,21 +61,11 @@ document.body.classList.remove(
 
 
 
-
-if(themeBtn){
-
-
-themeBtn.innerHTML=
-
-"🌙 Dark Mode";
-
-
-}
+updateThemeButton(false);
 
 
 
 }
-
 
 
 
@@ -115,47 +84,116 @@ themeBtn.innerHTML=
 // ===============================
 
 
-if(themeBtn){
+function toggleTheme(){
 
 
 
-themeBtn.onclick=()=>{
+document.body.classList.toggle(
+"dark"
+);
 
 
-darkMode=
 
-!darkMode;
+
+const isDark =
+
+document.body.classList.contains(
+"dark"
+);
+
+
 
 
 
 
 localStorage.setItem(
 
-"darkMode",
+themeKey,
 
-darkMode
+isDark
+
+? "dark"
+
+: "light"
 
 );
 
 
 
 
-applyTheme();
 
+updateThemeButton(
+isDark
+);
 
-
-
-if(typeof createHeart==="function"){
-
-
-createHeart();
 
 
 }
 
 
 
-};
+
+window.toggleTheme =
+toggleTheme;
+
+
+
+
+
+
+
+
+
+// ===============================
+// BUTTON TEXT
+// ===============================
+
+
+function updateThemeButton(dark){
+
+
+
+const btn =
+
+document.getElementById(
+"themeBtn"
+);
+
+
+
+
+if(!btn)
+
+return;
+
+
+
+
+
+
+if(dark){
+
+
+
+btn.innerHTML=
+
+"☀️ Light Mode";
+
+
+
+}
+
+else{
+
+
+
+btn.innerHTML=
+
+"🌙 Dark Mode";
+
+
+
+}
 
 
 
@@ -174,4 +212,48 @@ createHeart();
 // ===============================
 
 
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+
+
 applyTheme();
+
+
+
+
+
+const btn=
+
+document.getElementById(
+"themeBtn"
+);
+
+
+
+
+
+
+if(btn){
+
+
+
+btn.onclick=
+
+()=>{
+
+
+toggleTheme();
+
+
+};
+
+
+}
+
+
+
+});

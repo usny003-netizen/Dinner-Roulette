@@ -1,20 +1,7 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Daily Mission System 💌
+ Dinner Roulette V12 ❤️
+ Daily Mission System 💌💕
 ================================= */
-
-
-
-const today =
-
-new Date()
-
-.toLocaleDateString(
-"th-TH"
-);
-
-
-
 
 
 
@@ -24,6 +11,7 @@ JSON.parse(
 
 localStorage.getItem(
 "dinnerMission"
+
 )
 
 )||{
@@ -46,12 +34,26 @@ share:false
 
 
 
-// =============================
-// RESET DAILY
-// =============================
 
 
-function checkDailyReset(){
+// ===============================
+// CHECK DAILY RESET
+// ===============================
+
+
+function checkMissionDay(){
+
+
+
+let today =
+
+new Date()
+
+.toLocaleDateString(
+"th-TH"
+);
+
+
 
 
 
@@ -65,7 +67,7 @@ missionData={
 date:today,
 
 
-open:true,
+open:false,
 
 
 spin:false,
@@ -77,6 +79,7 @@ like:false,
 share:false
 
 
+
 };
 
 
@@ -84,16 +87,6 @@ share:false
 saveMission();
 
 
-}
-
-else{
-
-
-missionData.open=true;
-
-
-saveMission();
-
 
 }
 
@@ -109,9 +102,9 @@ saveMission();
 
 
 
-// =============================
+// ===============================
 // SAVE
-// =============================
+// ===============================
 
 
 function saveMission(){
@@ -134,7 +127,6 @@ missionData
 renderMission();
 
 
-
 }
 
 
@@ -145,9 +137,32 @@ renderMission();
 
 
 
-// =============================
-// COMPLETE
-// =============================
+// ===============================
+// COMPLETE MISSIONS
+// ===============================
+
+
+function completeOpenMission(){
+
+
+
+missionData.open=true;
+
+
+saveMission();
+
+
+}
+
+
+
+window.completeOpenMission =
+completeOpenMission;
+
+
+
+
+
 
 
 function completeSpinMission(){
@@ -160,15 +175,12 @@ missionData.spin=true;
 saveMission();
 
 
-
 }
 
 
 
-window.completeSpinMission=
-
+window.completeSpinMission =
 completeSpinMission;
-
 
 
 
@@ -191,10 +203,8 @@ saveMission();
 
 
 
-window.completeLikeMission=
-
+window.completeLikeMission =
 completeLikeMission;
-
 
 
 
@@ -217,8 +227,7 @@ saveMission();
 
 
 
-window.completeShareMission=
-
+window.completeShareMission =
 completeShareMission;
 
 
@@ -229,67 +238,16 @@ completeShareMission;
 
 
 
-// =============================
-// SCORE
-// =============================
-
-
-function getMissionScore(){
-
-
-
-let score=0;
-
-
-
-if(missionData.open)
-
-score+=1;
-
-
-
-if(missionData.spin)
-
-score+=1;
-
-
-
-if(missionData.like)
-
-score+=1;
-
-
-
-if(missionData.share)
-
-score+=1;
-
-
-
-return score;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =============================
-// DISPLAY
-// =============================
+// ===============================
+// RENDER
+// ===============================
 
 
 function renderMission(){
 
 
 
-const open=
+const open =
 
 document.getElementById(
 "openMission"
@@ -297,7 +255,7 @@ document.getElementById(
 
 
 
-const spin=
+const spin =
 
 document.getElementById(
 "spinMission"
@@ -305,7 +263,7 @@ document.getElementById(
 
 
 
-const like=
+const like =
 
 document.getElementById(
 "likeMission"
@@ -313,37 +271,11 @@ document.getElementById(
 
 
 
-const share=
+const share =
 
 document.getElementById(
 "shareMission"
 );
-
-
-
-const score=
-
-document.getElementById(
-"missionScore"
-);
-
-
-
-
-
-
-
-function status(value){
-
-
-return value
-?
-"✅"
-:
-"⬜";
-
-
-}
 
 
 
@@ -354,9 +286,12 @@ if(open)
 
 open.innerHTML=
 
-status(
 missionData.open
-);
+
+? "✅"
+
+: "⬜";
+
 
 
 
@@ -364,9 +299,12 @@ if(spin)
 
 spin.innerHTML=
 
-status(
 missionData.spin
-);
+
+? "✅"
+
+: "⬜";
+
 
 
 
@@ -374,9 +312,12 @@ if(like)
 
 like.innerHTML=
 
-status(
 missionData.like
-);
+
+? "✅"
+
+: "⬜";
+
 
 
 
@@ -384,9 +325,53 @@ if(share)
 
 share.innerHTML=
 
-status(
 missionData.share
+
+? "✅"
+
+: "⬜";
+
+
+
+
+
+
+
+
+
+const score =
+
+document.getElementById(
+"missionScore"
 );
+
+
+
+
+
+let count=0;
+
+
+
+if(missionData.open)
+
+count++;
+
+
+if(missionData.spin)
+
+count++;
+
+
+if(missionData.like)
+
+count++;
+
+
+if(missionData.share)
+
+count++;
+
 
 
 
@@ -395,15 +380,14 @@ missionData.share
 if(score){
 
 
+
 score.innerHTML=
 
 `
 
-คะแนนวันนี้ :
+คะแนนวันนี้
 
-${getMissionScore()}
-
-/4 ❤️
+${count}/4 ❤️
 
 `;
 
@@ -413,6 +397,7 @@ ${getMissionScore()}
 
 
 
+
 }
 
 
@@ -423,9 +408,9 @@ ${getMissionScore()}
 
 
 
-// =============================
-// INIT
-// =============================
+// ===============================
+// START TODAY
+// ===============================
 
 
 document.addEventListener(
@@ -435,10 +420,22 @@ document.addEventListener(
 ()=>{
 
 
-checkDailyReset();
+
+checkMissionDay();
+
+
+
+
+
+// เปิดเว็บสำเร็จ
+
+completeOpenMission();
+
+
 
 
 renderMission();
+
 
 
 });

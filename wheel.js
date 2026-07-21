@@ -125,6 +125,7 @@ let spinning=false;
 
 let rotation=0;
 
+canvas.style.transform = "rotate(0deg)";
 
 
 // สำคัญ

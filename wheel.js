@@ -1,12 +1,14 @@
 /* =================================
    Dinner Roulette ❤️
-   Wheel Spin System 🎡
+   Wheel Spin System 🎡 V2.2
 ================================= */
 
 
 const canvas = document.getElementById("wheel");
 
-if(canvas){
+
+if (canvas) {
+
 
 const ctx = canvas.getContext("2d");
 
@@ -29,32 +31,29 @@ const foods = [
 
 
 
-// เก็บผลล่าสุด
+let spinning = false;
+
 let currentFood = "";
 
 
-// การหมุน
-let spinning = false;
 
 
+// =======================
 // เสียง
-
-const winSound = new Audio(
-    "win.mp3"
-);
+// =======================
 
 
-const clickSound = new Audio(
-    "click.mp3"
-);
+const clickSound = new Audio("click.mp3");
+
+const winSound = new Audio("win.mp3");
 
 
 
 
 
-/* =========================
-   วาดวงล้อ
-========================= */
+// =======================
+// วาดวงล้อ
+// =======================
 
 
 function drawWheel(){
@@ -72,12 +71,10 @@ function drawWheel(){
 
 
     ctx.clearRect(
-
         0,
         0,
         canvas.width,
         canvas.height
-
     );
 
 
@@ -114,13 +111,9 @@ function drawWheel(){
 
         index % 2 === 0
 
-        ?
+        ? "#ffd1e5"
 
-        "#ffd1e5"
-
-        :
-
-        "#fff2b8";
+        : "#fff2b8";
 
 
 
@@ -129,7 +122,8 @@ function drawWheel(){
 
 
 
-        // ตัวหนังสือ
+        // ข้อความ
+
 
         ctx.save();
 
@@ -143,17 +137,17 @@ function drawWheel(){
 
         ctx.rotate(
 
-            index*slice + slice/2
+            index * slice + slice / 2
 
         );
 
 
 
-        ctx.textAlign="right";
+        ctx.textAlign = "right";
 
         ctx.fillStyle="#555";
 
-        ctx.font="17px Arial";
+        ctx.font="16px Arial";
 
 
 
@@ -161,9 +155,9 @@ function drawWheel(){
 
             food,
 
-            radius-15,
+            radius - 15,
 
-            8
+            5
 
         );
 
@@ -187,21 +181,26 @@ drawWheel();
 
 
 
-/* =========================
-   ปุ่มหมุน
-========================= */
+
+// =======================
+// ปุ่มหมุน
+// =======================
 
 
-const spinBtn = 
-
-document.getElementById("spinBtn");
+const spinBtn = document.getElementById("spinBtn");
 
 
 
 if(spinBtn){
 
 
-spinBtn.onclick = spinWheel;
+spinBtn.addEventListener(
+
+"click",
+
+spinWheel
+
+);
 
 
 }
@@ -215,24 +214,33 @@ spinBtn.onclick = spinWheel;
 function spinWheel(){
 
 
+
     if(spinning)
+
     return;
 
 
 
-    spinning=true;
+    spinning = true;
 
 
 
-    clickSound.play();
+    // เสียงคลิก
+
+    clickSound.currentTime = 0;
+
+    clickSound.play()
+    .catch(()=>{});
 
 
 
-    let random =
+
+
+    const random =
 
     Math.floor(
 
-        Math.random()*foods.length
+        Math.random() * foods.length
 
     );
 
@@ -242,17 +250,22 @@ function spinWheel(){
 
 
 
-    let sliceAngle =
+
+
+    const angle =
 
     360 / foods.length;
 
 
 
-    let rotation =
 
-    360*6 +
+    const rotate =
 
-    (360-(random*sliceAngle));
+    360 * 6 +
+
+    (360 - random * angle);
+
+
 
 
 
@@ -264,7 +277,8 @@ function spinWheel(){
 
     canvas.style.transform =
 
-    `rotate(${rotation}deg)`;
+    `rotate(${rotate}deg)`;
+
 
 
 
@@ -274,17 +288,20 @@ function spinWheel(){
     setTimeout(()=>{
 
 
-        spinning=false;
+        spinning = false;
 
 
 
-        winSound.play();
+        // เสียงชนะ
+
+        winSound.currentTime = 0;
+
+        winSound.play()
+        .catch(()=>{});
 
 
 
-        showResult(
-            currentFood
-        );
+        showResult(currentFood);
 
 
 
@@ -300,10 +317,9 @@ function spinWheel(){
 
 
 
-
-/* =========================
-   แสดงผล
-========================= */
+// =======================
+// แสดงผล
+// =======================
 
 
 function showResult(food){
@@ -320,23 +336,21 @@ function showResult(food){
 
     if(result){
 
+
         result.innerHTML = food;
+
 
     }
 
 
 
-
-    // ส่งค่าออกไปใช้ไฟล์อื่น
+    // ส่งค่าให้ระบบอื่น
 
     window.currentFood = food;
 
 
 
 }
-
-
-
 
 
 

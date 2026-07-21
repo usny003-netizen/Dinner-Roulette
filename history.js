@@ -1,7 +1,8 @@
 /* =================================
- Dinner Roulette V13 ❤️
- Couple Timeline History System 📜💕
+ Dinner Roulette V15 ❤️
+ Couple Memory Timeline 📜💕
 ================================= */
+
 
 
 let historyFoods =
@@ -22,7 +23,7 @@ localStorage.getItem(
 
 
 // ===============================
-// SAVE HISTORY
+// SAVE HISTORY 📜
 // ===============================
 
 
@@ -43,6 +44,7 @@ const now = new Date();
 
 
 
+
 const record={
 
 
@@ -52,7 +54,7 @@ food:data.food,
 drink:data.drink || "🥤 น้ำหวาน",
 
 
-dessert:data.drink || data.dessert || "🍰 ของหวาน",
+dessert:data.dessert || "🍰 ของหวาน",
 
 
 mode:data.mode || "สุ่ม",
@@ -83,7 +85,6 @@ minute:"2-digit"
 )
 
 
-
 };
 
 
@@ -91,21 +92,25 @@ minute:"2-digit"
 
 
 
-historyFoods.unshift(
-record
-);
+historyFoods.unshift(record);
 
 
 
 
 
-// เก็บ 20 รายการล่าสุด
+// เก็บล่าสุด 30 ครั้ง
 
-if(historyFoods.length>20){
+
+if(historyFoods.length>30){
+
 
 historyFoods.pop();
 
+
 }
+
+
+
 
 
 
@@ -114,9 +119,14 @@ localStorage.setItem(
 
 "dinnerHistory",
 
-JSON.stringify(historyFoods)
+JSON.stringify(
+historyFoods
+
+)
 
 );
+
+
 
 
 
@@ -128,7 +138,8 @@ renderHistory();
 
 
 
-window.saveHistory =
+window.saveHistory=
+
 saveHistory;
 
 
@@ -140,7 +151,7 @@ saveHistory;
 
 
 // ===============================
-// RENDER TIMELINE
+// RENDER TIMELINE 📜
 // ===============================
 
 
@@ -148,12 +159,11 @@ function renderHistory(){
 
 
 
-const list =
+const list=
 
 document.getElementById(
 "historyList"
 );
-
 
 
 
@@ -164,7 +174,11 @@ return;
 
 
 
+
+
 list.innerHTML="";
+
+
 
 
 
@@ -198,20 +212,25 @@ return;
 
 
 
+
+
+
 historyFoods.forEach(
 
 (item,index)=>{
 
 
 
-let chooser;
+let chooser="";
+
+
 
 
 
 if(item.mode==="แฟน"){
 
 
-chooser="💕 Chompu เลือก";
+chooser="💕 Chompu เลือกให้";
 
 
 }
@@ -236,7 +255,10 @@ chooser="🎲 หัวใจเลือก";
 
 
 
-let li=
+
+
+
+const li=
 
 document.createElement(
 "li"
@@ -252,25 +274,21 @@ li.className=
 
 
 
+
+
 li.innerHTML=
 
 `
-
-<div class="timeline-dot">
-
-❤️
-
-</div>
-
 
 <div class="timeline-content">
 
 
 <h3>
 
-${item.food}
+❤️ ${item.food}
 
 </h3>
+
 
 
 <p>
@@ -280,11 +298,13 @@ ${item.food}
 </p>
 
 
+
 <p>
 
-🍰 ${item.dartess || item.dessert}
+🍰 ${item.dessert}
 
 </p>
+
 
 
 <p>
@@ -294,11 +314,10 @@ ${chooser}
 </p>
 
 
+
 <span>
 
 📅 ${item.date}
-
-&nbsp;
 
 ⏰ ${item.time}
 
@@ -313,7 +332,9 @@ ${chooser}
 </button>
 
 
+
 </div>
+
 
 `;
 
@@ -321,7 +342,11 @@ ${chooser}
 
 
 
+
+
 list.appendChild(li);
+
+
 
 
 
@@ -340,7 +365,7 @@ list.appendChild(li);
 
 
 // ===============================
-// DELETE
+// REMOVE ONE
 // ===============================
 
 
@@ -359,13 +384,19 @@ index,
 
 
 
+
 localStorage.setItem(
 
 "dinnerHistory",
 
-JSON.stringify(historyFoods)
+JSON.stringify(
+historyFoods
+
+)
 
 );
+
+
 
 
 
@@ -373,11 +404,28 @@ renderHistory();
 
 
 
+
+
+if(typeof showToast==="function"){
+
+
+showToast(
+
+"🗑️ ลบความทรงจำแล้ว"
+
+);
+
+
 }
 
 
 
-window.removeHistory =
+}
+
+
+
+window.removeHistory=
+
 removeHistory;
 
 
@@ -389,11 +437,23 @@ removeHistory;
 
 
 // ===============================
-// CLEAR
+// CLEAR ALL
 // ===============================
 
 
 function clearHistory(){
+
+
+
+if(!confirm(
+
+"ล้างความทรงจำทั้งหมดไหม ❤️"
+
+))
+
+return;
+
+
 
 
 
@@ -402,8 +462,12 @@ historyFoods=[];
 
 
 localStorage.removeItem(
+
 "dinnerHistory"
+
 );
+
+
 
 
 
@@ -411,12 +475,56 @@ renderHistory();
 
 
 
+if(typeof showToast==="function"){
+
+
+showToast(
+
+"🧹 ล้าง Timeline แล้ว"
+
+);
+
+
 }
 
 
 
-window.clearHistory =
+}
+
+
+
+window.clearHistory=
+
 clearHistory;
+
+
+
+
+
+
+
+
+
+// ===============================
+// GET HISTORY
+// ===============================
+
+
+function getHistory(){
+
+
+
+return historyFoods;
+
+
+
+}
+
+
+
+window.getHistory=
+
+getHistory;
 
 
 
@@ -441,6 +549,4 @@ document.addEventListener(
 renderHistory();
 
 
-}
-
-);
+});

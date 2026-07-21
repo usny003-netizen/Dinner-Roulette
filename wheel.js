@@ -48,7 +48,7 @@ let spinning = false;
 // เสียงชนะ
 
 const winSound = new Audio(
-    "sounds/win.mp3"
+    "win.mp3"
 );
 
 

@@ -1,29 +1,82 @@
 /* =================================
-   Dinner Roulette V2.5 ❤️
-   favorite.js ⭐
+ Dinner Roulette V10 ❤️
+ Favorite System ⭐
 ================================= */
 
 
-
-let favoriteData =
+let favoriteFoods =
 
 JSON.parse(
 
-localStorage.getItem("favorite")
-
+localStorage.getItem(
+"favoriteFoods"
 )
 
-|| [];
+)||[];
 
 
 
 
 
-const favoriteList =
 
-document.getElementById(
+// =========================
+// SAVE FAVORITE
+// =========================
 
-"favoriteList"
+
+function saveFavorite(data){
+
+
+
+if(!data || !data.food)
+
+return;
+
+
+
+
+
+// กันซ้ำ
+
+let exist =
+
+favoriteFoods.some(
+
+item=>
+
+item.food===data.food
+
+);
+
+
+
+
+if(exist){
+
+
+return;
+
+}
+
+
+
+
+
+
+favoriteFoods.push(data);
+
+
+
+
+
+localStorage.setItem(
+
+"favoriteFoods",
+
+JSON.stringify(
+favoriteFoods
+
+)
 
 );
 
@@ -31,41 +84,26 @@ document.getElementById(
 
 
 
-
-// ===============================
-// แสดง Favorite
-// ===============================
-
-
-function showFavorite(){
-
-
-if(!favoriteList)
-
-return;
-
-
-
-
-favoriteList.innerHTML="";
+renderFavorite();
 
 
 
 
 
+// ส่งให้ Smart
 
-if(favoriteData.length===0){
+if(typeof learnFavorite==="function"){
 
 
-favoriteList.innerHTML=
+learnFavorite(
+data.food
+);
 
-`
-<li>
-ยังไม่มีเมนูโปรด ⭐
-</li>
-`;
 
-return;
+}
+
+
+
 
 
 }
@@ -75,37 +113,107 @@ return;
 
 
 
-favoriteData.forEach((item,index)=>{
 
 
 
-let li =
-
-document.createElement("li");
-
-
+// =========================
+// DISPLAY
+// =========================
 
 
-li.innerHTML =
+function renderFavorite(){
+
+
+
+const list=
+
+document.getElementById(
+"favoriteList"
+);
+
+
+
+if(!list)
+
+return;
+
+
+
+
+
+list.innerHTML="";
+
+
+
+
+
+
+if(favoriteFoods.length===0){
+
+
+
+list.innerHTML=
+
+`
+
+<li>
+ยังไม่มีเมนูโปรด ❤️
+</li>
+
+`;
+
+
+
+return;
+
+}
+
+
+
+
+favoriteFoods.forEach(
+
+(item,index)=>{
+
+
+
+let li=
+
+document.createElement(
+"li"
+);
+
+
+
+
+
+li.innerHTML=
 
 
 `
-❤️ ${item.food}
+
+<div>
+
+🍽️ ${item.food}
 
 <br>
 
-🥤 ${item.drink}
+🥤 ${item.drink || "-"}
 
 <br>
 
-🍰 ${item.dessert}
+🍰 ${item.dartess || item.dessert || "-"}
+
+</div>
 
 
+<button
 
-<button class="deleteFavorite"
-data-id="${index}">
+class="deleteFav"
 
-❌
+data-index="${index}">
+
+🗑️ ลบ
 
 </button>
 
@@ -115,7 +223,7 @@ data-id="${index}">
 
 
 
-favoriteList.appendChild(li);
+list.appendChild(li);
 
 
 
@@ -125,13 +233,33 @@ favoriteList.appendChild(li);
 
 
 
+bindDeleteFavorite();
 
 
-// ปุ่มลบ
+
+}
+
+
+
+
+
+
+
+
+
+// =========================
+// DELETE
+// =========================
+
+
+function bindDeleteFavorite(){
+
+
 
 document
-
-.querySelectorAll(".deleteFavorite")
+.querySelectorAll(
+".deleteFav"
+)
 
 .forEach(btn=>{
 
@@ -140,16 +268,15 @@ btn.onclick=()=>{
 
 
 
-let id =
+let index=
 
-btn.dataset.id;
-
-
+btn.dataset.index;
 
 
-favoriteData.splice(
 
-id,
+favoriteFoods.splice(
+
+index,
 
 1
 
@@ -157,72 +284,16 @@ id,
 
 
 
-saveFavorite();
-
-
-
-};
-
-
-
-});
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// Save
-// ===============================
-
-
-function saveFavorite(){
-
 
 
 localStorage.setItem(
 
-"favorite",
+"favoriteFoods",
 
-JSON.stringify(favoriteData)
+JSON.stringify(
+favoriteFoods
 
-);
-
-
-
-showFavorite();
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// เพิ่ม Favorite
-// ===============================
-
-
-
-const favoriteBtn =
-
-document.getElementById(
-
-"favoriteBtn"
+)
 
 );
 
@@ -230,126 +301,14 @@ document.getElementById(
 
 
 
-
-if(favoriteBtn){
-
-
-
-favoriteBtn.onclick=()=>{
-
-
-
-let dinner =
-
-window.currentDinnerSet;
-
-
-
-if(!dinner){
-
-
-
-alert(
-
-"กรุณาสุ่มเมนูก่อน ❤️"
-
-);
-
-
-
-return;
-
-
-}
-
-
-
-
-
-
-// เช็กซ้ำ
-
-
-let duplicate =
-
-favoriteData.some(item=>
-
-
-item.food === dinner.food &&
-
-item.drink === dinner.drink &&
-
-item.dessert === dinner.dessert
-
-
-);
-
-
-
-
-
-
-if(duplicate){
-
-
-
-alert(
-
-"เมนูนี้มีในรายการโปรดแล้ว ⭐"
-
-);
-
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-
-favoriteData.unshift({
-
-
-food:dinner.food,
-
-
-drink:dinner.drink,
-
-
-dessert:dinner.dessert
-
-
-
-});
-
-
-
-
-
-
-
-saveFavorite();
-
-
-
-
-
-createFavoriteEffect();
-
-
-
+renderFavorite();
 
 
 };
 
 
 
+});
 
 
 }
@@ -362,53 +321,15 @@ createFavoriteEffect();
 
 
 
-// ===============================
-// Effect
-// ===============================
+// =========================
+// GET FAVORITE
+// =========================
 
 
-function createFavoriteEffect(){
+function getFavorite(){
 
 
-
-for(let i=0;i<10;i++){
-
-
-let heart =
-
-document.createElement("div");
-
-
-
-heart.className="heart";
-
-
-
-heart.innerHTML="⭐";
-
-
-
-heart.style.left=
-
-Math.random()*100+"%";
-
-
-
-document.body.appendChild(heart);
-
-
-
-setTimeout(()=>{
-
-
-heart.remove();
-
-
-},2000);
-
-
-
-}
+return favoriteFoods;
 
 
 }
@@ -420,7 +341,18 @@ heart.remove();
 
 
 
+// LOAD
 
-// โหลดตอนเปิดเว็บ
+document.addEventListener(
 
-showFavorite();
+"DOMContentLoaded",
+
+()=>{
+
+
+renderFavorite();
+
+
+}
+
+);

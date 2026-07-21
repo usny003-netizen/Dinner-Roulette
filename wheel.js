@@ -661,7 +661,7 @@ window.applyAvoid = applyAvoid;
 // ===============================
 
 
-updateModeColor();}
+updateModeColor();
 // ===============================
 // SPIN ENGINE 🎡
 // POINTER FIX VERSION

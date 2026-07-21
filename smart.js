@@ -1,24 +1,33 @@
 /* =================================
-   Dinner Roulette V6 ❤️
-   Smart Preference System 🧠
+ Dinner Roulette V10 ❤️
+ Smart Learning System 🧠
 ================================= */
 
 
-let likedFoods = JSON.parse(
+
+let smartFoods =
+
+JSON.parse(
 
 localStorage.getItem(
-"likedFoods"
+"smartFoods"
 )
 
-) || {};
+)||[];
 
 
 
 
 
-// เมื่อกดชอบ
 
-function saveLikedFood(food){
+
+// =============================
+// SAVE LIKE FOOD 👍
+// =============================
+
+
+function saveLikeFood(food){
+
 
 
 if(!food)
@@ -27,10 +36,26 @@ return;
 
 
 
-if(!likedFoods[food]){
 
 
-likedFoods[food]=1;
+let item =
+
+smartFoods.find(
+
+data=>
+
+data.food===food
+
+);
+
+
+
+
+
+if(item){
+
+
+item.score++;
 
 
 }
@@ -38,7 +63,13 @@ likedFoods[food]=1;
 else{
 
 
-likedFoods[food]++;
+smartFoods.push({
+
+food:food,
+
+score:1
+
+});
 
 
 }
@@ -46,19 +77,166 @@ likedFoods[food]++;
 
 
 
-localStorage.setItem(
 
-"likedFoods",
+saveSmart();
 
-JSON.stringify(
-likedFoods
-)
+
+
+renderSmart();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+window.saveLikeFood =
+
+saveLikeFood;
+
+
+
+
+
+
+
+
+
+// =============================
+// FAVORITE LEARNING ⭐
+// =============================
+
+
+function learnFavorite(food){
+
+
+
+if(!food)
+
+return;
+
+
+
+
+let item =
+
+smartFoods.find(
+
+data=>
+
+data.food===food
 
 );
 
 
 
-showLiked();
+
+
+if(item){
+
+
+item.score+=2;
+
+
+}
+
+else{
+
+
+smartFoods.push({
+
+food:food,
+
+score:2
+
+});
+
+
+}
+
+
+
+
+
+saveSmart();
+
+
+renderSmart();
+
+
+
+}
+
+
+
+window.learnFavorite=
+
+learnFavorite;
+
+
+
+
+
+
+
+
+
+// =============================
+// SAVE DATA
+// =============================
+
+
+function saveSmart(){
+
+
+localStorage.setItem(
+
+"smartFoods",
+
+JSON.stringify(
+smartFoods
+
+)
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// RANKING
+// =============================
+
+
+function getTopFoods(){
+
+
+
+return smartFoods
+
+.sort(
+
+(a,b)=>
+
+b.score-a.score
+
+)
+
+.slice(0,5);
 
 
 
@@ -71,13 +249,17 @@ showLiked();
 
 
 
-// แสดงเมนูที่ชอบ
+
+// =============================
+// DISPLAY
+// =============================
 
 
-function showLiked(){
+function renderSmart(){
 
 
-const list =
+
+const list=
 
 document.getElementById(
 "smartList"
@@ -91,48 +273,53 @@ return;
 
 
 
+
+
 list.innerHTML="";
 
 
 
-let foods =
-
-Object.entries(
-likedFoods
-);
 
 
 
-if(foods.length===0){
+let top=
+
+getTopFoods();
+
+
+
+
+
+
+if(top.length===0){
+
 
 
 list.innerHTML=
 
 `
+
 <li>
 ยังไม่มีข้อมูล ❤️
 </li>
+
 `;
 
 return;
+
 
 }
 
 
 
 
-foods.sort(
-
-(a,b)=>b[1]-a[1]
-
-);
 
 
 
 
+top.forEach(
 
-foods.forEach(item=>{
-
+item=>{
 
 
 let li=
@@ -146,9 +333,17 @@ document.createElement(
 li.innerHTML=
 
 `
-⭐ ${item[0]} 
+
+🧠 ${item.food}
+
 <br>
-เลือกแล้ว ${item[1]} ครั้ง
+
+❤️ ความชอบ:
+
+${item.score}
+
+ครั้ง
+
 `;
 
 
@@ -160,68 +355,118 @@ list.appendChild(li);
 });
 
 
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// SMART RECOMMEND
+// =============================
+
+
+function getSmartRecommend(){
+
+
+
+let top=
+
+getTopFoods();
+
+
+
+
+if(top.length===0)
+
+return null;
+
+
+
+
+
+return top[0].food;
+
+
+
 }
 
 
 
 
+window.getSmartRecommend=
+
+getSmartRecommend;
 
 
 
 
-// สุ่มแบบฉลาด
-
-
-function smartRandom(list){
 
 
 
-let result=[];
+
+
+// =============================
+// RESET SMART
+// =============================
+
+
+function resetSmart(){
 
 
 
-list.forEach(food=>{
-
-
-let score=
-
-likedFoods[food] || 0;
+smartFoods=[];
 
 
 
-// เมนูที่ชอบเพิ่มน้ำหนัก
+localStorage.removeItem(
 
-for(let i=0;i<score+1;i++){
+"smartFoods"
+
+);
 
 
-result.push(food);
+
+renderSmart();
+
 
 
 }
+
+
+
+
+window.resetSmart=
+
+resetSmart;
+
+
+
+
+
+
+
+
+
+// =============================
+// LOAD
+// =============================
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+
+renderSmart();
 
 
 });
-
-
-
-
-return result[
-
-Math.floor(
-
-Math.random()*result.length
-
-)
-
-];
-
-
-}
-
-
-
-
-
-
-
-showLiked();

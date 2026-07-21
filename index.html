@@ -7,14 +7,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>
 ❤️ Dinner Roulette Chompu
 </title>
 
-
 <meta name="theme-color" content="#ff9fc5">
-
 
 <link rel="stylesheet" href="style.css">
 
@@ -29,24 +26,19 @@
 <body>
 
 
-
 <!-- START -->
 
 <div id="startScreen">
 
-
 <div class="start-box">
-
 
 <h1>
 ❤️ Dinner Roulette
 </h1>
 
-
 <p>
 วันนี้กินอะไรดีนะ Chompu 💕
 </p>
-
 
 
 <button id="startBtn">
@@ -56,13 +48,9 @@
 </button>
 
 
-
 </div>
 
-
 </div>
-
-
 
 
 
@@ -74,22 +62,15 @@
 
 
 
-
-
-<!-- HEADER -->
-
 <header class="card hero">
-
 
 <h1>
 ❤️ Dinner Roulette
 </h1>
 
-
 <p>
 สุ่มอาหารเย็นกับคนพิเศษ 🍽️
 </p>
-
 
 </header>
 
@@ -99,18 +80,11 @@
 
 
 
-
-
-<!-- MODE -->
-
-
 <section class="card">
-
 
 <h2>
 👫 ใครเป็นคนเลือกวันนี้?
 </h2>
-
 
 
 <div class="mode-group">
@@ -124,14 +98,12 @@ data-mode="ฉัน">
 </button>
 
 
-
 <button class="mode"
 data-mode="แฟน">
 
 💕 Chompu เลือก
 
 </button>
-
 
 
 <button class="mode"
@@ -151,7 +123,6 @@ value="Chompu"
 placeholder="ชื่อแฟน ❤️">
 
 
-
 <p id="chooserMessage">
 
 🌸 วันนี้ฉันเลือกให้
@@ -167,9 +138,6 @@ placeholder="ชื่อแฟน ❤️">
 
 
 
-
-
-<!-- CATEGORY -->
 
 
 <section class="card">
@@ -192,14 +160,12 @@ onclick="changeCategory('all')">
 </button>
 
 
-
 <button class="category"
 onclick="changeCategory('thai')">
 
 🍚 ไทย
 
 </button>
-
 
 
 <button class="category"
@@ -210,7 +176,6 @@ onclick="changeCategory('japan')">
 </button>
 
 
-
 <button class="category"
 onclick="changeCategory('grill')">
 
@@ -219,14 +184,12 @@ onclick="changeCategory('grill')">
 </button>
 
 
-
 <button class="category"
 onclick="changeCategory('fast')">
 
 🍕 Fast Food
 
 </button>
-
 
 
 <button class="category"
@@ -239,7 +202,6 @@ onclick="changeCategory('noodle')">
 
 </div>
 
-
 </section>
 
 
@@ -250,9 +212,6 @@ onclick="changeCategory('noodle')">
 
 
 
-<!-- WHEEL -->
-
-
 <section class="card">
 
 
@@ -261,11 +220,13 @@ onclick="changeCategory('noodle')">
 </h2>
 
 
+
 <p id="mainMessage">
 
 พร้อมให้ Chompu หมุน ❤️
 
 </p>
+
 
 
 
@@ -279,7 +240,6 @@ onclick="changeCategory('noodle')">
 </div>
 
 
-
 <canvas id="wheel"
 width="420"
 height="420">
@@ -291,13 +251,11 @@ height="420">
 
 
 
-
 <p id="statusMessage">
 
-❤️ กดหมุนวงล้อ
+🎡 กดหมุน แล้วให้ Chompu ลุ้นกัน ❤️
 
 </p>
-
 
 
 
@@ -308,12 +266,12 @@ height="420">
 </button>
 
 
-
 <button id="autoBtn">
 
 💖 สุ่มจนกว่าจะถูกใจ
 
 </button>
+
 
 
 </section>
@@ -324,9 +282,6 @@ height="420">
 
 
 
-
-
-<!-- RESULT -->
 
 
 <section class="card">
@@ -349,9 +304,7 @@ height="420">
 -
 </h3>
 
-
 </div>
-
 
 
 <div>
@@ -361,7 +314,6 @@ height="420">
 <h3 id="drinkResult">
 -
 </h3>
-
 
 </div>
 
@@ -375,13 +327,10 @@ height="420">
 -
 </h3>
 
-
 </div>
 
 
 </div>
-
-
 
 
 
@@ -392,7 +341,6 @@ height="420">
 </button>
 
 
-
 <button id="rerollBtn">
 
 🙅 ไม่เอา สุ่มใหม่
@@ -400,13 +348,11 @@ height="420">
 </button>
 
 
-
 <button id="favoriteBtn">
 
 ⭐ บันทึกเมนูโปรด
 
 </button>
-
 
 
 </section>
@@ -419,16 +365,12 @@ height="420">
 
 
 
-<!-- SMART -->
-
-
 <section class="card">
 
 
 <h2>
 🧠 Chompu ชอบอะไร?
 </h2>
-
 
 
 <ul id="smartList">
@@ -440,6 +382,14 @@ height="420">
 </ul>
 
 
+
+<button id="resetSmartBtn">
+
+🔄 ล้างความจำ Chompu
+
+</button>
+
+
 </section>
 
 
@@ -450,9 +400,6 @@ height="420">
 
 
 
-<!-- FAVORITE -->
-
-
 <section class="card">
 
 
@@ -461,14 +408,11 @@ height="420">
 </h2>
 
 
-
 <ul id="favoriteList">
-
 
 <li>
 ยังไม่มีเมนูโปรด
 </li>
-
 
 </ul>
 
@@ -481,9 +425,6 @@ height="420">
 
 
 
-
-
-<!-- HISTORY TIMELINE -->
 
 
 <section class="card history-card">
@@ -499,7 +440,6 @@ height="420">
 ทุกมื้อคือเรื่องราว ❤️
 
 </p>
-
 
 
 
@@ -519,9 +459,7 @@ height="420">
 </ul>
 
 
-
 </div>
-
 
 
 
@@ -532,6 +470,7 @@ height="420">
 </button>
 
 
+
 </section>
 
 
@@ -540,9 +479,6 @@ height="420">
 
 
 
-
-
-<!-- AVOID -->
 
 
 <section class="card">
@@ -555,11 +491,9 @@ height="420">
 
 <ul id="avoidList">
 
-
 <li>
 ยังไม่มีรายการ
 </li>
-
 
 </ul>
 
@@ -572,7 +506,6 @@ height="420">
 </button>
 
 
-
 </section>
 
 
@@ -581,9 +514,6 @@ height="420">
 
 
 
-
-
-<!-- DAILY MISSION -->
 
 
 <section class="card">
@@ -596,36 +526,41 @@ height="420">
 
 <p>
 🌅 เปิดเว็บ
+
 <span id="openMission">
 ⬜
 </span>
-</p>
 
+</p>
 
 
 <p>
 🎡 หมุนวงล้อ
+
 <span id="spinMission">
 ⬜
 </span>
-</p>
 
+</p>
 
 
 <p>
 👍 ถูกใจเมนู
+
 <span id="likeMission">
 ⬜
 </span>
-</p>
 
+</p>
 
 
 <p>
 📤 แชร์ให้ Chompu
+
 <span id="shareMission">
 ⬜
 </span>
+
 </p>
 
 
@@ -647,9 +582,6 @@ height="420">
 
 
 
-<!-- SHARE -->
-
-
 <section class="card">
 
 
@@ -658,12 +590,19 @@ height="420">
 </h2>
 
 
+
 <div id="shareCard">
 
 
 <h1>
 ❤️ Dinner Roulette
 </h1>
+
+
+<p>
+วันนี้ Chompu เลือกให้ 💕
+
+</p>
 
 
 <p id="shareFood">
@@ -683,6 +622,13 @@ height="420">
 <p id="shareDessert">
 
 🍰 -
+
+</p>
+
+
+<p id="shareDate">
+
+📅 -
 
 </p>
 
@@ -708,9 +654,6 @@ height="420">
 
 
 
-<!-- MUSIC -->
-
-
 <section class="card">
 
 
@@ -719,9 +662,10 @@ height="420">
 </h2>
 
 
-
-<audio id="bgMusic"
-loop>
+<audio 
+id="bgMusic"
+loop
+preload="none">
 
 
 <source src="love.mp3"
@@ -737,7 +681,6 @@ type="audio/mpeg">
 🎵 เปิดเพลง
 
 </button>
-
 
 
 <select id="musicSelect">
@@ -759,14 +702,13 @@ type="audio/mpeg">
 
 <option value="lofi.mp3">
 
-☕
-
-Lo-fi
+☕ Lo-fi
 
 </option>
 
 
 </select>
+
 
 
 </section>
@@ -777,9 +719,6 @@ Lo-fi
 
 
 
-
-
-<!-- SETTING -->
 
 
 <section class="card">
@@ -798,7 +737,6 @@ Lo-fi
 </button>
 
 
-
 <button id="shareBtn">
 
 📤 แชร์ให้ Chompu
@@ -815,14 +753,11 @@ Lo-fi
 
 
 
-
 <footer class="card">
 
 Made with ❤️ for Chompu
 
 </footer>
-
-
 
 
 
@@ -836,14 +771,11 @@ Made with ❤️ for Chompu
 
 
 
-<!-- JS -->
-
-
 <script src="wheel.js"></script>
 
-<script src="favorite.js"></script>
-
 <script src="history.js"></script>
+
+<script src="favorite.js"></script>
 
 <script src="avoid.js"></script>
 

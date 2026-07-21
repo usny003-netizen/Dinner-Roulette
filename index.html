@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>กินอะไรดีนะที่รัก ❤️</title>
+    <title>❤️ Dinner Roulette</title>
 
     <meta name="theme-color" content="#ff9fc5">
 
@@ -19,176 +19,439 @@
 <body>
 
 
-<div class="app">
+<!-- ================= START SCREEN ================= -->
 
+<div id="startScreen">
 
-    <!-- หัวเว็บ -->
-
-    <header class="card">
+    <div class="start-box">
 
         <h1>
-            🍜 วันนี้กินอะไรดี?
+            ❤️ Dinner Roulette
         </h1>
 
 
         <p>
-            สุ่มเมนูอาหารเย็นกับคนพิเศษกัน 💕
+            วันนี้กินอะไรดีนะที่รัก 💕
         </p>
 
 
-    </header>
+        <button id="startBtn">
 
-
-
-
-
-    <!-- รายการอาหาร -->
-
-    <section class="card">
-
-
-        <h2>
-            🍽️ รายการอาหาร
-        </h2>
-
-
-        <ul>
-
-            <li>🥘 หมูกระทะ</li>
-
-            <li>🍲 ชาบู</li>
-
-            <li>🐷 หมูย่างจิ้มแจ่ว</li>
-
-            <li>🍗 ไก่ทอด</li>
-
-            <li>🍜 ก๋วยเตี๋ยว</li>
-
-            <li>🍛 ข้าวมันไก่</li>
-
-            <li>🍚 ข้าวผัด</li>
-
-            <li>🍝 สปาเกตตี</li>
-
-            <li>🍕 พิซซ่า</li>
-
-            <li>🍔 แฮมเบอร์เกอร์</li>
-
-            <li>🍣 ซูชิ</li>
-
-            <li>🍱 อาหารญี่ปุ่น</li>
-
-            <li>🥩 ปิ้งย่าง</li>
-
-            <li>🍜 ราเมง</li>
-
-            <li>🌶️ อาหารเกาหลี</li>
-
-            <li>🍗 ไก่เกาหลี</li>
-
-            <li>🍤 ต้มยำกุ้ง</li>
-
-            <li>🥗 สลัด</li>
-
-            <li>🍧 ของหวาน</li>
-
-            <li>🧋 ชานมไข่มุก</li>
-
-
-        </ul>
-
-
-    </section>
-
-
-
-
-
-    <!-- ส่วนสุ่มอาหาร -->
-
-    <section class="card">
-
-
-        <h2>
-            🎲 ให้แฟนเป็นคนเลือก
-        </h2>
-
-
-
-        <button id="randomBtn">
-
-            ❤️ สุ่มอาหาร
+            💖 เริ่มเล่น
 
         </button>
-        
-        <button id="autoBtn">
-            💖 สุ่มจนกว่าจะถูกใจ
-        </button>
 
 
+    </div>
 
-        <h2>
-
-            ✨ เมนูที่ได้ ✨
-
-        </h2>
+</div>
 
 
 
 
-        <p id="result" class="result">
-
-            ยังไม่ได้สุ่ม
-
-        </p>
+<div class="app" id="app">
 
 
+<!-- ================= HEADER ================= -->
 
-    </section>
-
-
-
+<header class="card hero">
 
 
-    <!-- เพลง -->
-
-    <section class="card">
-
-
-        <h2>
-            🎵 เพลงของเรา
-        </h2>
+    <h1>
+        ❤️ Dinner Roulette
+    </h1>
 
 
-        <audio id="bgMusic" loop>
+    <p>
+        สุ่มอาหารเย็นกับคนพิเศษกัน 🍽️
+    </p>
 
 
-            <source src="love.mp3" type="audio/mpeg">
-
-
-        </audio>
-
-
-        <button id="musicBtn">
-
-            🎵 เปิดเพลง
-
-        </button>
-
-
-    </section>
+</header>
 
 
 
 
 
-    <footer class="card">
+<!-- ================= MODE ================= -->
+
+<section class="card">
 
 
-        ทำด้วยความรัก ❤️
+<h2>
+    👫 ใครเป็นคนเลือกวันนี้?
+</h2>
 
 
-    </footer>
+<div class="mode-group">
+
+
+<button class="mode active">
+
+👩 ฉันเลือก
+
+</button>
+
+
+<button class="mode">
+
+👨 แฟนเลือก
+
+</button>
+
+
+<button class="mode">
+
+🎲 สุ่ม
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ================= WHEEL ================= -->
+
+
+<section class="card">
+
+
+<h2>
+    🎡 วงล้อสุ่มอาหาร
+</h2>
+
+
+
+<div class="wheel-wrapper">
+
+
+<div id="pointer">
+
+▼
+
+</div>
+
+
+<canvas id="wheel"
+width="420"
+height="420">
+
+</canvas>
+
+
+</div>
+
+
+
+
+<button id="spinBtn">
+
+❤️ หมุนวงล้อ
+
+</button>
+
+
+
+<button id="autoBtn">
+
+💖 สุ่มจนกว่าจะถูกใจ
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= RESULT ================= -->
+
+
+<section class="card">
+
+
+<h2>
+🍽️ วันนี้กิน...
+</h2>
+
+
+
+<div class="result-box">
+
+
+<div>
+
+<span>
+🍜 อาหาร
+</span>
+
+
+<h3 id="foodResult">
+
+-
+
+</h3>
+
+
+</div>
+
+
+
+<div>
+
+<span>
+🥤 เครื่องดื่ม
+</span>
+
+
+<h3 id="drinkResult">
+
+-
+
+</h3>
+
+
+</div>
+
+
+
+<div>
+
+<span>
+🍰 ของหวาน
+</span>
+
+
+<h3 id="dessertResult">
+
+-
+
+</h3>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<button id="likeBtn">
+
+👍 เอาเลย
+
+</button>
+
+
+<button id="rerollBtn">
+
+🙅 ไม่เอา สุ่มใหม่
+
+</button>
+
+
+<button id="favoriteBtn">
+
+⭐ บันทึกเมนูโปรด
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= FAVORITE ================= -->
+
+
+<section class="card">
+
+
+<h2>
+⭐ เมนูโปรด
+</h2>
+
+
+<ul id="favoriteList">
+
+
+<li>
+ยังไม่มีเมนูโปรด
+</li>
+
+
+</ul>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= HISTORY ================= -->
+
+
+<section class="card">
+
+
+<h2>
+📜 ประวัติการสุ่ม
+</h2>
+
+
+<ul id="historyList">
+
+
+<li>
+ยังไม่มีประวัติ
+</li>
+
+
+</ul>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= SETTING ================= -->
+
+
+<section class="card">
+
+
+<h2>
+⚙️ ตั้งค่า
+</h2>
+
+
+<button id="themeBtn">
+
+🌙 Dark Mode
+
+</button>
+
+
+
+<button id="shareBtn">
+
+📤 แชร์ให้แฟน
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= MUSIC ================= -->
+
+
+<section class="card">
+
+
+<h2>
+🎵 เพลงของเรา
+</h2>
+
+
+
+<audio id="bgMusic" loop>
+
+
+<source src="sounds/love.mp3"
+type="audio/mpeg">
+
+
+</audio>
+
+
+
+<button id="musicBtn">
+
+🎵 เปิดเพลง
+
+</button>
+
+
+
+<select id="musicSelect">
+
+
+<option value="love.mp3">
+
+💖 เพลงหวาน
+
+</option>
+
+
+<option value="happy.mp3">
+
+🌸 เพลงสดใส
+
+</option>
+
+
+<option value="lofi.mp3">
+
+☕ Lo-fi
+
+</option>
+
+
+
+</select>
+
+
+</section>
+
+
+
+
+
+
+
+<footer class="card">
+
+
+ทำด้วยความรัก ❤️
+
+
+</footer>
+
+
+
 
 
 
@@ -198,7 +461,19 @@
 
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
+
+<script src="wheel.js"></script>
+
+<script src="favorite.js"></script>
+
+<script src="history.js"></script>
+
+<script src="theme.js"></script>
+
 <script src="script.js"></script>
+
 
 
 </body>

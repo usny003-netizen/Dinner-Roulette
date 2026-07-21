@@ -1,27 +1,33 @@
 /* =================================
- Dinner Roulette V13 ❤️
- Daily Mission System 💌
+ Dinner Roulette V14 ❤️
+ Daily Mission + Streak System 💌
 ================================= */
-
-
-
-// ===============================
-// DATA
-// ===============================
 
 
 const missionKey =
 "dinnerMission";
 
 
+const streakKey =
+"dinnerStreak";
 
-const today =
 
-new Date()
 
-.toLocaleDateString(
-"th-TH"
-);
+
+// ===============================
+// DATE
+// ===============================
+
+
+function getToday(){
+
+return new Date()
+.toISOString()
+.split("T")[0];
+
+}
+
+
 
 
 
@@ -35,7 +41,7 @@ localStorage.getItem(
 missionKey
 )
 
-);
+)||null;
 
 
 
@@ -44,50 +50,58 @@ missionKey
 
 
 // ===============================
-// CREATE TODAY MISSION
+// CREATE
 // ===============================
 
 
 function createMission(){
 
 
-
 missions={
 
-
-date:today,
-
+date:getToday(),
 
 open:false,
 
-
 spin:false,
-
 
 like:false,
 
+share:false,
 
-share:false
-
-
+reward:false
 
 };
 
+
+
+saveMission();
+
+
+}
+
+
+
+
+
+
+
+function saveMission(){
 
 
 localStorage.setItem(
 
 missionKey,
 
-JSON.stringify(missions)
+JSON.stringify(
+missions
+
+)
 
 );
 
 
-
 }
-
-
 
 
 
@@ -104,16 +118,19 @@ function loadMission(){
 
 
 
-if(!missions || missions.date!==today){
+if(
 
+!missions ||
+
+missions.date !== getToday()
+
+){
 
 
 createMission();
 
 
-
 }
-
 
 
 
@@ -121,10 +138,7 @@ createMission();
 updateMissionUI();
 
 
-
 }
-
-
 
 
 
@@ -137,7 +151,6 @@ updateMissionUI();
 // ===============================
 
 
-
 function completeMission(type){
 
 
@@ -148,17 +161,12 @@ createMission();
 
 
 
+
 missions[type]=true;
 
 
 
-localStorage.setItem(
-
-missionKey,
-
-JSON.stringify(missions)
-
-);
+saveMission();
 
 
 
@@ -166,6 +174,11 @@ updateMissionUI();
 
 
 
+
+checkComplete();
+
+
+
 }
 
 
@@ -175,22 +188,9 @@ updateMissionUI();
 
 
 
-
-// ===============================
-// PUBLIC FUNCTIONS
-// ===============================
-
-
-
 function completeOpenMission(){
 
-
-
-completeMission(
-"open"
-);
-
-
+completeMission("open");
 
 }
 
@@ -198,13 +198,7 @@ completeMission(
 
 function completeSpinMission(){
 
-
-
-completeMission(
-"spin"
-);
-
-
+completeMission("spin");
 
 }
 
@@ -212,13 +206,7 @@ completeMission(
 
 function completeLikeMission(){
 
-
-
-completeMission(
-"like"
-);
-
-
+completeMission("like");
 
 }
 
@@ -226,13 +214,7 @@ completeMission(
 
 function completeShareMission(){
 
-
-
-completeMission(
-"share"
-);
-
-
+completeMission("share");
 
 }
 
@@ -240,23 +222,20 @@ completeMission(
 
 
 
-
-
-window.completeOpenMission =
+window.completeOpenMission=
 completeOpenMission;
 
 
-window.completeSpinMission =
+window.completeSpinMission=
 completeSpinMission;
 
 
-window.completeLikeMission =
+window.completeLikeMission=
 completeLikeMission;
 
 
-window.completeShareMission =
+window.completeShareMission=
 completeShareMission;
-
 
 
 
@@ -270,41 +249,58 @@ completeShareMission;
 // ===============================
 
 
-
 function updateMissionUI(){
 
 
 
-const open =
+if(!missions)
+
+return;
+
+
+
+
+const list={
+
+
+open:"openMission",
+
+spin:"spinMission",
+
+like:"likeMission",
+
+share:"shareMission"
+
+
+};
+
+
+
+
+
+Object.keys(list)
+
+.forEach(type=>{
+
+
+
+const el=
+
 document.getElementById(
-"openMission"
+list[type]
 );
 
 
-const spin =
-document.getElementById(
-"spinMission"
-);
 
-
-const like =
-document.getElementById(
-"likeMission"
-);
-
-
-const share =
-document.getElementById(
-"shareMission"
-);
+if(el){
 
 
 
-if(open)
+el.innerHTML=
 
-open.innerHTML=
+missions[type]
 
-missions.open ?
+?
 
 "✅"
 
@@ -312,56 +308,19 @@ missions.open ?
 
 "⬜";
 
+}
 
 
 
-if(spin)
-
-spin.innerHTML=
-
-missions.spin ?
-
-"✅"
-
-:
-
-"⬜";
-
-
-
-
-if(like)
-
-like.innerHTML=
-
-missions.like ?
-
-"✅"
-
-:
-
-"⬜";
-
-
-
-
-if(share)
-
-share.innerHTML=
-
-missions.share ?
-
-"✅"
-
-:
-
-"⬜";
+});
 
 
 
 
 
-const score =
+
+
+const score=
 
 Object.values({
 
@@ -384,7 +343,8 @@ share:missions.share
 
 
 
-const scoreBox=
+
+const box=
 
 document.getElementById(
 "missionScore"
@@ -392,10 +352,11 @@ document.getElementById(
 
 
 
-if(scoreBox){
+if(box){
 
 
-scoreBox.innerHTML=
+
+box.innerHTML=
 
 `${score}/4 ❤️`;
 
@@ -404,16 +365,9 @@ scoreBox.innerHTML=
 if(score===4){
 
 
-scoreBox.innerHTML=
+box.innerHTML=
 
-"🎉 Mission Complete 4/4 ❤️";
-
-
-createMissionReward();
-
-
-
-}
+"🎉 Mission Complete ❤️";
 
 
 }
@@ -421,6 +375,11 @@ createMissionReward();
 
 
 }
+
+
+
+}
+
 
 
 
@@ -431,29 +390,85 @@ createMissionReward();
 
 
 // ===============================
-// COMPLETE EFFECT
+// COMPLETE REWARD
 // ===============================
 
 
-function createMissionReward(){
+function checkComplete(){
+
+
+
+const complete =
+
+missions.open &&
+
+missions.spin &&
+
+missions.like &&
+
+missions.share;
+
+
 
 
 
 if(
 
+complete &&
+
+!missions.reward
+
+){
+
+
+
+missions.reward=true;
+
+
+saveMission();
+
+
+
+showMissionReward();
+
+
+addStreak();
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+function showMissionReward(){
+
+
+
+const old=
+
 document.querySelector(
 ".mission-popup"
+);
 
-)
 
-)
+
+if(old)
 
 return;
 
 
 
 
-let box=
+
+
+const box=
 
 document.createElement(
 "div"
@@ -475,20 +490,27 @@ box.innerHTML=
 </h2>
 
 <p>
-ทำ Daily Mission ครบแล้ว ❤️
+
+Daily Mission ครบแล้ว ❤️
+
 </p>
 
 
-💕 Chompu มีความสุขแน่นอน
+<p>
 
+💕 Couple Level เพิ่มขึ้น
+
+</p>
 
 `;
+
 
 
 
 document.body.appendChild(
 box
 );
+
 
 
 
@@ -514,6 +536,102 @@ box.remove();
 
 
 // ===============================
+// STREAK 🔥
+// ===============================
+
+
+function addStreak(){
+
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem(
+streakKey
+
+)
+
+)||{
+
+
+count:0,
+
+last:null
+
+};
+
+
+
+
+
+if(data.last!==getToday()){
+
+
+data.count++;
+
+
+data.last=getToday();
+
+
+
+}
+
+
+
+
+localStorage.setItem(
+
+streakKey,
+
+JSON.stringify(data)
+
+);
+
+
+
+}
+
+
+
+
+
+function getStreak(){
+
+
+
+return JSON.parse(
+
+localStorage.getItem(
+streakKey
+
+)
+
+)||{
+
+
+count:0
+
+};
+
+
+
+}
+
+
+
+window.getStreak=getStreak;
+
+
+
+
+
+
+
+
+
+// ===============================
 // INIT
 // ===============================
 
@@ -523,7 +641,6 @@ document.addEventListener(
 "DOMContentLoaded",
 
 ()=>{
-
 
 
 loadMission();

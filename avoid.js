@@ -1,7 +1,8 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Avoid System 🚫
+ Dinner Roulette V12 ❤️
+ Avoid Food System 🚫💕
 ================================= */
+
 
 
 let avoidFoods =
@@ -10,9 +11,37 @@ JSON.parse(
 
 localStorage.getItem(
 "avoidList"
+
 )
 
 )||[];
+
+
+
+
+
+
+
+// ===============================
+// GET AVOID
+// ===============================
+
+
+function getAvoidList(){
+
+
+return avoidFoods;
+
+
+}
+
+
+
+window.getAvoidList =
+getAvoidList;
+
+
+
 
 
 
@@ -27,6 +56,7 @@ localStorage.getItem(
 function addAvoid(food){
 
 
+
 if(!food)
 
 return;
@@ -34,15 +64,22 @@ return;
 
 
 
-// กันซ้ำ
 
-if(
 
-avoidFoods.includes(food)
+if(avoidFoods.includes(food)){
 
-)
+
+
+showAvoidMessage(
+"🚫 เมนูนี้อยู่ในรายการแล้ว"
+);
+
 
 return;
+
+
+}
+
 
 
 
@@ -73,6 +110,36 @@ renderAvoid();
 
 
 
+
+
+
+showAvoidMessage(
+
+`🚫 ไม่เลือก ${food} อีก`
+
+);
+
+
+
+
+
+
+
+// วาดวงล้อใหม่
+
+
+if(typeof changeCategory==="function"){
+
+
+changeCategory("all");
+
+
+}
+
+
+
+
+
 }
 
 
@@ -91,7 +158,7 @@ addAvoid;
 
 
 // ===============================
-// REMOVE AVOID
+// REMOVE
 // ===============================
 
 
@@ -106,6 +173,7 @@ index,
 1
 
 );
+
 
 
 
@@ -129,10 +197,21 @@ avoidFoods
 renderAvoid();
 
 
+
+
+
+
+if(typeof changeCategory==="function"){
+
+
+changeCategory("all");
+
+
 }
 
 
 
+}
 
 
 
@@ -150,7 +229,60 @@ removeAvoid;
 
 
 // ===============================
-// RENDER LIST
+// RESET ALL
+// ===============================
+
+
+function resetAvoid(){
+
+
+
+avoidFoods=[];
+
+
+
+localStorage.removeItem(
+"avoidList"
+);
+
+
+
+renderAvoid();
+
+
+
+
+
+
+if(typeof changeCategory==="function"){
+
+
+changeCategory("all");
+
+
+}
+
+
+
+}
+
+
+
+
+
+window.resetAvoid =
+resetAvoid;
+
+
+
+
+
+
+
+
+
+// ===============================
+// DISPLAY
 // ===============================
 
 
@@ -158,7 +290,7 @@ function renderAvoid(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "avoidList"
@@ -166,9 +298,11 @@ document.getElementById(
 
 
 
+
 if(!list)
 
 return;
+
 
 
 
@@ -190,10 +324,12 @@ list.innerHTML=
 `
 
 <li>
-ยังไม่มีรายการ 🚫
+ยังไม่มีเมนูที่ไม่กิน ❤️
 </li>
 
 `;
+
+
 
 return;
 
@@ -211,7 +347,7 @@ avoidFoods.forEach(
 (food,index)=>{
 
 
-let li=
+const li=
 
 document.createElement(
 "li"
@@ -220,25 +356,23 @@ document.createElement(
 
 
 
+
+
 li.innerHTML=
 
 `
 
-<span>
+<div>
 
 🚫 ${food}
 
-</span>
+</div>
 
 
 
-<button
+<button onclick="removeAvoid(${index})">
 
-class="deleteAvoid"
-
-onclick="removeAvoid(${index})">
-
-🗑️ ลบ
+❤️ เอากลับมา
 
 </button>
 
@@ -247,7 +381,11 @@ onclick="removeAvoid(${index})">
 
 
 
-list.appendChild(li);
+
+
+list.appendChild(
+li
+);
 
 
 
@@ -255,6 +393,8 @@ list.appendChild(li);
 
 
 
+
+
 }
 
 
@@ -266,41 +406,51 @@ list.appendChild(li);
 
 
 // ===============================
-// CLEAR ALL
+// TOAST
 // ===============================
 
 
-const resetBtn=
+function showAvoidMessage(text){
 
-document.getElementById(
-"resetAvoidBtn"
+
+
+const toast=
+
+document.createElement(
+"div"
 );
 
 
 
-if(resetBtn){
+toast.className=
+
+"favorite-toast";
 
 
 
-resetBtn.onclick=()=>{
+toast.innerHTML=text;
 
 
 
-avoidFoods=[];
 
 
-
-localStorage.removeItem(
-"avoidList"
+document.body.appendChild(
+toast
 );
 
 
 
-renderAvoid();
 
 
+setTimeout(()=>{
 
-};
+
+toast.remove();
+
+
+},2000);
+
+
 
 }
 
@@ -313,33 +463,7 @@ renderAvoid();
 
 
 // ===============================
-// GET AVOID
-// ===============================
-
-
-function getAvoidList(){
-
-
-return avoidFoods;
-
-
-}
-
-
-
-window.getAvoidList=
-getAvoidList;
-
-
-
-
-
-
-
-
-
-// ===============================
-// LOAD
+// INIT
 // ===============================
 
 
@@ -351,6 +475,33 @@ document.addEventListener(
 
 
 renderAvoid();
+
+
+
+const resetBtn =
+
+document.getElementById(
+"resetAvoidBtn"
+);
+
+
+
+if(resetBtn){
+
+
+resetBtn.onclick=
+
+()=>{
+
+
+resetAvoid();
+
+
+};
+
+
+
+}
 
 
 

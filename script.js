@@ -1,15 +1,13 @@
 /* =================================
- Dinner Roulette Chompu V17 ❤️
- Main Controller FIX FINAL
+ Dinner Roulette Chompu V19 ❤️
+ Main Controller CLEAN
+ PART 2
 ================================= */
 
 
 document.addEventListener(
-
 "DOMContentLoaded",
-
 ()=>{
-
 
 
 // ===============================
@@ -18,105 +16,64 @@ document.addEventListener(
 
 
 const startBtn =
-
-document.getElementById(
-"startBtn"
-);
-
+document.getElementById("startBtn");
 
 
 const startScreen =
-
-document.getElementById(
-"startScreen"
-);
-
-
+document.getElementById("startScreen");
 
 
 
 if(startBtn){
 
 
-
 startBtn.onclick=()=>{
-
 
 
 if(startScreen){
 
-
 startScreen.style.display="none";
-
 
 }
 
 
 
-
-
 const music =
-
-document.getElementById(
-"bgMusic"
-);
+document.getElementById("bgMusic");
 
 
 
 if(music){
 
-
-
 music.volume=0.5;
 
-
-
 music.play()
-
 .catch(()=>{});
 
-
-
 }
-
-
-
 
 
 
 if(typeof createHeart==="function"){
 
-
 createHeart();
 
-
 }
-
-
 
 
 
 if(typeof completeOpenMission==="function"){
 
-
 completeOpenMission();
 
-
 }
-
-
 
 
 
 };
 
 
-
 }
-
-
-
-
 
 
 
@@ -127,11 +84,8 @@ completeOpenMission();
 // ===============================
 
 
-const spinBtn=
-
-document.getElementById(
-"spinBtn"
-);
+const spinBtn =
+document.getElementById("spinBtn");
 
 
 
@@ -142,11 +96,28 @@ if(spinBtn){
 spinBtn.onclick=()=>{
 
 
+console.log(
+"🎡 CLICK SPIN"
+);
 
-if(typeof spinWheel==="function"){
 
 
-spinWheel();
+if(typeof window.spinWheel==="function"){
+
+
+window.spinWheel();
+
+
+
+}
+
+else{
+
+
+console.error(
+"ไม่พบ wheel.js"
+);
+
 
 
 }
@@ -165,397 +136,95 @@ spinWheel();
 
 
 
-
-
 // ===============================
-// AUTO SPIN 💖
+// MODE SYSTEM 👫
 // ===============================
 
 
-const autoBtn=
+const modeButtons =
+document.querySelectorAll(".mode");
 
-document.getElementById(
-"autoBtn"
-);
 
 
+modeButtons.forEach(btn=>{
 
-let autoRunning=false;
 
 
+btn.onclick=function(){
 
 
-if(autoBtn){
 
+modeButtons.forEach(b=>{
 
 
-autoBtn.onclick=()=>{
+b.classList.remove("active");
 
-
-
-if(autoRunning)
-
-return;
-
-
-
-
-
-autoRunning=true;
-
-
-
-autoBtn.innerHTML=
-"🎡 กำลังสุ่ม...";
-
-
-
-
-
-let count=0;
-
-
-
-
-
-let timer=setInterval(()=>{
-
-
-
-if(typeof spinWheel==="function"){
-
-
-spinWheel();
-
-
-}
-
-
-
-
-count++;
-
-
-
-
-
-if(count>=3){
-
-
-
-clearInterval(timer);
-
-
-
-autoRunning=false;
-
-
-
-autoBtn.innerHTML=
-
-"💖 สุ่มจนกว่าจะถูกใจ";
-
-
-
-}
-
-
-
-},6500);
-
-
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// LIKE 👍
-// ===============================
-
-
-const likeBtn=
-
-document.getElementById(
-"likeBtn"
-);
-
-
-
-if(likeBtn){
-
-
-
-likeBtn.onclick=()=>{
-
-
-
-const food=
-
-document.getElementById(
-"foodResult"
-)?.innerText;
-
-
-
-
-
-if(!food || food==="-")
-
-
-return;
-
-
-
-
-
-
-
-if(typeof saveLikeFood==="function"){
-
-
-
-saveLikeFood(
-food
-);
-
-
-}
-
-
-
-
-
-
-if(typeof completeLikeMission==="function"){
-
-
-
-completeLikeMission();
-
-
-}
-
-
-
-
-
-
-if(typeof createHeart==="function"){
-
-
-
-createHeart();
-
-
-}
-
-
-
-
-
-
-
-if(typeof showToast==="function"){
-
-
-
-showToast(
-
-`❤️ ชอบ ${food}`
-
-);
-
-
-}
-
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// REROLL 🚫
-// ===============================
-
-
-const rerollBtn=
-
-document.getElementById(
-"rerollBtn"
-);
-
-
-
-if(rerollBtn){
-
-
-
-rerollBtn.onclick=()=>{
-
-
-
-const food=
-
-document.getElementById(
-"foodResult"
-)?.innerText;
-
-
-
-
-
-if(food && food!=="-"){
-
-
-
-if(typeof addAvoid==="function"){
-
-
-
-addAvoid(food);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-if(typeof spinWheel==="function"){
-
-
-
-spinWheel();
-
-
-}
-
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// FAVORITE ⭐
-// ===============================
-
-
-const favoriteBtn=
-
-document.getElementById(
-"favoriteBtn"
-);
-
-
-
-if(favoriteBtn){
-
-
-
-favoriteBtn.onclick=()=>{
-
-
-
-const food=
-
-document.getElementById(
-"foodResult"
-)?.innerText;
-
-
-
-const drink=
-
-document.getElementById(
-"drinkResult"
-)?.innerText;
-
-
-
-const dessert=
-
-document.getElementById(
-"dessertResult"
-)?.innerText;
-
-
-
-
-
-
-if(!food || food==="-")
-
-return;
-
-
-
-
-
-
-
-if(typeof saveFavorite==="function"){
-
-
-
-saveFavorite({
-
-food:food,
-
-drink:drink,
-
-dessert:dessert
 
 });
 
 
 
+this.classList.add("active");
+
+
+
+window.currentMode =
+this.dataset.mode;
+
+
+
+const name =
+document.getElementById(
+"partnerName"
+)?.value
+||
+"Chompu";
+
+
+
+const msg =
+document.getElementById(
+"chooserMessage"
+);
+
+
+
+if(msg){
+
+
+
+if(window.currentMode==="ฉัน"){
+
+
+msg.innerHTML=
+"🌸 วันนี้ฉันเลือกให้";
+
+
+}
+
+
+else if(window.currentMode==="แฟน"){
+
+
+msg.innerHTML=
+`💕 วันนี้ ${name} เลือกให้`;
+
+
+}
+
+
+else{
+
+
+msg.innerHTML=
+"🎲 ให้หัวใจเลือก";
+
+
 }
 
 
 
-
+}
 
 
 
@@ -563,9 +232,7 @@ dessert:dessert
 
 
 
-}
-
-
+});
 
 
 
@@ -578,31 +245,12 @@ dessert:dessert
 // ===============================
 
 
-const music=
-
-document.getElementById(
-"bgMusic"
-);
+const music =
+document.getElementById("bgMusic");
 
 
-
-const musicBtn=
-
-document.getElementById(
-"musicBtn"
-);
-
-
-
-const musicSelect=
-
-document.getElementById(
-"musicSelect"
-);
-
-
-
-
+const musicBtn =
+document.getElementById("musicBtn");
 
 
 
@@ -617,14 +265,11 @@ musicBtn.onclick=()=>{
 if(music.paused){
 
 
-
 music.play();
 
 
 musicBtn.innerHTML=
-
 "⏸️ ปิดเพลง";
-
 
 
 }
@@ -636,7 +281,6 @@ music.pause();
 
 
 musicBtn.innerHTML=
-
 "🎵 เปิดเพลง";
 
 
@@ -656,23 +300,31 @@ musicBtn.innerHTML=
 
 
 
+// ===============================
+// SAVE IMAGE BUTTON
+// ===============================
 
 
-if(musicSelect && music){
-
-
-
-musicSelect.onchange=()=>{
-
-
-
-music.src=
-
-musicSelect.value;
+const saveBtn =
+document.getElementById("saveImageBtn");
 
 
 
-music.play();
+if(saveBtn){
+
+
+
+saveBtn.onclick=()=>{
+
+
+
+if(typeof saveShareImage==="function"){
+
+
+saveShareImage();
+
+
+}
 
 
 
@@ -688,18 +340,13 @@ music.play();
 
 
 
-
-
 // ===============================
-// SHARE 📤
+// SHARE BUTTON
 // ===============================
 
 
-const shareBtn=
-
-document.getElementById(
-"shareBtn"
-);
+const shareBtn =
+document.getElementById("shareBtn");
 
 
 
@@ -710,9 +357,7 @@ if(shareBtn){
 shareBtn.onclick=()=>{
 
 
-
 if(typeof shareToChompu==="function"){
-
 
 
 shareToChompu();
@@ -734,18 +379,13 @@ shareToChompu();
 
 
 
-
-
 // ===============================
-// THEME 🌙
+// THEME
 // ===============================
 
 
-const themeBtn=
-
-document.getElementById(
-"themeBtn"
-);
+const themeBtn =
+document.getElementById("themeBtn");
 
 
 
@@ -756,9 +396,7 @@ if(themeBtn){
 themeBtn.onclick=()=>{
 
 
-
 if(typeof toggleTheme==="function"){
-
 
 
 toggleTheme();
@@ -779,6 +417,64 @@ toggleTheme();
 
 
 
+
+// ===============================
+// HEART EFFECT
+// ===============================
+
+
+window.createHeart=function(){
+
+
+
+const heart =
+document.createElement("div");
+
+
+
+heart.className="heart";
+
+
+heart.innerHTML=
+"❤️";
+
+
+
+heart.style.left=
+Math.random()*90+"%";
+
+
+
+heart.style.bottom=
+"20px";
+
+
+
+document.body.appendChild(
+heart
+);
+
+
+
+setTimeout(()=>{
+
+
+heart.remove();
+
+
+},2000);
+
+
+
+};
+
+
+
+
+
+console.log(
+"❤️ Script V19 Ready"
+);
 
 
 

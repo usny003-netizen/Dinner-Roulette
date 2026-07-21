@@ -16,12 +16,15 @@
 </head>
 
 
+
 <body>
 
 
-<!-- START -->
+<!-- ================= START ================= -->
+
 
 <div id="startScreen">
+
 
 <div class="start-box">
 
@@ -36,6 +39,7 @@
 </p>
 
 
+
 <button id="startBtn">
 
 💖 เริ่มเล่น
@@ -45,6 +49,7 @@
 
 </div>
 
+
 </div>
 
 
@@ -53,12 +58,19 @@
 
 
 
-<!-- APP -->
+
+
+<!-- ================= APP ================= -->
+
 
 <div class="app">
 
 
 
+
+
+
+<!-- HEADER -->
 
 
 <header class="card hero">
@@ -83,7 +95,9 @@
 
 
 
+
 <!-- MODE -->
+
 
 <section class="card">
 
@@ -97,7 +111,9 @@
 <div class="mode-group">
 
 
-<button class="mode active" data-mode="ฉัน">
+<button 
+class="mode active"
+data-mode="ฉัน">
 
 👩 ฉันเลือก
 
@@ -105,7 +121,10 @@
 
 
 
-<button class="mode" data-mode="แฟน">
+
+<button 
+class="mode"
+data-mode="แฟน">
 
 👨 Chompu เลือก
 
@@ -113,11 +132,15 @@
 
 
 
-<button class="mode" data-mode="สุ่ม">
+
+<button 
+class="mode"
+data-mode="สุ่ม">
 
 🎲 สุ่ม
 
 </button>
+
 
 
 </div>
@@ -129,8 +152,7 @@
 id="partnerName"
 type="text"
 value="Chompu"
-placeholder="ชื่อแฟน ❤️"
->
+placeholder="ชื่อแฟน ❤️">
 
 
 
@@ -153,6 +175,7 @@ placeholder="ชื่อแฟน ❤️"
 
 <!-- CATEGORY -->
 
+
 <section class="card">
 
 
@@ -165,7 +188,10 @@ placeholder="ชื่อแฟน ❤️"
 <div class="category-group">
 
 
-<button class="category active" data-category="all">
+
+<button 
+class="category active"
+data-category="all">
 
 🎲 ทั้งหมด
 
@@ -173,7 +199,9 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
-<button class="category" data-category="thai">
+<button 
+class="category"
+data-category="thai">
 
 🍚 ไทย
 
@@ -181,7 +209,9 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
-<button class="category" data-category="japan">
+<button 
+class="category"
+data-category="japan">
 
 🍣 ญี่ปุ่น
 
@@ -189,7 +219,9 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
-<button class="category" data-category="grill">
+<button 
+class="category"
+data-category="grill">
 
 🥩 ปิ้งย่าง
 
@@ -197,7 +229,9 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
-<button class="category" data-category="fast">
+<button 
+class="category"
+data-category="fast">
 
 🍕 Fast Food
 
@@ -205,11 +239,14 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
-<button class="category" data-category="noodle">
+<button 
+class="category"
+data-category="noodle">
 
-🍜 เส้นๆ
+🍜 เส้น
 
 </button>
+
 
 
 </div>
@@ -227,6 +264,7 @@ placeholder="ชื่อแฟน ❤️"
 
 <!-- WHEEL -->
 
+
 <section class="card">
 
 
@@ -236,16 +274,19 @@ placeholder="ชื่อแฟน ❤️"
 
 
 
+
 <p id="mainMessage">
 
-✨ พร้อมหมุนแล้ว
+✨ พร้อมหมุน
 
 </p>
 
 
 
 
+
 <div class="wheel-wrapper">
+
 
 
 <div id="pointer">
@@ -257,11 +298,8 @@ placeholder="ชื่อแฟน ❤️"
 
 
 <canvas
-
 id="wheel"
-
 width="420"
-
 height="420">
 
 </canvas>
@@ -269,6 +307,7 @@ height="420">
 
 
 </div>
+
 
 
 
@@ -310,6 +349,7 @@ height="420">
 
 <!-- RESULT -->
 
+
 <section class="card">
 
 
@@ -323,7 +363,6 @@ height="420">
 <div class="result-box">
 
 
-
 <div>
 
 <span>
@@ -335,7 +374,9 @@ height="420">
 -
 </h3>
 
+
 </div>
+
 
 
 
@@ -351,7 +392,9 @@ height="420">
 -
 </h3>
 
+
 </div>
+
 
 
 
@@ -366,6 +409,7 @@ height="420">
 <h3 id="dessertResult">
 -
 </h3>
+
 
 </div>
 
@@ -386,6 +430,7 @@ height="420">
 
 
 
+
 <button id="rerollBtn">
 
 🙅 ไม่เอา สุ่มใหม่
@@ -394,11 +439,13 @@ height="420">
 
 
 
+
 <button id="favoriteBtn">
 
 ⭐ บันทึกเมนูโปรด
 
 </button>
+
 
 
 
@@ -413,6 +460,7 @@ height="420">
 
 
 <!-- SMART -->
+
 
 <section class="card">
 
@@ -446,11 +494,12 @@ height="420">
 
 <!-- AVOID -->
 
+
 <section class="card">
 
 
 <h2>
-🚫 วันนี้ไม่เอา
+🚫 ไม่กินวันนี้
 </h2>
 
 
@@ -459,7 +508,7 @@ height="420">
 
 
 <li>
-ยังไม่มีเมนูที่ไม่เอา
+ยังไม่มีรายการ
 </li>
 
 
@@ -467,10 +516,9 @@ height="420">
 
 
 
-
 <button id="resetAvoidBtn">
 
-🔄 ล้างเมนูไม่เอา
+🔄 ล้างรายการ
 
 </button>
 
@@ -509,6 +557,7 @@ height="420">
 </ul>
 
 
+
 </section>
 
 
@@ -526,9 +575,9 @@ height="420">
 
 
 <h2>
-📜 ประวัติการสุ่ม
-</h2>
+📜 ประวัติ
 
+</h2>
 
 
 <ul id="historyList">
@@ -542,6 +591,7 @@ height="420">
 </ul>
 
 
+
 </section>
 
 
@@ -552,7 +602,7 @@ height="420">
 
 
 
-<!-- SETTINGS -->
+<!-- SETTING -->
 
 
 <section class="card">
@@ -572,9 +622,10 @@ height="420">
 
 
 
+
 <button id="shareBtn">
 
-📤 แชร์ให้แฟน
+📤 แชร์ให้ Chompu
 
 </button>
 
@@ -603,15 +654,17 @@ height="420">
 
 
 
-<audio id="bgMusic" loop>
+<audio 
+id="bgMusic"
+loop>
 
 
-<source src="love.mp3"
+<source 
+src="love.mp3"
 type="audio/mpeg">
 
 
 </audio>
-
 
 
 
@@ -639,7 +692,7 @@ type="audio/mpeg">
 
 <option value="happy.mp3">
 
-🌸 เพลงสดใส
+🌸 สดใส
 
 </option>
 
@@ -650,6 +703,7 @@ type="audio/mpeg">
 ☕ Lo-fi
 
 </option>
+
 
 
 </select>
@@ -676,6 +730,8 @@ Made with ❤️ for Chompu
 
 
 
+
+
 </div>
 
 
@@ -686,7 +742,7 @@ Made with ❤️ for Chompu
 
 
 
-<!-- JS -->
+<!-- ================= JS ================= -->
 
 
 <script src="wheel.js"></script>
@@ -698,6 +754,8 @@ Made with ❤️ for Chompu
 <script src="avoid.js"></script>
 
 <script src="smart.js"></script>
+
+<script src="effect.js"></script>
 
 <script src="theme.js"></script>
 

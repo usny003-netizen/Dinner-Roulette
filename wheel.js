@@ -1,6 +1,6 @@
 /* =================================
    Dinner Roulette ❤️
-   Wheel Spin System 🎡 V2.2
+   Wheel System V2.3 🎡
 ================================= */
 
 
@@ -38,22 +38,30 @@ let currentFood = "";
 
 
 
-// =======================
-// เสียง
-// =======================
+
+// =====================
+// SOUND
+// =====================
 
 
-const clickSound = new Audio("click.mp3");
-
-const winSound = new Audio("win.mp3");
-
-
+const clickSound = new Audio(
+    "click.mp3"
+);
 
 
+const winSound = new Audio(
+    "win.mp3"
+);
 
-// =======================
-// วาดวงล้อ
-// =======================
+
+
+
+
+
+
+// =====================
+// DRAW WHEEL
+// =====================
 
 
 function drawWheel(){
@@ -63,23 +71,28 @@ function drawWheel(){
 
     const radius = center;
 
-
     const slice =
 
     (Math.PI * 2) / foods.length;
 
 
 
+
     ctx.clearRect(
+
         0,
         0,
         canvas.width,
         canvas.height
+
     );
 
 
 
+
+
     foods.forEach((food,index)=>{
+
 
 
         ctx.beginPath();
@@ -87,8 +100,11 @@ function drawWheel(){
 
 
         ctx.moveTo(
+
             center,
+
             center
+
         );
 
 
@@ -96,7 +112,9 @@ function drawWheel(){
         ctx.arc(
 
             center,
+
             center,
+
             radius,
 
             index * slice,
@@ -111,9 +129,13 @@ function drawWheel(){
 
         index % 2 === 0
 
-        ? "#ffd1e5"
+        ?
 
-        : "#fff2b8";
+        "#ffd1e5"
+
+        :
+
+        "#fff2b8";
 
 
 
@@ -122,7 +144,8 @@ function drawWheel(){
 
 
 
-        // ข้อความ
+
+        // TEXT
 
 
         ctx.save();
@@ -130,20 +153,24 @@ function drawWheel(){
 
 
         ctx.translate(
+
             center,
+
             center
+
         );
+
 
 
         ctx.rotate(
 
-            index * slice + slice / 2
+            index * slice + slice/2
 
         );
 
 
 
-        ctx.textAlign = "right";
+        ctx.textAlign="right";
 
         ctx.fillStyle="#555";
 
@@ -170,6 +197,7 @@ function drawWheel(){
     });
 
 
+
 }
 
 
@@ -182,12 +210,15 @@ drawWheel();
 
 
 
-// =======================
-// ปุ่มหมุน
-// =======================
+
+// =====================
+// SPIN BUTTON
+// =====================
 
 
-const spinBtn = document.getElementById("spinBtn");
+const spinBtn =
+
+document.getElementById("spinBtn");
 
 
 
@@ -211,8 +242,9 @@ spinWheel
 
 
 
-function spinWheel(){
 
+
+function spinWheel(){
 
 
     if(spinning)
@@ -225,12 +257,16 @@ function spinWheel(){
 
 
 
-    // เสียงคลิก
+    // click sound
 
     clickSound.currentTime = 0;
 
+
     clickSound.play()
+
     .catch(()=>{});
+
+
 
 
 
@@ -240,9 +276,10 @@ function spinWheel(){
 
     Math.floor(
 
-        Math.random() * foods.length
+        Math.random()*foods.length
 
     );
+
 
 
 
@@ -252,18 +289,19 @@ function spinWheel(){
 
 
 
-    const angle =
+    const sliceAngle =
 
     360 / foods.length;
 
 
 
 
-    const rotate =
+    const rotateDegree =
 
     360 * 6 +
 
-    (360 - random * angle);
+    (360 - random * sliceAngle);
+
 
 
 
@@ -275,9 +313,11 @@ function spinWheel(){
 
 
 
+
     canvas.style.transform =
 
-    `rotate(${rotate}deg)`;
+    `rotate(${rotateDegree}deg)`;
+
 
 
 
@@ -292,20 +332,26 @@ function spinWheel(){
 
 
 
-        // เสียงชนะ
-
         winSound.currentTime = 0;
 
+
+
         winSound.play()
+
         .catch(()=>{});
 
 
 
-        showResult(currentFood);
+        showResult(
+
+        currentFood
+
+        );
 
 
 
     },5000);
+
 
 
 
@@ -317,9 +363,11 @@ function spinWheel(){
 
 
 
-// =======================
-// แสดงผล
-// =======================
+
+
+// =====================
+// SHOW RESULT
+// =====================
 
 
 function showResult(food){
@@ -329,8 +377,11 @@ function showResult(food){
     const result =
 
     document.getElementById(
+
         "foodResult"
+
     );
+
 
 
 
@@ -344,9 +395,63 @@ function showResult(food){
 
 
 
-    // ส่งค่าให้ระบบอื่น
+
+
+    // เก็บผลล่าสุด
 
     window.currentFood = food;
+
+
+
+
+
+
+
+    // ส่งให้ History
+
+
+    window.dispatchEvent(
+
+        new CustomEvent(
+
+            "foodSelected",
+
+            {
+
+                detail: food
+
+            }
+
+        )
+
+    );
+
+
+
+
+
+    // EFFECT
+
+
+    document.body.classList.add(
+
+        "win"
+
+    );
+
+
+
+    setTimeout(()=>{
+
+
+        document.body.classList.remove(
+
+            "win"
+
+        );
+
+
+    },1200);
 
 
 

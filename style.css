@@ -1,7 +1,7 @@
-/* =========================================
- Dinner Roulette V10 ❤️
- Cute Romantic Mobile App Theme
-========================================= */
+/* =================================
+ Dinner Roulette V12 ❤️
+ Couple Love Theme 🎡💕
+================================= */
 
 
 /* RESET */
@@ -13,6 +13,7 @@
 }
 
 
+
 body{
 
     min-height:100vh;
@@ -22,21 +23,19 @@ body{
     "Arial",
     sans-serif;
 
-
     background:
-
     linear-gradient(
         135deg,
         #ffd6e7,
-        #fff5cf
+        #fff1f7,
+        #dff5ff
     );
-
 
     color:#555;
 
-    transition:.5s;
-
     overflow-x:hidden;
+
+    transition:.5s;
 
 }
 
@@ -44,10 +43,26 @@ body{
 
 
 
-/* =================================
- START SCREEN
-================================= */
+/* APP */
 
+.app{
+
+    width:100%;
+
+    max-width:480px;
+
+    margin:auto;
+
+    padding:15px;
+
+}
+
+
+
+
+
+
+/* START */
 
 #startScreen{
 
@@ -55,7 +70,13 @@ body{
 
     inset:0;
 
-    z-index:9999;
+    background:
+
+    linear-gradient(
+        135deg,
+        #ff8fb8,
+        #ffc8dd
+    );
 
     display:flex;
 
@@ -63,14 +84,7 @@ body{
 
     align-items:center;
 
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ff8fb8,
-        #ffd6e7
-    );
+    z-index:9999;
 
 }
 
@@ -80,23 +94,21 @@ body{
 
     width:90%;
 
-    max-width:400px;
-
-    padding:40px 25px;
+    max-width:380px;
 
     background:white;
 
+    padding:35px 25px;
+
     border-radius:35px;
 
-
     text-align:center;
-
 
     box-shadow:
 
     0 20px 50px
 
-    rgba(0,0,0,.2);
+    rgba(255,80,150,.3);
 
 
     animation:
@@ -107,11 +119,12 @@ body{
 
 
 
+
 .start-box h1{
 
     color:#ff5c9d;
 
-    font-size:36px;
+    font-size:35px;
 
 }
 
@@ -131,39 +144,14 @@ body{
 
 
 
-/* =================================
- APP
-================================= */
 
-
-.app{
-
-    width:100%;
-
-    max-width:500px;
-
-    margin:auto;
-
-    padding:18px;
-
-}
-
-
-
-
-
-
-
-/* =================================
- CARD
-================================= */
-
+/* CARD */
 
 .card{
 
     background:
 
-    rgba(255,255,255,.9);
+    rgba(255,255,255,.85);
 
 
     border-radius:30px;
@@ -172,21 +160,19 @@ body{
     padding:22px;
 
 
-    margin-bottom:20px;
-
+    margin-bottom:18px;
 
 
     box-shadow:
 
-    0 12px 35px
+    0 15px 35px
 
-    rgba(255,92,157,.18);
-
+    rgba(255,100,160,.15);
 
 
     backdrop-filter:
 
-    blur(12px);
+    blur(15px);
 
 
     animation:
@@ -198,6 +184,10 @@ body{
 
 
 
+
+
+/* HEADER */
+
 .hero{
 
     text-align:center;
@@ -208,9 +198,9 @@ body{
 
 .hero h1{
 
-    color:#ff5c9d;
+    font-size:36px;
 
-    font-size:34px;
+    color:#ff5c9d;
 
 }
 
@@ -228,10 +218,8 @@ body{
 
 
 
-/* =================================
- TEXT
-================================= */
 
+/* TITLE */
 
 h2{
 
@@ -242,7 +230,6 @@ h2{
     margin-bottom:20px;
 
 }
-
 
 
 h3{
@@ -257,10 +244,8 @@ h3{
 
 
 
-/* =================================
- BUTTON
-================================= */
 
+/* BUTTON */
 
 button{
 
@@ -269,7 +254,6 @@ button{
 
     padding:14px;
 
-
     margin-top:12px;
 
 
@@ -277,7 +261,6 @@ button{
 
 
     border-radius:50px;
-
 
 
     background:
@@ -289,27 +272,23 @@ button{
     );
 
 
-
     color:white;
 
 
-    font-size:16px;
+    font-size:17px;
 
 
     cursor:pointer;
 
 
-
-    transition:.3s;
-
-
-
     box-shadow:
 
-    0 8px 20px
+    0 10px 25px
 
     rgba(255,92,157,.3);
 
+
+    transition:.3s;
 
 }
 
@@ -318,7 +297,6 @@ button{
 button:hover{
 
     transform:
-
     translateY(-3px);
 
 }
@@ -328,7 +306,6 @@ button:hover{
 button:active{
 
     transform:
-
     scale(.95);
 
 }
@@ -339,22 +316,27 @@ button:active{
 
 
 
-/* =================================
- MODE
-================================= */
 
 
-.mode-group{
+/* MODE */
+
+.mode-group,
+.category-group{
+
 
     display:flex;
 
-    gap:10px;
+    gap:8px;
+
+    flex-wrap:wrap;
 
 }
 
 
 
-.mode{
+.mode,
+.category{
+
 
     flex:1;
 
@@ -364,11 +346,18 @@ button:active{
 
 
 
-.mode.active{
+
+.mode.active,
+.category.active{
+
 
     background:
 
-    #ff4f98;
+    linear-gradient(
+        135deg,
+        #ff5c9d,
+        #ff9fc5
+    );
 
 }
 
@@ -376,29 +365,34 @@ button:active{
 
 
 
+
+
+
+
+/* INPUT */
+
 input{
 
 
     width:100%;
 
 
-    padding:13px;
-
-
     margin-top:15px;
 
+
+    padding:14px;
+
+
+    border-radius:25px;
 
 
     border:none;
 
 
-    border-radius:20px;
+    background:#fff0f6;
 
 
     text-align:center;
-
-
-    background:#fff0f6;
 
 
     font-size:16px;
@@ -412,45 +406,13 @@ input{
 
 
 
-/* =================================
- CATEGORY
-================================= */
-
-
-.category-group{
-
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-}
 
 
 
-.category{
+/* ==========================
+   LOVE WHEEL 🎡
+========================== */
 
-
-    flex:1;
-
-    min-width:90px;
-
-    font-size:13px;
-
-}
-
-
-
-
-
-
-
-
-/* =================================
- WHEEL
-================================= */
 
 
 .wheel-wrapper{
@@ -477,23 +439,27 @@ input{
 
     width:100%;
 
-
-    max-width:420px;
+    max-width:390px;
 
 
     border-radius:50%;
 
 
-
     box-shadow:
 
-    0 15px 35px
+    0 20px 45px
 
-    rgba(0,0,0,.2);
+    rgba(255,90,150,.3);
 
+
+    animation:
+
+    floatWheel 3s infinite ease-in-out;
 
 
 }
+
+
 
 
 
@@ -509,10 +475,33 @@ input{
     z-index:10;
 
 
-    font-size:40px;
+    font-size:45px;
 
 
     color:#ff5c9d;
+
+
+    filter:
+
+    drop-shadow(
+    0 5px 5px #fff
+    );
+
+}
+
+
+
+
+
+@keyframes floatWheel{
+
+
+50%{
+
+transform:
+translateY(-8px);
+
+}
 
 }
 
@@ -522,19 +511,16 @@ input{
 
 
 
-/* =================================
- RESULT
-================================= */
 
+
+/* RESULT */
 
 .result-box{
 
 
     display:flex;
 
-
     gap:10px;
-
 
 }
 
@@ -562,25 +548,13 @@ input{
 
 
 
-.result-box span{
-
-
-    font-size:13px;
-
-
-}
 
 
 
 
 
 
-
-
-/* =================================
- LIST
-================================= */
-
+/* LIST */
 
 ul{
 
@@ -596,7 +570,7 @@ li{
     background:#fff0f6;
 
 
-    margin:10px 0;
+    margin:8px 0;
 
 
     padding:12px;
@@ -611,201 +585,15 @@ li{
 
 
 
-.deleteFav{
 
 
-    background:#ff7fae;
 
 
-    padding:8px 15px;
 
 
-    font-size:13px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =================================
- DAILY MISSION
-================================= */
-
-
-.mission{
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-
-    background:#fff0f6;
-
-
-
-    padding:15px;
-
-
-    margin:10px 0;
-
-
-    border-radius:20px;
-
-
-}
-
-
-
-#missionScore{
-
-
-    text-align:center;
-
-
-    margin-top:20px;
-
-
-    padding:15px;
-
-
-    border-radius:25px;
-
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ff9fc5,
-        #ff5c9d
-    );
-
-
-
-    color:white;
-
-}
-
-
-
-
-
-
-
-
-
-/* =================================
- SHARE CARD
-================================= */
-
-
-#shareCard{
-
-
-    padding:30px;
-
-
-    border-radius:35px;
-
-
-    text-align:center;
-
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ff9fc5,
-        #fff1c7
-    );
-
-
-
-    box-shadow:
-
-    0 15px 40px
-
-    rgba(255,92,157,.3);
-
-
-}
-
-
-
-#shareCard h1{
-
-    color:#ff5c9d;
-
-    margin-bottom:20px;
-
-}
-
-
-
-#shareCard p{
-
-    margin:12px;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-
-
-
-
-/* =================================
- MUSIC
-================================= */
-
-
-select{
-
-
-    width:100%;
-
-
-    padding:12px;
-
-
-    margin-top:15px;
-
-
-    border:none;
-
-
-    border-radius:20px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =================================
- HEART EFFECT
-================================= */
+/* ==========================
+ HEART EFFECT ❤️
+========================== */
 
 
 .heart{
@@ -820,17 +608,12 @@ select{
     font-size:35px;
 
 
-    z-index:9999;
-
-
-    pointer-events:none;
-
-
-
     animation:
 
     heartFly 2s ease forwards;
 
+
+    pointer-events:none;
 
 }
 
@@ -841,27 +624,26 @@ select{
 
 0%{
 
-transform:
-
-translateY(0)
-
-scale(1);
-
 opacity:1;
+
+transform:
+translateY(0)
+scale(1);
 
 }
 
 
 100%{
 
-transform:
-
-translateY(-300px)
-
-scale(1.5);
-
 opacity:0;
 
+
+transform:
+
+translateY(-350px)
+
+scale(1.8);
+
 }
 
 
@@ -875,52 +657,66 @@ opacity:0;
 
 
 
-/* =================================
- WIN EFFECT
-================================= */
 
 
-.win{
+/* ==========================
+ WIN POPUP 🎉
+========================== */
+
+
+.win-popup{
+
+
+    position:fixed;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    background:white;
+
+
+    padding:35px;
+
+
+    border-radius:35px;
+
+
+    text-align:center;
+
+
+    z-index:999;
+
+
+    box-shadow:
+
+    0 20px 60px
+
+    rgba(255,0,120,.3);
 
 
     animation:
 
-    shake .5s;
-
-
-}
-
-
-
-@keyframes shake{
-
-
-0%{
-
-transform:translateX(0);
+    pop .5s ease;
 
 }
 
 
-25%{
-
-transform:translateX(-10px);
-
-}
 
 
-50%{
 
-transform:translateX(10px);
-
-}
+.win-popup h1{
 
 
-100%{
-
-transform:translateX(0);
-
-}
+    color:#ff5c9d;
 
 
 }
@@ -933,10 +729,74 @@ transform:translateX(0);
 
 
 
-/* =================================
- DARK MODE 🌙
-================================= */
+/* SHARE CARD */
 
+#shareCard{
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #ffd6e7,
+
+    #dff5ff
+
+    );
+
+
+    padding:25px;
+
+
+    border-radius:30px;
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* MUSIC */
+
+audio{
+
+    width:100%;
+
+}
+
+
+
+select{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:25px;
+
+    border:none;
+
+}
+
+
+
+
+
+
+
+
+
+/* DARK MODE */
 
 body.dark{
 
@@ -944,14 +804,17 @@ body.dark{
     background:
 
     linear-gradient(
-        135deg,
-        #21152d,
-        #542a72
+
+    135deg,
+
+    #21152d,
+
+    #542a72
+
     );
 
 
     color:white;
-
 
 }
 
@@ -962,53 +825,35 @@ body.dark .card{
 
     background:
 
-    rgba(40,20,60,.9);
+    rgba(50,20,70,.85);
 
 
-}
-
-
-
-body.dark h1,
-
-body.dark h2,
-
-body.dark h3{
-
-
-    color:#ffb6dd;
-
+    color:white;
 
 }
 
 
 
 body.dark li,
-
-body.dark .mission,
-
 body.dark .result-box div{
-
-
-    background:
-
-    rgba(255,255,255,.12);
-
-
-}
-
-
-
-body.dark input{
 
 
     background:
 
     rgba(255,255,255,.1);
 
+}
 
-    color:white;
 
+
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3{
+
+
+    color:#ffb7e0;
 
 }
 
@@ -1020,52 +865,14 @@ body.dark input{
 
 
 
-/* =================================
- ANIMATION
-================================= */
 
+/* FOOTER */
 
-@keyframes pop{
+footer{
 
+    text-align:center;
 
-from{
-
-transform:scale(.7);
-
-opacity:0;
-
-}
-
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
-
-}
-
-
-
-@keyframes fade{
-
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-
-to{
-
-opacity:1;
-
-}
+    color:#ff5c9d;
 
 }
 
@@ -1077,17 +884,15 @@ opacity:1;
 
 
 
-/* =================================
- MOBILE
-================================= */
-
+/* MOBILE */
 
 @media(max-width:480px){
 
 
+
 .app{
 
-padding:12px;
+padding:10px;
 
 }
 
@@ -1117,82 +922,12 @@ flex-direction:column;
 
 
 
-.mode-group{
+.mode-group,
+.category-group{
 
 flex-direction:column;
 
 }
 
-
-
-.category-group{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-}
-
-
-}
-/* WIN SHAKE */
-
-.win{
-
-animation:
-
-winner .6s;
-
-}
-
-
-
-@keyframes winner{
-
-
-0%{
-
-transform:scale(1);
-
-}
-
-
-50%{
-
-transform:scale(1.08);
-
-}
-
-
-100%{
-
-transform:scale(1);
-
-}
-
-
-}
-#shareCard{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-
-#shareCard::before{
-
-content:"❤️";
-
-position:absolute;
-
-font-size:80px;
-
-opacity:.15;
-
-right:20px;
-
-top:10px;
 
 }

@@ -1,8 +1,7 @@
 /* =================================
- Dinner Roulette V12 ❤️
- Couple History System 📜💕
+ Dinner Roulette V13 ❤️
+ Couple Timeline History System 📜💕
 ================================= */
-
 
 
 let historyFoods =
@@ -11,10 +10,10 @@ JSON.parse(
 
 localStorage.getItem(
 "dinnerHistory"
-
 )
 
 )||[];
+
 
 
 
@@ -39,8 +38,12 @@ return;
 
 
 
-const record={
+const now = new Date();
 
+
+
+
+const record={
 
 
 food:data.food,
@@ -49,7 +52,7 @@ food:data.food,
 drink:data.drink || "🥤 น้ำหวาน",
 
 
-dessert:data.dessert || "🍰 ของหวาน",
+dessert:data.drink || data.dessert || "🍰 ของหวาน",
 
 
 mode:data.mode || "สุ่ม",
@@ -58,9 +61,7 @@ mode:data.mode || "สุ่ม",
 
 date:
 
-new Date()
-
-.toLocaleDateString(
+now.toLocaleDateString(
 "th-TH"
 ),
 
@@ -68,9 +69,7 @@ new Date()
 
 time:
 
-new Date()
-
-.toLocaleTimeString(
+now.toLocaleTimeString(
 "th-TH",
 
 {
@@ -100,19 +99,13 @@ record
 
 
 
-
-// จำกัด 20 รายการล่าสุด
-
+// เก็บ 20 รายการล่าสุด
 
 if(historyFoods.length>20){
 
-
 historyFoods.pop();
 
-
 }
-
-
 
 
 
@@ -121,14 +114,9 @@ localStorage.setItem(
 
 "dinnerHistory",
 
-JSON.stringify(
-historyFoods
-
-)
+JSON.stringify(historyFoods)
 
 );
-
-
 
 
 
@@ -137,8 +125,6 @@ renderHistory();
 
 
 }
-
-
 
 
 
@@ -154,7 +140,7 @@ saveHistory;
 
 
 // ===============================
-// DISPLAY
+// RENDER TIMELINE
 // ===============================
 
 
@@ -162,11 +148,12 @@ function renderHistory(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "historyList"
 );
+
 
 
 
@@ -177,10 +164,7 @@ return;
 
 
 
-
 list.innerHTML="";
-
-
 
 
 
@@ -194,8 +178,10 @@ list.innerHTML=
 
 `
 
-<li>
-ยังไม่มีประวัติ ❤️
+<li class="empty-history">
+
+❤️ ยังไม่มีความทรงจำ
+
 </li>
 
 `;
@@ -212,10 +198,41 @@ return;
 
 
 
-
 historyFoods.forEach(
 
 (item,index)=>{
+
+
+
+let chooser;
+
+
+
+if(item.mode==="แฟน"){
+
+
+chooser="💕 Chompu เลือก";
+
+
+}
+
+else if(item.mode==="ฉัน"){
+
+
+chooser="🌸 ฉันเลือก";
+
+
+}
+
+else{
+
+
+chooser="🎲 หัวใจเลือก";
+
+
+}
+
+
 
 
 
@@ -227,43 +244,9 @@ document.createElement(
 
 
 
+li.className=
 
-
-
-
-let chooser="";
-
-
-
-if(item.mode==="แฟน"){
-
-
-chooser=
-"💕 Chompu เลือก";
-
-
-}
-
-else if(item.mode==="ฉัน"){
-
-
-chooser=
-"🌸 ฉันเลือก";
-
-
-}
-
-else{
-
-
-chooser=
-"🎲 สุ่มเลือก";
-
-
-}
-
-
-
+"timeline-item";
 
 
 
@@ -273,36 +256,53 @@ li.innerHTML=
 
 `
 
-<div>
+<div class="timeline-dot">
 
-❤️ ${item.food}
+❤️
+
+</div>
 
 
-<br>
+<div class="timeline-content">
+
+
+<h3>
+
+${item.food}
+
+</h3>
+
+
+<p>
 
 🥤 ${item.drink}
 
+</p>
 
-<br>
+
+<p>
 
 🍰 ${item.dartess || item.dessert}
 
+</p>
 
-<br>
 
+<p>
 
 ${chooser}
 
+</p>
 
-<br>
 
+<span>
 
 📅 ${item.date}
 
- ⏰ ${item.time}
+&nbsp;
 
+⏰ ${item.time}
 
-</div>
+</span>
 
 
 
@@ -312,22 +312,20 @@ ${chooser}
 
 </button>
 
+
+</div>
+
 `;
 
 
 
 
 
-list.appendChild(
-li
-);
+list.appendChild(li);
 
 
 
 });
-
-
-
 
 
 
@@ -360,20 +358,19 @@ index,
 
 
 
+
 localStorage.setItem(
 
 "dinnerHistory",
 
-JSON.stringify(
-historyFoods
-
-)
+JSON.stringify(historyFoods)
 
 );
 
 
 
 renderHistory();
+
 
 
 }
@@ -392,7 +389,7 @@ removeHistory;
 
 
 // ===============================
-// CLEAR ALL
+// CLEAR
 // ===============================
 
 
@@ -415,7 +412,6 @@ renderHistory();
 
 
 }
-
 
 
 
@@ -445,4 +441,6 @@ document.addEventListener(
 renderHistory();
 
 
-});
+}
+
+);

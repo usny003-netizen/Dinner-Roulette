@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V12 ❤️
+ Dinner Roulette V13 ❤️
  Couple Love Effect System 🎉
 ================================= */
 
@@ -22,34 +22,20 @@ document.getElementById(
 
 
 
-if(!food)
+if(!food || food==="-")
 
 return;
 
 
 
 
-
-// Popup
-
-
 createWinPopup(food);
-
-
-
-// Hearts
 
 
 createHeartBurst();
 
 
-
-// Confetti
-
-
 createConfetti();
-
-
 
 
 
@@ -59,9 +45,8 @@ createConfetti();
 
 
 
-
-
-window.winEffect = winEffect;
+window.winEffect =
+winEffect;
 
 
 
@@ -72,15 +57,12 @@ window.winEffect = winEffect;
 
 
 // ===============================
-// WIN POPUP
+// POPUP
 // ===============================
 
 
 function createWinPopup(food){
 
-
-
-// กันซ้ำ
 
 
 const old =
@@ -99,8 +81,6 @@ old.remove();
 
 
 
-
-
 const popup =
 
 document.createElement(
@@ -109,29 +89,39 @@ document.createElement(
 
 
 
-popup.className =
-"win-popup";
+popup.className="win-popup";
 
 
 
-
-
-popup.innerHTML =
+popup.innerHTML=
 
 `
 
+<div class="win-icon">
+
+🎉
+
+</div>
+
+
 <h1>
-🎉 ได้แล้ว!
+
+ได้แล้ว!
+
 </h1>
 
 
 <h2>
+
 ${food}
+
 </h2>
 
 
 <p>
+
 💕 วันนี้ Chompu กินเมนูนี้กัน
+
 </p>
 
 
@@ -147,7 +137,6 @@ ${food}
 
 
 
-
 document.body.appendChild(
 popup
 );
@@ -158,13 +147,19 @@ popup
 
 
 
-document
+const close =
 
-.getElementById(
+document.getElementById(
 "closeWin"
-)
+);
 
-.onclick=()=>{
+
+
+if(close){
+
+
+
+close.onclick=()=>{
 
 
 popup.remove();
@@ -174,20 +169,21 @@ popup.remove();
 
 
 
+}
+
+
+
+
 
 
 
 setTimeout(()=>{
 
 
-if(popup)
-
 popup.remove();
 
 
 },5000);
-
-
 
 
 
@@ -210,7 +206,7 @@ function createHeartBurst(){
 
 
 
-for(let i=0;i<15;i++){
+for(let i=0;i<20;i++){
 
 
 
@@ -218,7 +214,7 @@ setTimeout(()=>{
 
 
 
-const heart=
+let heart=
 
 document.createElement(
 "div"
@@ -226,25 +222,32 @@ document.createElement(
 
 
 
-heart.className=
-"heart";
+heart.className="heart";
 
 
 
 heart.innerHTML=
 
 [
+
 "❤️",
+
 "💕",
+
 "💗",
+
 "💖",
+
 "💘"
+
 ]
 
 [
+
 Math.floor(
 Math.random()*5
 )
+
 ];
 
 
@@ -266,21 +269,18 @@ heart
 
 
 
+
 setTimeout(()=>{
 
 
 heart.remove();
 
 
-},2000);
+},2500);
 
 
 
-},i*80);
-
-
-
-}
+},i*70);
 
 
 
@@ -288,12 +288,13 @@ heart.remove();
 
 
 
+}
 
 
 
 
 
-window.createHeartBurst =
+window.createHeartBurst=
 createHeartBurst;
 
 
@@ -313,11 +314,11 @@ function createConfetti(){
 
 
 
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
 
 
 
-let confetti=
+let item=
 
 document.createElement(
 "div"
@@ -325,63 +326,60 @@ document.createElement(
 
 
 
-confetti.innerHTML=
+item.className=
+"confetti";
+
+
+
+item.innerHTML=
 
 [
+
 "✨",
+
 "⭐",
-"💗",
-"🌸"
+
+"🌸",
+
+"💗"
+
 ]
 
 [
+
 Math.floor(
 Math.random()*4
 )
+
 ];
 
 
 
-confetti.style.position=
-"fixed";
-
-
-
-confetti.style.left=
+item.style.left=
 
 Math.random()*100+"%";
 
 
 
-confetti.style.top="-20px";
-
-
-
-confetti.style.fontSize=
+item.style.fontSize=
 
 Math.random()*20+15+"px";
 
 
 
-confetti.style.zIndex="9999";
+item.style.animationDuration=
 
-
-
-confetti.style.pointerEvents="none";
-
-
-
-confetti.style.animation=
-
-"fall 3s linear forwards";
+(2+Math.random()*2)+"s";
 
 
 
 
 
 document.body.appendChild(
-confetti
+item
 );
+
+
 
 
 
@@ -389,17 +387,29 @@ confetti
 setTimeout(()=>{
 
 
-confetti.remove();
+item.remove();
 
 
-},3000);
+},4000);
+
+
+
+}
 
 
 
 }
 
 
-}
+
+
+
+
+
+
+
+window.createConfetti=
+createConfetti;
 
 
 
@@ -410,11 +420,19 @@ confetti.remove();
 
 
 // ===============================
-// FALL ANIMATION
+// CSS EFFECT ONCE
 // ===============================
 
 
-const style =
+if(
+!document.getElementById(
+"effectStyle"
+)
+){
+
+
+
+const style=
 
 document.createElement(
 "style"
@@ -422,45 +440,117 @@ document.createElement(
 
 
 
+style.id="effectStyle";
+
+
+
 style.innerHTML=
 
 `
 
-@keyframes fall {
+.win-popup{
 
+position:fixed;
 
-from{
+top:50%;
 
+left:50%;
 
-transform:
-translateY(0)
-rotate(0deg);
+transform:translate(-50%,-50%) scale(.8);
 
+background:white;
 
-opacity:1;
+padding:30px;
 
+border-radius:30px;
+
+text-align:center;
+
+z-index:9999;
+
+animation:popupShow .4s forwards;
+
+box-shadow:0 20px 50px rgba(0,0,0,.2);
 
 }
 
+
+.win-popup button{
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:20px;
+
+background:#ff8fab;
+
+color:white;
+
+font-size:18px;
+
+}
+
+
+
+.confetti{
+
+position:fixed;
+
+top:-30px;
+
+z-index:9999;
+
+pointer-events:none;
+
+animation:fall linear forwards;
+
+}
+
+
+
+@keyframes popupShow{
 
 
 to{
 
+transform:
+translate(-50%,-50%)
+scale(1);
+
+}
+
+}
+
+
+
+@keyframes fall{
+
+
+from{
 
 transform:
+translateY(0)
+rotate(0);
 
+opacity:1;
+
+}
+
+
+to{
+
+transform:
 translateY(100vh)
-
 rotate(360deg);
-
 
 opacity:0;
 
-
 }
 
 
 }
+
 
 `;
 
@@ -469,3 +559,7 @@ opacity:0;
 document.head.appendChild(
 style
 );
+
+
+
+}

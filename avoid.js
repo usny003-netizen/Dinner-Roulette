@@ -1,7 +1,8 @@
 /* =================================
- Dinner Roulette V15 ❤️
- Avoid Food System 🚫💕
+ Dinner Roulette Chompu V17 ❤️
+ Avoid Food System FINAL 🚫
 ================================= */
+
 
 
 let avoidFoods =
@@ -12,34 +13,9 @@ localStorage.getItem(
 "avoidList"
 )
 
-)||[];
+)
 
-
-
-
-
-
-
-
-// ===============================
-// GET AVOID LIST
-// ===============================
-
-
-function getAvoidList(){
-
-
-return avoidFoods;
-
-
-}
-
-
-window.getAvoidList = getAvoidList;
-
-
-
-
+||[];
 
 
 
@@ -53,7 +29,6 @@ window.getAvoidList = getAvoidList;
 function addAvoid(food){
 
 
-
 if(!food || food==="-")
 
 
@@ -61,26 +36,28 @@ return;
 
 
 
+// กันซ้ำ
+
+if(
+avoidFoods.includes(food)
+){
 
 
+if(typeof showToast==="function"){
 
 
-if(avoidFoods.includes(food)){
-
-
-showAvoidMessage(
-
-"🚫 เมนูนี้อยู่ในรายการแล้ว"
-
+showToast(
+"🚫 เมนูนี้อยู่ในรายการไม่กินแล้ว"
 );
+
+
+}
 
 
 return;
 
 
 }
-
-
 
 
 
@@ -92,20 +69,15 @@ avoidFoods.push(food);
 
 
 
-
-
 localStorage.setItem(
 
 "avoidList",
 
 JSON.stringify(
 avoidFoods
-
 )
 
 );
-
-
 
 
 
@@ -117,32 +89,15 @@ renderAvoid();
 
 
 
+if(typeof showToast==="function"){
 
 
-// update wheel
-
-
-if(typeof changeCategory==="function"){
-
-
-changeCategory("all");
-
-
-}
-
-
-
-
-
-
-
-showAvoidMessage(
-
-`🚫 ไม่เลือก ${food}`
-
+showToast(
+`🚫 ไม่กิน ${food}`
 );
 
 
+}
 
 
 
@@ -150,7 +105,8 @@ showAvoidMessage(
 
 
 
-window.addAvoid = addAvoid;
+window.addAvoid =
+addAvoid;
 
 
 
@@ -161,7 +117,7 @@ window.addAvoid = addAvoid;
 
 
 // ===============================
-// REMOVE
+// REMOVE AVOID
 // ===============================
 
 
@@ -179,20 +135,15 @@ index,
 
 
 
-
-
-
 localStorage.setItem(
 
 "avoidList",
 
 JSON.stringify(
 avoidFoods
-
 )
 
 );
-
 
 
 
@@ -203,36 +154,12 @@ renderAvoid();
 
 
 
-
-
-
-if(typeof changeCategory==="function"){
-
-
-changeCategory("all");
-
-
 }
 
 
 
-
-
-
-
-showAvoidMessage(
-
-"❤️ เพิ่มเมนูกลับแล้ว"
-
-);
-
-
-
-}
-
-
-
-window.removeAvoid = removeAvoid;
+window.removeAvoid =
+removeAvoid;
 
 
 
@@ -243,16 +170,15 @@ window.removeAvoid = removeAvoid;
 
 
 // ===============================
-// RESET
+// CLEAR ALL
 // ===============================
 
 
-function resetAvoid(){
+function clearAvoid(){
 
 
 
 avoidFoods=[];
-
 
 
 
@@ -264,43 +190,80 @@ localStorage.removeItem(
 
 
 
-
-
-
 renderAvoid();
 
 
 
+if(typeof showToast==="function"){
 
 
-
-if(typeof changeCategory==="function"){
-
-
-changeCategory("all");
-
-
-}
-
-
-
-
-
-
-
-showAvoidMessage(
-
-"✨ ล้างรายการไม่กินแล้ว"
-
+showToast(
+"🔄 ล้างรายการไม่กินแล้ว"
 );
 
 
+}
+
+
 
 }
 
 
 
-window.resetAvoid = resetAvoid;
+window.clearAvoid =
+clearAvoid;
+
+
+
+
+
+
+
+
+
+// ===============================
+// GET AVOID
+// ===============================
+
+
+function getAvoidFoods(){
+
+
+return avoidFoods;
+
+
+}
+
+
+
+window.getAvoidFoods =
+getAvoidFoods;
+
+
+
+
+
+
+
+
+
+// ===============================
+// CHECK
+// ===============================
+
+
+function isAvoid(food){
+
+
+return avoidFoods.includes(food);
+
+
+}
+
+
+
+window.isAvoid =
+isAvoid;
 
 
 
@@ -327,8 +290,6 @@ document.getElementById(
 
 
 
-
-
 if(!list)
 
 return;
@@ -337,11 +298,7 @@ return;
 
 
 
-
 list.innerHTML="";
-
-
-
 
 
 
@@ -355,9 +312,9 @@ list.innerHTML=
 
 `
 
-<li class="empty-avoid">
+<li>
 
-❤️ ยังไม่มีเมนูที่ไม่กิน
+❤️ ยังไม่มีรายการ
 
 </li>
 
@@ -375,15 +332,13 @@ return;
 
 
 
-
-
 avoidFoods.forEach(
 
 (food,index)=>{
 
 
 
-const li=
+const li =
 
 document.createElement(
 "li"
@@ -391,41 +346,25 @@ document.createElement(
 
 
 
-
-li.className=
-
-"avoid-card";
-
-
-
-
-
-
-
 li.innerHTML=
 
 `
 
-<div class="avoid-food">
+<span>
 
 🚫 ${food}
 
-</div>
-
+</span>
 
 
 <button onclick="removeAvoid(${index})">
 
-❤️ เอากลับ
+❌
 
 </button>
 
 
 `;
-
-
-
-
 
 
 
@@ -448,89 +387,7 @@ list.appendChild(li);
 
 
 // ===============================
-// TOAST MESSAGE
-// ===============================
-
-
-function showAvoidMessage(text){
-
-
-
-if(typeof showToast==="function"){
-
-
-showToast(text);
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-const toast=
-
-document.createElement(
-"div"
-);
-
-
-
-toast.className=
-
-"avoid-toast";
-
-
-
-toast.innerHTML=text;
-
-
-
-
-
-document.body.appendChild(
-toast
-);
-
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-toast.remove();
-
-
-},2000);
-
-
-
-
-}
-
-
-
-window.showAvoidMessage =
-showAvoidMessage;
-
-
-
-
-
-
-
-
-
-// ===============================
-// INIT
+// INPUT ADD SYSTEM
 // ===============================
 
 
@@ -541,20 +398,18 @@ document.addEventListener(
 ()=>{
 
 
+
 renderAvoid();
 
 
 
 
 
-
-const resetBtn=
+const resetBtn =
 
 document.getElementById(
 "resetAvoidBtn"
 );
-
-
 
 
 
@@ -565,7 +420,7 @@ if(resetBtn){
 resetBtn.onclick=()=>{
 
 
-resetAvoid();
+clearAvoid();
 
 
 };
@@ -576,3 +431,11 @@ resetAvoid();
 
 
 });
+
+
+
+
+
+
+
+

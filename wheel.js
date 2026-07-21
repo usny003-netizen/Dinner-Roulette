@@ -1,6 +1,6 @@
 /* =================================
-   Dinner Roulette V4 ❤️
-   Wheel + Avoid System 🎡🚫
+   Dinner Roulette V4.1 ❤️
+   Wheel + Avoid + Full Set 🎡
 ================================= */
 
 
@@ -15,7 +15,7 @@ const ctx = canvas.getContext("2d");
 
 
 // ===============================
-// FOOD DATA
+// MENU DATA
 // ===============================
 
 
@@ -36,7 +36,7 @@ const foods = [
 
 
 
-const drinks=[
+const drinks = [
 
 "🧋 ชานมไข่มุก",
 "🍵 ชาไทย",
@@ -48,7 +48,7 @@ const drinks=[
 
 
 
-const desserts=[
+const desserts = [
 
 "🍰 เค้ก",
 "🍧 บิงซู",
@@ -69,26 +69,18 @@ const desserts=[
 // ===============================
 
 
-const clickSound =
-
-new Audio(
-"sounds/click.mp3"
+const clickSound = new Audio(
+"click.mp3"
 );
 
 
-
-const winSound =
-
-new Audio(
-"sounds/win.mp3"
+const winSound = new Audio(
+"win.mp3"
 );
 
 
-
-const tickSound =
-
-new Audio(
-"sounds/tick.mp3"
+const tickSound = new Audio(
+"tick.mp3"
 );
 
 
@@ -97,12 +89,16 @@ new Audio(
 
 
 
+// ===============================
+// VARIABLE
+// ===============================
 
-let spinning=false;
 
-let rotation=0;
+let spinning = false;
 
-let currentFood="";
+let rotation = 0;
+
+let currentFood = "";
 
 
 
@@ -120,10 +116,7 @@ let currentFood="";
 function drawWheel(){
 
 
-
-let mode =
-
-window.chooseMode || "ฉัน";
+const mode = window.chooseMode || "ฉัน";
 
 
 
@@ -131,7 +124,7 @@ let colors;
 
 
 
-if(mode==="แฟน"){
+if(mode === "แฟน"){
 
 
 colors=[
@@ -145,7 +138,7 @@ colors=[
 
 }
 
-else if(mode==="สุ่ม"){
+else if(mode === "สุ่ม"){
 
 
 colors=[
@@ -177,21 +170,15 @@ colors=[
 
 
 
+const center = canvas.width / 2;
+
+const radius = center;
 
 
-let center=
+const slice =
 
-canvas.width/2;
+(Math.PI * 2) / foods.length;
 
-
-
-let radius=center;
-
-
-
-let slice=
-
-(Math.PI*2)/foods.length;
 
 
 
@@ -238,7 +225,7 @@ center,
 
 radius,
 
-index*slice,
+index * slice,
 
 (index+1)*slice
 
@@ -246,14 +233,14 @@ index*slice,
 
 
 
-
-ctx.fillStyle=
+ctx.fillStyle =
 
 colors[index%2];
 
 
 
 ctx.fill();
+
 
 
 
@@ -275,7 +262,7 @@ center
 
 ctx.rotate(
 
-index*slice+slice/2
+index * slice + slice/2
 
 );
 
@@ -300,6 +287,8 @@ radius-20,
 8
 
 );
+
+
 
 
 
@@ -331,25 +320,26 @@ drawWheel();
 
 
 // ===============================
-// RANDOM FOOD
-// เช็ก Avoid
+// CHECK AVOID
 // ===============================
 
 
-function getRandomFood(){
+function getAvailableFoods(){
 
 
 
-let available = foods.filter(food=>{
+return foods.filter(food=>{
 
 
-if(typeof isAvoid==="function"){
+
+if(typeof isAvoid === "function"){
 
 
 return !isAvoid(food);
 
 
 }
+
 
 
 return true;
@@ -360,25 +350,36 @@ return true;
 
 
 
-
-
-// ถ้าไม่เหลือเมนู
-
-if(available.length===0){
+}
 
 
 
-if(typeof resetAvoidBtn !== "undefined"){
+
+
+
+
+
+function randomFood(){
+
+
+
+let list =
+
+getAvailableFoods();
+
+
+
+
+
+if(list.length === 0){
+
 
 
 alert(
 
-"หมดแล้วทุกเมนู ❤️ ล้างรายการไม่เอาได้เลย"
+"ไม่มีเมนูเหลือแล้ว ❤️ ล้างเมนูไม่เอาก่อนได้เลย"
 
 );
-
-
-}
 
 
 
@@ -400,11 +401,11 @@ Math.random()*foods.length
 
 
 
-return available[
+return list[
 
 Math.floor(
 
-Math.random()*available.length
+Math.random()*list.length
 
 )
 
@@ -423,7 +424,7 @@ Math.random()*available.length
 
 
 // ===============================
-// SPIN
+// SPIN BUTTON
 // ===============================
 
 
@@ -462,12 +463,14 @@ return;
 
 
 
-spinning=true;
+spinning = true;
 
 
 
 
-clickSound.currentTime=0;
+
+
+clickSound.currentTime = 0;
 
 clickSound.play();
 
@@ -476,33 +479,26 @@ clickSound.play();
 
 
 
-currentFood =
-
-getRandomFood();
+currentFood = randomFood();
 
 
 
 
 
 
+let index =
 
-let index=
-
-foods.indexOf(
-
-currentFood
-
-);
+foods.indexOf(currentFood);
 
 
 
 
 
 
-
-let sliceAngle=
+let sliceAngle =
 
 360 / foods.length;
+
 
 
 
@@ -513,7 +509,7 @@ let target =
 
 360*7 +
 
-(360-(index*sliceAngle));
+(360 - index*sliceAngle);
 
 
 
@@ -530,7 +526,7 @@ rotation += target;
 
 
 
-canvas.style.transition=
+canvas.style.transition =
 
 "transform 5s cubic-bezier(.17,.67,.24,1)";
 
@@ -538,7 +534,7 @@ canvas.style.transition=
 
 
 
-canvas.style.transform=
+canvas.style.transform =
 
 `rotate(${rotation}deg)`;
 
@@ -550,9 +546,7 @@ canvas.style.transform=
 
 
 
-let tick =
-
-setInterval(()=>{
+let tick = setInterval(()=>{
 
 
 tickSound.currentTime=0;
@@ -561,6 +555,7 @@ tickSound.play();
 
 
 },180);
+
 
 
 
@@ -580,6 +575,7 @@ spinning=false;
 
 
 
+
 winSound.currentTime=0;
 
 winSound.play();
@@ -588,12 +584,10 @@ winSound.play();
 
 
 
-
-let result={
-
+let dinnerSet = {
 
 
-food:currentFood,
+food: currentFood,
 
 
 
@@ -624,6 +618,8 @@ Math.random()*desserts.length
 
 ]
 
+
+
 };
 
 
@@ -631,13 +627,23 @@ Math.random()*desserts.length
 
 
 
-showResult(result);
+showResult(dinnerSet);
+
+
+
+
+
+
+createWinEffect();
+
 
 
 
 
 
 },5000);
+
+
 
 
 
@@ -660,35 +666,53 @@ function showResult(data){
 
 
 
-document.getElementById(
+const food =
 
+document.getElementById(
 "foodResult"
-
-).innerHTML=
-
-data.food;
+);
 
 
 
+const drink =
 
 document.getElementById(
-
 "drinkResult"
-
-).innerHTML=
-
-data.drink;
+);
 
 
 
+
+const dessert =
 
 document.getElementById(
-
 "dessertResult"
+);
 
-).innerHTML=
 
-data.drink;
+
+
+
+
+if(food)
+
+food.innerHTML=data.food;
+
+
+
+if(drink)
+
+drink.innerHTML=data.drink;
+
+
+
+if(dessert)
+
+dessert.innerHTML=data.dessert;
+
+
+
+
 
 
 
@@ -699,7 +723,7 @@ window.currentDinnerSet=data;
 
 
 
-if(typeof saveDinnerHistory==="function"){
+if(typeof saveDinnerHistory === "function"){
 
 
 saveDinnerHistory(data);
@@ -711,6 +735,77 @@ saveDinnerHistory(data);
 
 
 }
+
+
+
+
+
+
+
+
+
+// ===============================
+// WIN EFFECT ❤️
+// ===============================
+
+
+function createWinEffect(){
+
+
+
+for(let i=0;i<20;i++){
+
+
+
+let item=document.createElement("div");
+
+
+item.className="heart";
+
+
+item.innerHTML=
+
+["❤️","✨","⭐","🎉"][
+
+Math.floor(
+
+Math.random()*4
+
+)
+
+];
+
+
+
+item.style.left=
+
+Math.random()*100+"%";
+
+
+
+document.body.appendChild(item);
+
+
+
+
+setTimeout(()=>{
+
+
+item.remove();
+
+
+},2000);
+
+
+
+}
+
+
+
+}
+
+
+
 
 
 

@@ -19,7 +19,14 @@
 <body>
 
 
-<!-- ================= START SCREEN ================= -->
+<!-- EFFECT AREA -->
+
+<div id="confetti"></div>
+
+
+
+
+<!-- START SCREEN -->
 
 <div id="startScreen">
 
@@ -29,13 +36,18 @@
             ❤️ Dinner Roulette
         </h1>
 
+
         <p>
             วันนี้กินอะไรดีนะที่รัก 💕
         </p>
 
+
         <button id="startBtn">
+
             💖 เริ่มเล่น
+
         </button>
+
 
     </div>
 
@@ -45,23 +57,27 @@
 
 
 
-<!-- ================= MAIN APP ================= -->
+
+<!-- MAIN APP -->
 
 <div class="app" id="app">
 
 
 
-<!-- HEADER -->
+
 
 <header class="card hero">
 
-    <h1>
-        ❤️ Dinner Roulette
-    </h1>
 
-    <p>
-        สุ่มอาหารเย็นกับคนพิเศษ 🍽️
-    </p>
+<h1>
+❤️ Dinner Roulette
+</h1>
+
+
+<p>
+สุ่มอาหารเย็นกับคนพิเศษ 🍽️
+</p>
+
 
 </header>
 
@@ -70,7 +86,9 @@
 
 
 
-<!-- SELECT MODE -->
+
+
+<!-- MODE -->
 
 <section class="card">
 
@@ -80,21 +98,30 @@
 </h2>
 
 
+
 <div class="mode-group">
 
 
 <button class="mode active">
+
 👩 ฉันเลือก
+
 </button>
 
 
+
 <button class="mode">
+
 👨 แฟนเลือก
+
 </button>
 
 
+
 <button class="mode">
+
 🎲 สุ่ม
+
 </button>
 
 
@@ -102,6 +129,9 @@
 
 
 </section>
+
+
+
 
 
 
@@ -123,7 +153,9 @@
 
 
 <div id="pointer">
+
 ▼
+
 </div>
 
 
@@ -131,8 +163,8 @@
 <canvas id="wheel"
 width="420"
 height="420">
-</canvas>
 
+</canvas>
 
 
 </div>
@@ -140,14 +172,19 @@ height="420">
 
 
 
+
 <button id="spinBtn">
+
 ❤️ หมุนวงล้อ
+
 </button>
 
 
 
 <button id="autoBtn">
+
 💖 สุ่มจนกว่าจะถูกใจ
+
 </button>
 
 
@@ -164,12 +201,14 @@ height="420">
 
 <!-- RESULT -->
 
+
 <section class="card">
 
 
 <h2>
 🍽️ วันนี้กิน...
 </h2>
+
 
 
 
@@ -183,12 +222,12 @@ height="420">
 🍜 อาหาร
 </span>
 
-
 <h3 id="foodResult">
 -
 </h3>
 
 </div>
+
 
 
 
@@ -199,7 +238,6 @@ height="420">
 🥤 เครื่องดื่ม
 </span>
 
-
 <h3 id="drinkResult">
 -
 </h3>
@@ -209,12 +247,12 @@ height="420">
 
 
 
+
 <div>
 
 <span>
 🍰 ของหวาน
 </span>
-
 
 <h3 id="dessertResult">
 -
@@ -230,20 +268,28 @@ height="420">
 
 
 
+
+
 <button id="likeBtn">
+
 👍 เอาเลย
+
 </button>
 
 
 
 <button id="rerollBtn">
+
 🙅 ไม่เอา สุ่มใหม่
+
 </button>
 
 
 
 <button id="favoriteBtn">
+
 ⭐ บันทึกเมนูโปรด
+
 </button>
 
 
@@ -257,7 +303,9 @@ height="420">
 
 
 
+
 <!-- FAVORITE -->
+
 
 <section class="card">
 
@@ -265,6 +313,7 @@ height="420">
 <h2>
 ⭐ เมนูโปรด
 </h2>
+
 
 
 <ul id="favoriteList">
@@ -285,7 +334,9 @@ height="420">
 
 
 
+
 <!-- HISTORY -->
+
 
 <section class="card">
 
@@ -293,6 +344,7 @@ height="420">
 <h2>
 📜 ประวัติการสุ่ม
 </h2>
+
 
 
 <ul id="historyList">
@@ -313,7 +365,9 @@ height="420">
 
 
 
-<!-- SETTINGS -->
+
+<!-- SETTING -->
+
 
 <section class="card">
 
@@ -323,14 +377,19 @@ height="420">
 </h2>
 
 
+
 <button id="themeBtn">
+
 🌙 Dark Mode
+
 </button>
 
 
 
 <button id="shareBtn">
+
 📤 แชร์ให้แฟน
+
 </button>
 
 
@@ -344,7 +403,9 @@ height="420">
 
 
 
+
 <!-- MUSIC -->
+
 
 <section class="card">
 
@@ -376,23 +437,40 @@ type="audio/mpeg">
 
 
 
+<button id="muteBtn">
+
+🔇 ปิดเสียง
+
+</button>
+
+
+
+
 
 
 <select id="musicSelect">
 
 
 <option value="love.mp3">
+
 💖 เพลงหวาน
+
 </option>
+
 
 
 <option value="happy.mp3">
+
 🌸 เพลงสดใส
+
 </option>
 
 
+
 <option value="lofi.mp3">
+
 ☕ Lo-fi
+
 </option>
 
 
@@ -408,13 +486,16 @@ type="audio/mpeg">
 
 
 
-<!-- FOOTER -->
+
 
 <footer class="card">
 
 ทำด้วยความรัก ❤️
 
 </footer>
+
+
+
 
 
 
@@ -429,6 +510,8 @@ type="audio/mpeg">
 <!-- JAVASCRIPT -->
 
 
+<script src="script.js"></script>
+
 <script src="wheel.js"></script>
 
 <script src="favorite.js"></script>
@@ -436,8 +519,6 @@ type="audio/mpeg">
 <script src="history.js"></script>
 
 <script src="theme.js"></script>
-
-<script src="script.js"></script>
 
 
 

@@ -1,75 +1,60 @@
 /* =================================
- Dinner Roulette V11 ❤️
- Wheel Spin System 🎡
+ Dinner Roulette V12 ❤️
+ Couple Love Wheel 🎡💕
 ================================= */
 
 
-const canvas = document.getElementById("wheel");
+const canvas =
+document.getElementById("wheel");
+
 
 
 if(canvas){
 
 
-const ctx = canvas.getContext("2d");
+const ctx =
+canvas.getContext("2d");
 
 
 
-// =============================
-// FOOD DATABASE
-// =============================
 
 
-const foods = [
+// ===============================
+// FOOD DATA 🍽️
+// ===============================
 
-{
-name:"🥘 หมูกระทะ",
-category:"grill"
-},
 
-{
-name:"🍲 ชาบู",
-category:"grill"
-},
+const foods=[
 
-{
-name:"🐷 หมูย่างจิ้มแจ่ว",
-category:"thai"
-},
 
-{
-name:"🍗 ไก่ทอด",
-category:"fast"
-},
+{name:"🥘 หมูกระทะ",category:"grill"},
 
-{
-name:"🍜 ก๋วยเตี๋ยว",
-category:"noodle"
-},
 
-{
-name:"🍣 ซูชิ",
-category:"japan"
-},
+{name:"🍲 ชาบู",category:"grill"},
 
-{
-name:"🥩 ปิ้งย่าง",
-category:"grill"
-},
 
-{
-name:"🍕 พิซซ่า",
-category:"fast"
-},
+{name:"🐷 หมูย่างจิ้มแจ่ว",category:"thai"},
 
-{
-name:"🍔 เบอร์เกอร์",
-category:"fast"
-},
 
-{
-name:"🍱 อาหารญี่ปุ่น",
-category:"japan"
-}
+{name:"🍛 ข้าวกะเพรา",category:"thai"},
+
+
+{name:"🍣 ซูชิ",category:"japan"},
+
+
+{name:"🍜 ราเมง",category:"japan"},
+
+
+{name:"🍕 พิซซ่า",category:"fast"},
+
+
+{name:"🍔 เบอร์เกอร์",category:"fast"},
+
+
+{name:"🍜 ก๋วยเตี๋ยว",category:"noodle"},
+
+
+{name:"🥩 ปิ้งย่าง",category:"grill"}
 
 ];
 
@@ -80,26 +65,33 @@ category:"japan"
 let wheelFoods=[...foods];
 
 
+let currentFood=null;
+
+
 let currentMode="ฉัน";
-
-
-let spinning=false;
 
 
 let rotation=0;
 
 
-let currentFood=null;
+let spinning=false;
 
 
 
 
 
-const clickSound =
+
+// SOUND
+
+const clickSound=
 new Audio("click.mp3");
 
 
-const winSound =
+const tickSound=
+new Audio("tick.mp3");
+
+
+const winSound=
 new Audio("win.mp3");
 
 
@@ -108,49 +100,67 @@ new Audio("win.mp3");
 
 
 
-// =============================
-// COLOR THEME
-// =============================
 
 
-let colors=[
-
-"#ffc8dd",
-"#ffe5ec"
-
-];
+// ===============================
+// COLOR THEME 💕
+// ===============================
 
 
-
-
-
-function setWheelColor(mode){
-
-
-if(mode==="ฉัน"){
-
-
-colors=[
+let themeColors=[
 
 "#ffb6d9",
-"#ffd6e7"
+
+"#ffd6e7",
+
+"#ffc8dd"
 
 ];
+
+
+
+
+
+function changeWheelTheme(mode){
+
+
+
+if(mode==="แฟน"){
+
+
+
+themeColors=[
+
+"#bde0fe",
+
+"#cdb4ff",
+
+"#a2d2ff"
+
+];
+
 
 
 }
 
 
 
-else if(mode==="แฟน"){
+else if(mode==="สุ่ม"){
 
 
-colors=[
+
+themeColors=[
+
+"#ffd6a5",
+
+"#caffbf",
 
 "#bde0fe",
-"#cdb4ff"
+
+"#ffc8dd"
 
 ];
+
 
 
 }
@@ -160,12 +170,14 @@ colors=[
 else{
 
 
-colors=[
 
-"#ffadad",
-"#ffd6a5",
-"#caffbf",
-"#bde0fe"
+themeColors=[
+
+"#ffafcc",
+
+"#ffc8dd",
+
+"#ffd6e7"
 
 ];
 
@@ -174,7 +186,9 @@ colors=[
 
 
 
+
 drawWheel();
+
 
 
 }
@@ -186,16 +200,19 @@ drawWheel();
 
 
 
-// =============================
-// DRAW
-// =============================
+
+// ===============================
+// DRAW WHEEL
+// ===============================
 
 
 function drawWheel(){
 
 
-const center =
+
+const center=
 canvas.width/2;
+
 
 
 const radius=center;
@@ -217,18 +234,13 @@ canvas.height
 
 
 
-if(wheelFoods.length===0)
 
-return;
+let slice=
 
+Math.PI*2 /
 
+wheelFoods.length;
 
-
-const slice =
-
-(Math.PI*2)
-
-/wheelFoods.length;
 
 
 
@@ -240,6 +252,7 @@ wheelFoods.forEach(
 
 
 ctx.beginPath();
+
 
 
 ctx.moveTo(
@@ -270,11 +283,32 @@ index*slice,
 
 ctx.fillStyle=
 
-colors[index % colors.length];
+themeColors[
+
+index %
+
+themeColors.length
+
+];
 
 
 
 ctx.fill();
+
+
+
+
+// เส้นขอบ
+
+
+ctx.strokeStyle="#fff";
+
+
+ctx.lineWidth=3;
+
+
+ctx.stroke();
+
 
 
 
@@ -307,10 +341,13 @@ index*slice + slice/2
 ctx.textAlign="right";
 
 
+
 ctx.fillStyle="#555";
 
 
-ctx.font="17px Tahoma";
+
+ctx.font=
+"16px Tahoma";
 
 
 
@@ -318,11 +355,12 @@ ctx.fillText(
 
 food.name,
 
-radius-20,
+radius-25,
 
-8
+5
 
 );
+
 
 
 
@@ -331,6 +369,60 @@ ctx.restore();
 
 
 });
+
+
+
+
+
+
+// ❤️ กลางวง
+
+
+ctx.beginPath();
+
+
+ctx.arc(
+
+center,
+
+center,
+
+35,
+
+0,
+
+Math.PI*2
+
+);
+
+
+
+ctx.fillStyle="#fff";
+
+
+ctx.fill();
+
+
+
+ctx.font="28px Arial";
+
+
+ctx.textAlign="center";
+
+
+ctx.textBaseline="middle";
+
+
+ctx.fillText(
+
+"❤️",
+
+center,
+
+center
+
+);
+
 
 
 }
@@ -343,15 +435,16 @@ ctx.restore();
 
 
 
-// =============================
+// ===============================
 // CATEGORY
-// =============================
+// ===============================
 
 
-window.changeCategory=function(category){
+window.changeCategory=function(cat){
 
 
-if(category==="all"){
+
+if(cat==="all"){
 
 
 wheelFoods=[...foods];
@@ -366,9 +459,9 @@ wheelFoods=
 
 foods.filter(
 
-item=>
+f=>
 
-item.category===category
+f.category===cat
 
 );
 
@@ -377,7 +470,13 @@ item.category===category
 
 
 
+
+
+filterAvoid();
+
+
 drawWheel();
+
 
 
 }
@@ -390,15 +489,18 @@ drawWheel();
 
 
 
-// =============================
-// AVOID SYSTEM
-// =============================
+// ===============================
+// AVOID FILTER
+// ===============================
 
 
-function getAvoid(){
+function filterAvoid(){
 
 
-return JSON.parse(
+
+let avoid=
+
+JSON.parse(
 
 localStorage.getItem(
 "avoidList"
@@ -408,30 +510,20 @@ localStorage.getItem(
 )||[];
 
 
-}
 
 
+wheelFoods=
 
+wheelFoods.filter(
 
+f=>
 
-
-
-function getAvailable(){
-
-
-let avoid=getAvoid();
-
-
-
-return wheelFoods.filter(
-
-food=>
-
-!avoid.includes(food.name)
+!avoid.includes(f.name)
 
 );
 
 
+
 }
 
 
@@ -442,9 +534,9 @@ food=>
 
 
 
-// =============================
-// MODE BUTTON
-// =============================
+// ===============================
+// MODE
+// ===============================
 
 
 document.querySelectorAll(".mode")
@@ -452,16 +544,11 @@ document.querySelectorAll(".mode")
 .forEach(btn=>{
 
 
-btn.addEventListener(
-
-"click",
-
-()=>{
+btn.onclick=()=>{
 
 
-document
 
-.querySelectorAll(".mode")
+document.querySelectorAll(".mode")
 
 .forEach(b=>
 
@@ -481,11 +568,12 @@ btn.dataset.mode;
 
 
 
-setWheelColor(
+changeWheelTheme(
 
 currentMode
 
 );
+
 
 
 
@@ -499,7 +587,7 @@ document.getElementById(
 
 
 
-let message=
+let msg=
 
 document.getElementById(
 
@@ -510,40 +598,41 @@ document.getElementById(
 
 
 
+
 if(currentMode==="แฟน"){
 
 
-message.innerHTML=
 
-`❤️ วันนี้ ${name} เลือกให้`;
+msg.innerHTML=
+
+`💕 วันนี้ ${name} เลือกให้`;
+
 
 }
-
 
 else if(currentMode==="สุ่ม"){
 
 
-message.innerHTML=
+msg.innerHTML=
 
-"🎲 วันนี้ให้โชคชะตาเลือก";
+"🎲 ให้หัวใจเป็นคนเลือก";
+
 
 }
-
 
 else{
 
 
-message.innerHTML=
+msg.innerHTML=
 
 "🌸 วันนี้ฉันเลือกให้";
 
-}
-
 
 }
 
 
-);
+
+};
 
 
 
@@ -557,9 +646,9 @@ message.innerHTML=
 
 
 
-// =============================
+// ===============================
 // SPIN
-// =============================
+// ===============================
 
 
 function spinWheel(){
@@ -574,8 +663,7 @@ return;
 
 let available=
 
-getAvailable();
-
+wheelFoods;
 
 
 
@@ -584,7 +672,7 @@ if(available.length===0){
 
 alert(
 
-"🚫 ไม่มีเมนูให้สุ่มแล้ว"
+"🚫 ไม่มีเมนูให้สุ่ม"
 
 );
 
@@ -600,10 +688,8 @@ spinning=true;
 
 
 
-clickSound.currentTime=0;
 
 clickSound.play();
-
 
 
 
@@ -624,7 +710,6 @@ Math.random()*available.length
 
 
 
-
 let index=
 
 wheelFoods.indexOf(
@@ -637,26 +722,28 @@ currentFood
 
 
 
-let slice=
+let degree=
 
-360/wheelFoods.length;
+360 /
 
-
-
-
-
-let stop=
-
-360*6+
-
-(360-(index*slice+slice/2));
+wheelFoods.length;
 
 
 
 
 
 
-rotation+=stop;
+let target=
+
+360*8 +
+
+(360-(index*degree+degree/2));
+
+
+
+
+
+rotation+=target;
 
 
 
@@ -664,7 +751,9 @@ rotation+=stop;
 
 canvas.style.transition=
 
-"transform 5s cubic-bezier(.17,.67,.24,1)";
+"transform 6s cubic-bezier(.17,.67,.24,1)";
+
+
 
 
 
@@ -676,27 +765,69 @@ canvas.style.transform=
 
 
 
+tickSound.loop=true;
+
+tickSound.play();
+
+
+
+
+
+
+let status=
+
+document.getElementById(
+
+"statusMessage"
+
+);
+
+
+
+if(status)
+
+status.innerHTML=
+
+"🎡 กำลังเลือกให้ Chompu... ❤️";
+
+
+
+
+
+
+
 
 
 setTimeout(()=>{
 
 
-spinning=false;
+
+tickSound.pause();
+
+
+tickSound.currentTime=0;
+
 
 
 winSound.play();
+
+
+
+spinning=false;
+
 
 
 showResult();
 
 
 
-},5000);
+
+},6000);
+
 
 
 
 }
-
 
 
 
@@ -714,48 +845,39 @@ spinWheel;
 
 
 
-// =============================
+// ===============================
 // RESULT
-// =============================
+// ===============================
 
 
 function showResult(){
 
 
 
-if(!currentFood)
-
-return;
-
-
-
-
-const result=
+let food=
 
 document.getElementById(
+
 "foodResult"
+
 );
 
 
 
-if(result){
+if(food)
 
-
-result.innerHTML=
+food.innerText=
 
 currentFood.name;
 
 
-}
 
 
 
 
-
-
-// HISTORY
 
 if(typeof saveHistory==="function"){
+
 
 
 saveHistory({
@@ -768,6 +890,7 @@ dessert:"🍰 ของหวาน",
 
 mode:currentMode
 
+
 });
 
 
@@ -776,9 +899,6 @@ mode:currentMode
 
 
 
-
-
-// SHARE CARD
 
 
 if(typeof updateShareCard==="function"){
@@ -801,8 +921,6 @@ dessert:"🍰 ของหวาน"
 
 
 
-// MISSION
-
 if(typeof completeSpinMission==="function"){
 
 
@@ -814,8 +932,6 @@ completeSpinMission();
 
 
 
-
-// EFFECT
 
 if(typeof winEffect==="function"){
 
@@ -835,16 +951,13 @@ winEffect();
 
 
 
-
-
-
 // START
 
 
 drawWheel();
 
 
-setWheelColor("ฉัน");
+changeWheelTheme("ฉัน");
 
 
 

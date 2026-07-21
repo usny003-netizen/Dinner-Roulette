@@ -1172,3 +1172,27 @@ transform:scale(1);
 
 
 }
+#shareCard{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+#shareCard::before{
+
+content:"❤️";
+
+position:absolute;
+
+font-size:80px;
+
+opacity:.15;
+
+right:20px;
+
+top:10px;
+
+}

@@ -20,53 +20,51 @@
 </head>
 
 
+
 <body>
 
 
-
-<!-- ================= START ================= -->
+<!-- ================= START SCREEN ================= -->
 
 
 <div id="startScreen">
 
 
-<div class="start-box">
+    <div class="start-box">
 
 
-<h1>
-❤️ Dinner Roulette
-</h1>
+        <h1>
+            ❤️ Dinner Roulette
+        </h1>
 
 
-<p>
-วันนี้กินอะไรดีนะที่รัก 💕
-</p>
+        <p>
+            วันนี้กินอะไรดีนะที่รัก 💕
+        </p>
 
 
-<button id="startBtn">
+        <button id="startBtn">
 
-💖 เริ่มเล่น
+            💖 เริ่มเล่น
 
-</button>
+        </button>
+
+
+    </div>
 
 
 </div>
 
 
-</div>
 
 
 
 
 
+<!-- ================= MAIN APP ================= -->
 
 
-
-<!-- ================= APP ================= -->
-
-
-<div class="app">
-
+<div class="app" id="app">
 
 
 
@@ -84,8 +82,10 @@
 </h1>
 
 
-<p>
+<p id="mainMessage">
+
 สุ่มอาหารเย็นกับคนพิเศษ 🍽️
+
 </p>
 
 
@@ -99,7 +99,7 @@
 
 
 
-<!-- CHOOSE MODE -->
+<!-- ================= MODE ================= -->
 
 
 <section class="card">
@@ -144,19 +144,13 @@
 
 
 
-<div class="partner-name">
-
-
 <input
 
 id="partnerName"
 
 type="text"
 
-placeholder="Chompu 💕">
-
-
-</div>
+placeholder="ชื่อแฟน 💕">
 
 
 
@@ -164,9 +158,7 @@ placeholder="Chompu 💕">
 
 <p id="chooserMessage">
 
-
-💕 สุ่มอาหารเย็นกับคนพิเศษ 🍽️
-
+💕 วันนี้กินอะไรดีนะ
 
 </p>
 
@@ -182,7 +174,7 @@ placeholder="Chompu 💕">
 
 
 
-<!-- WHEEL -->
+<!-- ================= WHEEL ================= -->
 
 
 <section class="card">
@@ -194,9 +186,7 @@ placeholder="Chompu 💕">
 
 
 
-
 <div class="wheel-wrapper">
-
 
 
 <div id="pointer">
@@ -204,7 +194,6 @@ placeholder="Chompu 💕">
 ▼
 
 </div>
-
 
 
 
@@ -217,7 +206,6 @@ width="420"
 height="420">
 
 </canvas>
-
 
 
 </div>
@@ -236,12 +224,12 @@ height="420">
 
 
 
+
 <button id="autoBtn">
 
 💖 สุ่มจนกว่าจะถูกใจ
 
 </button>
-
 
 
 
@@ -255,17 +243,24 @@ height="420">
 
 
 
-<!-- RESULT -->
+<!-- ================= RESULT ================= -->
 
 
 <section class="card">
 
 
 <h2>
-
 🍽️ วันนี้กิน...
-
 </h2>
+
+
+
+<p id="statusMessage">
+
+พร้อมสุ่มเมนูแล้ว ❤️
+
+</p>
+
 
 
 
@@ -294,6 +289,7 @@ height="420">
 
 
 
+
 <div>
 
 <span>
@@ -309,6 +305,8 @@ height="420">
 
 
 </div>
+
+
 
 
 
@@ -332,9 +330,7 @@ height="420">
 
 
 
-
 </div>
-
 
 
 
@@ -350,6 +346,7 @@ height="420">
 
 
 
+
 <button id="rerollBtn">
 
 🙅 ไม่เอา สุ่มใหม่
@@ -359,11 +356,13 @@ height="420">
 
 
 
+
 <button id="favoriteBtn">
 
 ⭐ บันทึกเมนูโปรด
 
 </button>
+
 
 
 
@@ -377,7 +376,7 @@ height="420">
 
 
 
-<!-- FAVORITE -->
+<!-- ================= FAVORITE ================= -->
 
 
 <section class="card">
@@ -412,7 +411,7 @@ height="420">
 
 
 
-<!-- HISTORY -->
+<!-- ================= HISTORY ================= -->
 
 
 <section class="card">
@@ -448,7 +447,7 @@ height="420">
 
 
 
-<!-- SETTING -->
+<!-- ================= SETTING ================= -->
 
 
 <section class="card">
@@ -473,11 +472,13 @@ height="420">
 
 
 
+
 <button id="shareBtn">
 
 📤 แชร์ให้แฟน
 
 </button>
+
 
 
 
@@ -491,7 +492,7 @@ height="420">
 
 
 
-<!-- MUSIC -->
+<!-- ================= MUSIC ================= -->
 
 
 <section class="card">
@@ -507,21 +508,15 @@ height="420">
 
 
 
-<audio
-
-id="bgMusic"
-
-loop>
+<audio id="bgMusic" loop>
 
 
-<source src="love.mp3"
+<source src="sounds/love.mp3"
 
 type="audio/mpeg">
 
 
 </audio>
-
-
 
 
 
@@ -538,12 +533,10 @@ type="audio/mpeg">
 
 
 
-
 <select id="musicSelect">
 
 
-
-<option value="love.mp3">
+<option value="sounds/love.mp3">
 
 💖 เพลงหวาน
 
@@ -551,8 +544,7 @@ type="audio/mpeg">
 
 
 
-
-<option value="happy.mp3">
+<option value="sounds/happy.mp3">
 
 🌸 เพลงสดใส
 
@@ -560,18 +552,14 @@ type="audio/mpeg">
 
 
 
-
-
-<option value="lofi.mp3">
+<option value="sounds/lofi.mp3">
 
 ☕ Lo-fi
 
 </option>
 
 
-
 </select>
-
 
 
 
@@ -597,7 +585,6 @@ type="audio/mpeg">
 
 
 
-
 </div>
 
 
@@ -607,8 +594,31 @@ type="audio/mpeg">
 
 
 
+<!-- ================= SOUND ================= -->
 
-<!-- SCRIPT -->
+
+<audio id="clickSound">
+
+<source src="sounds/click.mp3">
+
+</audio>
+
+
+
+<audio id="winSound">
+
+<source src="sounds/win.mp3">
+
+</audio>
+
+
+
+
+
+
+
+
+<!-- ================= SCRIPT ================= -->
 
 
 <script src="wheel.js"></script>
@@ -624,5 +634,6 @@ type="audio/mpeg">
 
 
 </body>
+
 
 </html>

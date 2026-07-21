@@ -7,51 +7,43 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>❤️ Dinner Roulette</title>
-
 
 <meta name="theme-color" content="#ff9fc5">
 
-
 <link rel="stylesheet" href="style.css">
 
-
 </head>
-
 
 
 <body>
 
 
-<!-- ================= START SCREEN ================= -->
-
+<!-- START SCREEN -->
 
 <div id="startScreen">
 
-
-    <div class="start-box">
-
-
-        <h1>
-            ❤️ Dinner Roulette
-        </h1>
+<div class="start-box">
 
 
-        <p>
-            วันนี้กินอะไรดีนะที่รัก 💕
-        </p>
+<h1>
+❤️ Dinner Roulette
+</h1>
 
 
-        <button id="startBtn">
-
-            💖 เริ่มเล่น
-
-        </button>
+<p>
+วันนี้กินอะไรดีนะที่รัก 💕
+</p>
 
 
-    </div>
+<button id="startBtn">
 
+💖 เริ่มเล่น
+
+</button>
+
+
+</div>
 
 </div>
 
@@ -61,10 +53,11 @@
 
 
 
-<!-- ================= MAIN APP ================= -->
 
 
-<div class="app" id="app">
+<!-- MAIN APP -->
+
+<div class="app">
 
 
 
@@ -82,11 +75,10 @@
 </h1>
 
 
-<p id="mainMessage">
-
-สุ่มอาหารเย็นกับคนพิเศษ 🍽️
-
+<p>
+สุ่มมื้อเย็นกับคนพิเศษ 🍽️
 </p>
+
 
 
 </header>
@@ -98,9 +90,7 @@
 
 
 
-
-<!-- ================= MODE ================= -->
-
+<!-- MODE -->
 
 <section class="card">
 
@@ -121,13 +111,11 @@
 </button>
 
 
-
 <button class="mode">
 
 👨 แฟนเลือก
 
 </button>
-
 
 
 <button class="mode">
@@ -144,13 +132,14 @@
 
 
 
-<input
 
+
+<input 
 id="partnerName"
-
 type="text"
+value="Chompu"
+placeholder="ชื่อแฟน ❤️">
 
-placeholder="ชื่อแฟน 💕">
 
 
 
@@ -158,9 +147,12 @@ placeholder="ชื่อแฟน 💕">
 
 <p id="chooserMessage">
 
-💕 วันนี้กินอะไรดีนะ
+🌸 วันนี้ฉันเลือกให้เอง
 
 </p>
+
+
+
 
 
 
@@ -174,8 +166,7 @@ placeholder="ชื่อแฟน 💕">
 
 
 
-<!-- ================= WHEEL ================= -->
-
+<!-- WHEEL -->
 
 <section class="card">
 
@@ -183,6 +174,18 @@ placeholder="ชื่อแฟน 💕">
 <h2>
 🎡 วงล้อสุ่มอาหาร
 </h2>
+
+
+
+
+
+<p id="mainMessage">
+
+✨ หมุนวงล้อกันเถอะ
+
+</p>
+
+
 
 
 
@@ -194,6 +197,7 @@ placeholder="ชื่อแฟน 💕">
 ▼
 
 </div>
+
 
 
 
@@ -210,6 +214,15 @@ height="420">
 
 </div>
 
+
+
+
+
+<p id="statusMessage">
+
+พร้อมแล้ว ❤️
+
+</p>
 
 
 
@@ -243,7 +256,7 @@ height="420">
 
 
 
-<!-- ================= RESULT ================= -->
+<!-- RESULT -->
 
 
 <section class="card">
@@ -255,18 +268,8 @@ height="420">
 
 
 
-<p id="statusMessage">
-
-พร้อมสุ่มเมนูแล้ว ❤️
-
-</p>
-
-
-
-
 
 <div class="result-box">
-
 
 
 <div>
@@ -277,14 +280,11 @@ height="420">
 
 
 <h3 id="foodResult">
-
 -
-
 </h3>
 
 
 </div>
-
 
 
 
@@ -298,15 +298,11 @@ height="420">
 
 
 <h3 id="drinkResult">
-
 -
-
 </h3>
 
 
 </div>
-
-
 
 
 
@@ -320,9 +316,7 @@ height="420">
 
 
 <h3 id="dessertResult">
-
 -
-
 </h3>
 
 
@@ -337,12 +331,12 @@ height="420">
 
 
 
+
 <button id="likeBtn">
 
 👍 เอาเลย
 
 </button>
-
 
 
 
@@ -376,16 +370,14 @@ height="420">
 
 
 
-<!-- ================= FAVORITE ================= -->
+<!-- FAVORITE -->
 
 
 <section class="card">
 
 
 <h2>
-
 ⭐ เมนูโปรด
-
 </h2>
 
 
@@ -401,6 +393,7 @@ height="420">
 </ul>
 
 
+
 </section>
 
 
@@ -411,18 +404,15 @@ height="420">
 
 
 
-<!-- ================= HISTORY ================= -->
+<!-- HISTORY -->
 
 
 <section class="card">
 
 
 <h2>
-
 📜 ประวัติการสุ่ม
-
 </h2>
-
 
 
 
@@ -437,6 +427,7 @@ height="420">
 </ul>
 
 
+
 </section>
 
 
@@ -447,16 +438,14 @@ height="420">
 
 
 
-<!-- ================= SETTING ================= -->
+<!-- SETTINGS -->
 
 
 <section class="card">
 
 
 <h2>
-
 ⚙️ ตั้งค่า
-
 </h2>
 
 
@@ -467,8 +456,6 @@ height="420">
 🌙 Dark Mode
 
 </button>
-
-
 
 
 
@@ -492,18 +479,15 @@ height="420">
 
 
 
-<!-- ================= MUSIC ================= -->
+<!-- MUSIC -->
 
 
 <section class="card">
 
 
 <h2>
-
 🎵 เพลงของเรา
-
 </h2>
-
 
 
 
@@ -533,6 +517,7 @@ type="audio/mpeg">
 
 
 
+
 <select id="musicSelect">
 
 
@@ -552,6 +537,7 @@ type="audio/mpeg">
 
 
 
+
 <option value="sounds/lofi.mp3">
 
 ☕ Lo-fi
@@ -559,7 +545,9 @@ type="audio/mpeg">
 </option>
 
 
+
 </select>
+
 
 
 
@@ -594,31 +582,8 @@ type="audio/mpeg">
 
 
 
-<!-- ================= SOUND ================= -->
 
-
-<audio id="clickSound">
-
-<source src="sounds/click.mp3">
-
-</audio>
-
-
-
-<audio id="winSound">
-
-<source src="sounds/win.mp3">
-
-</audio>
-
-
-
-
-
-
-
-
-<!-- ================= SCRIPT ================= -->
+<!-- JS -->
 
 
 <script src="wheel.js"></script>
@@ -634,6 +599,5 @@ type="audio/mpeg">
 
 
 </body>
-
 
 </html>

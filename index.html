@@ -19,21 +19,30 @@
 <body>
 
 
-<!-- START SCREEN -->
+<!-- =====================
+START SCREEN
+===================== -->
+
 
 <div id="startScreen">
 
 <div class="start-box">
 
 
+<div class="logo">
+❤️
+</div>
+
+
 <h1>
-❤️ Dinner Roulette
+Dinner Roulette
 </h1>
 
 
 <p>
 วันนี้กินอะไรดีนะที่รัก 💕
 </p>
+
 
 
 <button id="startBtn">
@@ -55,9 +64,13 @@
 
 
 
-<!-- MAIN APP -->
+<!-- =====================
+MAIN APP
+===================== -->
+
 
 <div class="app">
+
 
 
 
@@ -79,12 +92,17 @@
 
 
 <h1>
+
 Dinner Roulette
+
 </h1>
 
 
+
 <p>
+
 สุ่มมื้อเย็นกับคนพิเศษ 🍽️
+
 </p>
 
 
@@ -98,7 +116,11 @@ Dinner Roulette
 
 
 
-<!-- MODE -->
+
+<!-- =====================
+MODE SELECT
+===================== -->
+
 
 <section class="card">
 
@@ -119,11 +141,13 @@ Dinner Roulette
 </button>
 
 
+
 <button class="mode">
 
 👨 แฟนเลือก
 
 </button>
+
 
 
 <button class="mode">
@@ -142,11 +166,18 @@ Dinner Roulette
 
 
 
-<input 
+<input
+
 id="partnerName"
+
 type="text"
+
 value="Chompu"
-placeholder="ชื่อแฟน ❤️">
+
+placeholder="ชื่อแฟน ❤️"
+
+>
+
 
 
 
@@ -162,8 +193,6 @@ placeholder="ชื่อแฟน ❤️">
 
 
 
-
-
 </section>
 
 
@@ -174,22 +203,26 @@ placeholder="ชื่อแฟน ❤️">
 
 
 
-<!-- WHEEL -->
+<!-- =====================
+WHEEL
+===================== -->
+
 
 <section class="card">
 
 
 <h2>
-🎡 วงล้อสุ่มอาหาร
-</h2>
 
+🎡 วงล้อสุ่มอาหาร
+
+</h2>
 
 
 
 
 <p id="mainMessage">
 
-✨ หมุนวงล้อกันเถอะ
+✨ พร้อมแล้ว ลุ้นกันเลย
 
 </p>
 
@@ -198,6 +231,7 @@ placeholder="ชื่อแฟน ❤️">
 
 
 <div class="wheel-wrapper">
+
 
 
 <div id="pointer">
@@ -220,7 +254,10 @@ height="420">
 </canvas>
 
 
+
 </div>
+
+
 
 
 
@@ -228,7 +265,7 @@ height="420">
 
 <p id="statusMessage">
 
-พร้อมแล้ว ❤️
+❤️ กดหมุนวงล้อ
 
 </p>
 
@@ -236,9 +273,12 @@ height="420">
 
 
 
+
+
+
 <button id="spinBtn">
 
-❤️ หมุนวงล้อ
+🎡 หมุนวงล้อ
 
 </button>
 
@@ -264,15 +304,20 @@ height="420">
 
 
 
-<!-- RESULT -->
+<!-- =====================
+RESULT
+===================== -->
 
 
 <section class="card">
 
 
 <h2>
+
 🍽️ วันนี้กิน...
+
 </h2>
+
 
 
 
@@ -280,16 +325,26 @@ height="420">
 <div class="result-box">
 
 
+
+
+
 <div>
 
+
 <span>
+
 🍜 อาหาร
+
 </span>
+
 
 
 <h3 id="foodResult">
+
 -
+
 </h3>
+
 
 
 </div>
@@ -298,19 +353,29 @@ height="420">
 
 
 
+
 <div>
 
+
 <span>
+
 🥤 เครื่องดื่ม
+
 </span>
+
 
 
 <h3 id="drinkResult">
+
 -
+
 </h3>
 
 
+
 </div>
+
+
 
 
 
@@ -318,21 +383,32 @@ height="420">
 
 <div>
 
+
 <span>
+
 🍰 ของหวาน
+
 </span>
 
 
+
 <h3 id="dessertResult">
+
 -
+
 </h3>
 
 
-</div>
-
-
 
 </div>
+
+
+
+
+
+
+</div>
+
 
 
 
@@ -345,6 +421,7 @@ height="420">
 👍 เอาเลย
 
 </button>
+
 
 
 
@@ -378,14 +455,18 @@ height="420">
 
 
 
-<!-- FAVORITE -->
+<!-- =====================
+FAVORITE
+===================== -->
 
 
-<section class="card">
+<section class="card" id="favoriteSection">
 
 
 <h2>
+
 ⭐ เมนูโปรด
+
 </h2>
 
 
@@ -394,11 +475,14 @@ height="420">
 
 
 <li>
+
 ยังไม่มีเมนูโปรด
+
 </li>
 
 
 </ul>
+
 
 
 
@@ -412,15 +496,20 @@ height="420">
 
 
 
-<!-- HISTORY -->
+<!-- =====================
+HISTORY
+===================== -->
 
 
-<section class="card">
+<section class="card" id="historySection">
 
 
 <h2>
+
 📜 ประวัติการสุ่ม
+
 </h2>
+
 
 
 
@@ -428,11 +517,15 @@ height="420">
 
 
 <li>
+
 ยังไม่มีประวัติ
+
 </li>
 
 
+
 </ul>
+
 
 
 
@@ -446,14 +539,18 @@ height="420">
 
 
 
-<!-- SETTINGS -->
+<!-- =====================
+SETTING
+===================== -->
 
 
 <section class="card">
 
 
 <h2>
+
 ⚙️ ตั้งค่า
+
 </h2>
 
 
@@ -464,6 +561,9 @@ height="420">
 🌙 Dark Mode
 
 </button>
+
+
+
 
 
 
@@ -487,28 +587,43 @@ height="420">
 
 
 
-<!-- MUSIC -->
+<!-- =====================
+MUSIC
+===================== -->
 
 
 <section class="card">
 
 
 <h2>
+
 🎵 เพลงของเรา
+
 </h2>
 
 
 
 
-<audio id="bgMusic" loop>
 
 
-<source src="sounds/love.mp3"
+<audio
+
+id="bgMusic"
+
+loop>
+
+
+<source
+
+src="love.mp3"
 
 type="audio/mpeg">
 
 
 </audio>
+
+
+
 
 
 
@@ -526,10 +641,11 @@ type="audio/mpeg">
 
 
 
+
 <select id="musicSelect">
 
 
-<option value="sounds/love.mp3">
+<option value="love.mp3">
 
 💖 เพลงหวาน
 
@@ -537,7 +653,7 @@ type="audio/mpeg">
 
 
 
-<option value="sounds/happy.mp3">
+<option value="happy.mp3">
 
 🌸 เพลงสดใส
 
@@ -546,7 +662,7 @@ type="audio/mpeg">
 
 
 
-<option value="sounds/lofi.mp3">
+<option value="lofi.mp3">
 
 ☕ Lo-fi
 
@@ -555,6 +671,8 @@ type="audio/mpeg">
 
 
 </select>
+
+
 
 
 
@@ -571,11 +689,11 @@ type="audio/mpeg">
 
 <footer class="card">
 
+
 ทำด้วยความรัก ❤️
 
+
 </footer>
-
-
 
 
 
@@ -591,7 +709,89 @@ type="audio/mpeg">
 
 
 
-<!-- JS -->
+<!-- =====================
+BOTTOM NAV
+===================== -->
+
+
+<nav class="bottom-nav">
+
+
+<button onclick="scrollToTop()">
+
+🏠
+
+<span>
+
+หน้าแรก
+
+</span>
+
+</button>
+
+
+
+
+
+<button onclick="scrollFavorite()">
+
+⭐
+
+<span>
+
+โปรด
+
+</span>
+
+</button>
+
+
+
+
+
+<button onclick="scrollHistory()">
+
+📜
+
+<span>
+
+ประวัติ
+
+</span>
+
+</button>
+
+
+
+
+
+<button onclick="toggleTheme()">
+
+🌙
+
+<span>
+
+ธีม
+
+</span>
+
+</button>
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- =====================
+SCRIPT
+===================== -->
 
 
 <script src="wheel.js"></script>

@@ -1,8 +1,7 @@
 /* =================================
- Dinner Roulette V15 ❤️
- Couple Memory Timeline 📜💕
+ Dinner Roulette Chompu V17 ❤️
+ Couple Memory Timeline FINAL 📜💕
 ================================= */
-
 
 
 let historyFoods =
@@ -13,11 +12,9 @@ localStorage.getItem(
 "dinnerHistory"
 )
 
-)||[];
+)
 
-
-
-
+||[];
 
 
 
@@ -30,12 +27,9 @@ localStorage.getItem(
 function saveHistory(data){
 
 
-
 if(!data || !data.food)
 
 return;
-
-
 
 
 
@@ -43,9 +37,7 @@ const now = new Date();
 
 
 
-
-
-const record={
+const record = {
 
 
 food:data.food,
@@ -57,7 +49,14 @@ drink:data.drink || "🥤 น้ำหวาน",
 dessert:data.dessert || "🍰 ของหวาน",
 
 
-mode:data.mode || "สุ่ม",
+
+mode:
+
+data.mode ||
+
+window.currentMode ||
+
+"สุ่ม",
 
 
 
@@ -91,17 +90,14 @@ minute:"2-digit"
 
 
 
-
 historyFoods.unshift(record);
 
 
 
 
+// เก็บ 50 ครั้งล่าสุด
 
-// เก็บล่าสุด 30 ครั้ง
-
-
-if(historyFoods.length>30){
+if(historyFoods.length>50){
 
 
 historyFoods.pop();
@@ -111,22 +107,13 @@ historyFoods.pop();
 
 
 
-
-
-
-
 localStorage.setItem(
 
 "dinnerHistory",
 
-JSON.stringify(
-historyFoods
-
-)
+JSON.stringify(historyFoods)
 
 );
-
-
 
 
 
@@ -138,9 +125,49 @@ renderHistory();
 
 
 
-window.saveHistory=
-
+window.saveHistory =
 saveHistory;
+
+
+
+
+
+
+
+
+
+// ===============================
+// MODE TEXT
+// ===============================
+
+
+function getModeText(mode){
+
+
+if(mode==="แฟน"){
+
+
+return "💕 Chompu เลือกให้";
+
+
+}
+
+
+if(mode==="ฉัน"){
+
+
+return "🌸 ฉันเลือก";
+
+
+}
+
+
+
+return "🎲 หัวใจเลือก";
+
+
+
+}
 
 
 
@@ -159,7 +186,7 @@ function renderHistory(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "historyList"
@@ -175,10 +202,7 @@ return;
 
 
 
-
 list.innerHTML="";
-
-
 
 
 
@@ -200,14 +224,10 @@ list.innerHTML=
 
 `;
 
-
-
 return;
 
 
 }
-
-
 
 
 
@@ -221,44 +241,7 @@ historyFoods.forEach(
 
 
 
-let chooser="";
-
-
-
-
-
-if(item.mode==="แฟน"){
-
-
-chooser="💕 Chompu เลือกให้";
-
-
-}
-
-else if(item.mode==="ฉัน"){
-
-
-chooser="🌸 ฉันเลือก";
-
-
-}
-
-else{
-
-
-chooser="🎲 หัวใจเลือก";
-
-
-}
-
-
-
-
-
-
-
-
-const li=
+const li =
 
 document.createElement(
 "li"
@@ -266,11 +249,8 @@ document.createElement(
 
 
 
-li.className=
-
+li.className =
 "timeline-item";
-
-
 
 
 
@@ -309,7 +289,7 @@ li.innerHTML=
 
 <p>
 
-${chooser}
+${getModeText(item.mode)}
 
 </p>
 
@@ -332,7 +312,6 @@ ${chooser}
 </button>
 
 
-
 </div>
 
 
@@ -341,16 +320,12 @@ ${chooser}
 
 
 
-
-
-
 list.appendChild(li);
 
 
 
-
-
 });
+
 
 
 
@@ -383,20 +358,15 @@ index,
 
 
 
-
-
 localStorage.setItem(
 
 "dinnerHistory",
 
 JSON.stringify(
 historyFoods
-
 )
 
 );
-
-
 
 
 
@@ -404,15 +374,11 @@ renderHistory();
 
 
 
-
-
 if(typeof showToast==="function"){
 
 
 showToast(
-
 "🗑️ ลบความทรงจำแล้ว"
-
 );
 
 
@@ -424,8 +390,7 @@ showToast(
 
 
 
-window.removeHistory=
-
+window.removeHistory =
 removeHistory;
 
 
@@ -469,8 +434,6 @@ localStorage.removeItem(
 
 
 
-
-
 renderHistory();
 
 
@@ -479,9 +442,7 @@ if(typeof showToast==="function"){
 
 
 showToast(
-
 "🧹 ล้าง Timeline แล้ว"
-
 );
 
 
@@ -493,8 +454,7 @@ showToast(
 
 
 
-window.clearHistory=
-
+window.clearHistory =
 clearHistory;
 
 
@@ -513,8 +473,40 @@ clearHistory;
 function getHistory(){
 
 
-
 return historyFoods;
+
+
+}
+
+
+
+window.getHistory =
+getHistory;
+
+
+
+
+
+
+
+
+
+// ===============================
+// FOOD STATISTIC 🧠
+// ===============================
+
+
+function getFoodCount(food){
+
+
+
+return historyFoods.filter(
+
+item=>
+
+item.food===food
+
+).length;
 
 
 
@@ -522,9 +514,8 @@ return historyFoods;
 
 
 
-window.getHistory=
-
-getHistory;
+window.getFoodCount =
+getFoodCount;
 
 
 
@@ -549,4 +540,6 @@ document.addEventListener(
 renderHistory();
 
 
-});
+}
+
+);

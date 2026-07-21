@@ -1,206 +1,130 @@
 /* =================================
- Dinner Roulette V15.1 ❤️
- Smart Couple Wheel System 🎡💕
+ Dinner Roulette V16 ❤️
+ Perfect Couple Wheel System 🎡💕
 ================================= */
 
 
-const canvas =
-
-document.getElementById(
-"wheel"
-);
-
+const canvas = document.getElementById("wheel");
 
 
 if(canvas){
 
 
-const ctx =
-
-canvas.getContext(
-"2d"
-);
-
-
-
+const ctx = canvas.getContext("2d");
 
 
 // ===============================
-// FOOD DATABASE 🍽️
+// FOOD DATABASE
 // ===============================
 
 
 const foods=[
 
-
 {name:"🥘 หมูกระทะ",category:"grill"},
-
 {name:"🍲 ชาบู",category:"grill"},
-
 {name:"🐷 หมูย่างจิ้มแจ่ว",category:"thai"},
-
 {name:"🍛 ข้าวกะเพรา",category:"thai"},
-
 {name:"🍣 ซูชิ",category:"japan"},
-
 {name:"🍜 ราเมง",category:"japan"},
-
 {name:"🍕 พิซซ่า",category:"fast"},
-
 {name:"🍔 เบอร์เกอร์",category:"fast"},
-
 {name:"🍜 ก๋วยเตี๋ยว",category:"noodle"},
-
 {name:"🥩 ปิ้งย่าง",category:"grill"}
 
 ];
 
 
 
-
+// ===============================
+// VARIABLE
+// ===============================
 
 
 let wheelFoods=[...foods];
 
-
 let currentFood=null;
-
 
 let currentMode="ฉัน";
 
+let spinning=false;
 
 let rotation=0;
 
 
-let spinning=false;
 
-
-
-
-
-
-
-
-
+// ===============================
 // SOUND
-
-const clickSound=
-
-new Audio(
-"click.mp3"
-);
+// ===============================
 
 
-
-const tickSound=
-
-new Audio(
-"tick.mp3"
-);
+const clickSound =
+new Audio("click.mp3");
 
 
-
-const winSound=
-
-new Audio(
-"win.mp3"
-);
+const tickSound =
+new Audio("tick.mp3");
 
 
-
-
+const winSound =
+new Audio("win.mp3");
 
 
 
 
 
 // ===============================
-// COLORS 💕
+// COLOR
 // ===============================
 
 
 let colors=[
 
 "#ffafcc",
-
 "#ffc8dd",
-
 "#ffd6e7"
 
 ];
-
-
-
-
 
 
 
 function setColorMode(mode){
 
 
-
 if(mode==="แฟน"){
 
-
 colors=[
-
 "#a2d2ff",
-
 "#bde0fe",
-
 "#cdb4ff"
-
 ];
 
-
 }
-
-
 
 else if(mode==="สุ่ม"){
 
-
 colors=[
-
 "#ffd6a5",
-
 "#caffbf",
-
 "#bde0fe",
-
 "#ffc8dd"
-
 ];
 
-
 }
-
-
 
 else{
 
-
 colors=[
-
 "#ffafcc",
-
 "#ffc8dd",
-
 "#ffd6e7"
-
 ];
 
-
 }
-
 
 
 drawWheel();
 
-
 }
-
-
 
 
 
@@ -209,83 +133,49 @@ drawWheel();
 
 
 // ===============================
-// DRAW
+// DRAW WHEEL
 // ===============================
 
 
 function drawWheel(){
 
 
-
 ctx.clearRect(
-
 0,
-
 0,
-
 canvas.width,
-
 canvas.height
-
 );
 
 
 
-
-
-
 if(wheelFoods.length===0)
-
 return;
 
 
 
-
-
-
-
-const center=
-
+const center =
 canvas.width/2;
-
 
 
 const radius=center;
 
 
+const slice =
+(Math.PI*2) / wheelFoods.length;
 
 
 
-const slice=
-
-Math.PI*2 /
-
-wheelFoods.length;
-
-
-
-
-
-
-
-wheelFoods.forEach(
-
-(food,index)=>{
-
+wheelFoods.forEach((food,index)=>{
 
 
 ctx.beginPath();
 
 
-
 ctx.moveTo(
-
 center,
-
 center
-
 );
-
 
 
 ctx.arc(
@@ -304,18 +194,11 @@ index*slice,
 
 
 
-
-
-ctx.fillStyle=
-
-colors[index %
-
-colors.length];
-
+ctx.fillStyle =
+colors[index % colors.length];
 
 
 ctx.fill();
-
 
 
 
@@ -328,29 +211,19 @@ ctx.stroke();
 
 
 
-
-
+// TEXT
 
 ctx.save();
 
 
-
 ctx.translate(
-
 center,
-
 center
-
 );
 
 
-
 ctx.rotate(
-
-index*slice+
-
-slice/2
-
+index*slice + slice/2
 );
 
 
@@ -359,10 +232,7 @@ ctx.textAlign="right";
 
 ctx.fillStyle="#555";
 
-ctx.font=
-
-"16px Tahoma";
-
+ctx.font="16px Tahoma";
 
 
 ctx.fillText(
@@ -377,8 +247,6 @@ radius-20,
 
 
 
-
-
 ctx.restore();
 
 
@@ -388,35 +256,22 @@ ctx.restore();
 
 
 
-
-
-
-
-
-// center ❤️
-
+// CENTER
 
 ctx.beginPath();
 
 
 ctx.arc(
-
 center,
-
 center,
-
 35,
-
 0,
-
 Math.PI*2
-
 );
 
 
 
-ctx.fillStyle="white";
-
+ctx.fillStyle="#fff";
 
 ctx.fill();
 
@@ -424,23 +279,16 @@ ctx.fill();
 
 ctx.font="28px Arial";
 
-
 ctx.textAlign="center";
-
 
 ctx.textBaseline="middle";
 
 
 ctx.fillText(
-
 "❤️",
-
 center,
-
 center
-
 );
-
 
 
 }
@@ -458,45 +306,29 @@ center
 // ===============================
 
 
-window.changeCategory=
-
-function(category){
-
+window.changeCategory=function(category){
 
 
 if(category==="all"){
 
-
-
 wheelFoods=[...foods];
-
 
 }
 
 else{
 
-
-wheelFoods=
-
+wheelFoods =
 foods.filter(
-
-f=>
-
-f.category===category
-
+f=>f.category===category
 );
-
 
 }
 
 
 
-
-removeAvoid();
-
+applyAvoid();
 
 drawWheel();
-
 
 
 };
@@ -510,44 +342,39 @@ drawWheel();
 
 
 // ===============================
-// REMOVE AVOID
+// AVOID
 // ===============================
 
 
-function removeAvoid(){
+function getAvoid(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"avoidList"
+)
+
+)||[];
+
+}
 
 
 
-let avoid=
-
-typeof getAvoidList==="function"
-
-?
-
-getAvoidList()
-
-:
-
-[];
+function applyAvoid(){
 
 
+let avoid=getAvoid();
 
 
-
-
-wheelFoods=
-
+wheelFoods =
 wheelFoods.filter(
 
 food=>
 
-!avoid.includes(
-food.name
-
-)
+!avoid.includes(food.name)
 
 );
-
 
 
 }
@@ -561,86 +388,55 @@ food.name
 
 
 // ===============================
-// MODE
+// MODE BUTTON
 // ===============================
 
 
-document
-
-.querySelectorAll(".mode")
+document.querySelectorAll(".mode")
 
 .forEach(btn=>{
 
 
-
-btn.onclick=()=>{
-
+btn.onclick=function(){
 
 
-document
-
-.querySelectorAll(".mode")
+document.querySelectorAll(".mode")
 
 .forEach(b=>
 
-b.classList.remove(
-"active"
-
-)
+b.classList.remove("active")
 
 );
 
 
 
-btn.classList.add(
-"active"
-);
+btn.classList.add("active");
 
 
 
-
-
-currentMode=
-
+currentMode =
 btn.dataset.mode;
 
 
 
-setColorMode(
-currentMode
-);
+setColorMode(currentMode);
 
 
 
+let name =
+document.getElementById("partnerName")
+?.value || "Chompu";
 
 
-
-
-let name=
-
-document.getElementById(
-"partnerName"
-)?.value ||
-
-"Chompu";
-
-
-
-
-let msg=
-
-document.getElementById(
-"chooserMessage"
-);
-
+let msg =
+document.getElementById("chooserMessage");
 
 
 
 if(msg){
 
 
-
-msg.innerHTML=
+msg.innerHTML =
 
 currentMode==="แฟน"
 
@@ -660,8 +456,6 @@ currentMode==="สุ่ม"
 
 "🌸 วันนี้ฉันเลือกให้";
 
-
-
 }
 
 
@@ -681,26 +475,19 @@ currentMode==="สุ่ม"
 
 
 // ===============================
-// SPIN 🎡
+// SPIN FIXED 🎡
 // ===============================
 
 
 function spinWheel(){
 
 
-
 if(spinning)
-
 return;
 
 
 
-
-
-removeAvoid();
-
-
-
+applyAvoid();
 
 
 
@@ -708,25 +495,17 @@ if(wheelFoods.length===0){
 
 
 alert(
-
-"🚫 ไม่มีเมนูแล้ว"
-
+"🚫 ไม่มีเมนูให้สุ่ม"
 );
 
 
 return;
 
-
 }
 
 
 
-
-
-
 spinning=true;
-
-
 
 
 
@@ -736,36 +515,24 @@ clickSound.play();
 
 
 
-
-// Smart Random
-
+// SMART RANDOM
 
 if(typeof smartRandom==="function"){
 
-
-
-currentFood=
-
-smartRandom(
-wheelFoods
-
-);
-
-
+currentFood =
+smartRandom(wheelFoods);
 
 }
 
 else{
 
 
-currentFood=
+currentFood =
 
 wheelFoods[
 
 Math.floor(
-
 Math.random()*wheelFoods.length
-
 )
 
 ];
@@ -776,72 +543,48 @@ Math.random()*wheelFoods.length
 
 
 
+let index =
+wheelFoods.indexOf(currentFood);
 
 
 
-
-
-let index=
-
-wheelFoods.indexOf(
-currentFood
-
-);
+let slice =
+360 / wheelFoods.length;
 
 
 
+/*
+  Canvas:
+  เริ่ม 0° ทางขวา
+  Pointer อยู่บน = 270°
+*/
 
 
+let finalAngle =
 
-
-let degree=
-
-360 /
-
-wheelFoods.length;
-
-
-
-
-
-
-let target=
-
-360*8 +
+270 -
 
 (
-
-360 -
-
-(index*degree+
-
-degree/2)
-
+index*slice
++
+slice/2
 );
 
 
 
+rotation =
+
+360*8 + finalAngle;
 
 
 
-rotation+=target;
-
-
-
-
-
-
-
-canvas.style.transition=
+canvas.style.transition =
 
 "transform 6s cubic-bezier(.17,.67,.24,1)";
 
 
 
-
-
-
-canvas.style.transform=
+canvas.style.transform =
 
 `rotate(${rotation}deg)`;
 
@@ -849,39 +592,19 @@ canvas.style.transform=
 
 
 
-
-
-
 tickSound.loop=true;
-
 
 tickSound.play();
 
 
 
-
-
-
-
-
-let status=
-
-document.getElementById(
-"statusMessage"
-);
-
-
-
+let status =
+document.getElementById("statusMessage");
 
 if(status)
 
-
-status.innerHTML=
-
-"🎡 กำลังเลือกให้ Chompu ❤️";
-
-
-
+status.innerHTML =
+"🎡 กำลังเลือกเมนูให้ Chompu ❤️";
 
 
 
@@ -891,20 +614,15 @@ status.innerHTML=
 setTimeout(()=>{
 
 
-
 tickSound.pause();
 
-
 tickSound.currentTime=0;
-
 
 
 winSound.play();
 
 
-
 spinning=false;
-
 
 
 showResult();
@@ -915,15 +633,11 @@ showResult();
 
 
 
-
-
 }
 
 
 
-window.spinWheel=
-
-spinWheel;
+window.spinWheel=spinWheel;
 
 
 
@@ -941,49 +655,31 @@ spinWheel;
 function showResult(){
 
 
-
 if(!currentFood)
-
 return;
-
-
 
 
 
 document.getElementById(
 "foodResult"
-).innerText=
-
-currentFood.name;
-
-
+).innerText=currentFood.name;
 
 
 
 document.getElementById(
 "drinkResult"
-).innerText=
-
-"🥤 น้ำหวาน";
-
-
-
+).innerText="🥤 น้ำหวาน";
 
 
 document.getElementById(
 "dessertResult"
-).innerText=
-
-"🍰 ของหวาน";
-
-
+).innerText="🍰 ของหวาน";
 
 
 
 
 
 if(typeof saveHistory==="function"){
-
 
 
 saveHistory({
@@ -999,16 +695,13 @@ mode:currentMode
 });
 
 
-
 }
 
 
 
 
 
-
 if(typeof updateShareCard==="function"){
-
 
 
 updateShareCard({
@@ -1022,37 +715,23 @@ dessert:"🍰 ของหวาน"
 });
 
 
-
 }
-
-
 
 
 
 
 if(typeof completeSpinMission==="function"){
 
-
-
 completeSpinMission();
 
-
-
 }
-
-
-
 
 
 
 if(typeof winEffect==="function"){
 
-
-
 winEffect();
 
-
-
 }
 
 
@@ -1065,18 +744,11 @@ winEffect();
 
 
 
-
-
-// START
-
+// INIT
 
 drawWheel();
 
-
-setColorMode(
-"ฉัน"
-);
-
+setColorMode("ฉัน");
 
 
 }

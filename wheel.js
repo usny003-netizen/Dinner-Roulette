@@ -1,5 +1,5 @@
 /* =================================
-   Dinner Roulette V2.1 ❤️
+   Dinner Roulette ❤️
    Wheel Spin System 🎡
 ================================= */
 

@@ -1,6 +1,6 @@
 /* =================================
- Dinner Roulette V15 ❤️
- Couple Share Card System 📸💕
+ Dinner Roulette Chompu V17 ❤️
+ Couple Share Card FIX 📸💕
 ================================= */
 
 
@@ -14,38 +14,30 @@ function updateShareCard(data){
 
 
 if(!data)
-
 return;
 
 
 
 
 const food =
-
 document.getElementById(
 "shareFood"
 );
 
 
-
 const drink =
-
 document.getElementById(
 "shareDrink"
 );
 
 
-
 const dessert =
-
 document.getElementById(
 "shareDessert"
 );
 
 
-
 const date =
-
 document.getElementById(
 "shareDate"
 );
@@ -53,56 +45,42 @@ document.getElementById(
 
 
 
-
 if(food){
 
+food.innerHTML =
 
-food.innerHTML=
-
-"🍜 "+
-
-(data.food || "-");
-
+data.food || "🍜 -";
 
 }
+
 
 
 
 if(drink){
 
+drink.innerHTML =
 
-drink.innerHTML=
-
-data.drink ||
-
-"🥤 น้ำหวาน";
-
+data.drink || "🥤 -";
 
 }
+
 
 
 
 if(dessert){
 
+dessert.innerHTML =
 
-dessert.innerHTML=
-
-data.dessert ||
-
-"🍰 ของหวาน";
-
+data.dessert || "🍰 -";
 
 }
-
-
 
 
 
 
 if(date){
 
-
-date.innerHTML=
+date.innerHTML =
 
 "📅 "+
 
@@ -110,20 +88,14 @@ new Date()
 
 .toLocaleDateString(
 "th-TH",
-
 {
-
 year:"numeric",
-
 month:"long",
-
 day:"numeric"
-
 }
 
 );
 
-
 }
 
 
@@ -132,8 +104,7 @@ day:"numeric"
 
 
 
-window.updateShareCard=
-
+window.updateShareCard =
 updateShareCard;
 
 
@@ -161,9 +132,9 @@ document.getElementById(
 
 
 
-
 if(!card){
 
+if(typeof showToast==="function")
 
 showToast(
 "❌ ไม่พบ Share Card"
@@ -172,9 +143,7 @@ showToast(
 
 return;
 
-
 }
-
 
 
 
@@ -183,11 +152,9 @@ return;
 if(typeof html2canvas==="undefined"){
 
 
-
 showToast(
-"❌ ไม่พบระบบสร้างรูป"
+"❌ ระบบสร้างรูปยังไม่พร้อม"
 );
-
 
 
 return;
@@ -199,11 +166,11 @@ return;
 
 
 
-html2canvas(card,
-
-{
+html2canvas(card,{
 
 scale:2,
+
+useCORS:true,
 
 backgroundColor:null
 
@@ -216,7 +183,9 @@ backgroundColor:null
 
 const link=
 
-document.createElement("a");
+document.createElement(
+"a"
+);
 
 
 
@@ -239,12 +208,38 @@ link.click();
 
 
 
+
+if(typeof completeShareMission==="function"){
+
+
+completeShareMission();
+
+
+}
+
+
+
+
+if(typeof showToast==="function"){
+
+
 showToast(
-
 "📸 บันทึกรูปแล้ว ❤️"
-
 );
 
+
+}
+
+
+
+})
+
+.catch(()=>{
+
+
+showToast(
+"❌ สร้างรูปไม่สำเร็จ"
+);
 
 
 });
@@ -255,8 +250,7 @@ showToast(
 
 
 
-window.saveShareImage=
-
+window.saveShareImage =
 saveShareImage;
 
 
@@ -280,9 +274,37 @@ const food=
 
 document.getElementById(
 "shareFood"
-)?.innerText ||
+)?.innerText
+
+||
 
 "🍜 -";
+
+
+
+const drink=
+
+document.getElementById(
+"shareDrink"
+)?.innerText
+
+||
+
+"🥤 -";
+
+
+
+const dessert=
+
+document.getElementById(
+"shareDessert"
+)?.innerText
+
+||
+
+"🍰 -";
+
+
 
 
 
@@ -291,19 +313,19 @@ document.getElementById(
 const text=
 
 `
+❤️ Dinner Roulette Chompu
 
-❤️ Dinner Roulette
 
-
-วันนี้ Chompu เลือกให้ 💕
-
+🍽️ วันนี้กิน
 
 ${food}
 
+${drink}
 
-กินด้วยกันนะ ❤️
+${dessert}
 
 
+💕 กินด้วยกันนะ ❤️
 `;
 
 
@@ -319,10 +341,17 @@ if(navigator.share){
 navigator.share({
 
 title:
-
 "Dinner Roulette ❤️",
 
 text:text
+
+
+})
+
+.then(()=>{
+
+
+completeShare();
 
 
 })
@@ -337,31 +366,62 @@ else{
 
 
 
-navigator.clipboard.writeText(text);
+if(navigator.clipboard){
 
 
-
-showToast(
-
-"📋 คัดลอกข้อความแล้ว ❤️"
-
+navigator.clipboard.writeText(
+text
 );
+
+
+}
+
+
+
+completeShare();
 
 
 
 }
 
 
+
+
+
+}
+
+
+
+
+
+
+
+
+function completeShare(){
 
 
 
 if(typeof completeShareMission==="function"){
 
 
-
 completeShareMission();
 
 
+}
+
+
+
+if(typeof showToast==="function"){
+
+
+showToast(
+"📤 แชร์ให้ Chompu แล้ว ❤️"
+);
+
+
+}
+
+
 
 }
 
@@ -369,12 +429,7 @@ completeShareMission();
 
 
 
-}
-
-
-
-window.shareToChompu=
-
+window.shareToChompu =
 shareToChompu;
 
 
@@ -398,6 +453,8 @@ document.addEventListener(
 
 
 
+
+
 const saveBtn=
 
 document.getElementById(
@@ -409,40 +466,10 @@ document.getElementById(
 if(saveBtn){
 
 
-saveBtn.onclick=()=>{
 
+saveBtn.onclick=
 
-saveShareImage();
-
-
-};
-
-
-}
-
-
-
-
-
-
-const shareBtn=
-
-document.getElementById(
-"shareBtn"
-);
-
-
-
-if(shareBtn){
-
-
-shareBtn.onclick=()=>{
-
-
-shareToChompu();
-
-
-};
+saveShareImage;
 
 
 }
@@ -455,11 +482,11 @@ shareToChompu();
 
 updateShareCard({
 
-food:"ยังไม่มีเมนู",
+food:"🍜 -",
 
-drink:"🥤 น้ำหวาน",
+drink:"🥤 -",
 
-dessert:"🍰 ของหวาน"
+dessert:"🍰 -"
 
 
 });

@@ -7,7 +7,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>❤️ Dinner Roulette</title>
+
+<title>
+❤️ Dinner Roulette Chompu
+</title>
+
 
 <meta name="theme-color" content="#ff9fc5">
 
@@ -15,21 +19,18 @@
 <link rel="stylesheet" href="style.css">
 
 
-<!-- Share Image -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 
 </head>
 
 
+
 <body>
 
 
 
-<!-- =====================
- START SCREEN
-===================== -->
-
+<!-- START -->
 
 <div id="startScreen">
 
@@ -47,6 +48,7 @@
 </p>
 
 
+
 <button id="startBtn">
 
 💖 เริ่มเล่น
@@ -54,12 +56,11 @@
 </button>
 
 
-</div>
-
 
 </div>
 
 
+</div>
 
 
 
@@ -67,9 +68,6 @@
 
 
 
-<!-- =====================
- APP
-===================== -->
 
 
 <div class="app">
@@ -78,7 +76,7 @@
 
 
 
-
+<!-- HEADER -->
 
 <header class="card hero">
 
@@ -121,7 +119,7 @@
 <button class="mode active"
 data-mode="ฉัน">
 
-👩 ฉันเลือก
+🌸 ฉันเลือก
 
 </button>
 
@@ -148,13 +146,10 @@ data-mode="สุ่ม">
 
 
 
-<input
-
-id="partnerName"
-
+<input id="partnerName"
 value="Chompu"
-
 placeholder="ชื่อแฟน ❤️">
+
 
 
 <p id="chooserMessage">
@@ -197,12 +192,14 @@ onclick="changeCategory('all')">
 </button>
 
 
+
 <button class="category"
 onclick="changeCategory('thai')">
 
 🍚 ไทย
 
 </button>
+
 
 
 <button class="category"
@@ -213,6 +210,7 @@ onclick="changeCategory('japan')">
 </button>
 
 
+
 <button class="category"
 onclick="changeCategory('grill')">
 
@@ -221,12 +219,14 @@ onclick="changeCategory('grill')">
 </button>
 
 
+
 <button class="category"
 onclick="changeCategory('fast')">
 
 🍕 Fast Food
 
 </button>
+
 
 
 <button class="category"
@@ -257,17 +257,15 @@ onclick="changeCategory('noodle')">
 
 
 <h2>
-🎡 วงล้อสุ่มอาหาร
+🎡 วงล้อแห่งความรัก
 </h2>
-
 
 
 <p id="mainMessage">
 
-✨ พร้อมหมุน
+พร้อมให้ Chompu หมุน ❤️
 
 </p>
-
 
 
 
@@ -281,19 +279,15 @@ onclick="changeCategory('noodle')">
 </div>
 
 
-<canvas
 
-id="wheel"
-
+<canvas id="wheel"
 width="420"
-
 height="420">
 
 </canvas>
 
 
 </div>
-
 
 
 
@@ -307,8 +301,7 @@ height="420">
 
 
 
-<button id="spinBtn"
-onclick="spinWheel()">
+<button id="spinBtn">
 
 🎡 หมุนวงล้อ
 
@@ -321,7 +314,6 @@ onclick="spinWheel()">
 💖 สุ่มจนกว่าจะถูกใจ
 
 </button>
-
 
 
 </section>
@@ -351,44 +343,40 @@ onclick="spinWheel()">
 
 <div>
 
-<span>
 🍜 อาหาร
-</span>
 
 <h3 id="foodResult">
 -
 </h3>
 
+
 </div>
 
 
 
 <div>
 
-<span>
 🥤 เครื่องดื่ม
-</span>
 
 <h3 id="drinkResult">
 -
 </h3>
 
+
 </div>
 
 
 
 <div>
 
-<span>
 🍰 ของหวาน
-</span>
 
 <h3 id="dessertResult">
 -
 </h3>
 
-</div>
 
+</div>
 
 
 </div>
@@ -402,6 +390,7 @@ onclick="spinWheel()">
 👍 เอาเลย
 
 </button>
+
 
 
 <button id="rerollBtn">
@@ -441,52 +430,14 @@ onclick="spinWheel()">
 </h2>
 
 
+
 <ul id="smartList">
 
 <li>
-ยังไม่มีข้อมูล ❤️
+กำลังเรียนรู้ ❤️
 </li>
 
 </ul>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- AVOID -->
-
-
-<section class="card">
-
-
-<h2>
-🚫 ไม่กินวันนี้
-</h2>
-
-
-
-<ul id="avoidList">
-
-<li>
-ยังไม่มีรายการ
-</li>
-
-</ul>
-
-
-
-<button id="resetAvoidBtn">
-
-🔄 ล้างรายการ
-
-</button>
 
 
 </section>
@@ -506,16 +457,18 @@ onclick="spinWheel()">
 
 
 <h2>
-⭐ เมนูโปรด
+⭐ เมนูโปรดของเรา
 </h2>
 
 
 
 <ul id="favoriteList">
 
+
 <li>
 ยังไม่มีเมนูโปรด
 </li>
+
 
 </ul>
 
@@ -530,25 +483,94 @@ onclick="spinWheel()">
 
 
 
-<!-- HISTORY -->
+<!-- HISTORY TIMELINE -->
+
+
+<section class="card history-card">
+
+
+<h2>
+📜 ความทรงจำของเรา
+</h2>
+
+
+<p class="history-sub">
+
+ทุกมื้อคือเรื่องราว ❤️
+
+</p>
+
+
+
+
+<div class="timeline">
+
+
+<ul id="historyList">
+
+
+<li class="empty-history">
+
+ยังไม่มีประวัติ ❤️
+
+</li>
+
+
+</ul>
+
+
+
+</div>
+
+
+
+
+<button onclick="clearHistory()">
+
+🗑️ ล้างประวัติ
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- AVOID -->
 
 
 <section class="card">
 
 
 <h2>
-📜 ประวัติ
+🚫 วันนี้ไม่กิน
 </h2>
 
 
+<ul id="avoidList">
 
-<ul id="historyList">
 
 <li>
-ยังไม่มีประวัติ
+ยังไม่มีรายการ
 </li>
 
+
 </ul>
+
+
+
+<button id="resetAvoidBtn">
+
+🔄 ล้างรายการ
+
+</button>
+
 
 
 </section>
@@ -572,13 +594,13 @@ onclick="spinWheel()">
 </h2>
 
 
-
 <p>
-🌅 เปิดเว็บวันนี้
+🌅 เปิดเว็บ
 <span id="openMission">
 ⬜
 </span>
 </p>
+
 
 
 <p>
@@ -589,12 +611,14 @@ onclick="spinWheel()">
 </p>
 
 
+
 <p>
-👍 เลือกเมนูที่ชอบ
+👍 ถูกใจเมนู
 <span id="likeMission">
 ⬜
 </span>
 </p>
+
 
 
 <p>
@@ -608,7 +632,7 @@ onclick="spinWheel()">
 
 <h3 id="missionScore">
 
-คะแนนวันนี้ 0/4 ❤️
+0/4 ❤️
 
 </h3>
 
@@ -623,7 +647,7 @@ onclick="spinWheel()">
 
 
 
-<!-- SHARE CARD -->
+<!-- SHARE -->
 
 
 <section class="card">
@@ -634,19 +658,12 @@ onclick="spinWheel()">
 </h2>
 
 
-
 <div id="shareCard">
 
 
 <h1>
 ❤️ Dinner Roulette
 </h1>
-
-
-<p>
-วันนี้ Chompu เลือกให้ 💕
-
-</p>
 
 
 <p id="shareFood">
@@ -670,16 +687,7 @@ onclick="spinWheel()">
 </p>
 
 
-
-<p id="shareDate">
-
-📅 -
-
-</p>
-
-
 </div>
-
 
 
 
@@ -688,7 +696,6 @@ onclick="spinWheel()">
 📸 บันทึกรูป
 
 </button>
-
 
 
 </section>
@@ -713,7 +720,8 @@ onclick="spinWheel()">
 
 
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic"
+loop>
 
 
 <source src="love.mp3"
@@ -737,27 +745,28 @@ type="audio/mpeg">
 
 <option value="love.mp3">
 
-💕 เพลงหวาน
+💕 Love
 
 </option>
 
 
 <option value="happy.mp3">
 
-🌸 สดใส
+🌸 Happy
 
 </option>
 
 
 <option value="lofi.mp3">
 
-☕ Lo-fi
+☕
+
+Lo-fi
 
 </option>
 
 
 </select>
-
 
 
 </section>
@@ -797,7 +806,6 @@ type="audio/mpeg">
 </button>
 
 
-
 </section>
 
 
@@ -828,9 +836,7 @@ Made with ❤️ for Chompu
 
 
 
-<!-- =====================
- JAVASCRIPT
-===================== -->
+<!-- JS -->
 
 
 <script src="wheel.js"></script>

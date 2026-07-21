@@ -1,49 +1,36 @@
 /* =================================
-   Dinner Roulette V2 ❤️
-   Cute Mobile App Style
+   Dinner Roulette V2.5 ❤️
+   Cute Love Game Style
 ================================= */
 
 
 /* RESET */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
 
 
 
 body{
 
-
     min-height:100vh;
 
-
     font-family:
-
     "Arial",
     "Tahoma",
     sans-serif;
 
 
-
     background:
 
     linear-gradient(
-
         135deg,
-
         #ffd6e7,
-
-        #fff4d6
-
+        #fff3d6
     );
-
 
 
     color:#555;
@@ -52,6 +39,8 @@ body{
     transition:.5s;
 
 
+    overflow-x:hidden;
+
 }
 
 
@@ -61,50 +50,36 @@ body{
 
 
 /* =========================
-   START SCREEN
+ START SCREEN ❤️
 ========================= */
 
 
 #startScreen{
 
-
     position:fixed;
-
 
     inset:0;
 
 
     display:flex;
 
-
     justify-content:center;
-
 
     align-items:center;
 
 
-
     background:
 
-
     linear-gradient(
-
         135deg,
-
         #ff8fba,
-
         #ffd6e7
-
     );
-
 
 
     z-index:9999;
 
-
 }
-
-
 
 
 
@@ -113,39 +88,31 @@ body{
 
     width:90%;
 
-
     max-width:380px;
 
 
     background:white;
 
 
-
     padding:40px 25px;
-
 
 
     border-radius:35px;
 
 
-
     text-align:center;
 
 
-
     box-shadow:
-
 
     0 20px 50px
 
     rgba(0,0,0,.2);
 
 
-
     animation:
 
-    pop .6s ease;
-
+    pop .7s ease;
 
 }
 
@@ -154,27 +121,21 @@ body{
 
 .start-box h1{
 
-
     color:#ff5c9d;
 
-
-    font-size:35px;
-
+    font-size:36px;
 
     margin-bottom:15px;
-
 
 }
 
 
 
-
-
 .start-box p{
 
+    font-size:18px;
 
     margin-bottom:25px;
-
 
 }
 
@@ -187,7 +148,7 @@ body{
 
 
 /* =========================
-   APP
+ APP
 ========================= */
 
 
@@ -215,7 +176,7 @@ body{
 
 
 /* =========================
-   CARD
+ CARD
 ========================= */
 
 
@@ -227,23 +188,18 @@ body{
     rgba(255,255,255,.9);
 
 
-
     padding:22px;
-
 
 
     margin-bottom:20px;
 
 
-
-    border-radius:28px;
-
+    border-radius:30px;
 
 
     box-shadow:
 
-
-    0 10px 30px
+    0 15px 35px
 
     rgba(255,92,157,.18);
 
@@ -252,7 +208,6 @@ body{
     backdrop-filter:
 
     blur(10px);
-
 
 
     animation:
@@ -268,6 +223,7 @@ body{
 
 
 
+
 /* HEADER */
 
 
@@ -276,7 +232,6 @@ body{
 
     text-align:center;
 
-
 }
 
 
@@ -284,14 +239,13 @@ body{
 .hero h1{
 
 
+    font-size:35px;
+
+
     color:#ff5c9d;
 
 
-    font-size:34px;
-
-
 }
-
 
 
 .hero p{
@@ -300,6 +254,8 @@ body{
     margin-top:10px;
 
 
+    line-height:1.5;
+
 }
 
 
@@ -310,9 +266,7 @@ body{
 
 
 
-/* =========================
-   TEXT
-========================= */
+/* TEXT */
 
 
 h2{
@@ -326,7 +280,6 @@ h2{
 
     margin-bottom:20px;
 
-
 }
 
 
@@ -335,9 +288,6 @@ h3{
 
 
     color:#ff5c9d;
-
-
-    font-size:22px;
 
 
 }
@@ -351,7 +301,7 @@ h3{
 
 
 /* =========================
-   BUTTON
+ BUTTON
 ========================= */
 
 
@@ -364,21 +314,16 @@ button{
     padding:14px;
 
 
-
     margin-top:12px;
-
 
 
     border:none;
 
 
-
     border-radius:50px;
 
 
-
     font-size:17px;
-
 
 
     color:white;
@@ -386,7 +331,6 @@ button{
 
 
     cursor:pointer;
-
 
 
     background:
@@ -406,11 +350,9 @@ button{
 
     box-shadow:
 
-
     0 8px 20px
 
     rgba(255,92,157,.35);
-
 
 
     transition:.3s;
@@ -433,7 +375,6 @@ button:hover{
 
 
 
-
 button:active{
 
 
@@ -453,7 +394,7 @@ button:active{
 
 
 /* =========================
-   MODE
+ MODE
 ========================= */
 
 
@@ -497,6 +438,8 @@ button:active{
 
 
 
+
+
 #partnerName{
 
 
@@ -506,30 +449,26 @@ button:active{
     padding:14px;
 
 
-
     margin-top:15px;
-
-
-
-    border-radius:30px;
-
 
 
     border:none;
 
 
-
-    background:#fff0f6;
-
+    border-radius:30px;
 
 
     text-align:center;
+
+
+    background:#fff0f6;
 
 
     font-size:16px;
 
 
 }
+
 
 
 
@@ -551,7 +490,6 @@ button:active{
 
     font-weight:bold;
 
-
 }
 
 
@@ -563,7 +501,7 @@ button:active{
 
 
 /* =========================
-   WHEEL
+ WHEEL 🎡
 ========================= */
 
 
@@ -586,6 +524,8 @@ button:active{
 
 
 
+
+
 #wheel{
 
 
@@ -598,16 +538,57 @@ button:active{
     border-radius:50%;
 
 
-    box-shadow:
+    animation:
 
-
-    0 15px 35px
-
-    rgba(0,0,0,.2);
+    wheelGlow 3s infinite;
 
 
 }
 
+
+
+
+
+@keyframes wheelGlow{
+
+
+0%{
+
+
+box-shadow:
+
+0 0 15px #ffb6d9;
+
+
+}
+
+
+
+50%{
+
+
+box-shadow:
+
+0 0 40px #ff5c9d;
+
+
+}
+
+
+
+100%{
+
+
+box-shadow:
+
+0 0 15px #ffb6d9;
+
+
+}
+
+
+
+}
 
 
 
@@ -621,14 +602,13 @@ button:active{
     top:-20px;
 
 
-    z-index:5;
+    z-index:10;
 
 
     font-size:40px;
 
 
     color:#ff5c9d;
-
 
 }
 
@@ -641,7 +621,7 @@ button:active{
 
 
 /* =========================
-   RESULT
+ RESULT
 ========================= */
 
 
@@ -653,7 +633,6 @@ button:active{
 
     gap:10px;
 
-
 }
 
 
@@ -664,20 +643,18 @@ button:active{
     flex:1;
 
 
-    background:#fff0f6;
-
-
     padding:15px;
 
 
     border-radius:20px;
 
 
+    background:#fff0f6;
+
+
     text-align:center;
 
-
 }
-
 
 
 
@@ -685,7 +662,6 @@ button:active{
 
 
     font-size:13px;
-
 
 }
 
@@ -698,7 +674,7 @@ button:active{
 
 
 /* =========================
-   LIST
+ LIST
 ========================= */
 
 
@@ -706,7 +682,6 @@ ul{
 
 
     list-style:none;
-
 
 }
 
@@ -718,14 +693,35 @@ li{
     background:#fff0f6;
 
 
-    margin:10px 0;
-
-
     padding:12px;
+
+
+    margin:10px 0;
 
 
     border-radius:18px;
 
+}
+
+
+
+
+
+
+
+.deleteFavorite{
+
+
+    width:auto;
+
+
+    padding:5px 10px;
+
+
+    float:right;
+
+
+    margin:0;
 
 }
 
@@ -738,18 +734,15 @@ li{
 
 
 /* =========================
-   MUSIC
+ MUSIC
 ========================= */
 
 
 audio{
 
-
     width:100%;
 
-
 }
-
 
 
 select{
@@ -764,11 +757,10 @@ select{
     margin-top:15px;
 
 
+    border:none;
+
 
     border-radius:20px;
-
-
-    border:none;
 
 
 }
@@ -782,7 +774,7 @@ select{
 
 
 /* =========================
-   HEART EFFECT
+ HEART EFFECT ❤️
 ========================= */
 
 
@@ -798,10 +790,15 @@ select{
     font-size:35px;
 
 
+    z-index:999;
+
+
+    pointer-events:none;
+
+
     animation:
 
     heartUp 2s forwards;
-
 
 }
 
@@ -814,30 +811,34 @@ select{
 from{
 
 
-    transform:
+transform:
 
-    translateY(0);
+translateY(0)
+
+scale(1);
 
 
-    opacity:1;
+opacity:1;
 
 
 }
-
 
 
 to{
 
 
-    transform:
+transform:
 
-    translateY(-300px);
+translateY(-300px)
+
+scale(1.5);
 
 
-    opacity:0;
+opacity:0;
 
 
 }
+
 
 
 }
@@ -851,108 +852,27 @@ to{
 
 
 /* =========================
-   ANIMATION
-========================= */
-
-
-@keyframes pop{
-
-
-from{
-
-
-    transform:
-
-    scale(.7);
-
-
-    opacity:0;
-
-
-}
-
-
-
-to{
-
-
-    transform:
-
-    scale(1);
-
-
-    opacity:1;
-
-
-}
-
-
-}
-
-
-
-
-@keyframes fade{
-
-
-from{
-
-
-    opacity:0;
-
-
-    transform:
-
-    translateY(20px);
-
-
-}
-
-
-
-to{
-
-
-    opacity:1;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   DARK MODE 🌙
+ DARK MODE 🌙
 ========================= */
 
 
 body.dark{
 
 
-    background:
+background:
+
+linear-gradient(
+
+135deg,
+
+#1c1029,
+
+#542a72
+
+);
 
 
-    linear-gradient(
-
-        135deg,
-
-        #1d1029,
-
-        #542a72
-
-    );
-
-
-
-    color:white;
+color:white;
 
 
 }
@@ -963,17 +883,12 @@ body.dark{
 body.dark .card{
 
 
-    background:
+background:
 
-    rgba(40,20,60,.92);
-
-
-    color:white;
+rgba(40,20,60,.92);
 
 
 }
-
-
 
 
 
@@ -984,79 +899,60 @@ body.dark h2,
 body.dark h3{
 
 
-    color:#ffb6dd;
+color:#ffb7df;
 
 
 }
-
-
-
-
-
-body.dark p{
-
-
-    color:#eee;
-
-
-}
-
-
 
 
 
 body.dark li,
 
-
 body.dark .result-box div{
 
 
-    background:
+background:
 
-    rgba(255,255,255,.12);
+rgba(255,255,255,.12);
 
 
-    color:white;
+color:white;
 
 
 }
-
 
 
 
 body.dark #partnerName{
 
 
-    background:#332044;
+background:#352044;
 
-
-    color:white;
+color:white;
 
 
 }
-
-
 
 
 
 body.dark button{
 
 
-    background:
+background:
 
+linear-gradient(
 
-    linear-gradient(
+135deg,
 
-        135deg,
+#9b5de5,
 
-        #9b5de5,
+#f15bb5
 
-        #f15bb5
-
-    );
+);
 
 
 }
+
 
 
 
@@ -1066,63 +962,108 @@ body.dark button{
 
 
 /* =========================
-   MOBILE
+ ANIMATION
 ========================= */
+
+
+@keyframes pop{
+
+
+from{
+
+transform:scale(.7);
+
+opacity:0;
+
+}
+
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+
+}
+
+
+
+@keyframes fade{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+/* MOBILE */
 
 
 @media(max-width:480px){
 
 
+
 .app{
 
-
-    padding:12px;
-
+padding:12px;
 
 }
-
 
 
 
 .hero h1{
 
-
-    font-size:28px;
-
+font-size:28px;
 
 }
-
 
 
 
 #wheel{
 
-
-    width:300px;
-
+width:300px;
 
 }
-
-
 
 
 
 .result-box{
 
-
-    flex-direction:column;
-
+flex-direction:column;
 
 }
 
 
 
-
 .mode-group{
 
-
-    flex-direction:column;
-
+flex-direction:column;
 
 }
 

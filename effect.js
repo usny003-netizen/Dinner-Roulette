@@ -1,12 +1,12 @@
 /* =================================
- Dinner Roulette V13 ❤️
- Couple Love Effect System 🎉
+ Dinner Roulette Chompu V17 ❤️
+ Couple Love Effect FINAL 🎉💕
 ================================= */
 
 
 
 // ===============================
-// WIN EFFECT
+// WIN EFFECT 🎉
 // ===============================
 
 
@@ -24,7 +24,9 @@ document.getElementById(
 
 if(!food || food==="-")
 
+
 return;
+
 
 
 
@@ -43,8 +45,6 @@ createConfetti();
 
 
 
-
-
 window.winEffect =
 winEffect;
 
@@ -57,7 +57,7 @@ winEffect;
 
 
 // ===============================
-// POPUP
+// WIN POPUP 💕
 // ===============================
 
 
@@ -89,7 +89,9 @@ document.createElement(
 
 
 
-popup.className="win-popup";
+popup.className=
+
+"win-popup";
 
 
 
@@ -97,38 +99,30 @@ popup.innerHTML=
 
 `
 
-<div class="win-icon">
+<div class="win-love">
 
-🎉
+❤️
 
 </div>
 
 
 <h1>
-
-ได้แล้ว!
-
+เลือกได้แล้ว!
 </h1>
 
 
 <h2>
-
 ${food}
-
 </h2>
 
 
 <p>
-
-💕 วันนี้ Chompu กินเมนูนี้กัน
-
+💕 คืนนี้กินด้วยกันนะ Chompu
 </p>
 
 
 <button id="closeWin">
-
-❤️ ตกลง
-
+ตกลง ❤️
 </button>
 
 `;
@@ -149,8 +143,8 @@ popup
 
 const close =
 
-document.getElementById(
-"closeWin"
+popup.querySelector(
+"#closeWin"
 );
 
 
@@ -175,15 +169,17 @@ popup.remove();
 
 
 
-
-
 setTimeout(()=>{
 
+
+if(popup)
 
 popup.remove();
 
 
 },5000);
+
+
 
 
 
@@ -206,7 +202,7 @@ function createHeartBurst(){
 
 
 
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
 
 
 
@@ -214,7 +210,7 @@ setTimeout(()=>{
 
 
 
-let heart=
+const heart=
 
 document.createElement(
 "div"
@@ -222,7 +218,9 @@ document.createElement(
 
 
 
-heart.className="heart";
+heart.className=
+"heart-burst";
+
 
 
 
@@ -252,19 +250,24 @@ Math.random()*5
 
 
 
+
+
+
 heart.style.left=
 
 Math.random()*100+"%";
 
 
 
-heart.style.bottom="0";
+heart.style.bottom="0px";
 
 
 
 document.body.appendChild(
 heart
 );
+
+
 
 
 
@@ -280,7 +283,10 @@ heart.remove();
 
 
 
-},i*70);
+
+
+},i*60);
+
 
 
 
@@ -288,13 +294,12 @@ heart.remove();
 
 
 
+
 }
 
 
 
-
-
-window.createHeartBurst=
+window.createHeartBurst =
 createHeartBurst;
 
 
@@ -314,11 +319,11 @@ function createConfetti(){
 
 
 
-for(let i=0;i<50;i++){
+for(let i=0;i<40;i++){
 
 
 
-let item=
+const item=
 
 document.createElement(
 "div"
@@ -341,7 +346,7 @@ item.innerHTML=
 
 "🌸",
 
-"💗"
+"💕"
 
 ]
 
@@ -361,17 +366,9 @@ Math.random()*100+"%";
 
 
 
-item.style.fontSize=
-
-Math.random()*20+15+"px";
-
-
-
 item.style.animationDuration=
 
 (2+Math.random()*2)+"s";
-
-
 
 
 
@@ -402,13 +399,7 @@ item.remove();
 
 
 
-
-
-
-
-
-
-window.createConfetti=
+window.createConfetti =
 createConfetti;
 
 
@@ -420,15 +411,11 @@ createConfetti;
 
 
 // ===============================
-// CSS EFFECT ONCE
+// EFFECT CSS
 // ===============================
 
 
-if(
-!document.getElementById(
-"effectStyle"
-)
-){
+if(!document.getElementById("effectStyle")){
 
 
 
@@ -440,7 +427,8 @@ document.createElement(
 
 
 
-style.id="effectStyle";
+style.id=
+"effectStyle";
 
 
 
@@ -456,38 +444,93 @@ top:50%;
 
 left:50%;
 
-transform:translate(-50%,-50%) scale(.8);
+transform:
+translate(-50%,-50%)
+scale(.7);
+
+width:85%;
+
+max-width:350px;
 
 background:white;
 
 padding:30px;
 
-border-radius:30px;
+border-radius:35px;
 
 text-align:center;
 
-z-index:9999;
+z-index:99999;
 
-animation:popupShow .4s forwards;
+box-shadow:
+0 20px 60px rgba(0,0,0,.25);
 
-box-shadow:0 20px 50px rgba(0,0,0,.2);
+animation:
+popupShow .4s forwards;
 
 }
+
+
+
+.win-love{
+
+font-size:60px;
+
+animation:
+loveBeat 1s infinite;
+
+}
+
+
+
+.win-popup h1{
+
+color:#ff5d8f;
+
+margin:10px;
+
+}
+
+
+
+.win-popup h2{
+
+font-size:26px;
+
+}
+
 
 
 .win-popup button{
 
 border:none;
 
-padding:12px 25px;
-
-border-radius:20px;
-
 background:#ff8fab;
 
 color:white;
 
+padding:12px 30px;
+
+border-radius:25px;
+
 font-size:18px;
+
+}
+
+
+
+.heart-burst{
+
+position:fixed;
+
+font-size:28px;
+
+z-index:99999;
+
+pointer-events:none;
+
+animation:
+heartFly 2.5s forwards;
 
 }
 
@@ -499,11 +542,14 @@ position:fixed;
 
 top:-30px;
 
-z-index:9999;
+font-size:25px;
+
+z-index:99998;
 
 pointer-events:none;
 
-animation:fall linear forwards;
+animation:
+confettiFall linear forwards;
 
 }
 
@@ -524,7 +570,53 @@ scale(1);
 
 
 
-@keyframes fall{
+
+@keyframes loveBeat{
+
+
+50%{
+
+transform:
+scale(1.2);
+
+}
+
+}
+
+
+
+
+@keyframes heartFly{
+
+
+from{
+
+transform:
+translateY(0)
+scale(.5);
+
+opacity:1;
+
+}
+
+
+to{
+
+transform:
+translateY(-80vh)
+scale(1.5)
+rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+
+
+
+@keyframes confettiFall{
 
 
 from{
@@ -532,8 +624,6 @@ from{
 transform:
 translateY(0)
 rotate(0);
-
-opacity:1;
 
 }
 
@@ -550,6 +640,7 @@ opacity:0;
 
 
 }
+
 
 
 `;

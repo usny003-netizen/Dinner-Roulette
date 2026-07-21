@@ -1,17 +1,19 @@
 /* =================================
  Dinner Roulette Chompu V18 ❤️
  Perfect Pointer Wheel Engine
- Part 1/4
+ PART 1/4
 ================================= */
 
 
-const canvas = document.getElementById("wheel");
+const canvas =
+document.getElementById("wheel");
 
 
 if(canvas){
 
 
-const ctx = canvas.getContext("2d");
+const ctx =
+canvas.getContext("2d");
 
 
 
@@ -20,7 +22,7 @@ const ctx = canvas.getContext("2d");
 // ===============================
 
 
-const foods = [
+const foods=[
 
 
 {
@@ -113,30 +115,30 @@ dessert:"🍰 เค้ก"
 // ===============================
 
 
-let wheelFoods = [...foods];
+let wheelFoods=[...foods];
 
 
-let currentFood = null;
+let currentFood=null;
 
 
-let spinning = false;
+let spinning=false;
 
 
-let rotation = 0;
+let rotation=0;
 
 
-window.currentMode = "ฉัน";
+window.currentMode="ฉัน";
 
 
 
 
 
 // ===============================
-// COLORS 🎨
+// COLOR
 // ===============================
 
 
-const colors = [
+const colors=[
 
 "#ffafcc",
 "#ffc8dd",
@@ -144,7 +146,6 @@ const colors = [
 "#ffe5ec"
 
 ];
-
 
 
 
@@ -177,32 +178,22 @@ return;
 
 
 
-
 const center =
-
-canvas.width / 2;
-
+canvas.width/2;
 
 
 const radius =
-
-canvas.width / 2;
+canvas.width/2;
 
 
 
 const slice =
-
-(Math.PI * 2) /
-
-wheelFoods.length;
+(Math.PI*2) / wheelFoods.length;
 
 
 
 
-
-wheelFoods.forEach(
-
-(food,index)=>{
+wheelFoods.forEach((food,index)=>{
 
 
 
@@ -227,7 +218,7 @@ center,
 
 radius,
 
-index * slice,
+index*slice,
 
 (index+1)*slice
 
@@ -236,9 +227,7 @@ index * slice,
 
 
 ctx.fillStyle =
-
 colors[index % colors.length];
-
 
 
 ctx.fill();
@@ -256,9 +245,6 @@ ctx.stroke();
 
 
 
-// TEXT
-
-
 ctx.save();
 
 
@@ -271,19 +257,15 @@ center
 );
 
 
-
 ctx.rotate(
 
-index * slice +
-
-slice/2
+index*slice + slice/2
 
 );
 
 
 
 ctx.textAlign="right";
-
 
 ctx.fillStyle="#555";
 
@@ -313,9 +295,7 @@ ctx.restore();
 
 
 
-
-
-// CENTER ❤️
+// CENTER HEART
 
 
 ctx.beginPath();
@@ -336,12 +316,10 @@ Math.PI*2
 );
 
 
-
 ctx.fillStyle="#fff";
 
 
 ctx.fill();
-
 
 
 ctx.font="28px Arial";
@@ -351,7 +329,6 @@ ctx.textAlign="center";
 
 
 ctx.textBaseline="middle";
-
 
 
 ctx.fillText(
@@ -367,33 +344,17 @@ center
 
 
 }
-
-
-
-// ===============================
-// INIT
-// ===============================
-
-
-drawWheel();
-
-
 // ===============================
 // MODE SYSTEM 👫
 // ===============================
 
 
-function updateModeColor(){
+function updateMode(){
 
 
-const mode = window.currentMode;
+document.querySelectorAll(".mode")
 
-
-let box = document.querySelectorAll(".mode");
-
-
-
-box.forEach(btn=>{
+.forEach(btn=>{
 
 
 btn.classList.remove("active");
@@ -403,38 +364,25 @@ btn.classList.remove("active");
 
 
 
-
-
 const active =
 
 document.querySelector(
 
-`.mode[data-mode="${mode}"]`
+`.mode[data-mode="${window.currentMode}"]`
 
 );
 
 
 
-if(active){
+if(active)
 
 active.classList.add("active");
 
-}
-
-
-
-
-drawWheel();
 
 
 }
 
 
-
-
-// ===============================
-// MODE BUTTON CLICK
-// ===============================
 
 
 document.querySelectorAll(".mode")
@@ -446,8 +394,6 @@ btn.onclick=function(){
 
 
 
-// เอา active ออกจากทุกปุ่มก่อน
-
 document.querySelectorAll(".mode")
 
 .forEach(b=>{
@@ -458,19 +404,14 @@ b.classList.remove("active");
 
 
 
-
-// ใส่ active เฉพาะปุ่มที่กด
-
 this.classList.add("active");
 
 
 
-
-// จำโหมด
-
 window.currentMode =
 
 this.dataset.mode;
+
 
 
 
@@ -483,7 +424,7 @@ document.getElementById(
 
 
 
-const message =
+const msg =
 
 document.getElementById(
 "chooserMessage"
@@ -491,15 +432,14 @@ document.getElementById(
 
 
 
+if(msg){
 
-if(message){
 
 
 if(window.currentMode==="ฉัน"){
 
 
-message.innerHTML =
-
+msg.innerHTML =
 "🌸 วันนี้ฉันเลือกให้";
 
 
@@ -509,8 +449,7 @@ message.innerHTML =
 else if(window.currentMode==="แฟน"){
 
 
-message.innerHTML =
-
+msg.innerHTML =
 `💕 วันนี้ ${name} เลือกให้`;
 
 
@@ -520,8 +459,7 @@ message.innerHTML =
 else{
 
 
-message.innerHTML =
-
+msg.innerHTML =
 "🎲 ให้หัวใจเลือก";
 
 
@@ -533,13 +471,7 @@ message.innerHTML =
 
 
 
-updateModeColor();
-
-
-
 };
-
-
 
 });
 
@@ -549,8 +481,9 @@ updateModeColor();
 
 
 
+
 // ===============================
-// CATEGORY SYSTEM 🍽️
+// CATEGORY 🍽️
 // ===============================
 
 
@@ -573,14 +506,13 @@ wheelFoods =
 
 foods.filter(food=>
 
+
 food.category===category
 
 );
 
 
 }
-
-
 
 
 
@@ -599,25 +531,24 @@ drawWheel();
 
 
 
+
+
 // ===============================
-// AVOID SYSTEM 🚫
+// AVOID 🚫
 // ===============================
 
 
 function getAvoid(){
 
 
-
 return JSON.parse(
 
 localStorage.getItem(
 "avoidList"
-
 )
 
-)
+)||[];
 
-||[];
 
 }
 
@@ -656,19 +587,17 @@ window.applyAvoid = applyAvoid;
 
 
 
-// ===============================
-// INIT MODE
-// ===============================
 
 
-updateModeColor();
+
 // ===============================
 // SPIN ENGINE 🎡
-// POINTER FIX VERSION
+// POINTER FIX
 // ===============================
 
 
 function spinWheel(){
+
 
 
 if(spinning)
@@ -684,7 +613,9 @@ applyAvoid();
 if(wheelFoods.length===0){
 
 
-alert("🚫 ไม่มีเมนูให้สุ่ม");
+alert(
+"🚫 ไม่มีเมนูให้สุ่ม"
+);
 
 
 return;
@@ -694,27 +625,30 @@ return;
 
 
 
-
 spinning=true;
 
 
 
-const spinBtn =
 
-document.getElementById("spinBtn");
+const btn =
+
+document.getElementById(
+"spinBtn"
+);
 
 
 
-if(spinBtn)
+if(btn)
 
-spinBtn.disabled=true;
+btn.disabled=true;
+
 
 
 
 
 
 // ===============================
-// SELECT FOOD
+// RANDOM FOOD
 // ===============================
 
 
@@ -756,14 +690,13 @@ wheelFoods.length
 
 
 
-// ===============================
-// CALCULATE POINTER 🎯
-// ===============================
-
-
 const index =
 
-wheelFoods.indexOf(currentFood);
+wheelFoods.indexOf(
+currentFood
+);
+
+
 
 
 
@@ -775,47 +708,46 @@ wheelFoods.length;
 
 
 
-// หาจุดกลางของช่องอาหาร
 
-const foodCenter =
+
+// จุดกลางช่องอาหาร
+
+const foodAngle =
 
 (index * slice)
 
 +
 
-(slice / 2);
+(slice/2);
 
 
 
-// Pointer อยู่ด้านบน 270 องศา
+
+
+// Pointer อยู่ด้านบน
+
+const pointerAngle = 270;
+
+
+
+
 
 const target =
 
-270 - foodCenter;
+pointerAngle - foodAngle;
 
 
 
-// หมุนเพิ่ม 8 รอบ
+
+
+
+
+// หมุน 8 รอบ
 
 rotation +=
 
-(360 * 8)
+360*8 + target;
 
-+
-
-target;
-
-
-
-
-
-// ป้องกันองศาสูงเกิน
-
-rotation =
-
-rotation % 360 +
-
-360 * 8;
 
 
 
@@ -825,7 +757,6 @@ rotation % 360 +
 canvas.style.transition =
 
 "transform 6s cubic-bezier(.17,.67,.24,1)";
-
 
 
 
@@ -839,11 +770,6 @@ canvas.style.transform =
 
 
 
-// ===============================
-// MESSAGE
-// ===============================
-
-
 const status =
 
 document.getElementById(
@@ -855,42 +781,12 @@ document.getElementById(
 if(status){
 
 
-if(window.currentMode==="ฉัน"){
-
-
 status.innerHTML=
 
-"🌸 กำลังเลือกเมนูให้ Chompu ❤️";
+"🎡 กำลังเลือกเมนูให้ Chompu ❤️";
 
 
 }
-
-else if(window.currentMode==="แฟน"){
-
-
-status.innerHTML=
-
-"💕 Chompu กำลังเลือกอาหาร";
-
-
-}
-
-else{
-
-
-status.innerHTML=
-
-"🎲 หัวใจกำลังตัดสินใจ";
-
-
-}
-
-
-
-}
-
-
-
 
 
 
@@ -906,18 +802,12 @@ finishSpin();
 
 
 
-
-
 }
 
 
 
-
-
-
-
-// ===============================
-// FINISH SPIN
+window.spinWheel = spinWheel;// ===============================
+// FINISH SPIN 🎉
 // ===============================
 
 
@@ -929,7 +819,7 @@ spinning=false;
 
 
 
-const spinBtn =
+const btn =
 
 document.getElementById(
 "spinBtn"
@@ -937,9 +827,9 @@ document.getElementById(
 
 
 
-if(spinBtn)
+if(btn)
 
-spinBtn.disabled=false;
+btn.disabled=false;
 
 
 
@@ -961,8 +851,6 @@ completeSpinMission();
 
 
 
-
-
 if(typeof createHeart==="function"){
 
 
@@ -980,7 +868,9 @@ createHeart();
 
 
 
-window.spinWheel = spinWheel;
+
+
+
 // ===============================
 // SHOW RESULT 🍽️
 // ===============================
@@ -997,8 +887,6 @@ return;
 
 
 
-
-// FOOD
 
 const food =
 
@@ -1026,6 +914,7 @@ document.getElementById(
 
 
 
+
 if(food)
 
 food.innerHTML =
@@ -1034,11 +923,15 @@ currentFood.name;
 
 
 
+
+
 if(drink)
 
 drink.innerHTML =
 
 currentFood.drink;
+
+
 
 
 
@@ -1055,12 +948,15 @@ currentFood.dessert;
 
 
 
+
+
 // ===============================
 // SHARE CARD 📸
 // ===============================
 
 
 if(typeof updateShareCard==="function"){
+
 
 
 updateShareCard({
@@ -1081,10 +977,14 @@ dessert:
 currentFood.dessert
 
 
+
 });
 
 
+
 }
+
+
 
 
 
@@ -1129,7 +1029,10 @@ window.currentMode
 });
 
 
+
 }
+
+
 
 
 
@@ -1142,7 +1045,7 @@ window.currentMode
 // ===============================
 
 
-const main =
+const message =
 
 document.getElementById(
 "mainMessage"
@@ -1150,55 +1053,69 @@ document.getElementById(
 
 
 
-if(main){
+
+if(message){
 
 
 
 if(window.currentMode==="ฉัน"){
 
 
-main.innerHTML =
+
+message.innerHTML=
 
 `
+
 🌸 วันนี้ฉันเลือกให้
 
 <br>
 
 ${currentFood.name}
+
 `;
 
 
 
 }
 
+
+
 else if(window.currentMode==="แฟน"){
 
 
-main.innerHTML =
+
+message.innerHTML=
 
 `
+
 💕 Chompu เลือกให้
 
 <br>
 
 ${currentFood.name}
+
 `;
 
 
 
 }
 
+
+
 else{
 
 
-main.innerHTML =
+
+message.innerHTML=
 
 `
+
 🎲 หัวใจเลือกให้
 
 <br>
 
 ${currentFood.name}
+
 `;
 
 
@@ -1214,7 +1131,13 @@ ${currentFood.name}
 
 
 
-// EFFECT
+
+
+
+// ===============================
+// WIN EFFECT 🎉
+// ===============================
+
 
 if(typeof winEffect==="function"){
 
@@ -1226,14 +1149,9 @@ winEffect();
 
 
 
+
+
 }
-
-
-
-
-
-
-
 // ===============================
 // AUTO RANDOM 💖
 // ===============================
@@ -1248,6 +1166,7 @@ const autoBtn =
 document.getElementById(
 "autoBtn"
 );
+
 
 
 
@@ -1282,8 +1201,6 @@ autoBtn.innerHTML=
 
 
 let count=0;
-
-
 
 
 
@@ -1339,8 +1256,6 @@ autoBtn.innerHTML=
 
 
 
-
-
 }
 
 
@@ -1348,14 +1263,31 @@ autoBtn.innerHTML=
 
 
 
+
+
+
 // ===============================
-// INITIAL DRAW
+// INIT 🎡
 // ===============================
 
 
 drawWheel();
 
-updateModeColor();
+
+updateMode();
+
+
+
+
+
+
+// ===============================
+// EXPORT
+// ===============================
+
+
+window.spinWheel =
+spinWheel;
 
 
 

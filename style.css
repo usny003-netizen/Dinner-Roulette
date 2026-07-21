@@ -1,153 +1,129 @@
-/* =========================
-   Dinner Picker ❤️
-   Cute Mobile App Style
-========================= */
+/* ======================================
+   Dinner Roulette ❤️
+   Cute Pink Pastel Theme
+====================================== */
 
+/* รีเซ็ต */
 
-/* ตั้งค่าทั้งหมด */
-
-* {
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
+body{
 
-body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
 
-    margin:0;
-
-    padding:20px;
-
-    min-height:100vh;
-
-    font-family:"Arial","Tahoma",sans-serif;
-
-    text-align:center;
+    background: linear-gradient(
+        135deg,
+        #ffe5ec 0%,
+        #fff7e6 100%
+    );
 
     color:#555;
 
-    background:
+    min-height:100vh;
 
-    linear-gradient(
-        135deg,
-        #ffe6f2,
-        #fff8e7
-    );
-
+    padding:25px;
 }
 
 
+/* กล่องแอป */
 
-/* 📱 กล่องแอป */
+.app{
 
-.app {
-
-    max-width:420px;
+    max-width:500px;
 
     margin:auto;
-
 }
 
 
+/* การ์ด */
 
-/* 🧁 การ์ด */
+.card{
 
-.card {
+    background:#ffffffdd;
 
-    background:white;
+    backdrop-filter: blur(8px);
+
+    border-radius:28px;
 
     padding:25px;
 
     margin-bottom:20px;
 
-    border-radius:30px;
-
-
     box-shadow:
+    0 12px 30px rgba(255,120,170,.18);
 
-    0 10px 25px rgba(255,105,150,0.15);
-
-
-    animation:fadeDown 0.8s ease;
-
+    animation:fadeDown .8s;
 }
 
+
+/* หัวเว็บ */
+
+header h1{
+
+    font-size:38px;
+
+    color:#ff4d88;
+
+    margin-bottom:10px;
+}
+
+header p{
+
+    color:#ff7ba5;
+
+    font-size:18px;
+}
 
 
 /* หัวข้อ */
 
-h1 {
+h2{
 
-    color:#ff5c8a;
+    color:#ff5d94;
 
-    font-size:35px;
-
-    text-shadow:
-
-    2px 2px #ffd1df;
-
+    margin-bottom:15px;
 }
 
 
+/* รายการอาหาร */
 
-h2 {
-
-    color:#ff6699;
-
-}
-
-
-
-p {
-
-    font-size:18px;
-
-}
-
-
-
-/* 🍜 รายการอาหาร */
-
-ul {
-
-    padding:0;
+ul{
 
     list-style:none;
 
+    margin-top:10px;
 }
 
+li{
 
+    background:#fff3f8;
 
-li {
+    border:2px solid #ffd3e3;
 
-    background:#fff5fa;
-
-    margin:8px 0;
+    border-radius:18px;
 
     padding:12px;
 
-    border-radius:20px;
+    margin:10px 0;
 
-    border:2px solid #ffd6e5;
+    transition:.3s;
+}
 
-    transition:0.3s;
+li:hover{
 
+    transform:translateY(-3px);
+
+    background:#ffe6f0;
 }
 
 
+/* ปุ่ม */
 
-li:hover {
-
-    transform:translateY(-5px);
-
-    background:#ffe0ec;
-
-}
-
-
-
-/* ❤️ ปุ่ม */
-
-button {
+button{
 
     width:100%;
 
@@ -161,97 +137,127 @@ button {
 
     font-size:20px;
 
+    font-weight:bold;
+
     color:white;
 
-
     background:
-
     linear-gradient(
         45deg,
         #ff7aa2,
         #ff4d88
     );
 
-
     box-shadow:
+    0 10px 20px rgba(255,90,140,.3);
 
-    0 8px 15px rgba(255,77,136,0.3);
-
-
-    transition:0.3s;
-
+    transition:.25s;
 }
 
-
-
-button:hover {
+button:hover{
 
     transform:translateY(-3px);
 
-}
-
-
-
-button:active {
-
-    transform:scale(0.95);
+    box-shadow:
+    0 15px 25px rgba(255,90,140,.35);
 
 }
 
+button:active{
+
+    transform:scale(.95);
+}
 
 
-/* ✨ ผลลัพธ์ */
+/* ปุ่มเพลง */
 
-.result {
+#musicBtn{
+
+    margin-top:15px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #ffd6e7,
+        #ffc1da
+    );
+
+    color:#ff4d88;
+
+    border:2px solid #ff9dc2;
+}
+
+
+/* ผลลัพธ์ */
+
+.result{
 
     margin-top:20px;
 
-    padding:20px;
+    min-height:90px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
 
     background:#fff5fa;
 
     border-radius:20px;
 
-    font-size:26px;
-
-    font-weight:bold;
+    padding:20px;
 
     color:#ff4d88;
 
+    font-size:28px;
+
+    font-weight:bold;
+
+    line-height:1.6;
 }
 
 
+/* Footer */
 
-/* Animation ผลลัพธ์ */
+footer{
 
-.pop {
+    text-align:center;
 
-    animation:pop 0.5s ease;
+    color:#ff8db4;
 
+    font-weight:bold;
 }
 
 
+/* ----------------------
+      Animation
+----------------------- */
 
-@keyframes pop {
+.pop{
 
+    animation:pop .45s;
+}
 
-    0% {
+@keyframes pop{
 
-        transform:scale(0.7);
+    0%{
+
+        transform:scale(.6);
 
         opacity:0;
 
     }
 
+    70%{
 
-    60% {
-
-        transform:scale(1.15);
+        transform:scale(1.1);
 
     }
 
-
-    100% {
+    100%{
 
         transform:scale(1);
 
@@ -262,30 +268,45 @@ button:active {
 }
 
 
+@keyframes fadeDown{
 
+    from{
 
-/* ❤️ หัวใจลอย */
+        opacity:0;
 
-.heart {
+        transform:translateY(-30px);
 
-    position:fixed;
+    }
 
-    bottom:20px;
+    to{
 
-    font-size:30px;
+        opacity:1;
 
-    animation:floatHeart 3s ease-out forwards;
+        transform:translateY(0);
 
-    pointer-events:none;
+    }
 
 }
 
 
+/* ----------------------
+      Heart
+----------------------- */
 
-@keyframes floatHeart {
+.heart{
 
+    position:fixed;
 
-    0% {
+    bottom:-20px;
+
+    pointer-events:none;
+
+    animation:floatHeart 3s linear forwards;
+}
+
+@keyframes floatHeart{
+
+    from{
 
         transform:translateY(0) scale(1);
 
@@ -293,10 +314,9 @@ button:active {
 
     }
 
+    to{
 
-    100% {
-
-        transform:translateY(-500px) scale(1.8);
+        transform:translateY(-600px) scale(1.8);
 
         opacity:0;
 
@@ -305,40 +325,36 @@ button:active {
 }
 
 
+/* ----------------------
+     Confetti
+----------------------- */
 
-/* 🎊 Confetti */
-
-.confetti {
+.confetti{
 
     position:fixed;
 
     top:-20px;
 
-    font-size:20px;
-
-    animation:fall 3s linear forwards;
-
     pointer-events:none;
 
+    font-size:22px;
+
+    animation:fall 3s linear forwards;
 }
 
+@keyframes fall{
 
+    from{
 
-@keyframes fall {
-
-
-    0% {
-
-        transform:translateY(0) rotate(0);
+        transform:translateY(0) rotate(0deg);
 
         opacity:1;
 
     }
 
+    to{
 
-    100% {
-
-        transform:translateY(100vh) rotate(720deg);
+        transform:translateY(110vh) rotate(720deg);
 
         opacity:0;
 
@@ -347,55 +363,42 @@ button:active {
 }
 
 
+/* ----------------------
+      Responsive
+----------------------- */
 
+@media (max-width:600px){
 
-/* 🎵 ปุ่มเพลง */
-
-#musicBtn {
-
-    background:#ffd6e7;
-
-    color:#ff4d88;
-
-    border:2px solid #ff9fc5;
-
-}
-
-
-
-/* 📱 มือถือ */
-
-@media(max-width:500px){
-
-
-    body {
+    body{
 
         padding:15px;
 
     }
 
+    header h1{
 
-    h1 {
-
-        font-size:28px;
+        font-size:30px;
 
     }
 
-
-    .card {
+    .card{
 
         padding:20px;
 
+        border-radius:22px;
+
     }
 
-}
+    button{
 
+        font-size:18px;
 
+    }
 
-/* Footer */
+    .result{
 
-footer {
+        font-size:24px;
 
-    color:#ff99bb;
+    }
 
 }

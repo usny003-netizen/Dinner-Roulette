@@ -1,46 +1,268 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Winner Effect System 🎉
+ Dinner Roulette V12 ❤️
+ Couple Love Effect System 🎉
 ================================= */
 
 
 
 // ===============================
-// HEART FLOAT ❤️
+// WIN EFFECT
 // ===============================
 
 
-function createHeartEffect(){
-
-
-let heart =
-
-document.createElement("div");
+function winEffect(){
 
 
 
-heart.className="heart";
+const food =
+
+document.getElementById(
+"foodResult"
+)?.innerText;
 
 
-heart.innerHTML="❤️";
+
+if(!food)
+
+return;
+
+
+
+
+
+// Popup
+
+
+createWinPopup(food);
+
+
+
+// Hearts
+
+
+createHeartBurst();
+
+
+
+// Confetti
+
+
+createConfetti();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+window.winEffect = winEffect;
+
+
+
+
+
+
+
+
+
+// ===============================
+// WIN POPUP
+// ===============================
+
+
+function createWinPopup(food){
+
+
+
+// กันซ้ำ
+
+
+const old =
+
+document.querySelector(
+".win-popup"
+);
+
+
+
+if(old)
+
+old.remove();
+
+
+
+
+
+
+
+const popup =
+
+document.createElement(
+"div"
+);
+
+
+
+popup.className =
+"win-popup";
+
+
+
+
+
+popup.innerHTML =
+
+`
+
+<h1>
+🎉 ได้แล้ว!
+</h1>
+
+
+<h2>
+${food}
+</h2>
+
+
+<p>
+💕 วันนี้ Chompu กินเมนูนี้กัน
+</p>
+
+
+<button id="closeWin">
+
+❤️ ตกลง
+
+</button>
+
+`;
+
+
+
+
+
+
+document.body.appendChild(
+popup
+);
+
+
+
+
+
+
+
+document
+
+.getElementById(
+"closeWin"
+)
+
+.onclick=()=>{
+
+
+popup.remove();
+
+
+};
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+if(popup)
+
+popup.remove();
+
+
+},5000);
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// HEART BURST ❤️
+// ===============================
+
+
+function createHeartBurst(){
+
+
+
+for(let i=0;i<15;i++){
+
+
+
+setTimeout(()=>{
+
+
+
+const heart=
+
+document.createElement(
+"div"
+);
+
+
+
+heart.className=
+"heart";
+
+
+
+heart.innerHTML=
+
+[
+"❤️",
+"💕",
+"💗",
+"💖",
+"💘"
+]
+
+[
+Math.floor(
+Math.random()*5
+)
+];
 
 
 
 heart.style.left=
 
-Math.random()*90+"%";
+Math.random()*100+"%";
 
 
 
-heart.style.bottom=
-
-"20px";
+heart.style.bottom="0";
 
 
 
 document.body.appendChild(
 heart
 );
+
 
 
 
@@ -54,15 +276,25 @@ heart.remove();
 
 
 
+},i*80);
+
+
+
+}
+
+
+
 }
 
 
 
 
 
-window.createHeartEffect=
 
-createHeartEffect;
+
+
+window.createHeartBurst =
+createHeartBurst;
 
 
 
@@ -73,7 +305,7 @@ createHeartEffect;
 
 
 // ===============================
-// CONFETTI 🎊
+// CONFETTI ✨
 // ===============================
 
 
@@ -81,7 +313,7 @@ function createConfetti(){
 
 
 
-for(let i=0;i<30;i++){
+for(let i=0;i<40;i++){
 
 
 
@@ -93,11 +325,25 @@ document.createElement(
 
 
 
-confetti.innerHTML="✨";
+confetti.innerHTML=
+
+[
+"✨",
+"⭐",
+"💗",
+"🌸"
+]
+
+[
+Math.floor(
+Math.random()*4
+)
+];
 
 
 
-confetti.style.position="fixed";
+confetti.style.position=
+"fixed";
 
 
 
@@ -113,7 +359,7 @@ confetti.style.top="-20px";
 
 confetti.style.fontSize=
 
-Math.random()*25+15+"px";
+Math.random()*20+15+"px";
 
 
 
@@ -121,9 +367,15 @@ confetti.style.zIndex="9999";
 
 
 
-confetti.style.transition=
+confetti.style.pointerEvents="none";
 
-"transform 2s ease, opacity 2s";
+
+
+confetti.style.animation=
+
+"fall 3s linear forwards";
+
+
 
 
 
@@ -134,34 +386,13 @@ confetti
 
 
 
-
-setTimeout(()=>{
-
-
-confetti.style.transform=
-
-`translateY(${window.innerHeight+200}px)
-rotate(360deg)`;
-
-
-confetti.style.opacity=0;
-
-
-
-},100);
-
-
-
-
-
-
 setTimeout(()=>{
 
 
 confetti.remove();
 
 
-},2500);
+},3000);
 
 
 
@@ -179,123 +410,62 @@ confetti.remove();
 
 
 // ===============================
-// WIN EFFECT 🎉
+// FALL ANIMATION
 // ===============================
 
 
-function winEffect(){
+const style =
+
+document.createElement(
+"style"
+);
 
 
 
-// หัวใจ
+style.innerHTML=
 
-for(let i=0;i<8;i++){
+`
 
-
-setTimeout(()=>{
-
-
-createHeartEffect();
+@keyframes fall {
 
 
-},i*150);
+from{
 
+
+transform:
+translateY(0)
+rotate(0deg);
+
+
+opacity:1;
 
 
 }
 
 
 
+to{
 
 
+transform:
 
-// confetti
+translateY(100vh)
 
-
-createConfetti();
-
-
+rotate(360deg);
 
 
-
-
-
-
-// result animation
-
-
-const result =
-
-document.querySelector(
-".result-box"
-);
-
-
-
-if(result){
-
-
-
-result.classList.add(
-"win"
-);
-
-
-
-setTimeout(()=>{
-
-
-result.classList.remove(
-"win"
-);
-
-
-
-},1000);
-
+opacity:0;
 
 
 }
 
 
+}
+
+`;
 
 
 
-
-
-
-
-// เปลี่ยนข้อความ
-
-
-const status =
-
-document.getElementById(
-"statusMessage"
+document.head.appendChild(
+style
 );
-
-
-
-if(status){
-
-
-status.innerHTML=
-
-"🎉 ได้แล้ว! กินเมนูนี้กัน ❤️";
-
-
-}
-
-
-
-
-
-}
-
-
-
-
-
-window.winEffect=
-
-winEffect;

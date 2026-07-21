@@ -1,6 +1,6 @@
 /* =================================
- Dinner Roulette V12 ❤️
- Couple Love Theme 🎡💕
+ Dinner Roulette V13 ❤️
+ Chompu Couple App Theme 💕
 ================================= */
 
 
@@ -23,19 +23,22 @@ body{
     "Arial",
     sans-serif;
 
+
     background:
+
     linear-gradient(
         135deg,
         #ffd6e7,
-        #fff1f7,
+        #fff5fa,
         #dff5ff
     );
 
+
     color:#555;
 
-    overflow-x:hidden;
-
     transition:.5s;
+
+    overflow-x:hidden;
 
 }
 
@@ -49,7 +52,7 @@ body{
 
     width:100%;
 
-    max-width:480px;
+    max-width:500px;
 
     margin:auto;
 
@@ -62,69 +65,101 @@ body{
 
 
 
-/* START */
+
+/* =====================
+ START SCREEN
+===================== */
+
 
 #startScreen{
 
+
     position:fixed;
+
 
     inset:0;
 
+
     background:
 
+
     linear-gradient(
-        135deg,
-        #ff8fb8,
-        #ffc8dd
+
+    135deg,
+
+    #ff8fb8,
+
+    #ffc8dd
+
     );
+
 
     display:flex;
 
-    justify-content:center;
 
     align-items:center;
 
+
+    justify-content:center;
+
+
     z-index:9999;
+
 
 }
 
 
 
+
 .start-box{
 
-    width:90%;
-
-    max-width:380px;
 
     background:white;
 
+
+    width:90%;
+
+
+    max-width:380px;
+
+
     padding:35px 25px;
+
 
     border-radius:35px;
 
+
     text-align:center;
+
 
     box-shadow:
 
-    0 20px 50px
 
-    rgba(255,80,150,.3);
+    0 20px 60px
+
+    rgba(255,90,150,.3);
+
 
 
     animation:
 
     pop .6s ease;
 
+
 }
+
 
 
 
 
 .start-box h1{
 
+
     color:#ff5c9d;
 
-    font-size:35px;
+
+    font-size:36px;
+
 
 }
 
@@ -132,9 +167,12 @@ body{
 
 .start-box p{
 
+
     margin:20px 0;
 
+
     font-size:18px;
+
 
 }
 
@@ -145,9 +183,14 @@ body{
 
 
 
-/* CARD */
+
+/* =====================
+ CARD
+===================== */
+
 
 .card{
+
 
     background:
 
@@ -163,11 +206,14 @@ body{
     margin-bottom:18px;
 
 
+
     box-shadow:
+
 
     0 15px 35px
 
-    rgba(255,100,160,.15);
+    rgba(255,90,150,.15);
+
 
 
     backdrop-filter:
@@ -175,66 +221,69 @@ body{
     blur(15px);
 
 
+
     animation:
 
     fade .5s ease;
 
+
 }
 
 
 
 
-
-
-/* HEADER */
 
 .hero{
 
+
     text-align:center;
 
+
 }
+
+
 
 
 
 .hero h1{
 
-    font-size:36px;
 
     color:#ff5c9d;
 
+
+    font-size:35px;
+
+
 }
 
 
 
-.hero p{
-
-    margin-top:10px;
-
-}
 
 
 
-
-
-
-
-
-/* TITLE */
 
 h2{
 
+
     text-align:center;
+
 
     color:#ff5c9d;
 
+
     margin-bottom:20px;
 
+
 }
+
+
 
 
 h3{
 
+
     color:#ff5c9d;
+
 
 }
 
@@ -245,16 +294,22 @@ h3{
 
 
 
-/* BUTTON */
+
+/* =====================
+ BUTTON
+===================== */
+
 
 button{
 
 
     width:100%;
 
-    padding:14px;
 
     margin-top:12px;
+
+
+    padding:14px;
 
 
     border:none;
@@ -263,32 +318,43 @@ button{
     border-radius:50px;
 
 
+
     background:
 
+
     linear-gradient(
-        135deg,
-        #ff9fc5,
-        #ff5c9d
+
+    135deg,
+
+    #ff9fc5,
+
+    #ff5c9d
+
     );
+
 
 
     color:white;
 
 
-    font-size:17px;
+    font-size:16px;
 
 
     cursor:pointer;
 
 
+
     box-shadow:
+
 
     0 10px 25px
 
-    rgba(255,92,157,.3);
+    rgba(255,92,157,.25);
+
 
 
     transition:.3s;
+
 
 }
 
@@ -296,8 +362,11 @@ button{
 
 button:hover{
 
+
     transform:
+
     translateY(-3px);
+
 
 }
 
@@ -305,8 +374,11 @@ button:hover{
 
 button:active{
 
+
     transform:
+
     scale(.95);
+
 
 }
 
@@ -318,7 +390,10 @@ button:active{
 
 
 
-/* MODE */
+/* =====================
+ MODE / CATEGORY
+===================== */
+
 
 .mode-group,
 .category-group{
@@ -326,9 +401,12 @@ button:active{
 
     display:flex;
 
-    gap:8px;
 
     flex-wrap:wrap;
+
+
+    gap:8px;
+
 
 }
 
@@ -340,24 +418,32 @@ button:active{
 
     flex:1;
 
+
     font-size:14px;
+
 
 }
 
 
 
 
-.mode.active,
-.category.active{
+
+.active{
 
 
     background:
 
+
     linear-gradient(
-        135deg,
-        #ff5c9d,
-        #ff9fc5
+
+    135deg,
+
+    #ff5c9d,
+
+    #ffb6d9
+
     );
+
 
 }
 
@@ -368,8 +454,6 @@ button:active{
 
 
 
-
-/* INPUT */
 
 input{
 
@@ -383,16 +467,16 @@ input{
     padding:14px;
 
 
-    border-radius:25px;
-
-
     border:none;
 
 
-    background:#fff0f6;
+    border-radius:30px;
 
 
     text-align:center;
+
+
+    background:#fff0f6;
 
 
     font-size:16px;
@@ -408,11 +492,9 @@ input{
 
 
 
-
-/* ==========================
-   LOVE WHEEL 🎡
-========================== */
-
+/* =====================
+ WHEEL 🎡
+===================== */
 
 
 .wheel-wrapper{
@@ -434,27 +516,27 @@ input{
 
 
 
+
+
 #wheel{
 
 
     width:100%;
 
-    max-width:390px;
+
+    max-width:400px;
 
 
     border-radius:50%;
 
 
+
     box-shadow:
 
-    0 20px 45px
 
-    rgba(255,90,150,.3);
+    0 20px 50px
 
-
-    animation:
-
-    floatWheel 3s infinite ease-in-out;
+    rgba(255,90,150,.35);
 
 
 }
@@ -469,7 +551,7 @@ input{
     position:absolute;
 
 
-    top:-20px;
+    top:-25px;
 
 
     z-index:10;
@@ -481,29 +563,9 @@ input{
     color:#ff5c9d;
 
 
-    filter:
-
-    drop-shadow(
-    0 5px 5px #fff
-    );
-
 }
 
 
-
-
-
-@keyframes floatWheel{
-
-
-50%{
-
-transform:
-translateY(-8px);
-
-}
-
-}
 
 
 
@@ -515,14 +577,19 @@ translateY(-8px);
 
 /* RESULT */
 
+
 .result-box{
 
 
     display:flex;
 
+
     gap:10px;
 
+
 }
+
+
 
 
 
@@ -556,9 +623,12 @@ translateY(-8px);
 
 /* LIST */
 
+
 ul{
 
+
     list-style:none;
+
 
 }
 
@@ -570,13 +640,13 @@ li{
     background:#fff0f6;
 
 
-    margin:8px 0;
-
-
     padding:12px;
 
 
-    border-radius:18px;
+    margin:8px 0;
+
+
+    border-radius:20px;
 
 
 }
@@ -591,9 +661,235 @@ li{
 
 
 
-/* ==========================
- HEART EFFECT ❤️
-========================== */
+/* =====================
+ HISTORY TIMELINE 📜
+===================== */
+
+
+.history-sub{
+
+
+    text-align:center;
+
+
+    color:#ff8fb8;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+.timeline{
+
+
+    position:relative;
+
+
+    padding-left:25px;
+
+
+}
+
+
+
+.timeline::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    left:10px;
+
+
+    top:0;
+
+
+    bottom:0;
+
+
+    width:4px;
+
+
+    background:
+
+
+    linear-gradient(
+
+    #ff9fc5,
+
+    #bde0fe
+
+    );
+
+
+    border-radius:10px;
+
+
+}
+
+
+
+
+
+
+
+#historyList li{
+
+
+    position:relative;
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #fff0f6,
+
+    white
+
+    );
+
+
+    margin-bottom:25px;
+
+
+    box-shadow:
+
+
+    0 10px 25px
+
+    rgba(255,100,160,.15);
+
+
+}
+
+
+
+#historyList li::before{
+
+
+    content:"❤️";
+
+
+    position:absolute;
+
+
+    left:-42px;
+
+
+    top:20px;
+
+
+    background:white;
+
+
+    width:30px;
+
+
+    height:30px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =====================
+ SHARE CARD 📸
+===================== */
+
+
+#shareCard{
+
+
+    padding:25px;
+
+
+    text-align:center;
+
+
+    border-radius:30px;
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #ffd6e7,
+
+    #dff5ff
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+ MISSION 💌
+===================== */
+
+
+#missionScore{
+
+
+    text-align:center;
+
+
+    margin-top:15px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+ HEART EFFECT
+===================== */
 
 
 .heart{
@@ -602,18 +898,20 @@ li{
     position:fixed;
 
 
-    bottom:20px;
-
-
     font-size:35px;
+
+
+    bottom:20px;
 
 
     animation:
 
-    heartFly 2s ease forwards;
+
+    heartFly 2s forwards;
 
 
-    pointer-events:none;
+    z-index:9999;
+
 
 }
 
@@ -622,34 +920,35 @@ li{
 @keyframes heartFly{
 
 
-0%{
+from{
+
 
 opacity:1;
 
+
 transform:
-translateY(0)
-scale(1);
+
+translateY(0);
+
 
 }
 
 
-100%{
+to{
+
 
 opacity:0;
 
 
 transform:
 
-translateY(-350px)
-
-scale(1.8);
-
-}
+translateY(-350px);
 
 
 }
 
 
+}
 
 
 
@@ -659,9 +958,9 @@ scale(1.8);
 
 
 
-/* ==========================
- WIN POPUP 🎉
-========================== */
+/* =====================
+ POPUP
+===================== */
 
 
 .win-popup{
@@ -681,6 +980,7 @@ scale(1.8);
     translate(-50%,-50%);
 
 
+
     background:white;
 
 
@@ -690,33 +990,18 @@ scale(1.8);
     border-radius:35px;
 
 
+    z-index:9999;
+
+
     text-align:center;
-
-
-    z-index:999;
 
 
     box-shadow:
 
+
     0 20px 60px
 
-    rgba(255,0,120,.3);
-
-
-    animation:
-
-    pop .5s ease;
-
-}
-
-
-
-
-
-.win-popup h1{
-
-
-    color:#ff5c9d;
+    rgba(255,90,150,.4);
 
 
 }
@@ -729,92 +1014,30 @@ scale(1.8);
 
 
 
-/* SHARE CARD */
+/* =====================
+ DARK MODE
+===================== */
 
-#shareCard{
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #ffd6e7,
-
-    #dff5ff
-
-    );
-
-
-    padding:25px;
-
-
-    border-radius:30px;
-
-
-    text-align:center;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* MUSIC */
-
-audio{
-
-    width:100%;
-
-}
-
-
-
-select{
-
-    width:100%;
-
-    padding:12px;
-
-    border-radius:25px;
-
-    border:none;
-
-}
-
-
-
-
-
-
-
-
-
-/* DARK MODE */
 
 body.dark{
 
 
     background:
 
+
     linear-gradient(
 
     135deg,
 
-    #21152d,
+    #24152f,
 
-    #542a72
+    #512b6d
 
     );
 
 
     color:white;
+
 
 }
 
@@ -825,10 +1048,8 @@ body.dark .card{
 
     background:
 
-    rgba(50,20,70,.85);
+    rgba(40,20,60,.85);
 
-
-    color:white;
 
 }
 
@@ -842,9 +1063,11 @@ body.dark .result-box div{
 
     rgba(255,255,255,.1);
 
+
+    color:white;
+
+
 }
-
-
 
 
 
@@ -853,7 +1076,8 @@ body.dark h2,
 body.dark h3{
 
 
-    color:#ffb7e0;
+    color:#ffb6d9;
+
 
 }
 
@@ -865,14 +1089,63 @@ body.dark h3{
 
 
 
+/* ANIMATION */
 
-/* FOOTER */
 
-footer{
+@keyframes pop{
 
-    text-align:center;
 
-    color:#ff5c9d;
+from{
+
+
+transform:scale(.7);
+
+
+opacity:0;
+
+
+}
+
+
+to{
+
+
+transform:scale(1);
+
+
+opacity:1;
+
+
+}
+
+
+}
+
+
+
+@keyframes fade{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:translateY(15px);
+
+
+}
+
+
+to{
+
+
+opacity:1;
+
+
+}
+
 
 }
 
@@ -885,6 +1158,7 @@ footer{
 
 
 /* MOBILE */
+
 
 @media(max-width:480px){
 
@@ -908,7 +1182,7 @@ font-size:28px;
 
 #wheel{
 
-width:300px;
+max-width:300px;
 
 }
 
@@ -929,41 +1203,5 @@ flex-direction:column;
 
 }
 
-
-}
-.favorite-toast{
-
-position:fixed;
-
-bottom:30px;
-
-left:50%;
-
-transform:
-translateX(-50%);
-
-
-background:white;
-
-
-padding:15px 25px;
-
-
-border-radius:50px;
-
-
-box-shadow:
-
-0 10px 30px rgba(0,0,0,.15);
-
-
-color:#ff5c9d;
-
-
-z-index:9999;
-
-
-animation:
-pop .3s ease;
 
 }

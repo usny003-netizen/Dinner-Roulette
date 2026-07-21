@@ -19,24 +19,20 @@
 <body>
 
 
-<!-- START SCREEN -->
+<!-- START -->
 
 <div id="startScreen">
 
 <div class="start-box">
 
-<div class="logo">
-❤️
-</div>
-
 
 <h1>
-Dinner Roulette
+❤️ Dinner Roulette
 </h1>
 
 
 <p>
-วันนี้กินอะไรดีนะที่รัก 💕
+วันนี้กินอะไรดีนะ Chompu 💕
 </p>
 
 
@@ -57,7 +53,7 @@ Dinner Roulette
 
 
 
-<!-- MAIN APP -->
+<!-- APP -->
 
 <div class="app">
 
@@ -65,18 +61,11 @@ Dinner Roulette
 
 
 
-<!-- HEADER -->
-
 <header class="card hero">
 
 
-<div class="logo">
-❤️
-</div>
-
-
 <h1>
-Dinner Roulette
+❤️ Dinner Roulette
 </h1>
 
 
@@ -108,7 +97,7 @@ Dinner Roulette
 <div class="mode-group">
 
 
-<button class="mode active">
+<button class="mode active" data-mode="ฉัน">
 
 👩 ฉันเลือก
 
@@ -116,15 +105,15 @@ Dinner Roulette
 
 
 
-<button class="mode">
+<button class="mode" data-mode="แฟน">
 
-👨 แฟนเลือก
+👨 Chompu เลือก
 
 </button>
 
 
 
-<button class="mode">
+<button class="mode" data-mode="สุ่ม">
 
 🎲 สุ่ม
 
@@ -136,26 +125,94 @@ Dinner Roulette
 
 
 
-<input
-
+<input 
 id="partnerName"
-
 type="text"
-
 value="Chompu"
-
 placeholder="ชื่อแฟน ❤️"
-
 >
-
 
 
 
 <p id="chooserMessage">
 
-🌸 วันนี้ฉันเลือกให้เอง
+🌸 วันนี้ฉันเลือกให้
 
 </p>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- CATEGORY -->
+
+<section class="card">
+
+
+<h2>
+🍽️ เลือกหมวดอาหาร
+</h2>
+
+
+
+<div class="category-group">
+
+
+<button class="category active" data-category="all">
+
+🎲 ทั้งหมด
+
+</button>
+
+
+
+<button class="category" data-category="thai">
+
+🍚 ไทย
+
+</button>
+
+
+
+<button class="category" data-category="japan">
+
+🍣 ญี่ปุ่น
+
+</button>
+
+
+
+<button class="category" data-category="grill">
+
+🥩 ปิ้งย่าง
+
+</button>
+
+
+
+<button class="category" data-category="fast">
+
+🍕 Fast Food
+
+</button>
+
+
+
+<button class="category" data-category="noodle">
+
+🍜 เส้นๆ
+
+</button>
+
+
+</div>
 
 
 </section>
@@ -216,7 +273,6 @@ height="420">
 
 
 
-
 <p id="statusMessage">
 
 ❤️ กดหมุนวงล้อ
@@ -231,7 +287,6 @@ height="420">
 🎡 หมุนวงล้อ
 
 </button>
-
 
 
 
@@ -255,7 +310,6 @@ height="420">
 
 <!-- RESULT -->
 
-
 <section class="card">
 
 
@@ -278,11 +332,8 @@ height="420">
 
 
 <h3 id="foodResult">
-
 -
-
 </h3>
-
 
 </div>
 
@@ -297,11 +348,8 @@ height="420">
 
 
 <h3 id="drinkResult">
-
 -
-
 </h3>
-
 
 </div>
 
@@ -316,14 +364,10 @@ height="420">
 
 
 <h3 id="dessertResult">
-
 -
-
 </h3>
 
-
 </div>
-
 
 
 </div>
@@ -342,14 +386,11 @@ height="420">
 
 
 
-
-
 <button id="rerollBtn">
 
 🙅 ไม่เอา สุ่มใหม่
 
 </button>
-
 
 
 
@@ -360,6 +401,37 @@ height="420">
 </button>
 
 
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- SMART -->
+
+<section class="card">
+
+
+<h2>
+🧠 Chompu ชอบอะไร?
+</h2>
+
+
+
+<ul id="smartList">
+
+
+<li>
+ยังไม่มีข้อมูล ❤️
+</li>
+
+
+</ul>
 
 
 </section>
@@ -396,10 +468,9 @@ height="420">
 
 
 
-
 <button id="resetAvoidBtn">
 
-🔄 ล้างเมนูที่ไม่เอา
+🔄 ล้างเมนูไม่เอา
 
 </button>
 
@@ -418,7 +489,7 @@ height="420">
 <!-- FAVORITE -->
 
 
-<section class="card" id="favoriteSection">
+<section class="card">
 
 
 <h2>
@@ -438,7 +509,6 @@ height="420">
 </ul>
 
 
-
 </section>
 
 
@@ -452,7 +522,7 @@ height="420">
 <!-- HISTORY -->
 
 
-<section class="card" id="historySection">
+<section class="card">
 
 
 <h2>
@@ -470,7 +540,6 @@ height="420">
 
 
 </ul>
-
 
 
 </section>
@@ -495,13 +564,11 @@ height="420">
 
 
 
-
 <button id="themeBtn">
 
 🌙 Dark Mode
 
 </button>
-
 
 
 
@@ -536,17 +603,10 @@ height="420">
 
 
 
-<audio
-
-id="bgMusic"
-
-loop>
+<audio id="bgMusic" loop>
 
 
-<source
-
-src="love.mp3"
-
+<source src="sounds/love.mp3"
 type="audio/mpeg">
 
 
@@ -566,25 +626,26 @@ type="audio/mpeg">
 
 
 
-
 <select id="musicSelect">
 
 
-<option value="love.mp3">
+<option value="sounds/love.mp3">
 
 💖 เพลงหวาน
 
 </option>
 
 
-<option value="happy.mp3">
+
+<option value="sounds/happy.mp3">
 
 🌸 เพลงสดใส
 
 </option>
 
 
-<option value="lofi.mp3">
+
+<option value="sounds/lofi.mp3">
 
 ☕ Lo-fi
 
@@ -592,7 +653,6 @@ type="audio/mpeg">
 
 
 </select>
-
 
 
 
@@ -608,9 +668,10 @@ type="audio/mpeg">
 
 <footer class="card">
 
-ทำด้วยความรัก ❤️
+Made with ❤️ for Chompu
 
 </footer>
+
 
 
 
@@ -625,70 +686,7 @@ type="audio/mpeg">
 
 
 
-<!-- BOTTOM NAV -->
-
-
-<nav class="bottom-nav">
-
-
-<button onclick="scrollToTop()">
-
-🏠
-
-<span>
-หน้าแรก
-</span>
-
-</button>
-
-
-
-<button onclick="scrollFavorite()">
-
-⭐
-
-<span>
-โปรด
-</span>
-
-</button>
-
-
-
-<button onclick="scrollHistory()">
-
-📜
-
-<span>
-ประวัติ
-</span>
-
-</button>
-
-
-
-<button onclick="toggleTheme()">
-
-🌙
-
-<span>
-ธีม
-</span>
-
-</button>
-
-
-</nav>
-
-
-
-
-
-
-
-
-
-<!-- SCRIPT -->
+<!-- JS -->
 
 
 <script src="wheel.js"></script>
@@ -698,6 +696,8 @@ type="audio/mpeg">
 <script src="history.js"></script>
 
 <script src="avoid.js"></script>
+
+<script src="smart.js"></script>
 
 <script src="theme.js"></script>
 

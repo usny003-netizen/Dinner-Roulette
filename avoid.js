@@ -1,85 +1,41 @@
 /* =================================
- Dinner Roulette Chompu V17 ❤️
- Avoid Food System FINAL 🚫
+ Dinner Roulette Chompu V19 ❤️
+ Avoid Food System 🚫
+ PART 3.3
 ================================= */
 
 
-
-let avoidFoods =
+let avoidList =
 
 JSON.parse(
-
-localStorage.getItem(
-"avoidList"
+localStorage.getItem("avoidList")
 )
-
-)
-
-||[];
+||
+[];
 
 
 
-
-
-// ===============================
-// ADD AVOID 🚫
-// ===============================
 
 
 function addAvoid(food){
 
 
-if(!food || food==="-")
-
-
+if(!food)
 return;
 
 
 
-// กันซ้ำ
-
-if(
-avoidFoods.includes(food)
-){
+if(!avoidList.includes(food)){
 
 
-if(typeof showToast==="function"){
-
-
-showToast(
-"🚫 เมนูนี้อยู่ในรายการไม่กินแล้ว"
-);
-
-
-}
-
-
-return;
-
-
-}
-
-
-
-
-
-avoidFoods.push(food);
-
-
+avoidList.push(food);
 
 
 
 localStorage.setItem(
-
 "avoidList",
-
-JSON.stringify(
-avoidFoods
-)
-
+JSON.stringify(avoidList)
 );
-
-
 
 
 
@@ -87,16 +43,6 @@ renderAvoid();
 
 
 
-
-
-if(typeof showToast==="function"){
-
-
-showToast(
-`🚫 ไม่กิน ${food}`
-);
-
-
 }
 
 
@@ -105,7 +51,7 @@ showToast(
 
 
 
-window.addAvoid =
+window.addAvoid=
 addAvoid;
 
 
@@ -114,176 +60,10 @@ addAvoid;
 
 
 
-
-
-// ===============================
-// REMOVE AVOID
-// ===============================
-
-
-function removeAvoid(index){
-
-
-
-avoidFoods.splice(
-
-index,
-
-1
-
-);
-
-
-
-localStorage.setItem(
-
-"avoidList",
-
-JSON.stringify(
-avoidFoods
-)
-
-);
-
-
-
-
-
-renderAvoid();
-
-
-
-
-}
-
-
-
-window.removeAvoid =
-removeAvoid;
-
-
-
-
-
-
-
-
-
-// ===============================
-// CLEAR ALL
-// ===============================
-
-
-function clearAvoid(){
-
-
-
-avoidFoods=[];
-
-
-
-localStorage.removeItem(
-
-"avoidList"
-
-);
-
-
-
-renderAvoid();
-
-
-
-if(typeof showToast==="function"){
-
-
-showToast(
-"🔄 ล้างรายการไม่กินแล้ว"
-);
-
-
-}
-
-
-
-}
-
-
-
-window.clearAvoid =
-clearAvoid;
-
-
-
-
-
-
-
-
-
-// ===============================
-// GET AVOID
-// ===============================
-
-
-function getAvoidFoods(){
-
-
-return avoidFoods;
-
-
-}
-
-
-
-window.getAvoidFoods =
-getAvoidFoods;
-
-
-
-
-
-
-
-
-
-// ===============================
-// CHECK
-// ===============================
-
-
-function isAvoid(food){
-
-
-return avoidFoods.includes(food);
-
-
-}
-
-
-
-window.isAvoid =
-isAvoid;
-
-
-
-
-
-
-
-
-
-// ===============================
-// RENDER 🚫
-// ===============================
-
-
 function renderAvoid(){
 
 
-
 const list =
-
 document.getElementById(
 "avoidList"
 );
@@ -291,10 +71,7 @@ document.getElementById(
 
 
 if(!list)
-
 return;
-
-
 
 
 
@@ -302,25 +79,15 @@ list.innerHTML="";
 
 
 
-
-
-if(avoidFoods.length===0){
-
+if(avoidList.length===0){
 
 
 list.innerHTML=
-
 `
-
 <li>
-
-❤️ ยังไม่มีรายการ
-
+ยังไม่มีรายการ
 </li>
-
 `;
-
-
 
 return;
 
@@ -330,40 +97,22 @@ return;
 
 
 
-
-
-avoidFoods.forEach(
-
-(food,index)=>{
-
+avoidList.forEach(
+(item,index)=>{
 
 
 const li =
-
-document.createElement(
-"li"
-);
+document.createElement("li");
 
 
 
 li.innerHTML=
-
 `
-
-<span>
-
-🚫 ${food}
-
-</span>
-
+🚫 ${item}
 
 <button onclick="removeAvoid(${index})">
-
-❌
-
+🗑️
 </button>
-
-
 `;
 
 
@@ -380,22 +129,17 @@ list.appendChild(li);
 
 
 
+function removeAvoid(index){
+
+
+avoidList.splice(index,1);
 
 
 
-
-
-
-// ===============================
-// INPUT ADD SYSTEM
-// ===============================
-
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
+localStorage.setItem(
+"avoidList",
+JSON.stringify(avoidList)
+);
 
 
 
@@ -403,39 +147,41 @@ renderAvoid();
 
 
 
+}
 
 
-const resetBtn =
 
-document.getElementById(
-"resetAvoidBtn"
+function resetAvoid(){
+
+
+avoidList=[];
+
+
+
+localStorage.removeItem(
+"avoidList"
 );
 
 
 
-if(resetBtn){
+renderAvoid();
 
-
-
-resetBtn.onclick=()=>{
-
-
-clearAvoid();
-
-
-};
 
 
 }
 
 
 
-});
+window.removeAvoid=
+removeAvoid;
+
+
+window.resetAvoid=
+resetAvoid;
 
 
 
-
-
-
-
-
+document.addEventListener(
+"DOMContentLoaded",
+renderAvoid
+);

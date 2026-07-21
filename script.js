@@ -1,6 +1,6 @@
 /* =================================
  Dinner Roulette V15 ❤️
- Main Controller FINAL 🎮💕
+ Main Controller FINAL
 ================================= */
 
 
@@ -10,17 +10,28 @@ document.addEventListener(
 
 
 
+
+
 // ===============================
-// START SCREEN ❤️
+// START SCREEN 💕
 // ===============================
 
 
 const startBtn =
-document.getElementById("startBtn");
+
+document.getElementById(
+"startBtn"
+);
+
 
 
 const startScreen =
-document.getElementById("startScreen");
+
+document.getElementById(
+"startScreen"
+);
+
+
 
 
 
@@ -30,20 +41,28 @@ if(startBtn){
 startBtn.onclick=()=>{
 
 
-if(startScreen){
+
+if(startScreen)
 
 startScreen.style.display="none";
 
-}
 
 
 
-const music =
-document.getElementById("bgMusic");
+
+const music=
+
+document.getElementById(
+"bgMusic"
+);
+
+
 
 
 
 if(music){
+
+
 
 music.volume=0.5;
 
@@ -53,28 +72,40 @@ music.play()
 .catch(()=>{});
 
 
-}
-
-
-
-if(typeof completeOpenMission==="function"){
-
-completeOpenMission();
 
 }
+
+
 
 
 
 if(typeof createHeart==="function"){
 
+
 createHeart();
 
+
 }
+
+
+
+
+
+if(typeof completeOpenMission==="function"){
+
+
+completeOpenMission();
+
+
+}
+
+
 
 
 };
 
 
+
 }
 
 
@@ -84,21 +115,85 @@ createHeart();
 
 
 
+
 // ===============================
-// MUSIC SYSTEM 🎵
+// SPIN BUTTON 🎡
 // ===============================
 
 
-const music =
-document.getElementById("bgMusic");
+const spinBtn=
+
+document.getElementById(
+"spinBtn"
+);
 
 
-const musicBtn =
-document.getElementById("musicBtn");
 
 
-const musicSelect =
-document.getElementById("musicSelect");
+
+if(spinBtn){
+
+
+
+spinBtn.onclick=()=>{
+
+
+
+if(typeof spinWheel==="function"){
+
+
+
+spinWheel();
+
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// MUSIC 🎵
+// ===============================
+
+
+const music=
+
+document.getElementById(
+"bgMusic"
+);
+
+
+
+const musicBtn=
+
+document.getElementById(
+"musicBtn"
+);
+
+
+
+
+const musicSelect=
+
+document.getElementById(
+"musicSelect"
+);
+
+
 
 
 
@@ -111,7 +206,9 @@ if(musicBtn && music){
 musicBtn.onclick=()=>{
 
 
+
 if(music.paused){
+
 
 
 music.play();
@@ -123,6 +220,7 @@ musicBtn.innerHTML=
 
 
 }
+
 
 
 else{
@@ -143,6 +241,7 @@ musicBtn.innerHTML=
 };
 
 
+
 }
 
 
@@ -154,7 +253,9 @@ musicBtn.innerHTML=
 if(musicSelect && music){
 
 
+
 musicSelect.onchange=()=>{
+
 
 
 music.src=
@@ -162,15 +263,19 @@ music.src=
 musicSelect.value;
 
 
+
 music.play();
+
 
 
 
 if(musicBtn)
 
+
 musicBtn.innerHTML=
 
 "⏸️ ปิดเพลง";
+
 
 
 };
@@ -178,6 +283,7 @@ musicBtn.innerHTML=
 
 
 }
+
 
 
 
@@ -193,11 +299,17 @@ musicBtn.innerHTML=
 
 const autoBtn=
 
-document.getElementById("autoBtn");
+document.getElementById(
+"autoBtn"
+);
 
 
 
 let autoRunning=false;
+
+
+
+
 
 
 
@@ -208,13 +320,17 @@ if(autoBtn){
 autoBtn.onclick=()=>{
 
 
+
 if(autoRunning)
 
 return;
 
 
 
+
+
 autoRunning=true;
+
 
 
 autoBtn.innerHTML=
@@ -223,7 +339,15 @@ autoBtn.innerHTML=
 
 
 
+
+
+
+
 let count=0;
+
+
+
+
 
 
 
@@ -234,10 +358,15 @@ let timer=setInterval(()=>{
 if(typeof spinWheel==="function"){
 
 
+
 spinWheel();
 
 
+
 }
+
+
+
 
 
 
@@ -245,13 +374,19 @@ count++;
 
 
 
+
+
+
 if(count>=3){
+
 
 
 clearInterval(timer);
 
 
+
 autoRunning=false;
+
 
 
 autoBtn.innerHTML=
@@ -259,11 +394,16 @@ autoBtn.innerHTML=
 "💖 สุ่มจนกว่าจะถูกใจ";
 
 
+
 }
 
 
 
+
+
 },6500);
+
+
 
 
 
@@ -280,14 +420,21 @@ autoBtn.innerHTML=
 
 
 
+
 // ===============================
-// LIKE 👍
+// LIKE BUTTON 👍
 // ===============================
 
 
 const likeBtn=
 
-document.getElementById("likeBtn");
+document.getElementById(
+"likeBtn"
+);
+
+
+
+
 
 
 
@@ -298,7 +445,10 @@ if(likeBtn){
 likeBtn.onclick=()=>{
 
 
-let food=
+
+
+
+const food=
 
 document.getElementById(
 "foodResult"
@@ -306,7 +456,12 @@ document.getElementById(
 
 
 
+
+
+
+
 if(!food || food==="-")
+
 
 return;
 
@@ -314,25 +469,41 @@ return;
 
 
 
+
+
+
+// SMART
+
+
 if(typeof saveLikeFood==="function"){
+
 
 
 saveLikeFood(food);
 
 
+
 }
 
 
 
+
+
+
+// MISSION
 
 
 if(typeof completeLikeMission==="function"){
 
 
+
 completeLikeMission();
 
 
+
 }
+
+
 
 
 
@@ -346,81 +517,11 @@ showToast(
 
 
 
-createHeart();
-
-
-
-};
-
-
-
-}
 
 
 
 
-
-
-
-
-// ===============================
-// FAVORITE ⭐
-// ===============================
-
-
-const favoriteBtn=
-
-document.getElementById("favoriteBtn");
-
-
-
-if(favoriteBtn){
-
-
-
-favoriteBtn.onclick=()=>{
-
-
-let food=
-
-document.getElementById(
-"foodResult"
-)?.innerText;
-
-
-
-if(!food || food==="-")
-
-return;
-
-
-
-
-
-if(typeof saveFavorite==="function"){
-
-
-saveFavorite({
-
-food:food,
-
-drink:"🥤 น้ำหวาน",
-
-dessert:"🍰 ของหวาน"
-
-});
-
-
-}
-
-
-
-
-showToast(
-
-"⭐ เพิ่มเมนูโปรดแล้ว"
-
-);
+if(typeof createHeart==="function"){
 
 
 
@@ -428,12 +529,19 @@ createHeart();
 
 
 
+}
+
+
+
+
+
 };
 
 
 
-}
 
+
+}
 
 
 
@@ -450,7 +558,12 @@ createHeart();
 
 const rerollBtn=
 
-document.getElementById("rerollBtn");
+document.getElementById(
+"rerollBtn"
+);
+
+
+
 
 
 
@@ -462,7 +575,7 @@ rerollBtn.onclick=()=>{
 
 
 
-let food=
+const food=
 
 document.getElementById(
 "foodResult"
@@ -470,16 +583,28 @@ document.getElementById(
 
 
 
-if(food && food!=="-" &&
 
-typeof addAvoid==="function"){
+
+
+if(food && food!=="-"){
+
+
+
+if(typeof addAvoid==="function"){
 
 
 
 addAvoid(food);
 
 
+
 }
+
+
+
+}
+
+
 
 
 
@@ -487,10 +612,122 @@ addAvoid(food);
 if(typeof spinWheel==="function"){
 
 
+
 spinWheel();
 
 
+
 }
+
+
+
+};
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// FAVORITE ⭐
+// ===============================
+
+
+const favoriteBtn=
+
+document.getElementById(
+"favoriteBtn"
+);
+
+
+
+
+
+
+if(favoriteBtn){
+
+
+
+favoriteBtn.onclick=()=>{
+
+
+
+const food=
+
+document.getElementById(
+"foodResult"
+)?.innerText;
+
+
+
+
+
+
+if(!food || food==="-")
+
+
+return;
+
+
+
+
+
+
+if(typeof saveFavorite==="function"){
+
+
+
+saveFavorite({
+
+food:food,
+
+drink:"🥤 น้ำหวาน",
+
+dessert:"🍰 ของหวาน"
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+showToast(
+
+"⭐ บันทึกเมนูโปรดแล้ว"
+
+);
+
+
+
+
+
+
+
+if(typeof createHeart==="function"){
+
+
+
+createHeart();
+
+
+
+}
+
+
 
 
 
@@ -508,15 +745,19 @@ spinWheel();
 
 
 
-
 // ===============================
-// SHARE 📤
+// SHARE
 // ===============================
 
 
 const shareBtn=
 
-document.getElementById("shareBtn");
+document.getElementById(
+"shareBtn"
+);
+
+
+
 
 
 
@@ -527,13 +768,17 @@ if(shareBtn){
 shareBtn.onclick=()=>{
 
 
+
 if(typeof shareToChompu==="function"){
+
 
 
 shareToChompu();
 
 
+
 }
+
 
 
 };
@@ -551,29 +796,35 @@ shareToChompu();
 
 
 // ===============================
-// SAVE SHARE IMAGE 📸
+// THEME 🌙
 // ===============================
 
 
-const saveImageBtn=
+const themeBtn=
 
 document.getElementById(
-"saveImageBtn"
+"themeBtn"
 );
 
 
 
-if(saveImageBtn){
 
 
 
-saveImageBtn.onclick=()=>{
+if(themeBtn){
 
 
-if(typeof saveShareImage==="function"){
+
+themeBtn.onclick=()=>{
 
 
-saveShareImage();
+
+if(typeof toggleTheme==="function"){
+
+
+
+toggleTheme();
+
 
 
 }
@@ -603,13 +854,19 @@ function createHeart(){
 
 
 
-let heart=
+const heart=
 
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 
-heart.className="heart";
+
+heart.className=
+
+"heart";
+
 
 
 heart.innerHTML=
@@ -620,9 +877,9 @@ heart.innerHTML=
 
 "💕",
 
-"💖",
+"💗",
 
-"💗"
+"💖"
 
 ]
 
@@ -640,15 +897,26 @@ Math.random()*4
 
 
 
+
+
 heart.style.left=
 
 Math.random()*90+"%";
 
 
 
+heart.style.bottom=
+
+"20px";
+
+
+
+
+
 document.body.appendChild(
 heart
 );
+
 
 
 
@@ -665,7 +933,9 @@ heart.remove();
 
 
 
+
 }
+
 
 
 
@@ -693,7 +963,10 @@ function showToast(text){
 
 const toast=
 
-document.createElement("div");
+document.createElement(
+"div"
+);
+
 
 
 
@@ -702,11 +975,17 @@ toast.className=
 "favorite-toast";
 
 
+
 toast.innerHTML=text;
 
 
 
-document.body.appendChild(toast);
+
+
+document.body.appendChild(
+toast
+);
+
 
 
 
@@ -715,7 +994,9 @@ document.body.appendChild(toast);
 setTimeout(()=>{
 
 
+
 toast.remove();
+
 
 
 },2000);
@@ -726,9 +1007,15 @@ toast.remove();
 
 
 
+
+
 window.showToast=
 
 showToast;
+
+
+
+
 
 
 

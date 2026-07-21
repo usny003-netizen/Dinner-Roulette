@@ -1,6 +1,6 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Smart Learning System 🧠
+ Dinner Roulette V12 ❤️
+ Smart Chompu System 🧠💕
 ================================= */
 
 
@@ -11,6 +11,7 @@ JSON.parse(
 
 localStorage.getItem(
 "smartFoods"
+
 )
 
 )||[];
@@ -21,9 +22,11 @@ localStorage.getItem(
 
 
 
-// =============================
+
+
+// ===============================
 // SAVE LIKE FOOD 👍
-// =============================
+// ===============================
 
 
 function saveLikeFood(food){
@@ -38,15 +41,16 @@ return;
 
 
 
+
 let item =
 
 smartFoods.find(
 
-data=>
-
-data.food===food
+f => f.food === food
 
 );
+
+
 
 
 
@@ -55,7 +59,7 @@ data.food===food
 if(item){
 
 
-item.score++;
+item.count++;
 
 
 }
@@ -67,7 +71,7 @@ smartFoods.push({
 
 food:food,
 
-score:1
+count:1
 
 });
 
@@ -78,121 +82,7 @@ score:1
 
 
 
-saveSmart();
 
-
-
-renderSmart();
-
-
-
-
-
-}
-
-
-
-
-
-
-
-window.saveLikeFood =
-
-saveLikeFood;
-
-
-
-
-
-
-
-
-
-// =============================
-// FAVORITE LEARNING ⭐
-// =============================
-
-
-function learnFavorite(food){
-
-
-
-if(!food)
-
-return;
-
-
-
-
-let item =
-
-smartFoods.find(
-
-data=>
-
-data.food===food
-
-);
-
-
-
-
-
-if(item){
-
-
-item.score+=2;
-
-
-}
-
-else{
-
-
-smartFoods.push({
-
-food:food,
-
-score:2
-
-});
-
-
-}
-
-
-
-
-
-saveSmart();
-
-
-renderSmart();
-
-
-
-}
-
-
-
-window.learnFavorite=
-
-learnFavorite;
-
-
-
-
-
-
-
-
-
-// =============================
-// SAVE DATA
-// =============================
-
-
-function saveSmart(){
 
 
 localStorage.setItem(
@@ -207,22 +97,36 @@ smartFoods
 );
 
 
+
+
+
+renderSmart();
+
+
+
 }
 
 
 
 
 
+window.saveLikeFood =
+saveLikeFood;
 
 
 
 
-// =============================
-// RANKING
-// =============================
 
 
-function getTopFoods(){
+
+
+
+// ===============================
+// SORT FAVORITE
+// ===============================
+
+
+function getTopFood(){
 
 
 
@@ -232,11 +136,11 @@ return smartFoods
 
 (a,b)=>
 
-b.score-a.score
+b.count-a.count
 
 )
 
-.slice(0,5);
+.slice(0,3);
 
 
 
@@ -250,16 +154,16 @@ b.score-a.score
 
 
 
-// =============================
+// ===============================
 // DISPLAY
-// =============================
+// ===============================
 
 
 function renderSmart(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "smartList"
@@ -275,6 +179,7 @@ return;
 
 
 
+
 list.innerHTML="";
 
 
@@ -282,16 +187,8 @@ list.innerHTML="";
 
 
 
-let top=
 
-getTopFoods();
-
-
-
-
-
-
-if(top.length===0){
+if(smartFoods.length===0){
 
 
 
@@ -300,10 +197,12 @@ list.innerHTML=
 `
 
 <li>
-ยังไม่มีข้อมูล ❤️
+กำลังเรียนรู้ Chompu ❤️
 </li>
 
 `;
+
+
 
 return;
 
@@ -315,11 +214,42 @@ return;
 
 
 
+let top =
+
+getTopFood();
+
+
+
+
 
 
 top.forEach(
 
-item=>{
+(item,index)=>{
+
+
+
+let icon;
+
+
+
+if(index===0)
+
+icon="🥇";
+
+else if(index===1)
+
+icon="🥈";
+
+else
+
+icon="🥉";
+
+
+
+
+
+
 
 
 let li=
@@ -330,29 +260,34 @@ document.createElement(
 
 
 
+
+
 li.innerHTML=
 
 `
 
-🧠 ${item.food}
+${icon}
+
+${item.food}
 
 <br>
 
-❤️ ความชอบ:
-
-${item.score}
-
-ครั้ง
+❤️ ชอบ ${item.count} ครั้ง
 
 `;
 
 
 
-list.appendChild(li);
+
+
+list.appendChild(
+li
+);
 
 
 
 });
+
 
 
 
@@ -367,18 +302,19 @@ list.appendChild(li);
 
 
 
-// =============================
+// ===============================
 // SMART RECOMMEND
-// =============================
+// ===============================
 
 
-function getSmartRecommend(){
+function smartRecommend(){
 
 
 
-let top=
+let top =
 
-getTopFoods();
+getTopFood();
+
 
 
 
@@ -400,11 +336,9 @@ return top[0].food;
 
 
 
-window.getSmartRecommend=
 
-getSmartRecommend;
-
-
+window.smartRecommend =
+smartRecommend;
 
 
 
@@ -412,28 +346,60 @@ getSmartRecommend;
 
 
 
-// =============================
-// RESET SMART
-// =============================
 
 
-function resetSmart(){
+// ===============================
+// SMART MESSAGE
+// ===============================
 
 
-
-smartFoods=[];
+function updateSmartMessage(){
 
 
 
-localStorage.removeItem(
+const food=
 
-"smartFoods"
+smartRecommend();
 
+
+
+
+if(!food)
+
+return;
+
+
+
+
+
+const message=
+
+document.getElementById(
+"mainMessage"
 );
 
 
 
-renderSmart();
+if(message){
+
+
+
+message.innerHTML=
+
+`
+
+🧠 Chompu น่าจะชอบ
+
+${food}
+
+💕
+
+
+`;
+
+
+
+}
 
 
 
@@ -442,21 +408,14 @@ renderSmart();
 
 
 
-window.resetSmart=
-
-resetSmart;
 
 
 
 
 
-
-
-
-
-// =============================
-// LOAD
-// =============================
+// ===============================
+// INIT
+// ===============================
 
 
 document.addEventListener(
@@ -467,6 +426,9 @@ document.addEventListener(
 
 
 renderSmart();
+
+
+updateSmartMessage();
 
 
 });

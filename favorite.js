@@ -1,32 +1,21 @@
 /* =================================
-   Dinner Roulette V2 ❤️
+   Dinner Roulette V2.5 ❤️
    favorite.js ⭐
 ================================= */
 
 
 
-let favorites =
+let favoriteData =
 
 JSON.parse(
 
-localStorage.getItem("favorites")
+localStorage.getItem("favorite")
 
 )
 
 || [];
 
 
-
-
-
-
-const favoriteBtn =
-
-document.getElementById(
-
-"favoriteBtn"
-
-);
 
 
 
@@ -43,20 +32,17 @@ document.getElementById(
 
 
 
-
 // ===============================
-// LOAD FAVORITE ⭐
+// แสดง Favorite
 // ===============================
 
 
-function showFavorites(){
-
+function showFavorite(){
 
 
 if(!favoriteList)
 
 return;
-
 
 
 
@@ -67,20 +53,17 @@ favoriteList.innerHTML="";
 
 
 
-if(favorites.length===0){
+
+if(favoriteData.length===0){
 
 
-
-favoriteList.innerHTML =
-
+favoriteList.innerHTML=
 
 `
 <li>
 ยังไม่มีเมนูโปรด ⭐
 </li>
 `;
-
-
 
 return;
 
@@ -92,15 +75,13 @@ return;
 
 
 
-
-favorites.forEach((item,index)=>{
-
+favoriteData.forEach((item,index)=>{
 
 
-const li =
+
+let li =
 
 document.createElement("li");
-
 
 
 
@@ -108,18 +89,27 @@ document.createElement("li");
 li.innerHTML =
 
 
-
 `
-${item}
+❤️ ${item.food}
 
-<button 
-class="deleteFavorite"
-data-index="${index}">
+<br>
+
+🥤 ${item.drink}
+
+<br>
+
+🍰 ${item.dessert}
+
+
+
+<button class="deleteFavorite"
+data-id="${index}">
+
 ❌
+
 </button>
 
 `;
-
 
 
 
@@ -129,8 +119,8 @@ favoriteList.appendChild(li);
 
 
 
-
 });
+
 
 
 
@@ -139,38 +129,27 @@ favoriteList.appendChild(li);
 
 // ปุ่มลบ
 
-const deleteButtons =
+document
 
-document.querySelectorAll(
+.querySelectorAll(".deleteFavorite")
 
-".deleteFavorite"
-
-);
+.forEach(btn=>{
 
 
+btn.onclick=()=>{
 
 
 
-deleteButtons.forEach(btn=>{
+let id =
 
-
-btn.addEventListener(
-
-"click",
-
-()=>{
-
-
-const index =
-
-btn.dataset.index;
+btn.dataset.id;
 
 
 
 
-favorites.splice(
+favoriteData.splice(
 
-index,
+id,
 
 1
 
@@ -178,19 +157,11 @@ index,
 
 
 
-
-
-saveFavorites();
-
-
-
-showFavorites();
+saveFavorite();
 
 
 
-}
-
-);
+};
 
 
 
@@ -198,6 +169,7 @@ showFavorites();
 
 
 
+
 }
 
 
@@ -209,23 +181,25 @@ showFavorites();
 
 
 // ===============================
-// SAVE ⭐
+// Save
 // ===============================
 
 
-
-function saveFavorites(){
+function saveFavorite(){
 
 
 
 localStorage.setItem(
 
-"favorites",
+"favorite",
 
-JSON.stringify(favorites)
+JSON.stringify(favoriteData)
 
 );
 
+
+
+showFavorite();
 
 
 }
@@ -239,8 +213,21 @@ JSON.stringify(favorites)
 
 
 // ===============================
-// ADD FAVORITE
+// เพิ่ม Favorite
 // ===============================
+
+
+
+const favoriteBtn =
+
+document.getElementById(
+
+"favoriteBtn"
+
+);
+
+
+
 
 
 
@@ -248,21 +235,13 @@ if(favoriteBtn){
 
 
 
-favoriteBtn.addEventListener(
-
-"click",
-
-()=>{
+favoriteBtn.onclick=()=>{
 
 
 
-
-
-const dinner =
+let dinner =
 
 window.currentDinnerSet;
-
-
 
 
 
@@ -272,7 +251,7 @@ if(!dinner){
 
 alert(
 
-"กรุณาสุ่มเมนูก่อนนะ ❤️"
+"กรุณาสุ่มเมนูก่อน ❤️"
 
 );
 
@@ -288,27 +267,29 @@ return;
 
 
 
-const menu =
+// เช็กซ้ำ
+
+
+let duplicate =
+
+favoriteData.some(item=>
+
+
+item.food === dinner.food &&
+
+item.drink === dinner.drink &&
+
+item.dessert === dinner.dessert
+
+
+);
 
 
 
-`${dinner.food}
-
-${dinner.drink}
-
-${dinner.dessert}`;
 
 
 
-
-// กันซ้ำ
-
-
-if(
-
-favorites.includes(menu)
-
-){
+if(duplicate){
 
 
 
@@ -330,49 +311,44 @@ return;
 
 
 
-favorites.push(menu);
 
 
+favoriteData.unshift({
 
 
-
-saveFavorites();
-
+food:dinner.food,
 
 
-showFavorites();
+drink:dinner.drink,
 
 
-
-
-
-// เปลี่ยนข้อความปุ่มชั่วคราว
-
-
-favoriteBtn.innerHTML =
-
-"❤️ บันทึกแล้ว";
-
-
-
-
-
-
-setTimeout(()=>{
-
-
-favoriteBtn.innerHTML =
-
-"⭐ บันทึกเมนูโปรด";
-
-
-
-},1500);
-
+dessert:dinner.dessert
 
 
 
 });
+
+
+
+
+
+
+
+saveFavorite();
+
+
+
+
+
+createFavoriteEffect();
+
+
+
+
+
+};
+
+
 
 
 
@@ -386,6 +362,65 @@ favoriteBtn.innerHTML =
 
 
 
-// เริ่มโหลด
+// ===============================
+// Effect
+// ===============================
 
-showFavorites();
+
+function createFavoriteEffect(){
+
+
+
+for(let i=0;i<10;i++){
+
+
+let heart =
+
+document.createElement("div");
+
+
+
+heart.className="heart";
+
+
+
+heart.innerHTML="⭐";
+
+
+
+heart.style.left=
+
+Math.random()*100+"%";
+
+
+
+document.body.appendChild(heart);
+
+
+
+setTimeout(()=>{
+
+
+heart.remove();
+
+
+},2000);
+
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+// โหลดตอนเปิดเว็บ
+
+showFavorite();

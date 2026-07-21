@@ -1,12 +1,13 @@
-/* =================================
- Dinner Roulette V14 ❤️
- Couple Love UI Design
-================================= */
+/* =====================================
+ Dinner Roulette V14 FINAL ❤️
+ Complete Couple Love UI
+===================================== */
 
 
 *{
     box-sizing:border-box;
 }
+
 
 
 body{
@@ -22,12 +23,15 @@ body{
     "Arial",
     sans-serif;
 
+
     background:
+
     linear-gradient(
-        135deg,
-        #fff0f6,
-        #ffe5ec
+    135deg,
+    #fff0f6,
+    #ffe5ec
     );
+
 
     color:#555;
 
@@ -38,14 +42,14 @@ body{
 
 
 
-/* =========================
+/* ===============================
  APP
-========================= */
+=============================== */
 
 
 .app{
 
-    max-width:650px;
+    max-width:680px;
 
     margin:auto;
 
@@ -54,95 +58,38 @@ body{
 
 
 
-/* =========================
- CARD
-========================= */
 
-
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
-    border-radius:30px;
-
-
-    box-shadow:
-
-    0 10px 30px
-    rgba(255,120,160,.15);
-
-
-    animation:
-
-    cardShow .5s;
-
-}
-
-
-
-@keyframes cardShow{
-
-from{
-
-opacity:0;
-
-transform:
-translateY(20px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
-
-}
-
-
-
-
-
-/* =========================
+/* ===============================
  START SCREEN
-========================= */
+=============================== */
 
 
 #startScreen{
+
 
 position:fixed;
 
 inset:0;
 
+
 display:flex;
 
-align-items:center;
-
 justify-content:center;
+
+align-items:center;
 
 
 background:
 
 linear-gradient(
-
 135deg,
-
 #ff9fc5,
-
 #ffc8dd
-
 );
 
 
-z-index:9999;
+z-index:99999;
+
 
 }
 
@@ -153,17 +100,20 @@ z-index:9999;
 
 background:white;
 
+
 padding:40px;
 
+
 border-radius:40px;
+
 
 text-align:center;
 
 
 box-shadow:
 
-0 20px 50px
-rgba(0,0,0,.2);
+0 20px 60px rgba(0,0,0,.2);
+
 
 }
 
@@ -173,38 +123,104 @@ rgba(0,0,0,.2);
 
 color:#ff5c9a;
 
+font-size:35px;
+
 }
 
 
 
 
 
+/* ===============================
+ CARD
+=============================== */
+
+
+.card{
+
+
+background:white;
+
+
+padding:25px;
+
+
+margin-bottom:20px;
+
+
+border-radius:30px;
+
+
+box-shadow:
+
+
+0 10px 30px
+
+rgba(255,120,160,.15);
+
+
+animation:
+
+cardShow .5s;
+
+
+}
 
 
 
-/* =========================
- HEADER
-========================= */
+@keyframes cardShow{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+/* ===============================
+ HERO
+=============================== */
 
 
 .hero{
 
+
 text-align:center;
+
 
 background:
 
 linear-gradient(
-
 135deg,
-
 #ff9fc5,
-
 #ffc8dd
-
 );
 
 
 color:white;
+
 
 }
 
@@ -212,9 +228,12 @@ color:white;
 
 .hero h1{
 
+
 font-size:32px;
 
-margin-bottom:5px;
+
+margin:5px;
+
 
 }
 
@@ -224,31 +243,15 @@ margin-bottom:5px;
 
 
 
-/* =========================
+/* ===============================
  BUTTON
-========================= */
+=============================== */
 
 
 button{
 
 
 border:none;
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff9fc5,
-
-#ff5c9a
-
-);
-
-
-color:white;
 
 
 padding:
@@ -259,13 +262,27 @@ padding:
 border-radius:30px;
 
 
-font-size:15px;
-
-
 cursor:pointer;
 
 
+font-size:15px;
+
+
 margin:5px;
+
+
+color:white;
+
+
+background:
+
+
+linear-gradient(
+135deg,
+#ff9fc5,
+#ff5c9a
+);
+
 
 
 transition:.3s;
@@ -275,12 +292,13 @@ transition:.3s;
 
 
 
-
 button:hover{
+
 
 transform:
 
 scale(1.05);
+
 
 }
 
@@ -288,9 +306,11 @@ scale(1.05);
 
 button:active{
 
+
 transform:
 
 scale(.95);
+
 
 }
 
@@ -300,9 +320,10 @@ scale(.95);
 
 
 
-/* =========================
+
+/* ===============================
  INPUT
-========================= */
+=============================== */
 
 
 input,
@@ -323,13 +344,10 @@ border:
 2px solid #ffd6e7;
 
 
-outline:none;
-
-
 margin-top:10px;
 
 
-background:white;
+outline:none;
 
 
 }
@@ -338,11 +356,9 @@ background:white;
 
 
 
-
-
-/* =========================
- MODE + CATEGORY
-========================= */
+/* ===============================
+ MODE CATEGORY
+=============================== */
 
 
 .mode-group,
@@ -351,9 +367,11 @@ background:white;
 
 display:flex;
 
-flex-wrap:wrap;
 
 justify-content:center;
+
+
+flex-wrap:wrap;
 
 
 }
@@ -364,14 +382,13 @@ justify-content:center;
 .category{
 
 
-background:#ffd6e7;
+background:#ffe5ec;
 
 
 color:#ff5c9a;
 
 
 }
-
 
 
 
@@ -382,13 +399,9 @@ color:#ff5c9a;
 background:
 
 linear-gradient(
-
 135deg,
-
 #ff5c9a,
-
 #ff9fc5
-
 );
 
 
@@ -403,9 +416,9 @@ color:white;
 
 
 
-/* =========================
- WHEEL
-========================= */
+/* ===============================
+ WHEEL 🎡
+=============================== */
 
 
 .wheel-wrapper{
@@ -423,7 +436,7 @@ justify-content:center;
 align-items:center;
 
 
-margin:25px 0;
+margin:30px 0;
 
 
 }
@@ -434,8 +447,6 @@ margin:25px 0;
 #wheel{
 
 
-width:420px;
-
 max-width:100%;
 
 
@@ -444,8 +455,10 @@ border-radius:50%;
 
 box-shadow:
 
-0 15px 35px
-rgba(0,0,0,.15);
+
+0 15px 40px
+
+rgba(255,100,150,.25);
 
 
 }
@@ -459,10 +472,10 @@ rgba(0,0,0,.15);
 position:absolute;
 
 
-top:-20px;
+top:-25px;
 
 
-font-size:40px;
+font-size:45px;
 
 
 color:#ff5c9a;
@@ -479,9 +492,9 @@ z-index:5;
 
 
 
-/* =========================
+/* ===============================
  RESULT
-========================= */
+=============================== */
 
 
 .result-box{
@@ -497,19 +510,16 @@ gap:15px;
 
 
 
-
 .result-box div{
 
 
-background:
+background:#fff0f6;
 
-#fff0f6;
+
+padding:18px;
 
 
 border-radius:25px;
-
-
-padding:15px;
 
 
 text-align:center;
@@ -519,14 +529,13 @@ text-align:center;
 
 
 
-
 .result-box h3{
 
 
 color:#ff5c9a;
 
 
-font-size:22px;
+font-size:24px;
 
 
 }
@@ -537,69 +546,31 @@ font-size:22px;
 
 
 
+/* ===============================
+ SMART 🧠
+=============================== */
 
-/* =========================
- SMART
-========================= */
+
+#smartList{
+
+
+padding:0;
+
+
+}
+
 
 
 #smartList li{
 
 
-background:#fff5fa;
-
-
-padding:12px;
-
-
-border-radius:20px;
-
-
-margin-bottom:10px;
-
-
-}
-
-
-
-
-
-
-
-/* =========================
- AVOID 🚫
-========================= */
-
-
-.avoid-card{
-
-
 list-style:none;
 
 
-display:flex;
+background:#fff5fa;
 
 
-justify-content:space-between;
-
-
-align-items:center;
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#fff0f6,
-
-#ffe5ec
-
-);
-
-
-padding:12px;
+padding:15px;
 
 
 border-radius:25px;
@@ -612,13 +583,33 @@ margin-bottom:10px;
 
 
 
-.avoid-card button{
 
 
-padding:8px 15px;
 
 
-font-size:13px;
+
+
+/* ===============================
+ FAVORITE ⭐
+=============================== */
+
+
+#favoriteList li{
+
+
+list-style:none;
+
+
+background:#fff5fa;
+
+
+padding:15px;
+
+
+border-radius:25px;
+
+
+margin-bottom:10px;
 
 
 }
@@ -630,9 +621,33 @@ font-size:13px;
 
 
 
-/* =========================
- TIMELINE 📜
-========================= */
+
+/* ===============================
+ HISTORY TIMELINE 📜
+=============================== */
+
+
+.history-card{
+
+
+overflow:hidden;
+
+
+}
+
+
+
+.history-sub{
+
+
+text-align:center;
+
+
+color:#ff9fc5;
+
+
+}
+
 
 
 .timeline{
@@ -672,7 +687,7 @@ width:4px;
 background:#ffb6d9;
 
 
-border-radius:10px;
+border-radius:20px;
 
 
 }
@@ -683,9 +698,6 @@ border-radius:10px;
 
 
 list-style:none;
-
-
-position:relative;
 
 
 background:white;
@@ -702,8 +714,13 @@ border-radius:25px;
 
 box-shadow:
 
+
 0 5px 15px
+
 rgba(255,100,150,.15);
+
+
+position:relative;
 
 
 }
@@ -733,9 +750,86 @@ top:15px;
 
 
 
-/* =========================
- MISSION 💌
-========================= */
+/* ===============================
+ AVOID 🚫
+=============================== */
+
+
+.avoid-card{
+
+
+list-style:none;
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+background:
+
+linear-gradient(
+135deg,
+#fff0f6,
+#ffe5ec
+);
+
+
+padding:12px;
+
+
+border-radius:25px;
+
+
+margin-bottom:12px;
+
+
+}
+
+
+
+.avoid-food{
+
+
+color:#ff5c9a;
+
+
+font-weight:bold;
+
+
+}
+
+
+
+.empty-avoid{
+
+
+list-style:none;
+
+
+text-align:center;
+
+
+color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+ DAILY MISSION 💌
+=============================== */
 
 
 #missionScore{
@@ -744,10 +838,10 @@ top:15px;
 text-align:center;
 
 
+font-size:26px;
+
+
 color:#ff5c9a;
-
-
-font-size:24px;
 
 
 }
@@ -756,9 +850,61 @@ font-size:24px;
 
 
 
-/* =========================
+
+.mission-popup{
+
+
+position:fixed;
+
+
+top:50%;
+
+
+left:50%;
+
+
+transform:
+
+translate(-50%,-50%);
+
+
+background:white;
+
+
+padding:35px;
+
+
+border-radius:35px;
+
+
+z-index:99999;
+
+
+text-align:center;
+
+
+color:#ff5c9a;
+
+
+box-shadow:
+
+
+0 20px 60px rgba(0,0,0,.25);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
  SHARE CARD 📸
-========================= */
+=============================== */
 
 
 #shareCard{
@@ -767,31 +913,25 @@ font-size:24px;
 background:
 
 linear-gradient(
-
 135deg,
-
 #ff9fc5,
-
 #ffd6e7
-
 );
 
 
 color:white;
 
 
+padding:30px;
+
+
 border-radius:35px;
-
-
-padding:25px;
 
 
 text-align:center;
 
 
 }
-
-
 
 
 
@@ -809,69 +949,11 @@ font-size:30px;
 
 
 
-/* =========================
- HEART EFFECT
-========================= */
 
 
-.heart{
-
-
-position:fixed;
-
-
-font-size:30px;
-
-
-pointer-events:none;
-
-
-z-index:9999;
-
-
-animation:
-
-heartMove 2s forwards;
-
-
-}
-
-
-
-@keyframes heartMove{
-
-
-0%{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
-
-
-100%{
-
-opacity:0;
-
-transform:
-translateY(-300px);
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* =========================
- WIN POPUP
-========================= */
+/* ===============================
+ WIN POPUP 🎉
+=============================== */
 
 
 .win-popup{
@@ -894,7 +976,7 @@ translate(-50%,-50%);
 background:white;
 
 
-padding:30px;
+padding:35px;
 
 
 border-radius:35px;
@@ -908,8 +990,74 @@ z-index:99999;
 
 box-shadow:
 
-0 20px 60px
-rgba(0,0,0,.25);
+
+0 20px 60px rgba(0,0,0,.25);
+
+
+}
+
+
+
+
+
+/* ===============================
+ HEART ❤️
+=============================== */
+
+
+.heart{
+
+
+position:fixed;
+
+
+font-size:30px;
+
+
+z-index:99999;
+
+
+pointer-events:none;
+
+
+animation:
+
+heartFloat 2s forwards;
+
+
+}
+
+
+
+@keyframes heartFloat{
+
+
+from{
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+to{
+
+
+opacity:0;
+
+
+transform:
+
+translateY(-300px);
+
+
+}
 
 
 }
@@ -920,9 +1068,54 @@ rgba(0,0,0,.25);
 
 
 
-/* =========================
+
+/* ===============================
+ TOAST
+=============================== */
+
+
+.favorite-toast,
+.avoid-toast{
+
+
+position:fixed;
+
+
+bottom:30px;
+
+
+left:50%;
+
+
+transform:
+
+translateX(-50%);
+
+
+background:#ff5c9a;
+
+
+color:white;
+
+
+padding:14px 25px;
+
+
+border-radius:30px;
+
+
+z-index:99999;
+
+
+}
+
+
+
+
+
+/* ===============================
  DARK MODE 🌙
-========================= */
+=============================== */
 
 
 body.dark{
@@ -931,13 +1124,9 @@ body.dark{
 background:
 
 linear-gradient(
-
 135deg,
-
-#222,
-
+#1f1f1f,
 #333
-
 );
 
 
@@ -951,7 +1140,7 @@ color:white;
 body.dark .card{
 
 
-background:#2d2d2d;
+background:#2b2b2b;
 
 
 color:white;
@@ -963,7 +1152,8 @@ color:white;
 
 body.dark .result-box div,
 body.dark .timeline li,
-body.dark #smartList li{
+body.dark #smartList li,
+body.dark #favoriteList li{
 
 
 background:#444;
@@ -992,9 +1182,12 @@ color:white;
 
 
 
-/* =========================
- MOBILE
-========================= */
+
+
+
+/* ===============================
+ MOBILE 📱
+=============================== */
 
 
 @media(max-width:600px){
@@ -1010,9 +1203,12 @@ padding:10px;
 
 .card{
 
+
 padding:18px;
 
+
 border-radius:25px;
+
 
 }
 
@@ -1020,7 +1216,9 @@ border-radius:25px;
 
 .hero h1{
 
-font-size:26px;
+
+font-size:25px;
+
 
 }
 
@@ -1028,7 +1226,9 @@ font-size:26px;
 
 button{
 
+
 font-size:14px;
+
 
 }
 
@@ -1036,9 +1236,22 @@ font-size:14px;
 
 #wheel{
 
+
 width:320px;
 
+
 height:320px;
+
+
+}
+
+
+
+.timeline{
+
+
+padding-left:30px;
+
 
 }
 

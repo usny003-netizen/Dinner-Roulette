@@ -1,77 +1,186 @@
 /* =================================
-   Dinner Roulette ❤️
-   Favorite System ⭐
+   Dinner Roulette V2 ❤️
+   favorite.js ⭐
 ================================= */
 
 
-const favoriteBtn = 
-document.getElementById("favoriteBtn");
 
+let favorites =
 
-const favoriteList = 
-document.getElementById("favoriteList");
-
-
-
-
-// โหลดข้อมูล
-
-let favorites = JSON.parse(
+JSON.parse(
 
 localStorage.getItem("favorites")
 
-) || [];
+)
+
+|| [];
 
 
 
 
-// แสดงรายการ
+
+
+const favoriteBtn =
+
+document.getElementById(
+
+"favoriteBtn"
+
+);
+
+
+
+const favoriteList =
+
+document.getElementById(
+
+"favoriteList"
+
+);
+
+
+
+
+
+
+
+// ===============================
+// LOAD FAVORITE ⭐
+// ===============================
+
 
 function showFavorites(){
 
 
-    if(!favoriteList)
-    return;
+
+if(!favoriteList)
+
+return;
 
 
 
-    favoriteList.innerHTML="";
+
+
+favoriteList.innerHTML="";
 
 
 
-    if(favorites.length === 0){
 
 
-        favoriteList.innerHTML =
-
-        "<li>ยังไม่มีเมนูโปรด</li>";
-
-        return;
-
-    }
+if(favorites.length===0){
 
 
 
-    favorites.forEach(food=>{
+favoriteList.innerHTML =
 
 
-        const li = document.createElement("li");
+`
+<li>
+ยังไม่มีเมนูโปรด ⭐
+</li>
+`;
 
 
-        li.innerHTML =
 
-        "⭐ " + food;
-
-
-
-        favoriteList.appendChild(li);
-
-
-    });
-
+return;
 
 
 }
+
+
+
+
+
+
+
+favorites.forEach((item,index)=>{
+
+
+
+const li =
+
+document.createElement("li");
+
+
+
+
+
+li.innerHTML =
+
+
+
+`
+${item}
+
+<button 
+class="deleteFavorite"
+data-index="${index}">
+❌
+</button>
+
+`;
+
+
+
+
+
+
+favoriteList.appendChild(li);
+
+
+
+
+});
+
+
+
+
+
+
+// ปุ่มลบ
+
+const deleteButtons =
+
+document.querySelectorAll(
+
+".deleteFavorite"
+
+);
+
+
+
+
+
+deleteButtons.forEach(btn=>{
+
+
+btn.addEventListener(
+
+"click",
+
+()=>{
+
+
+const index =
+
+btn.dataset.index;
+
+
+
+
+favorites.splice(
+
+index,
+
+1
+
+);
+
+
+
+
+
+saveFavorites();
 
 
 
@@ -79,14 +188,64 @@ showFavorites();
 
 
 
+}
+
+);
+
+
+
+});
+
+
+
+}
 
 
 
 
-// บันทึกเมนู
+
+
+
+
+
+// ===============================
+// SAVE ⭐
+// ===============================
+
+
+
+function saveFavorites(){
+
+
+
+localStorage.setItem(
+
+"favorites",
+
+JSON.stringify(favorites)
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// ADD FAVORITE
+// ===============================
+
 
 
 if(favoriteBtn){
+
 
 
 favoriteBtn.addEventListener(
@@ -96,74 +255,137 @@ favoriteBtn.addEventListener(
 ()=>{
 
 
-    const food =
-
-    window.currentFood;
 
 
 
-    if(!food){
+const dinner =
 
-
-        alert(
-
-        "กรุณาสุ่มอาหารก่อน ❤️"
-
-        );
-
-        return;
-
-    }
+window.currentDinnerSet;
 
 
 
 
 
-    if(!favorites.includes(food)){
-
-
-        favorites.push(food);
+if(!dinner){
 
 
 
-        localStorage.setItem(
+alert(
 
-        "favorites",
+"กรุณาสุ่มเมนูก่อนนะ ❤️"
 
-        JSON.stringify(favorites)
-
-        );
+);
 
 
 
-        showFavorites();
+return;
+
+
+}
 
 
 
-        alert(
-
-        "⭐ เพิ่มเมนูโปรดแล้ว"
-
-        );
 
 
-    }
 
-    else{
-
-
-        alert(
-
-        "เมนูนี้มีในรายการแล้ว"
-
-        );
+const menu =
 
 
-    }
+
+`${dinner.food}
+
+${dinner.drink}
+
+${dinner.dessert}`;
+
+
+
+
+// กันซ้ำ
+
+
+if(
+
+favorites.includes(menu)
+
+){
+
+
+
+alert(
+
+"เมนูนี้มีในรายการโปรดแล้ว ⭐"
+
+);
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+favorites.push(menu);
+
+
+
+
+
+saveFavorites();
+
+
+
+showFavorites();
+
+
+
+
+
+// เปลี่ยนข้อความปุ่มชั่วคราว
+
+
+favoriteBtn.innerHTML =
+
+"❤️ บันทึกแล้ว";
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+favoriteBtn.innerHTML =
+
+"⭐ บันทึกเมนูโปรด";
+
+
+
+},1500);
+
 
 
 
 });
 
 
+
 }
+
+
+
+
+
+
+
+
+
+// เริ่มโหลด
+
+showFavorites();

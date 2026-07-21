@@ -7,11 +7,15 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>❤️ Dinner Roulette</title>
+
 
 <meta name="theme-color" content="#ff9fc5">
 
+
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -19,37 +23,35 @@
 <body>
 
 
-<!-- EFFECT AREA -->
 
-<div id="confetti"></div>
+<!-- ================= START ================= -->
 
-
-
-
-<!-- START SCREEN -->
 
 <div id="startScreen">
 
-    <div class="start-box">
 
-        <h1>
-            ❤️ Dinner Roulette
-        </h1>
+<div class="start-box">
 
 
-        <p>
-            วันนี้กินอะไรดีนะที่รัก 💕
-        </p>
+<h1>
+❤️ Dinner Roulette
+</h1>
 
 
-        <button id="startBtn">
-
-            💖 เริ่มเล่น
-
-        </button>
+<p>
+วันนี้กินอะไรดีนะที่รัก 💕
+</p>
 
 
-    </div>
+<button id="startBtn">
+
+💖 เริ่มเล่น
+
+</button>
+
+
+</div>
+
 
 </div>
 
@@ -58,12 +60,20 @@
 
 
 
-<!-- MAIN APP -->
-
-<div class="app" id="app">
 
 
+<!-- ================= APP ================= -->
 
+
+<div class="app">
+
+
+
+
+
+
+
+<!-- HEADER -->
 
 
 <header class="card hero">
@@ -88,7 +98,9 @@
 
 
 
-<!-- MODE -->
+
+<!-- CHOOSE MODE -->
+
 
 <section class="card">
 
@@ -125,7 +137,39 @@
 </button>
 
 
+
 </div>
+
+
+
+
+
+<div class="partner-name">
+
+
+<input
+
+id="partnerName"
+
+type="text"
+
+placeholder="Chompu 💕">
+
+
+</div>
+
+
+
+
+
+<p id="chooserMessage">
+
+
+💕 สุ่มอาหารเย็นกับคนพิเศษ 🍽️
+
+
+</p>
+
 
 
 </section>
@@ -140,6 +184,7 @@
 
 <!-- WHEEL -->
 
+
 <section class="card">
 
 
@@ -149,7 +194,9 @@
 
 
 
+
 <div class="wheel-wrapper">
+
 
 
 <div id="pointer">
@@ -160,14 +207,21 @@
 
 
 
-<canvas id="wheel"
+
+<canvas
+
+id="wheel"
+
 width="420"
+
 height="420">
 
 </canvas>
 
 
+
 </div>
+
 
 
 
@@ -181,11 +235,13 @@ height="420">
 
 
 
+
 <button id="autoBtn">
 
 💖 สุ่มจนกว่าจะถูกใจ
 
 </button>
+
 
 
 
@@ -206,7 +262,9 @@ height="420">
 
 
 <h2>
+
 🍽️ วันนี้กิน...
+
 </h2>
 
 
@@ -222,9 +280,13 @@ height="420">
 🍜 อาหาร
 </span>
 
+
 <h3 id="foodResult">
+
 -
+
 </h3>
+
 
 </div>
 
@@ -238,9 +300,13 @@ height="420">
 🥤 เครื่องดื่ม
 </span>
 
+
 <h3 id="drinkResult">
+
 -
+
 </h3>
+
 
 </div>
 
@@ -254,11 +320,16 @@ height="420">
 🍰 ของหวาน
 </span>
 
+
 <h3 id="dessertResult">
+
 -
+
 </h3>
 
+
 </div>
+
 
 
 
@@ -278,11 +349,13 @@ height="420">
 
 
 
+
 <button id="rerollBtn">
 
 🙅 ไม่เอา สุ่มใหม่
 
 </button>
+
 
 
 
@@ -311,16 +384,20 @@ height="420">
 
 
 <h2>
+
 ⭐ เมนูโปรด
+
 </h2>
 
 
 
 <ul id="favoriteList">
 
+
 <li>
 ยังไม่มีเมนูโปรด
 </li>
+
 
 </ul>
 
@@ -342,16 +419,21 @@ height="420">
 
 
 <h2>
+
 📜 ประวัติการสุ่ม
+
 </h2>
+
 
 
 
 <ul id="historyList">
 
+
 <li>
 ยังไม่มีประวัติ
 </li>
+
 
 </ul>
 
@@ -373,8 +455,11 @@ height="420">
 
 
 <h2>
+
 ⚙️ ตั้งค่า
+
 </h2>
+
 
 
 
@@ -383,6 +468,8 @@ height="420">
 🌙 Dark Mode
 
 </button>
+
+
 
 
 
@@ -411,20 +498,31 @@ height="420">
 
 
 <h2>
+
 🎵 เพลงของเรา
+
 </h2>
 
 
 
 
-<audio id="bgMusic" loop>
+
+<audio
+
+id="bgMusic"
+
+loop>
 
 
 <source src="love.mp3"
+
 type="audio/mpeg">
 
 
 </audio>
+
+
+
 
 
 
@@ -437,13 +535,6 @@ type="audio/mpeg">
 
 
 
-<button id="muteBtn">
-
-🔇 ปิดเสียง
-
-</button>
-
-
 
 
 
@@ -451,11 +542,13 @@ type="audio/mpeg">
 <select id="musicSelect">
 
 
+
 <option value="love.mp3">
 
 💖 เพลงหวาน
 
 </option>
+
 
 
 
@@ -467,6 +560,8 @@ type="audio/mpeg">
 
 
 
+
+
 <option value="lofi.mp3">
 
 ☕ Lo-fi
@@ -474,7 +569,9 @@ type="audio/mpeg">
 </option>
 
 
+
 </select>
+
 
 
 
@@ -499,6 +596,8 @@ type="audio/mpeg">
 
 
 
+
+
 </div>
 
 
@@ -507,10 +606,10 @@ type="audio/mpeg">
 
 
 
-<!-- JAVASCRIPT -->
 
 
-<script src="script.js"></script>
+<!-- SCRIPT -->
+
 
 <script src="wheel.js"></script>
 
@@ -519,6 +618,8 @@ type="audio/mpeg">
 <script src="history.js"></script>
 
 <script src="theme.js"></script>
+
+<script src="script.js"></script>
 
 
 

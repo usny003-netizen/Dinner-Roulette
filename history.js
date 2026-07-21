@@ -1,118 +1,52 @@
 /* =================================
- Dinner Roulette Chompu V17 ❤️
- Couple Memory Timeline FINAL 📜💕
+ Dinner Roulette Chompu V19 ❤️
+ History Timeline 📜
+ PART 3.2
 ================================= */
 
 
-let historyFoods =
+let dinnerHistory =
 
 JSON.parse(
-
-localStorage.getItem(
-"dinnerHistory"
+localStorage.getItem("dinnerHistory")
 )
-
-)
-
-||[];
+||
+[];
 
 
 
 
-// ===============================
-// SAVE HISTORY 📜
-// ===============================
-
+// SAVE HISTORY
 
 function saveHistory(data){
 
 
 if(!data || !data.food)
-
 return;
 
 
 
-const now = new Date();
-
-
-
-const record = {
-
+dinnerHistory.unshift({
 
 food:data.food,
 
+drink:data.drink,
 
-drink:data.drink || "🥤 น้ำหวาน",
+dessert:data.dessert,
 
-
-dessert:data.dessert || "🍰 ของหวาน",
-
-
-
-mode:
-
-data.mode ||
-
-window.currentMode ||
-
-"สุ่ม",
-
-
+mode:data.mode,
 
 date:
+new Date()
+.toLocaleDateString("th-TH")
 
-now.toLocaleDateString(
-"th-TH"
-),
-
-
-
-time:
-
-now.toLocaleTimeString(
-"th-TH",
-
-{
-
-hour:"2-digit",
-
-minute:"2-digit"
-
-}
-
-)
-
-
-};
-
-
-
-
-
-historyFoods.unshift(record);
-
-
-
-
-// เก็บ 50 ครั้งล่าสุด
-
-if(historyFoods.length>50){
-
-
-historyFoods.pop();
-
-
-}
+});
 
 
 
 localStorage.setItem(
-
 "dinnerHistory",
-
-JSON.stringify(historyFoods)
-
+JSON.stringify(dinnerHistory)
 );
 
 
@@ -125,69 +59,17 @@ renderHistory();
 
 
 
-window.saveHistory =
+window.saveHistory=
 saveHistory;
 
 
 
 
 
-
-
-
-
-// ===============================
-// MODE TEXT
-// ===============================
-
-
-function getModeText(mode){
-
-
-if(mode==="แฟน"){
-
-
-return "💕 Chompu เลือกให้";
-
-
-}
-
-
-if(mode==="ฉัน"){
-
-
-return "🌸 ฉันเลือก";
-
-
-}
-
-
-
-return "🎲 หัวใจเลือก";
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// RENDER TIMELINE 📜
-// ===============================
-
-
 function renderHistory(){
 
 
-
 const list =
-
 document.getElementById(
 "historyList"
 );
@@ -195,10 +77,7 @@ document.getElementById(
 
 
 if(!list)
-
 return;
-
-
 
 
 
@@ -206,117 +85,51 @@ list.innerHTML="";
 
 
 
-
-
-if(historyFoods.length===0){
-
+if(dinnerHistory.length===0){
 
 
 list.innerHTML=
-
 `
-
-<li class="empty-history">
-
+<li>
 ❤️ ยังไม่มีความทรงจำ
-
 </li>
-
 `;
 
 return;
-
 
 }
 
 
 
 
-
-
-
-historyFoods.forEach(
-
+dinnerHistory.forEach(
 (item,index)=>{
 
 
-
 const li =
-
-document.createElement(
-"li"
-);
-
-
-
-li.className =
-"timeline-item";
-
-
+document.createElement("li");
 
 
 
 li.innerHTML=
-
 `
-
-<div class="timeline-content">
-
-
-<h3>
-
 ❤️ ${item.food}
 
-</h3>
-
-
-
-<p>
-
+<br>
 🥤 ${item.drink}
 
-</p>
-
-
-
-<p>
-
+<br>
 🍰 ${item.dessert}
 
-</p>
-
-
-
-<p>
-
-${getModeText(item.mode)}
-
-</p>
-
-
-
-<span>
-
+<br>
 📅 ${item.date}
-
-⏰ ${item.time}
-
-</span>
-
 
 
 <button onclick="removeHistory(${index})">
-
-🗑️ ลบ
-
+🗑️
 </button>
 
-
-</div>
-
-
 `;
-
 
 
 
@@ -328,44 +141,21 @@ list.appendChild(li);
 
 
 
-
 }
 
 
-
-
-
-
-
-
-
-// ===============================
-// REMOVE ONE
-// ===============================
 
 
 function removeHistory(index){
 
 
-
-historyFoods.splice(
-
-index,
-
-1
-
-);
+dinnerHistory.splice(index,1);
 
 
 
 localStorage.setItem(
-
 "dinnerHistory",
-
-JSON.stringify(
-historyFoods
-)
-
+JSON.stringify(dinnerHistory)
 );
 
 
@@ -374,62 +164,19 @@ renderHistory();
 
 
 
-if(typeof showToast==="function"){
-
-
-showToast(
-"🗑️ ลบความทรงจำแล้ว"
-);
-
-
 }
 
-
-
-}
-
-
-
-window.removeHistory =
-removeHistory;
-
-
-
-
-
-
-
-
-
-// ===============================
-// CLEAR ALL
-// ===============================
 
 
 function clearHistory(){
 
 
-
-if(!confirm(
-
-"ล้างความทรงจำทั้งหมดไหม ❤️"
-
-))
-
-return;
-
-
-
-
-
-historyFoods=[];
+dinnerHistory=[];
 
 
 
 localStorage.removeItem(
-
 "dinnerHistory"
-
 );
 
 
@@ -438,108 +185,21 @@ renderHistory();
 
 
 
-if(typeof showToast==="function"){
-
-
-showToast(
-"🧹 ล้าง Timeline แล้ว"
-);
-
-
 }
 
 
 
-}
-
-
-
-window.clearHistory =
+window.clearHistory=
 clearHistory;
 
 
+window.removeHistory=
+removeHistory;
 
 
-
-
-
-
-
-// ===============================
-// GET HISTORY
-// ===============================
-
-
-function getHistory(){
-
-
-return historyFoods;
-
-
-}
-
-
-
-window.getHistory =
-getHistory;
-
-
-
-
-
-
-
-
-
-// ===============================
-// FOOD STATISTIC 🧠
-// ===============================
-
-
-function getFoodCount(food){
-
-
-
-return historyFoods.filter(
-
-item=>
-
-item.food===food
-
-).length;
-
-
-
-}
-
-
-
-window.getFoodCount =
-getFoodCount;
-
-
-
-
-
-
-
-
-
-// ===============================
-// INIT
-// ===============================
 
 
 document.addEventListener(
-
 "DOMContentLoaded",
-
-()=>{
-
-
-renderHistory();
-
-
-}
-
+renderHistory
 );

@@ -1,6 +1,6 @@
 /* =================================
-   Dinner Roulette V2.5 ❤️
-   wheel.js 🎡
+   Dinner Roulette V3 ❤️
+   Wheel Game System 🎡
 ================================= */
 
 
@@ -10,12 +10,14 @@ const canvas = document.getElementById("wheel");
 if(canvas){
 
 
+
 const ctx = canvas.getContext("2d");
 
 
 
+
 // ===============================
-// MENU DATA
+// DATA
 // ===============================
 
 
@@ -36,19 +38,23 @@ const foods = [
 
 
 
-const drinks = [
+
+
+const drinks=[
 
 "🧋 ชานมไข่มุก",
-"🥤 น้ำอัดลม",
 "🍵 ชาไทย",
+"🥤 น้ำอัดลม",
 "☕ กาแฟ",
-"🍓 น้ำสตรอว์เบอร์รี"
+"🍓 น้ำผลไม้"
 
 ];
 
 
 
-const desserts = [
+
+
+const desserts=[
 
 "🍰 เค้ก",
 "🍧 บิงซู",
@@ -63,6 +69,8 @@ const desserts = [
 
 
 
+
+
 // ===============================
 // SOUND
 // ===============================
@@ -71,7 +79,19 @@ const desserts = [
 const clickSound =
 
 new Audio(
+
 "sounds/click.mp3"
+
+);
+
+
+
+const tickSound =
+
+new Audio(
+
+"sounds/tick.mp3"
+
 );
 
 
@@ -79,8 +99,13 @@ new Audio(
 const winSound =
 
 new Audio(
+
 "sounds/win.mp3"
+
 );
+
+
+
 
 
 
@@ -93,11 +118,16 @@ new Audio(
 
 let spinning=false;
 
-
 let rotation=0;
 
+let currentIndex=0;
 
-let currentFood="";
+let tickTimer;
+
+
+
+
+
 
 
 
@@ -113,9 +143,10 @@ function drawWheel(){
 
 
 
-let mode =
+const mode =
 
 window.chooseMode || "ฉัน";
+
 
 
 
@@ -124,17 +155,14 @@ let colors;
 
 
 
-
-
 if(mode==="แฟน"){
-
 
 
 colors=[
 
 "#a8dcff",
 
-"#d7f3ff"
+"#d9f3ff"
 
 ];
 
@@ -142,7 +170,6 @@ colors=[
 }
 
 else if(mode==="สุ่ม"){
-
 
 
 colors=[
@@ -176,24 +203,19 @@ colors=[
 
 
 
+
 const center =
 
 canvas.width/2;
-
 
 
 const radius=center;
 
 
 
-const slice =
+const slice=
 
-(Math.PI*2)
-
-/
-
-foods.length;
-
+(Math.PI*2)/foods.length;
 
 
 
@@ -217,16 +239,13 @@ canvas.height
 
 
 
-
-
-foods.forEach((food,index)=>{
+foods.forEach((food,i)=>{
 
 
 
 
 
 ctx.beginPath();
-
 
 
 ctx.moveTo(
@@ -247,9 +266,9 @@ center,
 
 radius,
 
-index*slice,
+i*slice,
 
-(index+1)*slice
+(i+1)*slice
 
 );
 
@@ -257,9 +276,9 @@ index*slice,
 
 
 
-ctx.fillStyle =
+ctx.fillStyle=
 
-colors[index%2];
+colors[i%2];
 
 
 
@@ -270,11 +289,8 @@ ctx.fill();
 
 
 
-// TEXT
-
 
 ctx.save();
-
 
 
 ctx.translate(
@@ -289,7 +305,7 @@ center
 
 ctx.rotate(
 
-index*slice + slice/2
+i*slice+slice/2
 
 );
 
@@ -325,7 +341,10 @@ ctx.restore();
 
 
 
+
 });
+
+
 
 
 
@@ -334,11 +353,7 @@ ctx.restore();
 
 
 
-
-
-
-window.drawWheel = drawWheel;
-
+window.drawWheel=drawWheel;
 
 
 drawWheel();
@@ -352,7 +367,7 @@ drawWheel();
 
 
 // ===============================
-// SPIN BUTTON
+// SPIN
 // ===============================
 
 
@@ -368,14 +383,16 @@ document.getElementById(
 
 
 
-
 if(spinBtn){
 
 
-spinBtn.onclick = spinWheel;
+spinBtn.onclick=
+
+spinWheel;
 
 
 }
+
 
 
 
@@ -395,7 +412,9 @@ return;
 
 
 
+
 spinning=true;
+
 
 
 
@@ -409,8 +428,7 @@ clickSound.play();
 
 
 
-
-let index =
+currentIndex=
 
 Math.floor(
 
@@ -422,67 +440,20 @@ Math.random()*foods.length
 
 
 
-currentFood=
-
-foods[index];
 
 
+// เสียงติ๊ก
 
 
+tickTimer=setInterval(()=>{
 
 
+tickSound.currentTime=0;
+
+tickSound.play();
 
 
-let drink =
-
-drinks[
-
-Math.floor(
-
-Math.random()*drinks.length
-
-)
-
-];
-
-
-
-
-
-let dessert =
-
-desserts[
-
-Math.floor(
-
-Math.random()*desserts.length
-
-)
-
-];
-
-
-
-
-
-
-
-let sliceAngle =
-
-360 / foods.length;
-
-
-
-
-
-
-
-let finalRotation =
-
-
-360*6 +
-
-(360-(index*sliceAngle));
+},150);
 
 
 
@@ -491,14 +462,50 @@ let finalRotation =
 
 
 
-rotation += finalRotation;
+
+
+const sliceAngle=
+
+360/foods.length;
 
 
 
 
 
 
-canvas.style.transition =
+
+const extra=
+
+360*7;
+
+
+
+
+
+const target =
+
+extra+
+
+(360-
+
+(currentIndex*sliceAngle));
+
+
+
+
+
+
+
+rotation+=target;
+
+
+
+
+
+
+
+
+canvas.style.transition=
 
 "transform 5s cubic-bezier(.17,.67,.24,1)";
 
@@ -506,10 +513,9 @@ canvas.style.transition =
 
 
 
-canvas.style.transform =
+canvas.style.transform=
 
 `rotate(${rotation}deg)`;
-
 
 
 
@@ -523,7 +529,12 @@ setTimeout(()=>{
 
 
 
+clearInterval(tickTimer);
+
+
+
 spinning=false;
+
 
 
 
@@ -534,27 +545,60 @@ winSound.play();
 
 
 
-showDinner({
 
-food:currentFood,
+let result={
 
-drink:drink,
 
-dessert:dessert
+food:
 
-});
+foods[currentIndex],
 
 
 
+drink:
+
+drinks[
+
+Math.floor(
+
+Math.random()*drinks.length
+
+)
+
+],
 
 
-createWinEffect();
+
+
+dessert:
+
+desserts[
+
+Math.floor(
+
+Math.random()*desserts.length
+
+)
+
+]
+
+};
+
+
+
+
+
+showResult(result);
+
+
+
+createConfetti();
+
 
 
 
 
 },5000);
-
 
 
 
@@ -571,62 +615,48 @@ createWinEffect();
 
 
 // ===============================
-// SHOW RESULT
+// RESULT
 // ===============================
 
 
 
-function showDinner(data){
+function showResult(data){
 
 
 
-const food =
+
 
 document.getElementById(
 
 "foodResult"
 
-);
+).innerHTML=
+
+data.food;
 
 
 
-const drink =
+
 
 document.getElementById(
 
 "drinkResult"
 
-);
+).innerHTML=
+
+data.drink;
 
 
 
-const dessert =
+
 
 document.getElementById(
 
 "dessertResult"
 
-);
+).innerHTML=
 
-
-
-
-
-if(food)
-
-food.innerHTML=data.food;
-
-
-
-if(drink)
-
-drink.innerHTML=data.drink;
-
-
-
-if(dessert)
-
-dessert.innerHTML=data.dessert;
+data.dessert;
 
 
 
@@ -641,7 +671,7 @@ window.currentDinnerSet=data;
 
 
 
-// บันทึก History
+// History
 
 
 if(typeof saveDinnerHistory==="function"){
@@ -655,7 +685,6 @@ saveDinnerHistory(data);
 
 
 
-
 }
 
 
@@ -667,56 +696,65 @@ saveDinnerHistory(data);
 
 
 // ===============================
-// WIN EFFECT 🎉
+// CONFETTI 🎉
 // ===============================
 
 
 
-function createWinEffect(){
+function createConfetti(){
 
 
 
-for(let i=0;i<25;i++){
+for(let i=0;i<30;i++){
 
 
 
-let star=document.createElement("div");
+let item=document.createElement("div");
 
 
 
-star.innerHTML="✨";
+item.innerHTML=
+
+["❤️","✨","🎉","⭐"][
+
+Math.floor(
+
+Math.random()*4
+
+)
+
+];
 
 
 
-star.style.position="fixed";
+item.style.position="fixed";
 
 
-star.style.left=
+item.style.left=
 
 Math.random()*100+"%";
 
 
-star.style.top=
 
-Math.random()*100+"%";
-
-
-
-star.style.fontSize="30px";
-
-
-star.style.zIndex="999";
+item.style.top="-20px";
 
 
 
-star.style.animation=
+item.style.fontSize="30px";
+
+
+item.style.zIndex="9999";
+
+
+item.style.animation=
 
 "heartUp 2s forwards";
 
 
 
 
-document.body.appendChild(star);
+
+document.body.appendChild(item);
 
 
 
@@ -724,7 +762,7 @@ document.body.appendChild(star);
 setTimeout(()=>{
 
 
-star.remove();
+item.remove();
 
 
 },2000);
@@ -737,6 +775,9 @@ star.remove();
 
 
 }
+
+
+
 
 
 

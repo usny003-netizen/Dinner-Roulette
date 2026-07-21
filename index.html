@@ -11,7 +11,13 @@
 
 <meta name="theme-color" content="#ff9fc5">
 
+
 <link rel="stylesheet" href="style.css">
+
+
+<!-- Share Image -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 
 </head>
 
@@ -19,15 +25,22 @@
 <body>
 
 
-<!-- START -->
+
+<!-- =====================
+ START SCREEN
+===================== -->
+
 
 <div id="startScreen">
 
+
 <div class="start-box">
+
 
 <h1>
 ❤️ Dinner Roulette
 </h1>
+
 
 <p>
 วันนี้กินอะไรดีนะ Chompu 💕
@@ -35,25 +48,40 @@
 
 
 <button id="startBtn">
+
 💖 เริ่มเล่น
+
 </button>
 
 
 </div>
 
+
 </div>
 
 
 
 
 
+
+
+
+
+<!-- =====================
+ APP
+===================== -->
 
 
 <div class="app">
 
 
 
+
+
+
+
 <header class="card hero">
+
 
 <h1>
 ❤️ Dinner Roulette
@@ -77,6 +105,7 @@
 
 <!-- MODE -->
 
+
 <section class="card">
 
 
@@ -85,11 +114,11 @@
 </h2>
 
 
+
 <div class="mode-group">
 
 
-<button 
-class="mode active"
+<button class="mode active"
 data-mode="ฉัน">
 
 👩 ฉันเลือก
@@ -98,18 +127,16 @@ data-mode="ฉัน">
 
 
 
-<button 
-class="mode"
+<button class="mode"
 data-mode="แฟน">
 
-👨 Chompu เลือก
+💕 Chompu เลือก
 
 </button>
 
 
 
-<button 
-class="mode"
+<button class="mode"
 data-mode="สุ่ม">
 
 🎲 สุ่ม
@@ -117,14 +144,16 @@ data-mode="สุ่ม">
 </button>
 
 
-
 </div>
 
 
 
-<input 
+<input
+
 id="partnerName"
+
 value="Chompu"
+
 placeholder="ชื่อแฟน ❤️">
 
 
@@ -147,11 +176,12 @@ placeholder="ชื่อแฟน ❤️">
 
 <!-- CATEGORY -->
 
+
 <section class="card">
 
 
 <h2>
-🍽️ เลือกหมวดอาหาร
+🍽️ หมวดอาหาร
 </h2>
 
 
@@ -160,52 +190,47 @@ placeholder="ชื่อแฟน ❤️">
 
 
 <button class="category active"
-data-category="all">
+onclick="changeCategory('all')">
 
 🎲 ทั้งหมด
 
 </button>
 
 
-
 <button class="category"
-data-category="thai">
+onclick="changeCategory('thai')">
 
 🍚 ไทย
 
 </button>
 
 
-
 <button class="category"
-data-category="japan">
+onclick="changeCategory('japan')">
 
 🍣 ญี่ปุ่น
 
 </button>
 
 
-
 <button class="category"
-data-category="grill">
+onclick="changeCategory('grill')">
 
 🥩 ปิ้งย่าง
 
 </button>
 
 
-
 <button class="category"
-data-category="fast">
+onclick="changeCategory('fast')">
 
 🍕 Fast Food
 
 </button>
 
 
-
 <button class="category"
-data-category="noodle">
+onclick="changeCategory('noodle')">
 
 🍜 เส้น
 
@@ -227,6 +252,7 @@ data-category="noodle">
 
 <!-- WHEEL -->
 
+
 <section class="card">
 
 
@@ -235,24 +261,34 @@ data-category="noodle">
 </h2>
 
 
+
 <p id="mainMessage">
+
 ✨ พร้อมหมุน
+
 </p>
+
+
 
 
 <div class="wheel-wrapper">
 
 
 <div id="pointer">
+
 ▼
+
 </div>
 
 
+<canvas
 
-<canvas 
 id="wheel"
+
 width="420"
+
 height="420">
+
 </canvas>
 
 
@@ -260,19 +296,30 @@ height="420">
 
 
 
+
+
 <p id="statusMessage">
+
 ❤️ กดหมุนวงล้อ
+
 </p>
 
 
 
-<button id="spinBtn">
+
+<button id="spinBtn"
+onclick="spinWheel()">
+
 🎡 หมุนวงล้อ
+
 </button>
 
 
+
 <button id="autoBtn">
+
 💖 สุ่มจนกว่าจะถูกใจ
+
 </button>
 
 
@@ -288,6 +335,7 @@ height="420">
 
 
 <!-- RESULT -->
+
 
 <section class="card">
 
@@ -342,23 +390,34 @@ height="420">
 </div>
 
 
+
 </div>
 
 
 
+
+
 <button id="likeBtn">
+
 👍 เอาเลย
+
 </button>
 
 
 <button id="rerollBtn">
+
 🙅 ไม่เอา สุ่มใหม่
+
 </button>
+
 
 
 <button id="favoriteBtn">
+
 ⭐ บันทึกเมนูโปรด
+
 </button>
+
 
 
 </section>
@@ -372,6 +431,7 @@ height="420">
 
 
 <!-- SMART -->
+
 
 <section class="card">
 
@@ -402,12 +462,14 @@ height="420">
 
 <!-- AVOID -->
 
+
 <section class="card">
 
 
 <h2>
 🚫 ไม่กินวันนี้
 </h2>
+
 
 
 <ul id="avoidList">
@@ -419,8 +481,11 @@ height="420">
 </ul>
 
 
+
 <button id="resetAvoidBtn">
+
 🔄 ล้างรายการ
+
 </button>
 
 
@@ -436,12 +501,14 @@ height="420">
 
 <!-- FAVORITE -->
 
+
 <section class="card">
 
 
 <h2>
 ⭐ เมนูโปรด
 </h2>
+
 
 
 <ul id="favoriteList">
@@ -465,12 +532,14 @@ height="420">
 
 <!-- HISTORY -->
 
+
 <section class="card">
 
 
 <h2>
 📜 ประวัติ
 </h2>
+
 
 
 <ul id="historyList">
@@ -494,6 +563,7 @@ height="420">
 
 <!-- DAILY MISSION -->
 
+
 <section class="card">
 
 
@@ -503,64 +573,43 @@ height="420">
 
 
 
-<div class="mission">
-
-<span>
+<p>
 🌅 เปิดเว็บวันนี้
-</span>
-
-<b id="openMission">
+<span id="openMission">
 ⬜
-</b>
-
-</div>
-
+</span>
+</p>
 
 
-<div class="mission">
-
-<span>
+<p>
 🎡 หมุนวงล้อ
-</span>
-
-<b id="spinMission">
+<span id="spinMission">
 ⬜
-</b>
-
-</div>
-
+</span>
+</p>
 
 
-<div class="mission">
-
-<span>
+<p>
 👍 เลือกเมนูที่ชอบ
-</span>
-
-<b id="likeMission">
+<span id="likeMission">
 ⬜
-</b>
-
-</div>
-
+</span>
+</p>
 
 
-<div class="mission">
-
-<span>
+<p>
 📤 แชร์ให้ Chompu
-</span>
-
-<b id="shareMission">
+<span id="shareMission">
 ⬜
-</b>
-
-</div>
+</span>
+</p>
 
 
 
 <h3 id="missionScore">
-คะแนนวันนี้ : 0 ❤️
+
+คะแนนวันนี้ 0/4 ❤️
+
 </h3>
 
 
@@ -576,11 +625,12 @@ height="420">
 
 <!-- SHARE CARD -->
 
+
 <section class="card">
 
 
 <h2>
-📸 การ์ดของเรา
+📸 Share Card
 </h2>
 
 
@@ -595,34 +645,36 @@ height="420">
 
 <p>
 วันนี้ Chompu เลือกให้ 💕
+
 </p>
 
 
+<p id="shareFood">
 
-<p>
-🍜 <span id="shareFood">-</span>
+🍜 -
+
 </p>
 
 
-<p>
-🥤 <span id="shareDrink">-</span>
+<p id="shareDrink">
+
+🥤 -
+
 </p>
 
 
-<p>
-🍰 <span id="shareDessert">-</span>
-</p>
+<p id="shareDessert">
 
+🍰 -
 
-
-<p>
-"กินด้วยกันอร่อยกว่า ❤️"
 </p>
 
 
 
 <p id="shareDate">
--
+
+📅 -
+
 </p>
 
 
@@ -632,40 +684,11 @@ height="420">
 
 
 <button id="saveImageBtn">
+
 📸 บันทึกรูป
+
 </button>
 
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- SETTING -->
-
-<section class="card">
-
-
-<h2>
-⚙️ ตั้งค่า
-</h2>
-
-
-
-<button id="themeBtn">
-🌙 Dark Mode
-</button>
-
-
-
-<button id="shareBtn">
-📤 แชร์ให้ Chompu
-</button>
 
 
 </section>
@@ -680,6 +703,7 @@ height="420">
 
 <!-- MUSIC -->
 
+
 <section class="card">
 
 
@@ -688,22 +712,23 @@ height="420">
 </h2>
 
 
-<audio 
-id="bgMusic"
-loop
-preload="auto">
+
+<audio id="bgMusic" loop>
+
 
 <source src="love.mp3"
 type="audio/mpeg">
+
 
 </audio>
 
 
 
 <button id="musicBtn">
-🎵 เปิดเพลง
-</button>
 
+🎵 เปิดเพลง
+
+</button>
 
 
 
@@ -711,21 +736,66 @@ type="audio/mpeg">
 
 
 <option value="love.mp3">
-💖 เพลงหวาน
+
+💕 เพลงหวาน
+
 </option>
 
 
 <option value="happy.mp3">
+
 🌸 สดใส
+
 </option>
 
 
 <option value="lofi.mp3">
+
 ☕ Lo-fi
+
 </option>
 
 
 </select>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- SETTING -->
+
+
+<section class="card">
+
+
+<h2>
+⚙️ ตั้งค่า
+</h2>
+
+
+
+<button id="themeBtn">
+
+🌙 Dark Mode
+
+</button>
+
+
+
+<button id="shareBtn">
+
+📤 แชร์ให้ Chompu
+
+</button>
+
 
 
 </section>
@@ -746,6 +816,8 @@ Made with ❤️ for Chompu
 
 
 
+
+
 </div>
 
 
@@ -756,15 +828,10 @@ Made with ❤️ for Chompu
 
 
 
-<!-- LIBRARY -->
+<!-- =====================
+ JAVASCRIPT
+===================== -->
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
-
-
-
-
-<!-- JAVASCRIPT -->
 
 <script src="wheel.js"></script>
 
@@ -776,11 +843,11 @@ Made with ❤️ for Chompu
 
 <script src="smart.js"></script>
 
+<script src="mission.js"></script>
+
 <script src="effect.js"></script>
 
 <script src="share.js"></script>
-
-<script src="mission.js"></script>
 
 <script src="theme.js"></script>
 

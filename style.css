@@ -931,3 +931,39 @@ flex-direction:column;
 
 
 }
+.favorite-toast{
+
+position:fixed;
+
+bottom:30px;
+
+left:50%;
+
+transform:
+translateX(-50%);
+
+
+background:white;
+
+
+padding:15px 25px;
+
+
+border-radius:50px;
+
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.15);
+
+
+color:#ff5c9d;
+
+
+z-index:9999;
+
+
+animation:
+pop .3s ease;
+
+}

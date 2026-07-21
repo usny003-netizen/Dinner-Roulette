@@ -1,105 +1,24 @@
 /* =================================
- Dinner Roulette Chompu V17 ❤️
- Daily Mission + Couple Streak 💌
+ Dinner Roulette Chompu V19 ❤️
+ Daily Mission
+ PART 4.2
 ================================= */
 
 
-
-const missionKey =
-"dinnerMission";
-
-
-const streakKey =
-"dinnerStreak";
-
-
-
-
-// ===============================
-// DATE
-// ===============================
-
-
-function getToday(){
-
-
-return new Date()
-
-.toISOString()
-
-.split("T")[0];
-
-
-}
-
-
-
-
-
-
-
-let missions =
+let mission =
 
 JSON.parse(
-
-localStorage.getItem(
-missionKey
+localStorage.getItem("mission")
 )
-
-)
-
-||null;
-
-
-
-
-
-
-
-// ===============================
-// CREATE MISSION
-// ===============================
-
-
-function createMission(){
-
-
-
-missions={
-
-
-date:getToday(),
-
+||
+{
 
 open:false,
-
-
 spin:false,
-
-
 like:false,
-
-
-share:false,
-
-
-reward:false
-
-
+share:false
 
 };
-
-
-
-saveMission();
-
-
-
-}
-
-
-
-
 
 
 
@@ -108,225 +27,84 @@ saveMission();
 function saveMission(){
 
 
-
 localStorage.setItem(
-
-missionKey,
-
-JSON.stringify(
-missions
-)
-
+"mission",
+JSON.stringify(mission)
 );
 
 
 
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// LOAD
-// ===============================
-
-
-function loadMission(){
-
-
-
-if(
-
-!missions ||
-
-missions.date!==getToday()
-
-){
-
-
-createMission();
-
-
-}
-
-
-
-updateMissionUI();
+updateMission();
 
 
 
 }
 
-
-
-
-
-
-
-
-
-// ===============================
-// COMPLETE
-// ===============================
 
 
 function completeMission(type){
 
 
-
-if(!missions)
-
-createMission();
-
-
-
-missions[type]=true;
-
+mission[type]=true;
 
 
 saveMission();
 
 
 
-updateMissionUI();
-
-
-
-checkComplete();
-
-
-
 }
 
 
 
+window.completeOpenMission=
+()=>completeMission("open");
+
+
+window.completeSpinMission=
+()=>completeMission("spin");
+
+
+window.completeLikeMission=
+()=>completeMission("like");
+
+
+window.completeShareMission=
+()=>completeMission("share");
 
 
 
 
 
 
-function completeOpenMission(){
-
-
-completeMission("open");
-
-
-}
-
-
-
-function completeSpinMission(){
-
-
-completeMission("spin");
-
-
-}
-
-
-
-function completeLikeMission(){
-
-
-completeMission("like");
-
-
-}
-
-
-
-function completeShareMission(){
-
-
-completeMission("share");
-
-
-}
-
-
-
-
-
-window.completeOpenMission =
-completeOpenMission;
-
-
-window.completeSpinMission =
-completeSpinMission;
-
-
-window.completeLikeMission =
-completeLikeMission;
-
-
-window.completeShareMission =
-completeShareMission;
-
-
-
-
-
-
-
-
-
-// ===============================
-// UPDATE UI
-// ===============================
-
-
-function updateMissionUI(){
-
-
-
-if(!missions)
-return;
-
-
+function updateMission(){
 
 
 
 const map={
 
-
-
 open:"openMission",
-
 
 spin:"spinMission",
 
-
 like:"likeMission",
 
-
 share:"shareMission"
-
-
 
 };
 
 
 
-
+let score=0;
 
 
 
 Object.keys(map)
-
-.forEach(type=>{
-
+.forEach(key=>{
 
 
-const el=
-
+let el=
 document.getElementById(
-map[type]
+map[key]
 );
 
 
@@ -334,80 +112,37 @@ map[type]
 if(el){
 
 
-
-el.innerHTML=
-
-missions[type]
-
+el.innerHTML =
+mission[key]
 ?
-
-"❤️"
-
+"✅"
 :
-
 "⬜";
-
 
 
 }
 
 
 
+if(mission[key])
+
+score++;
+
+
 });
 
 
 
-
-
-
-
-
-
-let score=
-
-[
-
-missions.open,
-
-missions.spin,
-
-missions.like,
-
-missions.share
-
-]
-
-.filter(Boolean)
-
-.length;
-
-
-
-
-
-
-const scoreBox=
-
+const total =
 document.getElementById(
 "missionScore"
 );
 
 
 
-if(scoreBox){
+if(total)
 
-
-
-scoreBox.innerHTML=
-
-score===4
-
-?
-
-"🎉 Mission Complete ❤️"
-
-:
-
+total.innerHTML=
 `${score}/4 ❤️`;
 
 
@@ -416,308 +151,14 @@ score===4
 
 
 
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// COMPLETE CHECK
-// ===============================
-
-
-function checkComplete(){
-
-
-
-if(
-
-missions.open &&
-
-missions.spin &&
-
-missions.like &&
-
-missions.share &&
-
-!missions.reward
-
-){
-
-
-
-missions.reward=true;
-
-
-
-saveMission();
-
-
-
-showMissionReward();
-
-
-
-addStreak();
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// POPUP
-// ===============================
-
-
-function showMissionReward(){
-
-
-
-const old=
-
-document.querySelector(
-".mission-popup"
-);
-
-
-
-if(old)
-
-return;
-
-
-
-
-
-
-
-const popup=
-
-document.createElement(
-"div"
-);
-
-
-
-popup.className=
-"mission-popup";
-
-
-
-popup.innerHTML=
-
-`
-
-<h2>
-🎉 เก่งมาก!
-</h2>
-
-
-<p>
-
-Daily Mission ครบแล้ว ❤️
-
-</p>
-
-
-<p>
-
-💕 Couple Level เพิ่มขึ้น
-
-</p>
-
-
-`;
-
-
-
-
-
-document.body.appendChild(
-popup
-);
-
-
-
-
-
-if(typeof createHeart==="function"){
-
-
-createHeart();
-
-
-}
-
-
-
-
-
-setTimeout(()=>{
-
-
-popup.remove();
-
-
-},4000);
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// STREAK 🔥
-// ===============================
-
-
-function addStreak(){
-
-
-
-let data=
-
-JSON.parse(
-
-localStorage.getItem(
-streakKey
-)
-
-)
-
-||{
-
-
-count:0,
-
-last:null
-
-
-};
-
-
-
-
-
-
-if(data.last!==getToday()){
-
-
-
-data.count++;
-
-
-data.last=getToday();
-
-
-}
-
-
-
-
-
-localStorage.setItem(
-
-streakKey,
-
-JSON.stringify(data)
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function getStreak(){
-
-
-
-return JSON.parse(
-
-localStorage.getItem(
-streakKey
-)
-
-)
-
-||{
-
-
-count:0
-
-};
-
-
-
-}
-
-
-
-window.getStreak =
-getStreak;
-
-
-
-
-
-
-
-
-
-// ===============================
-// INIT
-// ===============================
-
-
 document.addEventListener(
-
 "DOMContentLoaded",
-
 ()=>{
 
 
-loadMission();
-
-
-// เปิดเว็บสำเร็จ
-
 completeOpenMission();
 
+updateMission();
 
 
-}
-
-);
+});

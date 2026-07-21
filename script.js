@@ -1,6 +1,6 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Main Controller
+ Dinner Roulette V11 ❤️
+ Main Controller FINAL
 ================================= */
 
 
@@ -9,23 +9,17 @@ document.addEventListener(
 ()=>{
 
 
-
-// =========================
-// START SCREEN
-// =========================
-
-
-const startScreen =
-document.getElementById(
-"startScreen"
-);
-
+// =====================
+// START
+// =====================
 
 
 const startBtn =
-document.getElementById(
-"startBtn"
-);
+document.getElementById("startBtn");
+
+
+const startScreen =
+document.getElementById("startScreen");
 
 
 
@@ -35,35 +29,33 @@ if(startBtn){
 startBtn.onclick=()=>{
 
 
+if(startScreen)
+
 startScreen.style.display="none";
 
 
 
-// เปิดเพลง
-
 const music =
-document.getElementById(
-"bgMusic"
-);
+document.getElementById("bgMusic");
 
 
 
 if(music){
 
-
 music.volume=0.5;
 
-
 music.play()
-
 .catch(()=>{});
-
 
 }
 
 
 
+if(typeof createHeart==="function"){
+
 createHeart();
+
+}
 
 
 };
@@ -76,35 +68,21 @@ createHeart();
 
 
 
-
-
-
-// =========================
-// MUSIC SYSTEM 🎵
-// =========================
-
+// =====================
+// MUSIC
+// =====================
 
 
 const music =
-document.getElementById(
-"bgMusic"
-);
-
+document.getElementById("bgMusic");
 
 
 const musicBtn =
-document.getElementById(
-"musicBtn"
-);
-
+document.getElementById("musicBtn");
 
 
 const musicSelect =
-document.getElementById(
-"musicSelect"
-);
-
-
+document.getElementById("musicSelect");
 
 
 
@@ -115,7 +93,6 @@ if(musicBtn && music){
 musicBtn.onclick=()=>{
 
 
-
 if(music.paused){
 
 
@@ -123,12 +100,10 @@ music.play();
 
 
 musicBtn.innerHTML=
-
 "⏸️ ปิดเพลง";
 
 
 }
-
 
 else{
 
@@ -136,23 +111,17 @@ else{
 music.pause();
 
 
-
 musicBtn.innerHTML=
-
 "🎵 เปิดเพลง";
 
 
 }
 
 
-
 };
 
 
-
 }
-
-
 
 
 
@@ -161,12 +130,10 @@ musicBtn.innerHTML=
 if(musicSelect && music){
 
 
-
 musicSelect.onchange=()=>{
 
 
-music.src=
-
+music.src =
 musicSelect.value;
 
 
@@ -174,8 +141,11 @@ music.play();
 
 
 
-};
+musicBtn.innerHTML =
+"⏸️ ปิดเพลง";
 
+
+};
 
 
 }
@@ -188,16 +158,17 @@ music.play();
 
 
 
-// =========================
-// AUTO SPIN ❤️
-// =========================
+// =====================
+// AUTO SPIN
+// =====================
 
 
-const autoBtn=
+const autoBtn =
+document.getElementById("autoBtn");
 
-document.getElementById(
-"autoBtn"
-);
+
+
+let autoRunning=false;
 
 
 
@@ -208,11 +179,26 @@ if(autoBtn){
 autoBtn.onclick=()=>{
 
 
+if(autoRunning)
+
+return;
+
+
+
+autoRunning=true;
+
+
+autoBtn.innerHTML=
+"🎡 กำลังสุ่ม...";
+
+
+
 let count=0;
 
 
 
 let timer=setInterval(()=>{
+
 
 
 if(typeof spinWheel==="function"){
@@ -232,7 +218,15 @@ count++;
 if(count>=3){
 
 
+
 clearInterval(timer);
+
+
+autoRunning=false;
+
+
+autoBtn.innerHTML=
+"💖 สุ่มจนกว่าจะถูกใจ";
 
 
 }
@@ -240,7 +234,6 @@ clearInterval(timer);
 
 
 },5500);
-
 
 
 
@@ -258,16 +251,13 @@ clearInterval(timer);
 
 
 
-// =========================
-// LIKE BUTTON 👍
-// =========================
+// =====================
+// LIKE
+// =====================
 
 
-const likeBtn=
-
-document.getElementById(
-"likeBtn"
-);
+const likeBtn =
+document.getElementById("likeBtn");
 
 
 
@@ -278,24 +268,18 @@ if(likeBtn){
 likeBtn.onclick=()=>{
 
 
-
-let food=
-
+let food =
 document.getElementById(
 "foodResult"
-).innerHTML;
+).innerText;
 
 
 
-if(food==="-")
-
+if(food==="-" || !food)
 
 return;
 
 
-
-
-// Smart
 
 if(typeof saveLikeFood==="function"){
 
@@ -304,30 +288,6 @@ saveLikeFood(food);
 
 
 }
-
-
-
-
-// Favorite
-
-if(typeof saveFavorite==="function"){
-
-
-saveFavorite({
-
-food:food,
-
-drink:"🥤 น้ำหวาน",
-
-dessert:"🍰 ของหวาน"
-
-});
-
-
-}
-
-
-
 
 
 
@@ -341,43 +301,30 @@ completeLikeMission();
 
 
 
+if(typeof createHeart==="function"){
+
 
 createHeart();
-
-
-
-alert(
-
-`❤️ บันทึกแล้ว ${food}`
-
-);
-
-
-
-};
-
 
 
 }
 
 
 
+};
+
+}
 
 
 
 
+// =====================
+// REROLL
+// =====================
 
 
-// =========================
-// REROLL BUTTON 🚫
-// =========================
-
-
-const rerollBtn=
-
-document.getElementById(
-"rerollBtn"
-);
+const rerollBtn =
+document.getElementById("rerollBtn");
 
 
 
@@ -388,32 +335,21 @@ if(rerollBtn){
 rerollBtn.onclick=()=>{
 
 
-
-let food=
-
+let food =
 document.getElementById(
 "foodResult"
-).innerHTML;
+).innerText;
 
 
 
-
-if(food!=="-"){
-
-
-
-if(typeof addAvoid==="function"){
+if(food!=="-" && 
+typeof addAvoid==="function"){
 
 
 addAvoid(food);
 
 
 }
-
-
-
-}
-
 
 
 
@@ -439,126 +375,13 @@ spinWheel();
 
 
 
+// =====================
+// FAVORITE
+// =====================
 
 
-// =========================
-// SHARE
-// =========================
-
-
-const shareBtn=
-
-document.getElementById(
-"shareBtn"
-);
-
-
-
-if(shareBtn){
-
-
-
-shareBtn.onclick=()=>{
-
-
-
-let food=
-
-document.getElementById(
-"foodResult"
-).innerHTML;
-
-
-
-let text=
-
-
-`
-❤️ Dinner Roulette
-
-วันนี้ Chompu เลือกให้ 💕
-
-🍜 ${food}
-
-กินด้วยกันอร่อยกว่า ❤️
-`;
-
-
-
-
-
-if(navigator.share){
-
-
-
-navigator.share({
-
-title:"Dinner Roulette",
-
-text:text
-
-});
-
-
-
-}
-
-else{
-
-
-navigator.clipboard.writeText(text);
-
-
-
-alert(
-
-"คัดลอกข้อความแล้ว ❤️"
-
-);
-
-
-}
-
-
-
-
-
-if(typeof completeShareMission==="function"){
-
-
-completeShareMission();
-
-
-}
-
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =========================
-// FAVORITE BUTTON ⭐
-// =========================
-
-
-
-const favoriteBtn=
-
-document.getElementById(
-"favoriteBtn"
-);
+const favoriteBtn =
+document.getElementById("favoriteBtn");
 
 
 
@@ -569,12 +392,10 @@ if(favoriteBtn){
 favoriteBtn.onclick=()=>{
 
 
-
-let food=
-
+let food =
 document.getElementById(
 "foodResult"
-).innerHTML;
+).innerText;
 
 
 
@@ -582,7 +403,6 @@ if(food==="-")
 
 
 return;
-
 
 
 
@@ -606,9 +426,13 @@ dessert:"🍰 ของหวาน"
 
 
 
+if(typeof createHeart==="function"){
 
 
 createHeart();
+
+
+}
 
 
 
@@ -626,21 +450,17 @@ createHeart();
 
 
 
-// =========================
-// HEART EFFECT
-// =========================
-
+// =====================
+// HEART
+// =====================
 
 
 function createHeart(){
 
 
 
-let heart=
-
-document.createElement(
-"div"
-);
+let heart =
+document.createElement("div");
 
 
 
@@ -651,13 +471,8 @@ heart.innerHTML="❤️";
 
 
 
-heart.style.left=
-
+heart.style.left =
 Math.random()*90+"%";
-
-
-
-heart.style.bottom="20px";
 
 
 
@@ -676,18 +491,13 @@ heart.remove();
 },2000);
 
 
-
 }
 
 
 
 
-
-
-window.createHeart=
-
+window.createHeart =
 createHeart;
-
 
 
 

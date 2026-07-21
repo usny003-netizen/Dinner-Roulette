@@ -1,48 +1,113 @@
 /* =================================
- Dinner Roulette V13 ❤️
- Couple Love Style CSS
+ Dinner Roulette V14 ❤️
+ Couple Love UI Design
 ================================= */
 
 
-
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
-
 
 
 body{
 
-margin:0;
+    margin:0;
 
-padding:20px;
+    padding:20px;
 
-font-family:
+    min-height:100vh;
 
-"Tahoma",
-"Arial",
-sans-serif;
+    font-family:
+    "Tahoma",
+    "Arial",
+    sans-serif;
 
+    background:
+    linear-gradient(
+        135deg,
+        #fff0f6,
+        #ffe5ec
+    );
 
-background:
+    color:#555;
 
-linear-gradient(
-
-135deg,
-
-#fff0f6,
-
-#ffe5ec
-
-);
-
-
-color:#555;
-
-
-transition:.5s;
+    transition:.4s;
 
 }
+
+
+
+
+/* =========================
+ APP
+========================= */
+
+
+.app{
+
+    max-width:650px;
+
+    margin:auto;
+
+}
+
+
+
+
+/* =========================
+ CARD
+========================= */
+
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    border-radius:30px;
+
+
+    box-shadow:
+
+    0 10px 30px
+    rgba(255,120,160,.15);
+
+
+    animation:
+
+    cardShow .5s;
+
+}
+
+
+
+@keyframes cardShow{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+
 
 
 
@@ -59,9 +124,10 @@ inset:0;
 
 display:flex;
 
+align-items:center;
+
 justify-content:center;
 
-align-items:center;
 
 background:
 
@@ -84,17 +150,20 @@ z-index:9999;
 
 .start-box{
 
+
 background:white;
 
 padding:40px;
 
-border-radius:35px;
+border-radius:40px;
 
 text-align:center;
 
+
 box-shadow:
 
-0 15px 40px rgba(0,0,0,.15);
+0 20px 50px
+rgba(0,0,0,.2);
 
 }
 
@@ -110,43 +179,13 @@ color:#ff5c9a;
 
 
 
+
+
+
 /* =========================
- APP
+ HEADER
 ========================= */
 
-
-.app{
-
-max-width:600px;
-
-margin:auto;
-
-}
-
-
-
-
-.card{
-
-background:white;
-
-border-radius:30px;
-
-padding:25px;
-
-margin-bottom:20px;
-
-
-box-shadow:
-
-0 8px 25px rgba(255,120,160,.15);
-
-
-}
-
-
-
-/* HEADER */
 
 .hero{
 
@@ -158,7 +197,7 @@ linear-gradient(
 
 135deg,
 
-#ffb6d9,
+#ff9fc5,
 
 #ffc8dd
 
@@ -174,6 +213,8 @@ color:white;
 .hero h1{
 
 font-size:32px;
+
+margin-bottom:5px;
 
 }
 
@@ -194,25 +235,37 @@ button{
 border:none;
 
 
-padding:12px 20px;
+background:
 
+linear-gradient(
 
-margin:5px;
+135deg,
 
+#ff9fc5,
 
-border-radius:30px;
+#ff5c9a
 
-
-background:#ff9fc5;
+);
 
 
 color:white;
 
 
-font-size:16px;
+padding:
+
+12px 22px;
+
+
+border-radius:30px;
+
+
+font-size:15px;
 
 
 cursor:pointer;
+
+
+margin:5px;
 
 
 transition:.3s;
@@ -222,11 +275,12 @@ transition:.3s;
 
 
 
+
 button:hover{
 
+transform:
 
-transform:scale(1.05);
-
+scale(1.05);
 
 }
 
@@ -234,9 +288,13 @@ transform:scale(1.05);
 
 button:active{
 
-transform:scale(.95);
+transform:
+
+scale(.95);
 
 }
+
+
 
 
 
@@ -254,16 +312,24 @@ select{
 width:100%;
 
 
-padding:12px;
+padding:12px 18px;
 
 
-border-radius:20px;
+border-radius:25px;
 
 
-border:2px solid #ffd6e7;
+border:
+
+2px solid #ffd6e7;
+
+
+outline:none;
 
 
 margin-top:10px;
+
+
+background:white;
 
 
 }
@@ -272,8 +338,10 @@ margin-top:10px;
 
 
 
+
+
 /* =========================
- MODE
+ MODE + CATEGORY
 ========================= */
 
 
@@ -283,9 +351,7 @@ margin-top:10px;
 
 display:flex;
 
-
 flex-wrap:wrap;
-
 
 justify-content:center;
 
@@ -294,14 +360,44 @@ justify-content:center;
 
 
 
+.mode,
+.category{
+
+
+background:#ffd6e7;
+
+
+color:#ff5c9a;
+
+
+}
+
+
+
+
 .mode.active,
 .category.active{
 
 
-background:#ff5c9a;
+background:
+
+linear-gradient(
+
+135deg,
+
+#ff5c9a,
+
+#ff9fc5
+
+);
+
+
+color:white;
 
 
 }
+
+
 
 
 
@@ -327,14 +423,20 @@ justify-content:center;
 align-items:center;
 
 
-margin:20px auto;
+margin:25px 0;
 
 
 }
 
 
 
+
 #wheel{
+
+
+width:420px;
+
+max-width:100%;
 
 
 border-radius:50%;
@@ -342,14 +444,12 @@ border-radius:50%;
 
 box-shadow:
 
-
-0 10px 30px rgba(0,0,0,.15);
-
-
-max-width:100%;
+0 15px 35px
+rgba(0,0,0,.15);
 
 
 }
+
 
 
 
@@ -362,13 +462,13 @@ position:absolute;
 top:-20px;
 
 
-font-size:35px;
+font-size:40px;
 
 
 color:#ff5c9a;
 
 
-z-index:10;
+z-index:5;
 
 
 }
@@ -397,16 +497,19 @@ gap:15px;
 
 
 
+
 .result-box div{
 
 
-background:#fff0f6;
+background:
+
+#fff0f6;
+
+
+border-radius:25px;
 
 
 padding:15px;
-
-
-border-radius:20px;
 
 
 text-align:center;
@@ -417,28 +520,13 @@ text-align:center;
 
 
 
+.result-box h3{
 
 
-
-/* =========================
- FAVORITE SMART
-========================= */
+color:#ff5c9a;
 
 
-ul{
-
-
-padding-left:20px;
-
-
-}
-
-
-
-li{
-
-
-margin:10px 0;
+font-size:22px;
 
 
 }
@@ -449,40 +537,102 @@ margin:10px 0;
 
 
 
+
 /* =========================
- TIMELINE 📜💕
+ SMART
 ========================= */
 
 
-.history-card{
+#smartList li{
+
+
+background:#fff5fa;
+
+
+padding:12px;
+
+
+border-radius:20px;
+
+
+margin-bottom:10px;
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+ AVOID 🚫
+========================= */
+
+
+.avoid-card{
+
+
+list-style:none;
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
 
 
 background:
 
 linear-gradient(
 
-180deg,
+135deg,
 
-#fff,
+#fff0f6,
 
-#fff5fa
+#ffe5ec
 
 );
 
+
+padding:12px;
+
+
+border-radius:25px;
+
+
+margin-bottom:10px;
+
+
+}
+
+
+
+.avoid-card button{
+
+
+padding:8px 15px;
+
+
+font-size:13px;
+
+
 }
 
 
 
 
-.history-sub{
 
 
-text-align:center;
 
-color:#ff8bb8;
 
-}
-
+/* =========================
+ TIMELINE 📜
+========================= */
 
 
 .timeline{
@@ -494,11 +644,7 @@ position:relative;
 padding-left:35px;
 
 
-margin-top:20px;
-
-
 }
-
 
 
 
@@ -523,15 +669,7 @@ bottom:0;
 width:4px;
 
 
-background:
-
-linear-gradient(
-
-#ff9fc5,
-
-#ffd6e7
-
-);
+background:#ffb6d9;
 
 
 border-radius:10px;
@@ -541,9 +679,7 @@ border-radius:10px;
 
 
 
-
-
-.timeline-item{
+.timeline li{
 
 
 list-style:none;
@@ -552,15 +688,32 @@ list-style:none;
 position:relative;
 
 
-margin-bottom:25px;
+background:white;
+
+
+padding:18px;
+
+
+margin-bottom:20px;
+
+
+border-radius:25px;
+
+
+box-shadow:
+
+0 5px 15px
+rgba(255,100,150,.15);
 
 
 }
 
 
 
+.timeline li::before{
 
-.timeline-dot{
+
+content:"❤️";
 
 
 position:absolute;
@@ -572,80 +725,8 @@ left:-35px;
 top:15px;
 
 
-width:35px;
-
-
-height:35px;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-background:white;
-
-
-border-radius:50%;
-
-
-box-shadow:
-
-0 5px 15px rgba(0,0,0,.1);
-
-
 }
 
-
-
-.timeline-content{
-
-
-background:white;
-
-
-padding:18px;
-
-
-border-radius:25px;
-
-
-box-shadow:
-
-0 5px 20px rgba(255,120,160,.15);
-
-
-}
-
-
-
-.timeline-content h3{
-
-
-margin-top:0;
-
-
-color:#ff5c9a;
-
-
-}
-
-
-
-.timeline-content span{
-
-
-font-size:13px;
-
-
-color:#999;
-
-
-}
 
 
 
@@ -653,7 +734,30 @@ color:#999;
 
 
 /* =========================
- SHARE CARD
+ MISSION 💌
+========================= */
+
+
+#missionScore{
+
+
+text-align:center;
+
+
+color:#ff5c9a;
+
+
+font-size:24px;
+
+
+}
+
+
+
+
+
+/* =========================
+ SHARE CARD 📸
 ========================= */
 
 
@@ -676,16 +780,17 @@ linear-gradient(
 color:white;
 
 
+border-radius:35px;
+
+
 padding:25px;
-
-
-border-radius:30px;
 
 
 text-align:center;
 
 
 }
+
 
 
 
@@ -693,29 +798,7 @@ text-align:center;
 #shareCard h1{
 
 
-font-size:28px;
-
-
-}
-
-
-
-
-
-
-
-/* =========================
- MISSION
-========================= */
-
-
-#missionScore{
-
-
-text-align:center;
-
-
-color:#ff5c9a;
+font-size:30px;
 
 
 }
@@ -740,41 +823,40 @@ position:fixed;
 font-size:30px;
 
 
-animation:
-
-heartFly 2s linear forwards;
-
-
 pointer-events:none;
 
 
 z-index:9999;
 
 
+animation:
+
+heartMove 2s forwards;
+
+
 }
 
 
 
-@keyframes heartFly{
+@keyframes heartMove{
 
 
-from{
-
-transform:translateY(0);
+0%{
 
 opacity:1;
 
+transform:
+translateY(0);
+
 }
 
 
-
-to{
-
-transform:
-
-translateY(-300px);
+100%{
 
 opacity:0;
+
+transform:
+translateY(-300px);
 
 }
 
@@ -826,37 +908,8 @@ z-index:99999;
 
 box-shadow:
 
-0 20px 50px rgba(0,0,0,.2);
-
-
-animation:
-
-popup .4s;
-
-
-}
-
-
-
-@keyframes popup{
-
-
-from{
-
-scale:.5;
-
-opacity:0;
-
-}
-
-
-to{
-
-scale:1;
-
-opacity:1;
-
-}
+0 20px 60px
+rgba(0,0,0,.25);
 
 
 }
@@ -888,7 +941,7 @@ linear-gradient(
 );
 
 
-color:#eee;
+color:white;
 
 
 }
@@ -898,18 +951,19 @@ color:#eee;
 body.dark .card{
 
 
-background:#2f2f2f;
+background:#2d2d2d;
 
 
-color:#eee;
+color:white;
 
 
 }
 
 
 
-body.dark .timeline-content,
-body.dark .result-box div{
+body.dark .result-box div,
+body.dark .timeline li,
+body.dark #smartList li{
 
 
 background:#444;
@@ -932,12 +986,7 @@ background:#333;
 color:white;
 
 
-border-color:#666;
-
-
 }
-
-
 
 
 
@@ -948,7 +997,7 @@ border-color:#666;
 ========================= */
 
 
-@media(max-width:480px){
+@media(max-width:600px){
 
 
 body{
@@ -969,15 +1018,6 @@ border-radius:25px;
 
 
 
-#wheel{
-
-width:320px;
-
-height:320px;
-
-}
-
-
 .hero h1{
 
 font-size:26px;
@@ -992,6 +1032,15 @@ font-size:14px;
 
 }
 
+
+
+#wheel{
+
+width:320px;
+
+height:320px;
+
+}
 
 
 }

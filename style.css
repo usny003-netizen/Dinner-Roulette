@@ -1,43 +1,59 @@
 /* =================================
-   Dinner Roulette ❤️
-   Cute App UI V3
+   Dinner Roulette V2 ❤️
+   Cute Mobile App Style
 ================================= */
 
 
 /* RESET */
 
 *{
+
     box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
 }
+
 
 
 body{
 
+
     min-height:100vh;
 
+
     font-family:
+
     "Arial",
     "Tahoma",
     sans-serif;
 
 
+
     background:
+
     linear-gradient(
+
         135deg,
+
         #ffd6e7,
-        #fff3c4
+
+        #fff4d6
+
     );
+
 
 
     color:#555;
 
+
     transition:.5s;
 
-    overflow-x:hidden;
 
 }
+
 
 
 
@@ -51,31 +67,43 @@ body{
 
 #startScreen{
 
+
     position:fixed;
 
-    width:100%;
-    height:100%;
+
+    inset:0;
 
 
     display:flex;
 
+
     justify-content:center;
+
 
     align-items:center;
 
 
+
     background:
 
+
     linear-gradient(
+
         135deg,
-        #ff8fb8,
+
+        #ff8fba,
+
         #ffd6e7
+
     );
+
 
 
     z-index:9999;
 
+
 }
+
 
 
 
@@ -85,22 +113,28 @@ body{
 
     width:90%;
 
+
     max-width:380px;
-
-
-    padding:35px 25px;
 
 
     background:white;
 
 
+
+    padding:40px 25px;
+
+
+
     border-radius:35px;
+
 
 
     text-align:center;
 
 
+
     box-shadow:
+
 
     0 20px 50px
 
@@ -120,22 +154,29 @@ body{
 
 .start-box h1{
 
+
     color:#ff5c9d;
+
 
     font-size:35px;
 
+
     margin-bottom:15px;
 
+
 }
+
+
 
 
 
 .start-box p{
 
+
     margin-bottom:25px;
 
-}
 
+}
 
 
 
@@ -155,9 +196,12 @@ body{
 
     width:100%;
 
+
     max-width:480px;
 
+
     margin:auto;
+
 
     padding:18px;
 
@@ -187,10 +231,13 @@ body{
     padding:22px;
 
 
-    margin-bottom:18px;
+
+    margin-bottom:20px;
+
 
 
     border-radius:28px;
+
 
 
     box-shadow:
@@ -198,7 +245,7 @@ body{
 
     0 10px 30px
 
-    rgba(255,90,150,.15);
+    rgba(255,92,157,.18);
 
 
 
@@ -210,7 +257,7 @@ body{
 
     animation:
 
-    fade .5s;
+    fade .5s ease;
 
 
 }
@@ -229,6 +276,7 @@ body{
 
     text-align:center;
 
+
 }
 
 
@@ -236,9 +284,11 @@ body{
 .hero h1{
 
 
+    color:#ff5c9d;
+
+
     font-size:34px;
 
-    color:#ff5c9d;
 
 }
 
@@ -249,7 +299,10 @@ body{
 
     margin-top:10px;
 
+
 }
+
+
 
 
 
@@ -264,11 +317,15 @@ body{
 
 h2{
 
+
     text-align:center;
+
 
     color:#ff5c9d;
 
-    margin-bottom:18px;
+
+    margin-bottom:20px;
+
 
 }
 
@@ -276,11 +333,16 @@ h2{
 
 h3{
 
+
     color:#ff5c9d;
+
 
     font-size:22px;
 
+
 }
+
+
 
 
 
@@ -302,22 +364,29 @@ button{
     padding:14px;
 
 
+
     margin-top:12px;
+
 
 
     border:none;
 
 
+
     border-radius:50px;
+
 
 
     font-size:17px;
 
 
+
     color:white;
 
 
+
     cursor:pointer;
+
 
 
     background:
@@ -343,6 +412,7 @@ button{
     rgba(255,92,157,.35);
 
 
+
     transition:.3s;
 
 
@@ -350,23 +420,30 @@ button{
 
 
 
+
 button:hover{
+
 
     transform:
 
     translateY(-3px);
 
+
 }
+
 
 
 
 button:active{
 
+
     transform:
 
     scale(.95);
 
+
 }
+
 
 
 
@@ -382,27 +459,102 @@ button:active{
 
 .mode-group{
 
+
     display:flex;
+
 
     gap:10px;
 
+
 }
+
+
 
 
 .mode{
 
+
     flex:1;
+
 
     font-size:14px;
 
+
 }
+
 
 
 .mode.active{
 
+
     background:#ff5c9d;
 
+
 }
+
+
+
+
+
+
+#partnerName{
+
+
+    width:100%;
+
+
+    padding:14px;
+
+
+
+    margin-top:15px;
+
+
+
+    border-radius:30px;
+
+
+
+    border:none;
+
+
+
+    background:#fff0f6;
+
+
+
+    text-align:center;
+
+
+    font-size:16px;
+
+
+}
+
+
+
+
+#chooserMessage,
+
+
+#statusMessage{
+
+
+    text-align:center;
+
+
+    margin-top:15px;
+
+
+    color:#ff5c9d;
+
+
+    font-weight:bold;
+
+
+}
+
+
 
 
 
@@ -434,7 +586,6 @@ button:active{
 
 
 
-
 #wheel{
 
 
@@ -449,6 +600,7 @@ button:active{
 
     box-shadow:
 
+
     0 15px 35px
 
     rgba(0,0,0,.2);
@@ -459,16 +611,17 @@ button:active{
 
 
 
+
 #pointer{
 
 
     position:absolute;
 
 
-    top:-18px;
+    top:-20px;
 
 
-    z-index:10;
+    z-index:5;
 
 
     font-size:40px;
@@ -485,6 +638,8 @@ button:active{
 
 
 
+
+
 /* =========================
    RESULT
 ========================= */
@@ -494,6 +649,7 @@ button:active{
 
 
     display:flex;
+
 
     gap:10px;
 
@@ -530,7 +686,10 @@ button:active{
 
     font-size:13px;
 
+
 }
+
+
 
 
 
@@ -545,7 +704,9 @@ button:active{
 
 ul{
 
+
     list-style:none;
+
 
 }
 
@@ -557,16 +718,18 @@ li{
     background:#fff0f6;
 
 
-    padding:12px;
-
-
     margin:10px 0;
+
+
+    padding:12px;
 
 
     border-radius:18px;
 
 
 }
+
+
 
 
 
@@ -581,7 +744,9 @@ li{
 
 audio{
 
+
     width:100%;
+
 
 }
 
@@ -593,10 +758,11 @@ select{
     width:100%;
 
 
+    padding:12px;
+
+
     margin-top:15px;
 
-
-    padding:12px;
 
 
     border-radius:20px;
@@ -606,6 +772,7 @@ select{
 
 
 }
+
 
 
 
@@ -640,16 +807,20 @@ select{
 
 
 
+
 @keyframes heartUp{
 
 
 from{
 
+
     transform:
 
     translateY(0);
 
+
     opacity:1;
+
 
 }
 
@@ -657,16 +828,21 @@ from{
 
 to{
 
+
     transform:
 
-    translateY(-350px);
+    translateY(-300px);
+
 
     opacity:0;
 
+
 }
 
 
 }
+
+
 
 
 
@@ -684,23 +860,35 @@ to{
 
 from{
 
-transform:scale(.7);
 
-opacity:0;
+    transform:
+
+    scale(.7);
+
+
+    opacity:0;
+
 
 }
+
 
 
 to{
 
-transform:scale(1);
 
-opacity:1;
+    transform:
+
+    scale(1);
+
+
+    opacity:1;
+
 
 }
 
 
 }
+
 
 
 
@@ -709,9 +897,14 @@ opacity:1;
 
 from{
 
-opacity:0;
 
-transform:translateY(20px);
+    opacity:0;
+
+
+    transform:
+
+    translateY(20px);
+
 
 }
 
@@ -719,14 +912,15 @@ transform:translateY(20px);
 
 to{
 
-opacity:1;
 
-transform:none;
-
-}
+    opacity:1;
 
 
 }
+
+
+}
+
 
 
 
@@ -745,15 +939,17 @@ body.dark{
 
     background:
 
+
     linear-gradient(
 
         135deg,
 
-        #1b1028,
+        #1d1029,
 
-        #52256d
+        #542a72
 
     );
+
 
 
     color:white;
@@ -764,13 +960,12 @@ body.dark{
 
 
 
-
 body.dark .card{
 
 
     background:
 
-    rgba(35,20,55,.92);
+    rgba(40,20,60,.92);
 
 
     color:white;
@@ -803,6 +998,7 @@ body.dark p{
 
     color:#eee;
 
+
 }
 
 
@@ -818,6 +1014,20 @@ body.dark .result-box div{
     background:
 
     rgba(255,255,255,.12);
+
+
+    color:white;
+
+
+}
+
+
+
+
+body.dark #partnerName{
+
+
+    background:#332044;
 
 
     color:white;
@@ -852,76 +1062,6 @@ body.dark button{
 
 
 
-body.dark select{
-
-
-    background:#332044;
-
-    color:white;
-
-}
-
-
-
-
-
-body.dark .start-box{
-
-
-    background:
-
-    #302040;
-
-    color:white;
-
-
-}
-
-
-
-
-
-body.dark #startScreen{
-
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        #21152d,
-
-        #542a72
-
-    );
-
-
-}
-
-
-
-
-
-
-
-/* =========================
-   FOOTER
-========================= */
-
-
-footer{
-
-    text-align:center;
-
-    color:#ff5c9d;
-
-}
-
-
-
-
-
 
 
 
@@ -935,39 +1075,54 @@ footer{
 
 .app{
 
+
     padding:12px;
 
+
 }
+
 
 
 
 .hero h1{
 
+
     font-size:28px;
 
+
 }
+
 
 
 
 #wheel{
 
+
     width:300px;
 
+
 }
+
+
 
 
 
 .result-box{
 
+
     flex-direction:column;
+
 
 }
 
 
 
+
 .mode-group{
 
+
     flex-direction:column;
+
 
 }
 

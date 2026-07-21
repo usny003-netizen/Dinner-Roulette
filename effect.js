@@ -1,146 +1,46 @@
 /* =================================
-   Dinner Roulette V7 ❤️
-   Winner Effect System 🎉
+ Dinner Roulette V10 ❤️
+ Winner Effect System 🎉
 ================================= */
 
 
-function winnerEffect(food){
 
+// ===============================
+// HEART FLOAT ❤️
+// ===============================
 
 
-// สั่นมือถือ
+function createHeartEffect(){
 
-if(navigator.vibrate){
 
-navigator.vibrate([100,50,100]);
+let heart =
 
-}
+document.createElement("div");
 
 
 
+heart.className="heart";
 
-// สร้างข้อความชนะ
 
-
-const popup = document.createElement("div");
-
-
-popup.className="winner-popup";
-
-
-popup.innerHTML=
-
-
-`
-<div>
-🎉 วันนี้กิน...
-</div>
-
-<h1>
-${food}
-</h1>
-
-<p>
-❤️ Chompu เลือกได้แล้ว
-</p>
-`;
-
-
-
-document.body.appendChild(popup);
-
-
-
-
-
-
-// หายไป
-
-setTimeout(()=>{
-
-
-popup.remove();
-
-
-},4000);
-
-
-
-
-
-
-
-// หัวใจ
-
-createHearts();
-
-
-
-// พลุ
-
-createConfetti();
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =======================
-// HEART EFFECT
-// =======================
-
-
-function createHearts(){
-
-
-
-for(let i=0;i<35;i++){
-
-
-
-let heart=document.createElement("div");
-
-
-heart.className="floating-heart";
-
-
-heart.innerHTML=
-
-["❤️","💖","💕","✨"][
-
-Math.floor(
-
-Math.random()*4
-
-)
-
-];
+heart.innerHTML="❤️";
 
 
 
 heart.style.left=
 
-Math.random()*100+"%";
+Math.random()*90+"%";
 
 
 
-heart.style.animationDelay=
+heart.style.bottom=
 
-Math.random()*1+"s";
-
-
+"20px";
 
 
-document.body.appendChild(heart);
 
-
+document.body.appendChild(
+heart
+);
 
 
 
@@ -150,7 +50,7 @@ setTimeout(()=>{
 heart.remove();
 
 
-},3000);
+},2000);
 
 
 
@@ -158,7 +58,11 @@ heart.remove();
 
 
 
-}
+
+
+window.createHeartEffect=
+
+createHeartEffect;
 
 
 
@@ -168,54 +72,65 @@ heart.remove();
 
 
 
-// =======================
-// CONFETTI
-// =======================
+// ===============================
+// CONFETTI 🎊
+// ===============================
 
 
 function createConfetti(){
 
 
 
-for(let i=0;i<60;i++){
+for(let i=0;i<30;i++){
 
 
 
-let item=document.createElement("div");
+let confetti=
 
-
-item.className="confetti";
-
-
-
-item.innerHTML=
-
-["🎉","⭐","✨","💗"][
-
-Math.floor(
-
-Math.random()*4
-
-)
-
-];
+document.createElement(
+"div"
+);
 
 
 
-item.style.left=
+confetti.innerHTML="✨";
+
+
+
+confetti.style.position="fixed";
+
+
+
+confetti.style.left=
 
 Math.random()*100+"%";
 
 
 
-item.style.animationDelay=
-
-Math.random()*1+"s";
+confetti.style.top="-20px";
 
 
 
+confetti.style.fontSize=
 
-document.body.appendChild(item);
+Math.random()*25+15+"px";
+
+
+
+confetti.style.zIndex="9999";
+
+
+
+confetti.style.transition=
+
+"transform 2s ease, opacity 2s";
+
+
+
+document.body.appendChild(
+confetti
+);
+
 
 
 
@@ -223,10 +138,67 @@ document.body.appendChild(item);
 setTimeout(()=>{
 
 
-item.remove();
+confetti.style.transform=
+
+`translateY(${window.innerHeight+200}px)
+rotate(360deg)`;
 
 
-},4000);
+confetti.style.opacity=0;
+
+
+
+},100);
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+confetti.remove();
+
+
+},2500);
+
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// WIN EFFECT 🎉
+// ===============================
+
+
+function winEffect(){
+
+
+
+// หัวใจ
+
+for(let i=0;i<8;i++){
+
+
+setTimeout(()=>{
+
+
+createHeartEffect();
+
+
+},i*150);
 
 
 
@@ -234,4 +206,96 @@ item.remove();
 
 
 
+
+
+
+// confetti
+
+
+createConfetti();
+
+
+
+
+
+
+
+
+// result animation
+
+
+const result =
+
+document.querySelector(
+".result-box"
+);
+
+
+
+if(result){
+
+
+
+result.classList.add(
+"win"
+);
+
+
+
+setTimeout(()=>{
+
+
+result.classList.remove(
+"win"
+);
+
+
+
+},1000);
+
+
+
 }
+
+
+
+
+
+
+
+
+
+// เปลี่ยนข้อความ
+
+
+const status =
+
+document.getElementById(
+"statusMessage"
+);
+
+
+
+if(status){
+
+
+status.innerHTML=
+
+"🎉 ได้แล้ว! กินเมนูนี้กัน ❤️";
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+window.winEffect=
+
+winEffect;

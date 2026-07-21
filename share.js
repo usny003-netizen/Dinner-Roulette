@@ -1,29 +1,7 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Share Card System 📸
+ Dinner Roulette V12 ❤️
+ Couple Share Card System 📸💕
 ================================= */
-
-
-
-let shareData = {
-
-
-food:"-",
-
-
-drink:"-",
-
-
-dessert:"-"
-
-
-};
-
-
-
-
-
-
 
 
 
@@ -35,7 +13,6 @@ dessert:"-"
 function updateShareCard(data){
 
 
-
 if(!data)
 
 return;
@@ -43,26 +20,7 @@ return;
 
 
 
-
-shareData={
-
-
-food:data.food || "-",
-
-
-drink:data.drink || "-",
-
-
-dessert:data.sdessert || data.dessert || "-"
-
-
-};
-
-
-
-
-
-const food=
+const food =
 
 document.getElementById(
 "shareFood"
@@ -70,7 +28,7 @@ document.getElementById(
 
 
 
-const drink=
+const drink =
 
 document.getElementById(
 "shareDrink"
@@ -78,7 +36,7 @@ document.getElementById(
 
 
 
-const dessert=
+const dessert =
 
 document.getElementById(
 "shareDessert"
@@ -86,7 +44,7 @@ document.getElementById(
 
 
 
-const date=
+const date =
 
 document.getElementById(
 "shareDate"
@@ -101,7 +59,7 @@ if(food)
 
 food.innerHTML=
 
-shareData.food;
+"🍜 "+data.food;
 
 
 
@@ -109,7 +67,7 @@ if(drink)
 
 drink.innerHTML=
 
-shareData.drink;
+data.drink;
 
 
 
@@ -117,7 +75,7 @@ if(dessert)
 
 dessert.innerHTML=
 
-shareData.dartess || shareData.dessert;
+data.drink;
 
 
 
@@ -125,10 +83,7 @@ if(date)
 
 date.innerHTML=
 
-"📅 "
-
-+
-
+"📅 "+
 new Date()
 
 .toLocaleDateString(
@@ -137,16 +92,11 @@ new Date()
 
 
 
-
-
-
 }
 
 
 
-
-window.updateShareCard=
-
+window.updateShareCard =
 updateShareCard;
 
 
@@ -158,145 +108,19 @@ updateShareCard;
 
 
 // ===============================
-// SHARE BUTTON
+// SAVE IMAGE 📸
 // ===============================
 
 
-const shareBtn=
+function saveShareImage(){
 
-document.getElementById(
-"shareBtn"
-);
 
 
-
-if(shareBtn){
-
-
-
-shareBtn.onclick=()=>{
-
-
-
-let text=
-
-`
-
-❤️ Dinner Roulette
-
-
-วันนี้ Chompu เลือกให้ 💕
-
-
-🍜 ${shareData.food}
-
-🥤 ${shareData.drink}
-
-🍰 ${shareData.dartess || shareData.dessert}
-
-
-
-กินด้วยกันอร่อยกว่า ❤️
-
-`;
-
-
-
-
-
-
-if(navigator.share){
-
-
-
-navigator.share({
-
-title:
-"Dinner Roulette ❤️",
-
-text:text
-
-
-});
-
-
-
-}
-
-else{
-
-
-navigator.clipboard.writeText(text);
-
-
-
-alert(
-"📋 คัดลอกข้อความแล้ว ❤️"
-);
-
-
-}
-
-
-
-
-
-
-
-if(typeof completeShareMission==="function"){
-
-
-completeShareMission();
-
-
-}
-
-
-
-
-
-};
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// SAVE IMAGE
-// ===============================
-
-
-const saveBtn=
-
-document.getElementById(
-"saveImageBtn"
-);
-
-
-
-if(saveBtn){
-
-
-
-saveBtn.onclick=()=>{
-
-
-
-const card=
+const card =
 
 document.getElementById(
 "shareCard"
 );
-
 
 
 
@@ -309,31 +133,13 @@ return;
 
 
 
-if(typeof html2canvas==="undefined"){
-
-
-alert(
-"ไม่พบระบบสร้างรูป"
-);
-
-
-return;
-
-
-}
-
-
-
-
-
-
 html2canvas(card)
 
 .then(canvas=>{
 
 
 
-let link=
+const link =
 
 document.createElement(
 "a"
@@ -343,7 +149,7 @@ document.createElement(
 
 link.download=
 
-"Dinner-Roulette.png";
+"Dinner-Roulette-Chompu.png";
 
 
 
@@ -359,12 +165,87 @@ link.click();
 
 
 
-
-
 });
 
 
 
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// SHARE MOBILE
+// ===============================
+
+
+function shareToChompu(){
+
+
+
+const food =
+
+document.getElementById(
+"shareFood"
+)?.innerText;
+
+
+
+
+
+const text =
+
+`
+
+❤️ Dinner Roulette
+
+
+วันนี้ Chompu เลือกให้ 💕
+
+
+${food}
+
+
+กินด้วยกันนะ ❤️
+
+`;
+
+
+
+
+
+if(navigator.share){
+
+
+navigator.share({
+
+title:
+"Dinner Roulette ❤️",
+
+text:text
+
+});
+
+
+}
+
+else{
+
+
+navigator.clipboard.writeText(text);
+
+
+alert(
+"❤️ คัดลอกข้อความแล้ว"
+);
+
+
+}
 
 
 
@@ -379,13 +260,6 @@ completeShareMission();
 
 
 
-
-};
-
-
-
-
-
 }
 
 
@@ -397,7 +271,7 @@ completeShareMission();
 
 
 // ===============================
-// LOAD
+// INIT
 // ===============================
 
 
@@ -408,15 +282,74 @@ document.addEventListener(
 ()=>{
 
 
+
+const saveBtn=
+
+document.getElementById(
+"saveImageBtn"
+);
+
+
+
+if(saveBtn){
+
+
+saveBtn.onclick=
+
+()=>{
+
+
+saveShareImage();
+
+
+};
+
+
+
+}
+
+
+
+
+const shareBtn=
+
+document.getElementById(
+"shareBtn"
+);
+
+
+
+if(shareBtn){
+
+
+
+shareBtn.onclick=
+
+()=>{
+
+
+shareToChompu();
+
+
+};
+
+
+}
+
+
+
+
 updateShareCard({
 
-food:"-",
+food:"ยังไม่มีเมนู",
 
-drink:"-",
+drink:"🥤 น้ำหวาน",
 
-dessert:"-"
+dessert:"🍰 ของหวาน"
+
 
 });
+
 
 
 });

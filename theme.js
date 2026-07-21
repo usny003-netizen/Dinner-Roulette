@@ -1,16 +1,12 @@
 /* =================================
- Dinner Roulette V12 ❤️
+ Dinner Roulette V13 ❤️
  Theme System 🌙💕
 ================================= */
-
 
 
 const themeKey =
 
 "dinnerTheme";
-
-
-
 
 
 
@@ -54,7 +50,6 @@ updateThemeButton(true);
 else{
 
 
-
 document.body.classList.remove(
 "dark"
 );
@@ -75,12 +70,19 @@ updateThemeButton(false);
 
 
 
+window.applyTheme =
+applyTheme;
+
+
+
+
+
 
 
 
 
 // ===============================
-// TOGGLE
+// TOGGLE THEME
 // ===============================
 
 
@@ -95,7 +97,7 @@ document.body.classList.toggle(
 
 
 
-const isDark =
+const dark =
 
 document.body.classList.contains(
 "dark"
@@ -105,16 +107,17 @@ document.body.classList.contains(
 
 
 
-
 localStorage.setItem(
 
 themeKey,
 
-isDark
+dark ?
 
-? "dark"
+"dark"
 
-: "light"
+:
+
+"light"
 
 );
 
@@ -123,13 +126,18 @@ isDark
 
 
 updateThemeButton(
-isDark
+dark
 );
 
 
 
-}
 
+
+createThemeEffect();
+
+
+
+}
 
 
 
@@ -145,7 +153,7 @@ toggleTheme;
 
 
 // ===============================
-// BUTTON TEXT
+// BUTTON
 // ===============================
 
 
@@ -153,12 +161,11 @@ function updateThemeButton(dark){
 
 
 
-const btn =
+const btn=
 
 document.getElementById(
 "themeBtn"
 );
-
 
 
 
@@ -169,31 +176,55 @@ return;
 
 
 
-
-
-if(dark){
-
-
-
 btn.innerHTML=
 
-"☀️ Light Mode";
+dark
 
+?
 
+"☀️ Light Mode"
 
-}
-
-else{
-
-
-
-btn.innerHTML=
+:
 
 "🌙 Dark Mode";
 
 
 
 }
+
+
+
+
+
+
+
+
+
+// ===============================
+// EFFECT
+// ===============================
+
+
+function createThemeEffect(){
+
+
+
+document.body.classList.add(
+"theme-change"
+);
+
+
+
+setTimeout(()=>{
+
+
+document.body.classList.remove(
+"theme-change"
+);
+
+
+
+},500);
 
 
 
@@ -225,14 +256,11 @@ applyTheme();
 
 
 
-
 const btn=
 
 document.getElementById(
 "themeBtn"
 );
-
-
 
 
 
@@ -243,17 +271,16 @@ if(btn){
 
 btn.onclick=
 
-()=>{
+toggleTheme;
 
-
-toggleTheme();
-
-
-};
 
 
 }
 
 
 
-});
+
+
+}
+
+);

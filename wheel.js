@@ -1,6 +1,6 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Wheel System 🎡
+ Dinner Roulette V11 ❤️
+ Wheel Spin System 🎡
 ================================= */
 
 
@@ -14,76 +14,62 @@ const ctx = canvas.getContext("2d");
 
 
 
-
-
-// =========================
-// MENU DATA
-// =========================
+// =============================
+// FOOD DATABASE
+// =============================
 
 
 const foods = [
-
 
 {
 name:"🥘 หมูกระทะ",
 category:"grill"
 },
 
-
 {
 name:"🍲 ชาบู",
 category:"grill"
 },
-
 
 {
 name:"🐷 หมูย่างจิ้มแจ่ว",
 category:"thai"
 },
 
-
 {
 name:"🍗 ไก่ทอด",
 category:"fast"
 },
-
 
 {
 name:"🍜 ก๋วยเตี๋ยว",
 category:"noodle"
 },
 
-
 {
 name:"🍣 ซูชิ",
 category:"japan"
 },
-
 
 {
 name:"🥩 ปิ้งย่าง",
 category:"grill"
 },
 
-
 {
 name:"🍕 พิซซ่า",
 category:"fast"
 },
-
 
 {
 name:"🍔 เบอร์เกอร์",
 category:"fast"
 },
 
-
 {
 name:"🍱 อาหารญี่ปุ่น",
 category:"japan"
 }
-
-
 
 ];
 
@@ -91,25 +77,23 @@ category:"japan"
 
 
 
-let currentFoods=[...foods];
-
-
-let spinning=false;
+let wheelFoods=[...foods];
 
 
 let currentMode="ฉัน";
 
 
-let currentRotation=0;
+let spinning=false;
 
 
-let currentResult="";
+let rotation=0;
+
+
+let currentFood=null;
 
 
 
 
-
-// เสียง
 
 const clickSound =
 new Audio("click.mp3");
@@ -124,15 +108,15 @@ new Audio("win.mp3");
 
 
 
-// =========================
-// COLORS
-// =========================
+// =============================
+// COLOR THEME
+// =============================
 
 
-let wheelColors=[
+let colors=[
 
-"#ffd1e5",
-"#fff0b8"
+"#ffc8dd",
+"#ffe5ec"
 
 ];
 
@@ -140,17 +124,16 @@ let wheelColors=[
 
 
 
-function changeWheelTheme(mode){
-
+function setWheelColor(mode){
 
 
 if(mode==="ฉัน"){
 
 
-wheelColors=[
+colors=[
 
 "#ffb6d9",
-"#ffe1ef"
+"#ffd6e7"
 
 ];
 
@@ -162,10 +145,10 @@ wheelColors=[
 else if(mode==="แฟน"){
 
 
-wheelColors=[
+colors=[
 
-"#cdb4ff",
-"#bde0fe"
+"#bde0fe",
+"#cdb4ff"
 
 ];
 
@@ -177,12 +160,12 @@ wheelColors=[
 else{
 
 
-wheelColors=[
+colors=[
 
-"#ffcad4",
+"#ffadad",
+"#ffd6a5",
 "#caffbf",
-"#bde0fe",
-"#ffc8dd"
+"#bde0fe"
 
 ];
 
@@ -194,7 +177,6 @@ wheelColors=[
 drawWheel();
 
 
-
 }
 
 
@@ -204,14 +186,12 @@ drawWheel();
 
 
 
-// =========================
-// DRAW WHEEL
-// =========================
-
+// =============================
+// DRAW
+// =============================
 
 
 function drawWheel(){
-
 
 
 const center =
@@ -221,17 +201,15 @@ canvas.width/2;
 const radius=center;
 
 
-const slice=
-
-(Math.PI*2)/currentFoods.length;
-
-
 
 ctx.clearRect(
 
 0,
+
 0,
+
 canvas.width,
+
 canvas.height
 
 );
@@ -239,8 +217,26 @@ canvas.height
 
 
 
+if(wheelFoods.length===0)
 
-currentFoods.forEach((food,index)=>{
+return;
+
+
+
+
+const slice =
+
+(Math.PI*2)
+
+/wheelFoods.length;
+
+
+
+
+
+wheelFoods.forEach(
+
+(food,index)=>{
 
 
 ctx.beginPath();
@@ -249,6 +245,7 @@ ctx.beginPath();
 ctx.moveTo(
 
 center,
+
 center
 
 );
@@ -258,7 +255,9 @@ center
 ctx.arc(
 
 center,
+
 center,
+
 radius,
 
 index*slice,
@@ -271,8 +270,7 @@ index*slice,
 
 ctx.fillStyle=
 
-wheelColors[index %
-wheelColors.length];
+colors[index % colors.length];
 
 
 
@@ -281,12 +279,17 @@ ctx.fill();
 
 
 
+// TEXT
+
+
 ctx.save();
+
 
 
 ctx.translate(
 
 center,
+
 center
 
 );
@@ -295,7 +298,7 @@ center
 
 ctx.rotate(
 
-index*slice+slice/2
+index*slice + slice/2
 
 );
 
@@ -304,10 +307,10 @@ index*slice+slice/2
 ctx.textAlign="right";
 
 
-ctx.font="18px Arial";
-
-
 ctx.fillStyle="#555";
+
+
+ctx.font="17px Tahoma";
 
 
 
@@ -330,7 +333,6 @@ ctx.restore();
 });
 
 
-
 }
 
 
@@ -340,19 +342,19 @@ ctx.restore();
 
 
 
-// =========================
-// FILTER CATEGORY
-// =========================
+
+// =============================
+// CATEGORY
+// =============================
 
 
 window.changeCategory=function(category){
 
 
-
 if(category==="all"){
 
 
-currentFoods=[...foods];
+wheelFoods=[...foods];
 
 
 }
@@ -360,13 +362,13 @@ currentFoods=[...foods];
 else{
 
 
-currentFoods=
+wheelFoods=
 
 foods.filter(
 
-food=>
+item=>
 
-food.category===category
+item.category===category
 
 );
 
@@ -388,18 +390,15 @@ drawWheel();
 
 
 
-// =========================
-// AVOID FILTER
-// =========================
+// =============================
+// AVOID SYSTEM
+// =============================
 
 
-function getAvailableFoods(){
+function getAvoid(){
 
 
-
-let avoid=
-
-JSON.parse(
+return JSON.parse(
 
 localStorage.getItem(
 "avoidList"
@@ -409,10 +408,22 @@ localStorage.getItem(
 )||[];
 
 
+}
 
 
 
-return currentFoods.filter(
+
+
+
+
+function getAvailable(){
+
+
+let avoid=getAvoid();
+
+
+
+return wheelFoods.filter(
 
 food=>
 
@@ -431,9 +442,9 @@ food=>
 
 
 
-// =========================
+// =============================
 // MODE BUTTON
-// =========================
+// =============================
 
 
 document.querySelectorAll(".mode")
@@ -441,10 +452,16 @@ document.querySelectorAll(".mode")
 .forEach(btn=>{
 
 
-btn.onclick=()=>{
+btn.addEventListener(
+
+"click",
+
+()=>{
 
 
-document.querySelectorAll(".mode")
+document
+
+.querySelectorAll(".mode")
 
 .forEach(b=>
 
@@ -464,8 +481,7 @@ btn.dataset.mode;
 
 
 
-
-changeWheelTheme(
+setWheelColor(
 
 currentMode
 
@@ -476,15 +492,19 @@ currentMode
 let name=
 
 document.getElementById(
+
 "partnerName"
+
 ).value;
 
 
 
-let msg=
+let message=
 
 document.getElementById(
+
 "chooserMessage"
+
 );
 
 
@@ -493,13 +513,9 @@ document.getElementById(
 if(currentMode==="แฟน"){
 
 
-msg.innerHTML=
+message.innerHTML=
 
-`💕
-
-วันนี้ ${name}
-
-เลือกให้`;
+`❤️ วันนี้ ${name} เลือกให้`;
 
 }
 
@@ -507,10 +523,9 @@ msg.innerHTML=
 else if(currentMode==="สุ่ม"){
 
 
-msg.innerHTML=
+message.innerHTML=
 
-"🎲 วันนี้โชคชะตาเลือกให้";
-
+"🎲 วันนี้ให้โชคชะตาเลือก";
 
 }
 
@@ -518,16 +533,17 @@ msg.innerHTML=
 else{
 
 
-msg.innerHTML=
+message.innerHTML=
 
 "🌸 วันนี้ฉันเลือกให้";
+
+}
 
 
 }
 
 
-
-};
+);
 
 
 
@@ -541,35 +557,9 @@ msg.innerHTML=
 
 
 
-// =========================
-// SPIN BUTTON
-// =========================
-
-
-const spinBtn=
-
-document.getElementById(
-"spinBtn"
-);
-
-
-
-if(spinBtn){
-
-
-spinBtn.onclick=
-
-spinWheel;
-
-
-}
-
-
-
-
-
-
-
+// =============================
+// SPIN
+// =============================
 
 
 function spinWheel(){
@@ -577,13 +567,15 @@ function spinWheel(){
 
 
 if(spinning)
+
 return;
 
 
 
 let available=
 
-getAvailableFoods();
+getAvailable();
+
 
 
 
@@ -592,7 +584,7 @@ if(available.length===0){
 
 alert(
 
-"ไม่มีเมนูให้สุ่มแล้ว ❤️"
+"🚫 ไม่มีเมนูให้สุ่มแล้ว"
 
 );
 
@@ -601,8 +593,6 @@ return;
 
 
 }
-
-
 
 
 
@@ -617,7 +607,8 @@ clickSound.play();
 
 
 
-let result=
+
+currentFood=
 
 available[
 
@@ -633,42 +624,40 @@ Math.random()*available.length
 
 
 
-currentResult=result;
-
-
-
-
 
 let index=
 
-currentFoods.indexOf(result);
+wheelFoods.indexOf(
+
+currentFood
+
+);
 
 
 
 
-let angle=
 
-360/currentFoods.length;
+let slice=
+
+360/wheelFoods.length;
 
 
 
 
-let rotate=
+
+let stop=
 
 360*6+
 
-(360-index*angle);
-
-
-
-currentRotation+=rotate;
+(360-(index*slice+slice/2));
 
 
 
 
-canvas.style.transform=
 
-`rotate(${currentRotation}deg)`;
+
+rotation+=stop;
+
 
 
 
@@ -676,6 +665,12 @@ canvas.style.transform=
 canvas.style.transition=
 
 "transform 5s cubic-bezier(.17,.67,.24,1)";
+
+
+
+canvas.style.transform=
+
+`rotate(${rotation}deg)`;
 
 
 
@@ -689,20 +684,14 @@ setTimeout(()=>{
 spinning=false;
 
 
-
 winSound.play();
 
 
-
-showResult(result);
-
+showResult();
 
 
 
 },5000);
-
-
-
 
 
 
@@ -713,38 +702,91 @@ showResult(result);
 
 
 
+window.spinWheel=
+
+spinWheel;
 
 
 
-// =========================
+
+
+
+
+
+
+// =============================
 // RESULT
-// =========================
+// =============================
 
 
-function showResult(food){
+function showResult(){
 
 
+
+if(!currentFood)
+
+return;
+
+
+
+
+const result=
 
 document.getElementById(
-
 "foodResult"
-
-).innerHTML=
-
-food.name;
+);
 
 
 
+if(result){
 
 
-// share card
+result.innerHTML=
+
+currentFood.name;
+
+
+}
+
+
+
+
+
+
+// HISTORY
+
+if(typeof saveHistory==="function"){
+
+
+saveHistory({
+
+food:currentFood.name,
+
+drink:"🥤 น้ำหวาน",
+
+dessert:"🍰 ของหวาน",
+
+mode:currentMode
+
+});
+
+
+}
+
+
+
+
+
+
+// SHARE CARD
+
 
 if(typeof updateShareCard==="function"){
 
 
 updateShareCard({
 
-food:food.name,
+food:currentFood.name,
 
 drink:"🥤 น้ำหวาน",
 
@@ -759,10 +801,7 @@ dessert:"🍰 ของหวาน"
 
 
 
-
-
-// mission
-
+// MISSION
 
 if(typeof completeSpinMission==="function"){
 
@@ -776,9 +815,7 @@ completeSpinMission();
 
 
 
-
-// effect
-
+// EFFECT
 
 if(typeof winEffect==="function"){
 
@@ -792,8 +829,6 @@ winEffect();
 
 
 
-
-
 }
 
 
@@ -803,14 +838,13 @@ winEffect();
 
 
 
-
-// เริ่มต้น
+// START
 
 
 drawWheel();
 
 
-changeWheelTheme("ฉัน");
+setWheelColor("ฉัน");
 
 
 

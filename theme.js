@@ -1,11 +1,11 @@
 /* =================================
- Dinner Roulette V13 ❤️
- Theme System 🌙💕
+ Dinner Roulette Chompu V17 ❤️
+ Theme System FINAL 🌙💕
 ================================= */
 
 
-const themeKey =
 
+const themeKey =
 "dinnerTheme";
 
 
@@ -30,7 +30,6 @@ themeKey
 
 
 
-
 if(theme==="dark"){
 
 
@@ -50,6 +49,7 @@ updateThemeButton(true);
 else{
 
 
+
 document.body.classList.remove(
 "dark"
 );
@@ -64,9 +64,8 @@ updateThemeButton(false);
 
 
 
+
 }
-
-
 
 
 
@@ -82,7 +81,7 @@ applyTheme;
 
 
 // ===============================
-// TOGGLE THEME
+// TOGGLE THEME 🌙
 // ===============================
 
 
@@ -90,16 +89,9 @@ function toggleTheme(){
 
 
 
-document.body.classList.toggle(
-"dark"
-);
-
-
-
-
 const dark =
 
-document.body.classList.contains(
+document.body.classList.toggle(
 "dark"
 );
 
@@ -111,7 +103,9 @@ localStorage.setItem(
 
 themeKey,
 
-dark ?
+dark
+
+?
 
 "dark"
 
@@ -133,7 +127,20 @@ dark
 
 
 
-createThemeEffect();
+themeEffect();
+
+
+
+
+
+if(typeof createHeart==="function"){
+
+
+createHeart();
+
+
+}
+
 
 
 
@@ -153,7 +160,7 @@ toggleTheme;
 
 
 // ===============================
-// BUTTON
+// UPDATE BUTTON
 // ===============================
 
 
@@ -161,7 +168,7 @@ function updateThemeButton(dark){
 
 
 
-const btn=
+const btn =
 
 document.getElementById(
 "themeBtn"
@@ -176,7 +183,8 @@ return;
 
 
 
-btn.innerHTML=
+
+btn.innerHTML =
 
 dark
 
@@ -205,13 +213,15 @@ dark
 // ===============================
 
 
-function createThemeEffect(){
+function themeEffect(){
 
 
 
 document.body.classList.add(
 "theme-change"
 );
+
+
 
 
 
@@ -223,8 +233,67 @@ document.body.classList.remove(
 );
 
 
+},600);
 
-},500);
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// AUTO DETECT SYSTEM
+// ===============================
+
+
+function detectSystemTheme(){
+
+
+
+const saved =
+
+localStorage.getItem(
+themeKey
+);
+
+
+
+if(saved)
+
+return;
+
+
+
+
+
+
+if(
+
+window.matchMedia &&
+
+window.matchMedia(
+"(prefers-color-scheme: dark)"
+)
+
+.matches
+
+){
+
+
+
+document.body.classList.add(
+"dark"
+);
+
+
+
+}
 
 
 
@@ -251,7 +320,13 @@ document.addEventListener(
 
 
 
+detectSystemTheme();
+
+
+
 applyTheme();
+
+
 
 
 
@@ -269,18 +344,18 @@ if(btn){
 
 
 
-btn.onclick=
-
-toggleTheme;
+btn.onclick=()=>{
 
 
+toggleTheme();
 
-}
 
-
+};
 
 
 
 }
 
-);
+
+
+});

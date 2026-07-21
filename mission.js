@@ -1,51 +1,21 @@
 /* =================================
- Dinner Roulette V12 ❤️
- Daily Mission System 💌💕
+ Dinner Roulette V13 ❤️
+ Daily Mission System 💌
 ================================= */
 
 
 
-let missionData =
-
-JSON.parse(
-
-localStorage.getItem(
-"dinnerMission"
-
-)
-
-)||{
-
-date:"",
-
-open:false,
-
-spin:false,
-
-like:false,
-
-share:false
-
-};
-
-
-
-
-
-
-
-
-
 // ===============================
-// CHECK DAILY RESET
+// DATA
 // ===============================
 
 
-function checkMissionDay(){
+const missionKey =
+"dinnerMission";
 
 
 
-let today =
+const today =
 
 new Date()
 
@@ -57,11 +27,32 @@ new Date()
 
 
 
-if(missionData.date !== today){
+let missions =
+
+JSON.parse(
+
+localStorage.getItem(
+missionKey
+)
+
+);
 
 
 
-missionData={
+
+
+
+
+// ===============================
+// CREATE TODAY MISSION
+// ===============================
+
+
+function createMission(){
+
+
+
+missions={
 
 
 date:today,
@@ -84,47 +75,51 @@ share:false
 
 
 
-saveMission();
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// SAVE
-// ===============================
-
-
-function saveMission(){
-
-
-
 localStorage.setItem(
 
-"dinnerMission",
+missionKey,
 
-JSON.stringify(
-missionData
-
-)
+JSON.stringify(missions)
 
 );
 
 
 
-renderMission();
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// LOAD
+// ===============================
+
+
+function loadMission(){
+
+
+
+if(!missions || missions.date!==today){
+
+
+
+createMission();
+
+
+
+}
+
+
+
+
+
+updateMissionUI();
+
 
 
 }
@@ -138,30 +133,66 @@ renderMission();
 
 
 // ===============================
-// COMPLETE MISSIONS
+// COMPLETE
 // ===============================
+
+
+
+function completeMission(type){
+
+
+
+if(!missions)
+
+createMission();
+
+
+
+missions[type]=true;
+
+
+
+localStorage.setItem(
+
+missionKey,
+
+JSON.stringify(missions)
+
+);
+
+
+
+updateMissionUI();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// PUBLIC FUNCTIONS
+// ===============================
+
 
 
 function completeOpenMission(){
 
 
 
-missionData.open=true;
+completeMission(
+"open"
+);
 
-
-saveMission();
 
 
 }
-
-
-
-window.completeOpenMission =
-completeOpenMission;
-
-
-
-
 
 
 
@@ -169,23 +200,13 @@ function completeSpinMission(){
 
 
 
-missionData.spin=true;
+completeMission(
+"spin"
+);
 
-
-saveMission();
 
 
 }
-
-
-
-window.completeSpinMission =
-completeSpinMission;
-
-
-
-
-
 
 
 
@@ -193,23 +214,13 @@ function completeLikeMission(){
 
 
 
-missionData.like=true;
+completeMission(
+"like"
+);
 
-
-saveMission();
 
 
 }
-
-
-
-window.completeLikeMission =
-completeLikeMission;
-
-
-
-
-
 
 
 
@@ -217,14 +228,30 @@ function completeShareMission(){
 
 
 
-missionData.share=true;
+completeMission(
+"share"
+);
 
-
-saveMission();
 
 
 }
 
+
+
+
+
+
+
+window.completeOpenMission =
+completeOpenMission;
+
+
+window.completeSpinMission =
+completeSpinMission;
+
+
+window.completeLikeMission =
+completeLikeMission;
 
 
 window.completeShareMission =
@@ -239,46 +266,37 @@ completeShareMission;
 
 
 // ===============================
-// RENDER
+// UI
 // ===============================
 
 
-function renderMission(){
+
+function updateMissionUI(){
 
 
 
 const open =
-
 document.getElementById(
 "openMission"
 );
 
 
-
 const spin =
-
 document.getElementById(
 "spinMission"
 );
 
 
-
 const like =
-
 document.getElementById(
 "likeMission"
 );
 
 
-
 const share =
-
 document.getElementById(
 "shareMission"
 );
-
-
-
 
 
 
@@ -286,11 +304,13 @@ if(open)
 
 open.innerHTML=
 
-missionData.open
+missions.open ?
 
-? "✅"
+"✅"
 
-: "⬜";
+:
+
+"⬜";
 
 
 
@@ -299,11 +319,13 @@ if(spin)
 
 spin.innerHTML=
 
-missionData.spin
+missions.spin ?
 
-? "✅"
+"✅"
 
-: "⬜";
+:
+
+"⬜";
 
 
 
@@ -312,11 +334,13 @@ if(like)
 
 like.innerHTML=
 
-missionData.like
+missions.like ?
 
-? "✅"
+"✅"
 
-: "⬜";
+:
+
+"⬜";
 
 
 
@@ -325,15 +349,13 @@ if(share)
 
 share.innerHTML=
 
-missionData.share
+missions.share ?
 
-? "✅"
+"✅"
 
-: "⬜";
+:
 
-
-
-
+"⬜";
 
 
 
@@ -341,60 +363,60 @@ missionData.share
 
 const score =
 
+Object.values({
+
+open:missions.open,
+
+spin:missions.spin,
+
+like:missions.like,
+
+share:missions.share
+
+})
+
+.filter(Boolean)
+
+.length;
+
+
+
+
+
+
+const scoreBox=
+
 document.getElementById(
 "missionScore"
 );
 
 
 
+if(scoreBox){
 
 
-let count=0;
+scoreBox.innerHTML=
 
-
-
-if(missionData.open)
-
-count++;
-
-
-if(missionData.spin)
-
-count++;
-
-
-if(missionData.like)
-
-count++;
-
-
-if(missionData.share)
-
-count++;
+`${score}/4 ❤️`;
 
 
 
+if(score===4){
 
 
+scoreBox.innerHTML=
 
-if(score){
+"🎉 Mission Complete 4/4 ❤️";
 
 
-
-score.innerHTML=
-
-`
-
-คะแนนวันนี้
-
-${count}/4 ❤️
-
-`;
+createMissionReward();
 
 
 
 }
 
+
+}
 
 
 
@@ -409,7 +431,90 @@ ${count}/4 ❤️
 
 
 // ===============================
-// START TODAY
+// COMPLETE EFFECT
+// ===============================
+
+
+function createMissionReward(){
+
+
+
+if(
+
+document.querySelector(
+".mission-popup"
+
+)
+
+)
+
+return;
+
+
+
+
+let box=
+
+document.createElement(
+"div"
+);
+
+
+
+box.className=
+"mission-popup";
+
+
+
+box.innerHTML=
+
+`
+
+<h2>
+🎉 เก่งมาก!
+</h2>
+
+<p>
+ทำ Daily Mission ครบแล้ว ❤️
+</p>
+
+
+💕 Chompu มีความสุขแน่นอน
+
+
+`;
+
+
+
+document.body.appendChild(
+box
+);
+
+
+
+
+setTimeout(()=>{
+
+
+box.remove();
+
+
+},4000);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// INIT
 // ===============================
 
 
@@ -421,21 +526,16 @@ document.addEventListener(
 
 
 
-checkMissionDay();
+loadMission();
 
 
 
-
-
-// เปิดเว็บสำเร็จ
+// เปิดเว็บวันนี้
 
 completeOpenMission();
 
 
 
+}
 
-renderMission();
-
-
-
-});
+);

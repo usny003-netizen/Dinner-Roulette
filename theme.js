@@ -1,59 +1,125 @@
 /* =================================
-   Dinner Roulette ❤️
-   Theme System 🌙
+   Dinner Roulette V2 ❤️
+   theme.js 🌙
 ================================= */
 
 
-const themeBtn = document.getElementById("themeBtn");
+
+const themeBtn =
+
+document.getElementById(
+
+"themeBtn"
+
+);
 
 
 
-// โหลด Theme
+
+
+
+// ===============================
+// โหลด Theme เดิม
+// ===============================
+
+
 
 let darkMode =
 
-localStorage.getItem("darkMode") === "true";
+localStorage.getItem(
+
+"darkMode"
+
+)
+
+===
+
+"true";
 
 
 
+
+
+
+
+
+
+// ===============================
+// ใช้งาน Theme
+// ===============================
 
 
 function applyTheme(){
 
 
-    if(darkMode){
+
+if(darkMode){
 
 
-        document.body.classList.add(
-            "dark"
-        );
+
+document.body.classList.add(
+
+"dark"
+
+);
 
 
-        themeBtn.innerHTML =
-        "☀️ Light Mode";
+
+if(themeBtn){
 
 
-    }
+themeBtn.innerHTML =
 
-    else{
-
-
-        document.body.classList.remove(
-            "dark"
-        );
-
-
-        themeBtn.innerHTML =
-        "🌙 Dark Mode";
-
-
-    }
+"☀️ Light Mode";
 
 
 
 }
 
 
+
+}
+
+else{
+
+
+
+document.body.classList.remove(
+
+"dark"
+
+);
+
+
+
+if(themeBtn){
+
+
+themeBtn.innerHTML =
+
+"🌙 Dark Mode";
+
+
+
+}
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// เรียกตอนเปิดเว็บ
 
 applyTheme();
 
@@ -63,10 +129,16 @@ applyTheme();
 
 
 
+
+
+// ===============================
 // ปุ่มเปลี่ยน Theme
+// ===============================
+
 
 
 if(themeBtn){
+
 
 
 themeBtn.addEventListener(
@@ -76,21 +148,32 @@ themeBtn.addEventListener(
 ()=>{
 
 
-    darkMode = !darkMode;
+
+darkMode = !darkMode;
 
 
 
-    localStorage.setItem(
-
-        "darkMode",
-
-        darkMode
-
-    );
 
 
 
-    applyTheme();
+localStorage.setItem(
+
+"darkMode",
+
+darkMode
+
+);
+
+
+
+
+
+
+
+applyTheme();
+
+
+
 
 
 

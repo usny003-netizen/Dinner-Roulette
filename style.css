@@ -1224,3 +1224,93 @@ border-left:
 5px solid #ff9fc5;
 
 }
+/* =====================
+ DARK MODE V12 🌙
+===================== */
+
+
+body.dark .hero h1,
+body.dark h2,
+body.dark h3{
+
+color:#ffb6d9;
+
+}
+
+
+
+body.dark p{
+
+color:#eee;
+
+}
+
+
+
+body.dark input,
+body.dark select{
+
+
+background:
+
+rgba(255,255,255,.1);
+
+
+color:white;
+
+
+}
+
+
+
+body.dark button{
+
+
+box-shadow:
+
+0 10px 25px
+
+rgba(255,182,217,.25);
+
+
+}
+
+
+
+body.dark #shareCard{
+
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#542a72,
+
+#243b55
+
+);
+
+
+}
+
+
+
+body.dark #missionScore{
+
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#ff5c9d,
+
+#8e44ad
+
+);
+
+
+}

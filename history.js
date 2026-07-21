@@ -1,15 +1,17 @@
 /* =================================
- Dinner Roulette V10 ❤️
- History System 📜
+ Dinner Roulette V12 ❤️
+ Couple History System 📜💕
 ================================= */
 
 
-let historyData =
+
+let historyFoods =
 
 JSON.parse(
 
 localStorage.getItem(
 "dinnerHistory"
+
 )
 
 )||[];
@@ -20,12 +22,13 @@ localStorage.getItem(
 
 
 
-// =============================
+// ===============================
 // SAVE HISTORY
-// =============================
+// ===============================
 
 
 function saveHistory(data){
+
 
 
 if(!data || !data.food)
@@ -34,26 +37,52 @@ return;
 
 
 
-let historyItem={
+
+
+const record={
+
 
 
 food:data.food,
 
 
-drink:data.drink || "🥤 น้ำเปล่า",
+drink:data.drink || "🥤 น้ำหวาน",
 
 
 dessert:data.dessert || "🍰 ของหวาน",
 
 
-mode:data.mode || "ฉัน",
+mode:data.mode || "สุ่ม",
 
 
-date:new Date()
 
-.toLocaleString(
+date:
+
+new Date()
+
+.toLocaleDateString(
 "th-TH"
+),
+
+
+
+time:
+
+new Date()
+
+.toLocaleTimeString(
+"th-TH",
+
+{
+
+hour:"2-digit",
+
+minute:"2-digit"
+
+}
+
 )
+
 
 
 };
@@ -62,26 +91,26 @@ date:new Date()
 
 
 
-historyData.unshift(
 
-historyItem
-
+historyFoods.unshift(
+record
 );
 
 
 
 
 
-// จำกัด 30 รายการล่าสุด
 
-if(historyData.length>30){
+// จำกัด 20 รายการล่าสุด
 
 
-historyData.pop();
+if(historyFoods.length>20){
+
+
+historyFoods.pop();
 
 
 }
-
 
 
 
@@ -93,7 +122,7 @@ localStorage.setItem(
 "dinnerHistory",
 
 JSON.stringify(
-historyData
+historyFoods
 
 )
 
@@ -113,25 +142,31 @@ renderHistory();
 
 
 
+window.saveHistory =
+saveHistory;
 
 
 
 
-// =============================
-// SHOW HISTORY
-// =============================
+
+
+
+
+
+// ===============================
+// DISPLAY
+// ===============================
 
 
 function renderHistory(){
 
 
 
-const list =
+const list=
 
 document.getElementById(
 "historyList"
 );
-
 
 
 
@@ -143,14 +178,15 @@ return;
 
 
 
-
 list.innerHTML="";
 
 
 
 
 
-if(historyData.length===0){
+
+
+if(historyFoods.length===0){
 
 
 
@@ -164,6 +200,8 @@ list.innerHTML=
 
 `;
 
+
+
 return;
 
 
@@ -175,9 +213,10 @@ return;
 
 
 
-historyData.forEach(
+historyFoods.forEach(
 
 (item,index)=>{
+
 
 
 let li=
@@ -189,44 +228,89 @@ document.createElement(
 
 
 
-li.innerHTML=
 
+
+
+let chooser="";
+
+
+
+if(item.mode==="แฟน"){
+
+
+chooser=
+"💕 Chompu เลือก";
+
+
+}
+
+else if(item.mode==="ฉัน"){
+
+
+chooser=
+"🌸 ฉันเลือก";
+
+
+}
+
+else{
+
+
+chooser=
+"🎲 สุ่มเลือก";
+
+
+}
+
+
+
+
+
+
+
+
+li.innerHTML=
 
 `
 
 <div>
 
-🍜 ${item.food}
+❤️ ${item.food}
+
 
 <br>
 
 🥤 ${item.drink}
 
+
 <br>
 
 🍰 ${item.dartess || item.dessert}
 
-<br>
-
-👤 ${item.mode}
 
 <br>
 
-🕒 ${item.date}
+
+${chooser}
+
+
+<br>
+
+
+📅 ${item.date}
+
+ ⏰ ${item.time}
+
 
 </div>
 
 
-<button 
 
-class="deleteHistory"
-
-data-index="${index}">
+<button onclick="removeHistory(${index})">
 
 🗑️ ลบ
 
 </button>
-
 
 `;
 
@@ -234,7 +318,9 @@ data-index="${index}">
 
 
 
-list.appendChild(li);
+list.appendChild(
+li
+);
 
 
 
@@ -242,9 +328,6 @@ list.appendChild(li);
 
 
 
-
-
-bindHistoryDelete();
 
 
 
@@ -258,35 +341,16 @@ bindHistoryDelete();
 
 
 
-// =============================
-// DELETE ITEM
-// =============================
+// ===============================
+// DELETE
+// ===============================
 
 
-function bindHistoryDelete(){
-
-
-
-document
-
-.querySelectorAll(
-".deleteHistory"
-)
-
-.forEach(btn=>{
+function removeHistory(index){
 
 
 
-btn.onclick=()=>{
-
-
-let index=
-
-btn.dataset.index;
-
-
-
-historyData.splice(
+historyFoods.splice(
 
 index,
 
@@ -296,14 +360,12 @@ index,
 
 
 
-
-
 localStorage.setItem(
 
 "dinnerHistory",
 
 JSON.stringify(
-historyData
+historyFoods
 
 )
 
@@ -311,46 +373,39 @@ historyData
 
 
 
-
-
 renderHistory();
-
-
-
-};
-
-
-
-});
 
 
 }
 
 
 
+window.removeHistory =
+removeHistory;
 
 
 
 
 
 
-// =============================
+
+
+
+// ===============================
 // CLEAR ALL
-// =============================
+// ===============================
 
 
 function clearHistory(){
 
 
 
-historyData=[];
+historyFoods=[];
 
 
 
 localStorage.removeItem(
-
 "dinnerHistory"
-
 );
 
 
@@ -364,23 +419,8 @@ renderHistory();
 
 
 
-
-
-
-
-
-// =============================
-// GET HISTORY
-// =============================
-
-
-function getHistory(){
-
-
-return historyData;
-
-
-}
+window.clearHistory =
+clearHistory;
 
 
 
@@ -390,9 +430,9 @@ return historyData;
 
 
 
-// =============================
-// AUTO LOAD
-// =============================
+// ===============================
+// INIT
+// ===============================
 
 
 document.addEventListener(
@@ -405,23 +445,4 @@ document.addEventListener(
 renderHistory();
 
 
-
 });
-
-
-
-
-
-
-// เปิดใช้ภายนอก
-
-window.saveHistory =
-saveHistory;
-
-
-window.getHistory =
-getHistory;
-
-
-window.clearHistory =
-clearHistory;

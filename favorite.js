@@ -1,7 +1,8 @@
 /* =================================
- Dinner Roulette V10 ❤️
- Favorite System ⭐
+ Dinner Roulette V12 ❤️
+ Favorite Food System ⭐💕
 ================================= */
+
 
 
 let favoriteFoods =
@@ -10,6 +11,7 @@ JSON.parse(
 
 localStorage.getItem(
 "favoriteFoods"
+
 )
 
 )||[];
@@ -19,9 +21,10 @@ localStorage.getItem(
 
 
 
-// =========================
+
+// ===============================
 // SAVE FAVORITE
-// =========================
+// ===============================
 
 
 function saveFavorite(data){
@@ -38,23 +41,31 @@ return;
 
 // กันซ้ำ
 
-let exist =
+const exists =
 
 favoriteFoods.some(
 
 item=>
 
-item.food===data.food
+item.food === data.food
 
 );
 
 
 
 
-if(exist){
+
+if(exists){
+
+
+
+showFavoriteMessage(
+"⭐ เมนูนี้มีอยู่แล้ว"
+);
 
 
 return;
+
 
 }
 
@@ -63,7 +74,28 @@ return;
 
 
 
-favoriteFoods.push(data);
+favoriteFoods.push({
+
+
+food:data.food,
+
+
+drink:data.drink || "🥤 น้ำหวาน",
+
+
+dessert:data.dessert || "🍰 ของหวาน",
+
+
+date:
+
+new Date()
+
+.toLocaleDateString(
+"th-TH"
+)
+
+
+});
 
 
 
@@ -82,31 +114,39 @@ favoriteFoods
 
 
 
-
-
 renderFavorite();
 
 
 
+showFavoriteMessage(
 
+`❤️ เพิ่ม ${data.food} แล้ว`
 
-// ส่งให้ Smart
-
-if(typeof learnFavorite==="function"){
-
-
-learnFavorite(
-data.food
 );
 
 
+
+
+if(typeof createHeart==="function"){
+
+
+createHeart();
+
+
+}
+
+
+
 }
 
 
 
 
 
-}
+
+
+window.saveFavorite =
+saveFavorite;
 
 
 
@@ -116,16 +156,16 @@ data.food
 
 
 
-// =========================
+// ===============================
 // DISPLAY
-// =========================
+// ===============================
 
 
 function renderFavorite(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "favoriteList"
@@ -142,7 +182,6 @@ return;
 
 
 list.innerHTML="";
-
 
 
 
@@ -166,7 +205,10 @@ list.innerHTML=
 
 return;
 
+
 }
+
+
 
 
 
@@ -189,7 +231,6 @@ document.createElement(
 
 li.innerHTML=
 
-
 `
 
 <div>
@@ -198,22 +239,20 @@ li.innerHTML=
 
 <br>
 
-🥤 ${item.drink || "-"}
+🥤 ${item.drink}
 
 <br>
 
-🍰 ${item.dartess || item.dessert || "-"}
+🍰 ${item.dessert}
 
 </div>
 
 
 <button
 
-class="deleteFav"
+onclick="removeFavorite(${index})">
 
-data-index="${index}">
-
-🗑️ ลบ
+❌ ลบ
 
 </button>
 
@@ -223,17 +262,15 @@ data-index="${index}">
 
 
 
-list.appendChild(li);
+list.appendChild(
+li
+);
 
 
 
 });
 
 
-
-
-
-bindDeleteFavorite();
 
 
 
@@ -247,30 +284,12 @@ bindDeleteFavorite();
 
 
 
-// =========================
-// DELETE
-// =========================
+// ===============================
+// REMOVE
+// ===============================
 
 
-function bindDeleteFavorite(){
-
-
-
-document
-.querySelectorAll(
-".deleteFav"
-)
-
-.forEach(btn=>{
-
-
-btn.onclick=()=>{
-
-
-
-let index=
-
-btn.dataset.index;
+function removeFavorite(index){
 
 
 
@@ -281,8 +300,6 @@ index,
 1
 
 );
-
-
 
 
 
@@ -299,16 +316,69 @@ favoriteFoods
 
 
 
-
-
 renderFavorite();
 
 
-};
+
+}
 
 
 
-});
+window.removeFavorite =
+removeFavorite;
+
+
+
+
+
+
+
+
+
+// ===============================
+// MESSAGE
+// ===============================
+
+
+function showFavoriteMessage(text){
+
+
+
+const msg=
+
+document.createElement(
+"div"
+);
+
+
+
+msg.className=
+
+"favorite-toast";
+
+
+
+msg.innerHTML=text;
+
+
+
+document.body.appendChild(
+msg
+);
+
+
+
+
+
+setTimeout(()=>{
+
+
+msg.remove();
+
+
+},2000);
+
+
 
 
 }
@@ -321,27 +391,10 @@ renderFavorite();
 
 
 
-// =========================
-// GET FAVORITE
-// =========================
+// ===============================
+// INIT
+// ===============================
 
-
-function getFavorite(){
-
-
-return favoriteFoods;
-
-
-}
-
-
-
-
-
-
-
-
-// LOAD
 
 document.addEventListener(
 
@@ -353,6 +406,4 @@ document.addEventListener(
 renderFavorite();
 
 
-}
-
-);
+});

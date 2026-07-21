@@ -1,42 +1,28 @@
 /* =================================
    Dinner Roulette ❤️
-   Main Controller 
+   Main Script V3
 ================================= */
 
 
 
-// =========================
-// ELEMENT
-// =========================
+// ==========================
+// START SCREEN
+// ==========================
 
 
-const startBtn = document.getElementById("startBtn");
-
-const startScreen = document.getElementById("startScreen");
-
-const app = document.getElementById("app");
+const startBtn =
+document.getElementById("startBtn");
 
 
-const music = document.getElementById("bgMusic");
+const startScreen =
+document.getElementById("startScreen");
 
-const musicBtn = document.getElementById("musicBtn");
 
-const muteBtn = document.getElementById("muteBtn");
-
-const musicSelect = document.getElementById("musicSelect");
+const bgMusic =
+document.getElementById("bgMusic");
 
 
 
-const clickSound = new Audio("click.mp3");
-
-
-
-
-
-
-// =========================
-// START APP
-// =========================
 
 
 if(startBtn){
@@ -45,17 +31,27 @@ if(startBtn){
 startBtn.addEventListener("click",()=>{
 
 
-    playClick();
+    if(startScreen){
 
 
-    startScreen.style.display="none";
+        startScreen.style.display="none";
 
 
-    app.style.display="block";
+    }
 
 
-    music.play()
-    .catch(()=>{});
+
+    // เริ่มเพลง
+
+    if(bgMusic){
+
+
+        bgMusic.play()
+
+        .catch(()=>{});
+
+
+    }
 
 
 
@@ -70,41 +66,76 @@ startBtn.addEventListener("click",()=>{
 
 
 
-// =========================
-// MUSIC CONTROL
-// =========================
+
+
+// ==========================
+// MUSIC SYSTEM 🎵
+// ==========================
+
+
+
+const musicBtn =
+
+document.getElementById("musicBtn");
+
+
+const musicSelect =
+
+document.getElementById("musicSelect");
+
+
+
+
+
+let musicPlaying=false;
+
+
+
 
 
 
 if(musicBtn){
 
 
+
 musicBtn.addEventListener("click",()=>{
 
 
-    playClick();
+    if(!bgMusic)
+
+    return;
 
 
-    if(music.paused){
+
+    if(musicPlaying){
 
 
-        music.play();
+        bgMusic.pause();
 
 
-        musicBtn.innerHTML =
-        "⏸️ หยุดเพลง";
+        musicBtn.innerHTML=
+
+        "🎵 เปิดเพลง";
+
+
+        musicPlaying=false;
 
 
     }
+
 
     else{
 
 
-        music.pause();
+        bgMusic.play();
 
 
-        musicBtn.innerHTML =
-        "🎵 เปิดเพลง";
+        musicBtn.innerHTML=
+
+        "🔇 ปิดเพลง";
+
+
+        musicPlaying=true;
 
 
     }
@@ -120,76 +151,41 @@ musicBtn.addEventListener("click",()=>{
 
 
 
-
-if(muteBtn){
-
-
-muteBtn.addEventListener("click",()=>{
-
-
-    playClick();
-
-
-    music.muted = !music.muted;
-
-
-
-    muteBtn.innerHTML =
-
-    music.muted
-
-    ?
-
-    "🔊 เปิดเสียง"
-
-    :
-
-    "🔇 ปิดเสียง";
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-// =========================
-// CHANGE MUSIC
-// =========================
 
 
 
 if(musicSelect){
 
 
+
 musicSelect.addEventListener("change",()=>{
 
 
-    playClick();
+    if(!bgMusic)
+
+    return;
 
 
-    music.src =
+
+    bgMusic.src =
 
     musicSelect.value;
 
 
 
-    music.play()
-    .catch(()=>{});
+    if(musicPlaying){
+
+
+        bgMusic.play();
+
+
+    }
 
 
 
 });
 
 
-
 }
 
 
@@ -200,57 +196,154 @@ musicSelect.addEventListener("change",()=>{
 
 
 
-// =========================
-// BUTTON SOUND
-// =========================
+// ==========================
+// CHOOSE MODE 👫
+// ==========================
 
 
 
-function playClick(){
+const modeButtons =
 
-
-    clickSound.currentTime = 0;
-
-
-    clickSound.play()
-
-    .catch(()=>{});
-
-
-}
+document.querySelectorAll(".mode");
 
 
 
+const partnerNameInput =
+
+document.getElementById("partnerName");
 
 
+const chooserMessage =
+
+document.getElementById("chooserMessage");
 
 
 
 
-// =========================
-// ALL BUTTON CLICK EFFECT
-// =========================
+
+let chooseMode="ฉัน";
+
+let partnerName =
+
+localStorage.getItem("partnerName")
+
+|| "";
 
 
 
-document.querySelectorAll("button")
-
-.forEach(button=>{
 
 
-    button.addEventListener(
 
-    "click",
+if(partnerNameInput){
+
+
+    partnerNameInput.value =
+    partnerName;
+
+
+
+    partnerNameInput.addEventListener(
+
+    "input",
 
     ()=>{
 
 
-        playClick();
+        partnerName =
+
+        partnerNameInput.value;
+
+
+
+        localStorage.setItem(
+
+        "partnerName",
+
+        partnerName
+
+        );
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+modeButtons.forEach(btn=>{
+
+
+btn.addEventListener("click",()=>{
+
+
+
+    modeButtons.forEach(b=>{
+
+        b.classList.remove("active");
+
+    });
+
+
+
+
+    btn.classList.add("active");
+
+
+
+
+
+    if(btn.innerText.includes("ฉัน")){
+
+
+        chooseMode="ฉัน";
 
 
     }
 
-    );
+
+    else if(btn.innerText.includes("แฟน")){
+
+
+        chooseMode="แฟน";
+
+
+    }
+
+
+    else{
+
+
+        chooseMode =
+
+        Math.random()>0.5
+
+        ?
+
+        "ฉัน"
+
+        :
+
+        "แฟน";
+
+
+    }
+
+
+
+
+
+    updateChooser();
+
+
+});
+
 
 
 });
@@ -262,49 +355,64 @@ document.querySelectorAll("button")
 
 
 
-
-
-// =========================
-// REROLL
-// =========================
+function updateChooser(){
 
 
 
-const rerollBtn =
+const name =
 
-document.getElementById("rerollBtn");
-
-
-
-if(rerollBtn){
-
-
-rerollBtn.addEventListener(
-
-"click",
-
-()=>{
-
-
-    playClick();
+partnerName || "คนพิเศษ";
 
 
 
-    const spin =
-
-    document.getElementById("spinBtn");
 
 
 
-    if(spin){
-
-        spin.click();
-
-    }
+if(chooseMode==="แฟน"){
 
 
 
-});
+    chooserMessage.innerHTML=
+
+
+    `❤️ วันนี้คุณ ${name} เลือกให้กินนะ 🍽️
+
+    <br>
+
+    <small>
+
+    เตรียมท้องไว้เลยนะที่รัก 💕
+
+    </small>`;
+
+
+
+}
+
+else if(chooseMode==="ฉัน"){
+
+
+
+    chooserMessage.innerHTML=
+
+
+    "💕 วันนี้ฉันเลือกให้เองนะ 🍜";
+
+
+
+}
+
+else{
+
+
+    chooserMessage.innerHTML=
+
+
+    "🎲 ให้โชคชะตาเลือกให้เรา ❤️";
+
+
+}
+
 
 
 }
@@ -316,10 +424,11 @@ rerollBtn.addEventListener(
 
 
 
-// =========================
-// AUTO RANDOM
-// =========================
 
+
+// ==========================
+// AUTO REROLL 💖
+// ==========================
 
 
 const autoBtn =
@@ -328,174 +437,21 @@ document.getElementById("autoBtn");
 
 
 
+
 if(autoBtn){
 
 
 
-autoBtn.addEventListener(
+autoBtn.addEventListener("click",()=>{
 
-"click",
 
-()=>{
+    if(typeof spinWheel==="function"){
 
 
-    playClick();
+        spinWheel();
 
 
-
-    let count = 0;
-
-
-
-    let timer = setInterval(()=>{
-
-
-        const spin =
-
-        document.getElementById("spinBtn");
-
-
-
-        if(spin){
-
-            spin.click();
-
-        }
-
-
-
-        count++;
-
-
-
-
-        if(count>=3){
-
-
-            clearInterval(timer);
-
-
-        }
-
-
-
-    },5500);
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-// =========================
-// LIKE RESULT
-// =========================
-
-
-
-const likeBtn =
-
-document.getElementById("likeBtn");
-
-
-
-if(likeBtn){
-
-
-likeBtn.addEventListener(
-
-"click",
-
-()=>{
-
-
-    playClick();
-
-
-    alert(
-
-    "❤️ ตกลง! วันนี้กินเมนูนี้กัน"
-
-    );
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-// =========================
-// SHARE
-// =========================
-
-
-
-const shareBtn =
-
-document.getElementById("shareBtn");
-
-
-
-if(shareBtn){
-
-
-shareBtn.addEventListener(
-
-"click",
-
-()=>{
-
-
-const food =
-
-window.currentFood ||
-
-"อาหารอร่อย";
-
-
-
-if(navigator.share){
-
-
-navigator.share({
-
-title:"❤️ Dinner Roulette",
-
-text:
-
-`วันนี้กิน ${food} กัน 🍽️`
-
-});
-
-
-}
-
-else{
-
-
-alert(
-
-`❤️ วันนี้กิน ${food}`
-
-);
-
-
-}
-
+    }
 
 
 });

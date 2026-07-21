@@ -1,8 +1,7 @@
 /* =================================
- Dinner Roulette V15 ❤️
- Favorite Food System ⭐💕
+ Dinner Roulette Chompu V17 ❤️
+ Favorite Food System FINAL ⭐
 ================================= */
-
 
 
 let favoriteFoods =
@@ -13,10 +12,9 @@ localStorage.getItem(
 "favoriteFoods"
 )
 
-)||[];
+)
 
-
-
+||[];
 
 
 
@@ -30,35 +28,45 @@ function saveFavorite(data){
 
 
 
-if(!data || !data.food)
+// รองรับทั้ง object และ string
 
+if(typeof data==="string"){
+
+
+data={
+
+food:data
+
+};
+
+
+}
+
+
+
+if(!data.food)
 return;
 
 
 
 
-
-let exists =
+let exist =
 
 favoriteFoods.find(
 
-item =>
+item=>
 
-item.food === data.food
+item.food===data.food
 
 );
 
 
 
-
-
-if(exists){
+if(exist){
 
 
 showToast(
-
 "⭐ เมนูนี้อยู่ในรายการโปรดแล้ว"
-
 );
 
 
@@ -71,14 +79,23 @@ return;
 
 
 
-
 favoriteFoods.unshift({
+
 
 food:data.food,
 
-drink:data.drink || "🥤 น้ำหวาน",
 
-dessert:data.dessert || "🍰 ของหวาน",
+drink:data.drink ||
+
+"🥤 น้ำหวาน",
+
+
+
+dessert:data.dessert ||
+
+"🍰 ของหวาน",
+
+
 
 date:
 
@@ -88,9 +105,8 @@ new Date()
 "th-TH"
 )
 
+
 });
-
-
 
 
 
@@ -102,12 +118,9 @@ localStorage.setItem(
 
 JSON.stringify(
 favoriteFoods
-
 )
 
 );
-
-
 
 
 
@@ -122,7 +135,9 @@ renderFavorite();
 if(typeof saveLikeFood==="function"){
 
 
-saveLikeFood(data.food);
+saveLikeFood(
+data.food
+);
 
 
 }
@@ -130,13 +145,19 @@ saveLikeFood(data.food);
 
 
 
+showToast(
+"⭐ เพิ่มเมนูโปรดแล้ว"
+);
+
+
+
 
 }
 
 
 
-window.saveFavorite=
 
+window.saveFavorite =
 saveFavorite;
 
 
@@ -146,9 +167,8 @@ saveFavorite;
 
 
 
-
 // ===============================
-// RENDER ⭐
+// RENDER FAVORITE
 // ===============================
 
 
@@ -156,7 +176,7 @@ function renderFavorite(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "favoriteList"
@@ -165,7 +185,6 @@ document.getElementById(
 
 
 if(!list)
-
 return;
 
 
@@ -207,7 +226,6 @@ return;
 
 
 
-
 favoriteFoods.forEach(
 
 (item,index)=>{
@@ -219,8 +237,6 @@ const li=
 document.createElement(
 "li"
 );
-
-
 
 
 
@@ -238,14 +254,13 @@ li.innerHTML=
 
 <br>
 
-🍰 ${item.tdessert || item.dessert}
+🍰 ${item.dessert}
 
 <br>
 
 📅 ${item.date}
 
 </div>
-
 
 
 <button onclick="removeFavorite(${index})">
@@ -259,13 +274,13 @@ li.innerHTML=
 
 
 
-
-
 list.appendChild(li);
 
 
 
 });
+
+
 
 
 
@@ -299,19 +314,15 @@ index,
 
 
 
-
 localStorage.setItem(
 
 "favoriteFoods",
 
 JSON.stringify(
 favoriteFoods
-
 )
 
 );
-
-
 
 
 
@@ -319,12 +330,8 @@ renderFavorite();
 
 
 
-
-
 showToast(
-
 "🗑️ ลบเมนูแล้ว"
-
 );
 
 
@@ -333,8 +340,7 @@ showToast(
 
 
 
-window.removeFavorite=
-
+window.removeFavorite =
 removeFavorite;
 
 
@@ -353,17 +359,14 @@ removeFavorite;
 function getFavoriteFoods(){
 
 
-
 return favoriteFoods;
-
 
 
 }
 
 
 
-window.getFavoriteFoods=
-
+window.getFavoriteFoods =
 getFavoriteFoods;
 
 
@@ -375,7 +378,7 @@ getFavoriteFoods;
 
 
 // ===============================
-// CHECK FAVORITE
+// CHECK
 // ===============================
 
 
@@ -397,9 +400,55 @@ item.food===food
 
 
 
-window.isFavorite=
-
+window.isFavorite =
 isFavorite;
+
+
+
+
+
+
+
+
+
+// ===============================
+// CHOMPU SMART PICK 💕
+// ===============================
+
+
+function getChompuFavorite(){
+
+
+return favoriteFoods.map(
+
+item=>
+
+({
+
+
+name:item.food,
+
+
+drink:item.drink,
+
+
+dessert:item.dessert
+
+
+})
+
+
+
+);
+
+
+
+}
+
+
+
+window.getChompuFavorite =
+getChompuFavorite;
 
 
 
@@ -424,4 +473,6 @@ document.addEventListener(
 renderFavorite();
 
 
-});
+}
+
+);

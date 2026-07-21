@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V12 ❤️
+ Dinner Roulette V13 ❤️
  Smart Chompu System 🧠💕
 ================================= */
 
@@ -22,8 +22,6 @@ localStorage.getItem(
 
 
 
-
-
 // ===============================
 // SAVE LIKE FOOD 👍
 // ===============================
@@ -33,20 +31,20 @@ function saveLikeFood(food){
 
 
 
-if(!food)
+if(!food || food==="-")
 
 return;
 
 
 
 
-
-
-let item =
+let found =
 
 smartFoods.find(
 
-f => f.food === food
+item =>
+
+item.food===food
 
 );
 
@@ -54,12 +52,10 @@ f => f.food === food
 
 
 
+if(found){
 
 
-if(item){
-
-
-item.count++;
+found.count++;
 
 
 }
@@ -82,22 +78,7 @@ count:1
 
 
 
-
-
-
-localStorage.setItem(
-
-"smartFoods",
-
-JSON.stringify(
-smartFoods
-
-)
-
-);
-
-
-
+saveSmart();
 
 
 renderSmart();
@@ -105,8 +86,6 @@ renderSmart();
 
 
 }
-
-
 
 
 
@@ -122,7 +101,37 @@ saveLikeFood;
 
 
 // ===============================
-// SORT FAVORITE
+// SAVE
+// ===============================
+
+
+function saveSmart(){
+
+
+
+localStorage.setItem(
+
+"smartFoods",
+
+JSON.stringify(
+smartFoods
+)
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// TOP FOOD
 // ===============================
 
 
@@ -150,149 +159,8 @@ b.count-a.count
 
 
 
-
-
-
-
-// ===============================
-// DISPLAY
-// ===============================
-
-
-function renderSmart(){
-
-
-
-const list =
-
-document.getElementById(
-"smartList"
-);
-
-
-
-if(!list)
-
-return;
-
-
-
-
-
-
-list.innerHTML="";
-
-
-
-
-
-
-
-if(smartFoods.length===0){
-
-
-
-list.innerHTML=
-
-`
-
-<li>
-กำลังเรียนรู้ Chompu ❤️
-</li>
-
-`;
-
-
-
-return;
-
-
-}
-
-
-
-
-
-
-let top =
-
-getTopFood();
-
-
-
-
-
-
-top.forEach(
-
-(item,index)=>{
-
-
-
-let icon;
-
-
-
-if(index===0)
-
-icon="🥇";
-
-else if(index===1)
-
-icon="🥈";
-
-else
-
-icon="🥉";
-
-
-
-
-
-
-
-
-let li=
-
-document.createElement(
-"li"
-);
-
-
-
-
-
-li.innerHTML=
-
-`
-
-${icon}
-
-${item.food}
-
-<br>
-
-❤️ ชอบ ${item.count} ครั้ง
-
-`;
-
-
-
-
-
-list.appendChild(
-li
-);
-
-
-
-});
-
-
-
-
-
-}
+window.getTopFood =
+getTopFood;
 
 
 
@@ -311,19 +179,15 @@ function smartRecommend(){
 
 
 
-let top =
+let top=
 
 getTopFood();
-
-
 
 
 
 if(top.length===0)
 
 return null;
-
-
 
 
 
@@ -335,10 +199,137 @@ return top[0].food;
 
 
 
-
-
 window.smartRecommend =
 smartRecommend;
+
+
+
+
+
+
+
+
+
+// ===============================
+// RENDER UI
+// ===============================
+
+
+function renderSmart(){
+
+
+
+const list=
+
+document.getElementById(
+"smartList"
+);
+
+
+
+if(!list)
+
+return;
+
+
+
+
+
+list.innerHTML="";
+
+
+
+
+
+
+if(smartFoods.length===0){
+
+
+
+list.innerHTML=
+
+`
+
+<li>
+🧠 กำลังเรียนรู้ Chompu ❤️
+</li>
+
+`;
+
+
+
+return;
+
+}
+
+
+
+
+
+let top=
+
+getTopFood();
+
+
+
+
+
+top.forEach(
+
+(item,index)=>{
+
+
+
+let medal=[
+
+"🥇",
+
+"🥈",
+
+"🥉"
+
+][index];
+
+
+
+
+let li=
+
+document.createElement(
+"li"
+);
+
+
+
+
+
+li.innerHTML=
+
+`
+
+${medal}
+
+${item.food}
+
+
+<br>
+
+💕 ชอบ ${item.count} ครั้ง
+
+`;
+
+
+
+
+list.appendChild(li);
+
+
+
+});
+
+
+
+}
 
 
 
@@ -357,18 +348,81 @@ function updateSmartMessage(){
 
 
 
-const food=
+let food=
 
 smartRecommend();
 
 
 
+let message=
 
-if(!food)
+document.getElementById(
+"mainMessage"
+);
 
-return;
 
 
+
+
+if(message && food){
+
+
+
+message.innerHTML=
+
+`
+
+🧠 Chompu น่าจะชอบ
+
+<br>
+
+${food}
+
+<br>
+
+💕
+
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// RESET SMART
+// ===============================
+
+
+function resetSmart(){
+
+
+
+smartFoods=[];
+
+
+
+localStorage.removeItem(
+
+"smartFoods"
+
+);
+
+
+
+renderSmart();
 
 
 
@@ -386,17 +440,7 @@ if(message){
 
 message.innerHTML=
 
-`
-
-🧠 Chompu น่าจะชอบ
-
-${food}
-
-💕
-
-
-`;
-
+"🧠 เริ่มเรียนรู้ Chompu ใหม่ ❤️";
 
 
 }
@@ -404,6 +448,60 @@ ${food}
 
 
 }
+
+
+
+window.resetSmart =
+resetSmart;
+
+
+
+
+
+
+
+
+
+// ===============================
+// SMART BONUS
+// เพิ่มโอกาสเมนูที่ชอบ
+// ===============================
+
+
+function smartScore(food){
+
+
+
+let item=
+
+smartFoods.find(
+
+x=>
+
+x.food===food
+
+);
+
+
+
+
+if(!item)
+
+return 0;
+
+
+
+
+return item.count;
+
+
+
+}
+
+
+
+window.smartScore =
+smartScore;
 
 
 
@@ -431,4 +529,6 @@ renderSmart();
 updateSmartMessage();
 
 
-});
+}
+
+);

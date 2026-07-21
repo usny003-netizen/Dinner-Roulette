@@ -1,31 +1,18 @@
 /* =================================
-   Dinner Roulette V2 ❤️
-   history.js 📜
+ Dinner Roulette V10 ❤️
+ History System 📜
 ================================= */
-
 
 
 let historyData =
 
 JSON.parse(
 
-localStorage.getItem("history")
-
+localStorage.getItem(
+"dinnerHistory"
 )
 
-|| [];
-
-
-
-
-
-const historyList =
-
-document.getElementById(
-
-"historyList"
-
-);
+)||[];
 
 
 
@@ -33,159 +20,39 @@ document.getElementById(
 
 
 
-// ===============================
-// แสดงประวัติ 📜
-// ===============================
+// =============================
+// SAVE HISTORY
+// =============================
 
 
-function showHistory(){
+function saveHistory(data){
 
 
-
-if(!historyList)
+if(!data || !data.food)
 
 return;
 
 
 
+let historyItem={
 
 
-historyList.innerHTML="";
+food:data.food,
 
 
+drink:data.drink || "🥤 น้ำเปล่า",
 
 
+dessert:data.dessert || "🍰 ของหวาน",
 
 
+mode:data.mode || "ฉัน",
 
-if(historyData.length===0){
 
-
-
-historyList.innerHTML =
-
-
-`
-<li>
-ยังไม่มีประวัติ 📜
-</li>
-`;
-
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-historyData.forEach((item)=>{
-
-
-
-const li =
-
-document.createElement("li");
-
-
-
-
-
-li.innerHTML =
-
-
-
-`
-❤️ ${item.food}
-
-<br>
-
-🥤 ${item.drink}
-
-<br>
-
-🍰 ${item.dessert}
-
-<br>
-
-<small>
-
-📅 ${item.date}
-
-</small>
-
-`;
-
-
-
-
-
-historyList.appendChild(li);
-
-
-
-
-});
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// บันทึกประวัติ
-// ===============================
-
-
-
-function saveHistory(dinner){
-
-
-
-if(!dinner)
-
-return;
-
-
-
-
-
-
-const newHistory = {
-
-
-
-food:dinner.food,
-
-
-drink:dinner.drink,
-
-
-dessert:dinner.bessert || dinner.dessert,
-
-
-
-date:
-
-new Date()
+date:new Date()
 
 .toLocaleString(
-
 "th-TH"
-
 )
 
 
@@ -195,11 +62,9 @@ new Date()
 
 
 
-
-
 historyData.unshift(
 
-newHistory
+historyItem
 
 );
 
@@ -207,19 +72,16 @@ newHistory
 
 
 
+// จำกัด 30 รายการล่าสุด
 
-// เก็บแค่ 10 รายการ
-
-
-if(historyData.length>10){
-
+if(historyData.length>30){
 
 
 historyData.pop();
 
 
-
 }
+
 
 
 
@@ -228,9 +90,12 @@ historyData.pop();
 
 localStorage.setItem(
 
-"history",
+"dinnerHistory",
 
-JSON.stringify(historyData)
+JSON.stringify(
+historyData
+
+)
 
 );
 
@@ -238,8 +103,7 @@ JSON.stringify(historyData)
 
 
 
-
-showHistory();
+renderHistory();
 
 
 
@@ -253,21 +117,311 @@ showHistory();
 
 
 
-// ===============================
-// รับค่าจาก wheel.js
-// ===============================
+// =============================
+// SHOW HISTORY
+// =============================
+
+
+function renderHistory(){
 
 
 
-window.saveDinnerHistory =
+const list =
 
+document.getElementById(
+"historyList"
+);
+
+
+
+
+if(!list)
+
+return;
+
+
+
+
+
+
+list.innerHTML="";
+
+
+
+
+
+if(historyData.length===0){
+
+
+
+list.innerHTML=
+
+`
+
+<li>
+ยังไม่มีประวัติ ❤️
+</li>
+
+`;
+
+return;
+
+
+}
+
+
+
+
+
+
+
+historyData.forEach(
+
+(item,index)=>{
+
+
+let li=
+
+document.createElement(
+"li"
+);
+
+
+
+
+li.innerHTML=
+
+
+`
+
+<div>
+
+🍜 ${item.food}
+
+<br>
+
+🥤 ${item.drink}
+
+<br>
+
+🍰 ${item.dartess || item.dessert}
+
+<br>
+
+👤 ${item.mode}
+
+<br>
+
+🕒 ${item.date}
+
+</div>
+
+
+<button 
+
+class="deleteHistory"
+
+data-index="${index}">
+
+🗑️ ลบ
+
+</button>
+
+
+`;
+
+
+
+
+
+list.appendChild(li);
+
+
+
+});
+
+
+
+
+
+bindHistoryDelete();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// DELETE ITEM
+// =============================
+
+
+function bindHistoryDelete(){
+
+
+
+document
+
+.querySelectorAll(
+".deleteHistory"
+)
+
+.forEach(btn=>{
+
+
+
+btn.onclick=()=>{
+
+
+let index=
+
+btn.dataset.index;
+
+
+
+historyData.splice(
+
+index,
+
+1
+
+);
+
+
+
+
+
+localStorage.setItem(
+
+"dinnerHistory",
+
+JSON.stringify(
+historyData
+
+)
+
+);
+
+
+
+
+
+renderHistory();
+
+
+
+};
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// CLEAR ALL
+// =============================
+
+
+function clearHistory(){
+
+
+
+historyData=[];
+
+
+
+localStorage.removeItem(
+
+"dinnerHistory"
+
+);
+
+
+
+renderHistory();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// GET HISTORY
+// =============================
+
+
+function getHistory(){
+
+
+return historyData;
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// AUTO LOAD
+// =============================
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+
+renderHistory();
+
+
+
+});
+
+
+
+
+
+
+// เปิดใช้ภายนอก
+
+window.saveHistory =
 saveHistory;
 
 
+window.getHistory =
+getHistory;
 
 
-
-
-// โหลดตอนเปิดเว็บ
-
-showHistory();
+window.clearHistory =
+clearHistory;

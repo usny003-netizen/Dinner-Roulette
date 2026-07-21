@@ -1,61 +1,41 @@
 /* =================================
    Dinner Roulette ❤️
-   Cute Mobile App Style V2.5
+   Cute App UI V3
 ================================= */
-
 
 
 /* RESET */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
-
 
 
 body{
 
-
     min-height:100vh;
 
-
     font-family:
-
     "Arial",
     "Tahoma",
     sans-serif;
 
 
-
     background:
-
     linear-gradient(
-
         135deg,
-
         #ffd6e7,
-
-        #fff4d6
-
+        #fff3c4
     );
-
 
 
     color:#555;
 
-
-    transition:0.5s;
-
-
+    transition:.5s;
 
     overflow-x:hidden;
-
 
 }
 
@@ -64,47 +44,36 @@ body{
 
 
 
-/* ==========================
+/* =========================
    START SCREEN
-========================== */
+========================= */
 
 
 #startScreen{
 
-
     position:fixed;
 
-
-    inset:0;
+    width:100%;
+    height:100%;
 
 
     display:flex;
 
-
     justify-content:center;
 
-
     align-items:center;
-
 
 
     background:
 
     linear-gradient(
-
         135deg,
-
-        #ff9fc5,
-
+        #ff8fb8,
         #ffd6e7
-
     );
 
 
-
-    z-index:999;
-
-
+    z-index:9999;
 
 }
 
@@ -116,31 +85,26 @@ body{
 
     width:90%;
 
+    max-width:380px;
 
-    max-width:400px;
+
+    padding:35px 25px;
 
 
     background:white;
 
 
-
-    padding:40px 25px;
-
-
-
-    border-radius:30px;
-
+    border-radius:35px;
 
 
     text-align:center;
 
 
-
     box-shadow:
 
-    0 15px 40px
+    0 20px 50px
 
-    rgba(0,0,0,.15);
+    rgba(0,0,0,.2);
 
 
 
@@ -156,15 +120,11 @@ body{
 
 .start-box h1{
 
-
     color:#ff5c9d;
-
 
     font-size:35px;
 
-
     margin-bottom:15px;
-
 
 }
 
@@ -172,12 +132,7 @@ body{
 
 .start-box p{
 
-
     margin-bottom:25px;
-
-
-    font-size:18px;
-
 
 }
 
@@ -188,27 +143,23 @@ body{
 
 
 
-/* ==========================
+
+
+/* =========================
    APP
-========================== */
+========================= */
 
 
 .app{
 
 
-    display:block;
-
-
     width:100%;
-
 
     max-width:480px;
 
-
     margin:auto;
 
-
-    padding:20px;
+    padding:18px;
 
 
 }
@@ -219,10 +170,9 @@ body{
 
 
 
-
-/* ==========================
+/* =========================
    CARD
-========================== */
+========================= */
 
 
 .card{
@@ -234,16 +184,13 @@ body{
 
 
 
-    padding:20px;
+    padding:22px;
 
 
-
-    margin-bottom:20px;
-
+    margin-bottom:18px;
 
 
-    border-radius:25px;
-
+    border-radius:28px;
 
 
     box-shadow:
@@ -251,7 +198,7 @@ body{
 
     0 10px 30px
 
-    rgba(255,100,160,.15);
+    rgba(255,90,150,.15);
 
 
 
@@ -263,7 +210,7 @@ body{
 
     animation:
 
-    fade .5s ease;
+    fade .5s;
 
 
 }
@@ -274,11 +221,13 @@ body{
 
 
 
+/* HEADER */
+
+
 .hero{
 
 
     text-align:center;
-
 
 }
 
@@ -289,9 +238,7 @@ body{
 
     font-size:34px;
 
-
     color:#ff5c9d;
-
 
 }
 
@@ -302,7 +249,6 @@ body{
 
     margin-top:10px;
 
-
 }
 
 
@@ -311,24 +257,18 @@ body{
 
 
 
-
-
-/* ==========================
+/* =========================
    TEXT
-========================== */
+========================= */
 
 
 h2{
 
-
     text-align:center;
-
-
-    margin-bottom:20px;
-
 
     color:#ff5c9d;
 
+    margin-bottom:18px;
 
 }
 
@@ -336,12 +276,9 @@ h2{
 
 h3{
 
-
-    font-size:22px;
-
-
     color:#ff5c9d;
 
+    font-size:22px;
 
 }
 
@@ -351,9 +288,9 @@ h3{
 
 
 
-/* ==========================
+/* =========================
    BUTTON
-========================== */
+========================= */
 
 
 button{
@@ -365,17 +302,22 @@ button{
     padding:14px;
 
 
-
     margin-top:12px;
-
 
 
     border:none;
 
 
-
     border-radius:50px;
 
+
+    font-size:17px;
+
+
+    color:white;
+
+
+    cursor:pointer;
 
 
     background:
@@ -393,28 +335,15 @@ button{
 
 
 
-    color:white;
-
-
-
-    font-size:17px;
-
-
-
-    cursor:pointer;
-
-
-
-    transition:.3s;
-
-
-
     box-shadow:
+
 
     0 8px 20px
 
-    rgba(255,92,157,.3);
+    rgba(255,92,157,.35);
 
+
+    transition:.3s;
 
 
 }
@@ -423,11 +352,9 @@ button{
 
 button:hover{
 
-
     transform:
 
     translateY(-3px);
-
 
 }
 
@@ -435,12 +362,10 @@ button:hover{
 
 button:active{
 
-
     transform:
 
     scale(.95);
 
-
 }
 
 
@@ -450,45 +375,32 @@ button:active{
 
 
 
-
-/* ==========================
+/* =========================
    MODE
-========================== */
+========================= */
 
 
 .mode-group{
 
-
     display:flex;
-
 
     gap:10px;
 
-
 }
-
 
 
 .mode{
 
-
     flex:1;
-
 
     font-size:14px;
 
-
 }
-
 
 
 .mode.active{
 
-
-    background:
-
-    #ff5c9d;
-
+    background:#ff5c9d;
 
 }
 
@@ -498,12 +410,9 @@ button:active{
 
 
 
-
-
-
-/* ==========================
+/* =========================
    WHEEL
-========================== */
+========================= */
 
 
 .wheel-wrapper{
@@ -518,7 +427,7 @@ button:active{
     justify-content:center;
 
 
-    margin:20px 0;
+    margin:25px 0;
 
 
 }
@@ -538,17 +447,15 @@ button:active{
     border-radius:50%;
 
 
-
     box-shadow:
 
+    0 15px 35px
 
-    0 15px 30px
-
-    rgba(0,0,0,.15);
-
+    rgba(0,0,0,.2);
 
 
 }
+
 
 
 
@@ -558,14 +465,13 @@ button:active{
     position:absolute;
 
 
-    top:-15px;
+    top:-18px;
 
 
-    z-index:5;
+    z-index:10;
 
 
-
-    font-size:35px;
+    font-size:40px;
 
 
     color:#ff5c9d;
@@ -579,11 +485,9 @@ button:active{
 
 
 
-
-
-/* ==========================
+/* =========================
    RESULT
-========================== */
+========================= */
 
 
 .result-box{
@@ -591,13 +495,26 @@ button:active{
 
     display:flex;
 
-
     gap:10px;
 
 
+}
 
-    justify-content:center;
 
+
+.result-box div{
+
+
+    flex:1;
+
+
+    background:#fff0f6;
+
+
+    padding:15px;
+
+
+    border-radius:20px;
 
 
     text-align:center;
@@ -608,38 +525,11 @@ button:active{
 
 
 
-.result-box div{
-
-
-    flex:1;
-
-
-
-    background:
-
-    #fff0f6;
-
-
-
-    padding:15px;
-
-
-
-    border-radius:20px;
-
-
-}
-
-
-
-
-
 .result-box span{
 
 
     font-size:13px;
 
-
 }
 
 
@@ -648,19 +538,14 @@ button:active{
 
 
 
-
-
-
-/* ==========================
+/* =========================
    LIST
-========================== */
+========================= */
 
 
 ul{
 
-
     list-style:none;
-
 
 }
 
@@ -669,21 +554,16 @@ ul{
 li{
 
 
-    background:
-
-    #fff0f6;
-
-
-
-    margin:10px 0;
-
+    background:#fff0f6;
 
 
     padding:12px;
 
 
+    margin:10px 0;
 
-    border-radius:15px;
+
+    border-radius:18px;
 
 
 }
@@ -694,17 +574,14 @@ li{
 
 
 
-
-/* ==========================
+/* =========================
    MUSIC
-========================== */
+========================= */
 
 
 audio{
 
-
     width:100%;
-
 
 }
 
@@ -719,13 +596,10 @@ select{
     margin-top:15px;
 
 
-
     padding:12px;
 
 
-
     border-radius:20px;
-
 
 
     border:none;
@@ -740,10 +614,9 @@ select{
 
 
 
-
-/* ==========================
+/* =========================
    HEART EFFECT
-========================== */
+========================= */
 
 
 .heart{
@@ -752,55 +625,44 @@ select{
     position:fixed;
 
 
+    bottom:20px;
+
+
     font-size:35px;
 
 
     animation:
 
-    floatHeart 2s ease-out forwards;
-
-
-
-    pointer-events:none;
+    heartUp 2s forwards;
 
 
 }
 
 
 
-@keyframes floatHeart{
+@keyframes heartUp{
 
 
 from{
 
-
     transform:
 
-    translateY(0)
-
-    scale(1);
-
+    translateY(0);
 
     opacity:1;
 
-
 }
+
 
 
 to{
 
-
     transform:
 
-    translateY(-300px)
-
-    scale(1.5);
-
-
+    translateY(-350px);
 
     opacity:0;
 
-
 }
 
 
@@ -812,10 +674,9 @@ to{
 
 
 
-
-/* ==========================
+/* =========================
    ANIMATION
-========================== */
+========================= */
 
 
 @keyframes pop{
@@ -823,31 +684,18 @@ to{
 
 from{
 
+transform:scale(.7);
 
-    transform:
-
-    scale(.7);
-
-
-
-    opacity:0;
-
+opacity:0;
 
 }
 
 
-
 to{
 
+transform:scale(1);
 
-    transform:
-
-    scale(1);
-
-
-
-    opacity:1;
-
+opacity:1;
 
 }
 
@@ -861,14 +709,9 @@ to{
 
 from{
 
+opacity:0;
 
-    opacity:0;
-
-
-    transform:
-
-    translateY(20px);
-
+transform:translateY(20px);
 
 }
 
@@ -876,25 +719,25 @@ from{
 
 to{
 
+opacity:1;
 
-    opacity:1;
+transform:none;
+
+}
 
 
 }
 
 
-}
 
 
 
 
 
 
-
-
-/* ==========================
+/* =========================
    DARK MODE 🌙
-========================== */
+========================= */
 
 
 body.dark{
@@ -902,23 +745,23 @@ body.dark{
 
     background:
 
-
     linear-gradient(
 
         135deg,
 
-        #21152d,
+        #1b1028,
 
-        #542a72
+        #52256d
 
     );
-
 
 
     color:white;
 
 
 }
+
+
 
 
 
@@ -927,15 +770,15 @@ body.dark .card{
 
     background:
 
-
-    rgba(40,20,60,.9);
-
+    rgba(35,20,55,.92);
 
 
     color:white;
 
 
 }
+
+
 
 
 
@@ -946,24 +789,43 @@ body.dark h2,
 body.dark h3{
 
 
-    color:#ffb7e0;
+    color:#ffb6dd;
 
 
 }
 
 
 
+
+
+body.dark p{
+
+
+    color:#eee;
+
+}
+
+
+
+
+
 body.dark li,
+
 
 body.dark .result-box div{
 
 
     background:
 
-    rgba(255,255,255,.1);
+    rgba(255,255,255,.12);
+
+
+    color:white;
 
 
 }
+
+
 
 
 
@@ -990,23 +852,49 @@ body.dark button{
 
 
 
+body.dark select{
 
 
-/* ==========================
-   FOOTER
-========================== */
+    background:#332044;
+
+    color:white;
+
+}
 
 
-footer{
 
 
-    text-align:center;
+
+body.dark .start-box{
 
 
-    font-size:14px;
+    background:
+
+    #302040;
+
+    color:white;
 
 
-    color:#ff5c9d;
+}
+
+
+
+
+
+body.dark #startScreen{
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #21152d,
+
+        #542a72
+
+    );
 
 
 }
@@ -1017,20 +905,37 @@ footer{
 
 
 
-/* ==========================
+/* =========================
+   FOOTER
+========================= */
+
+
+footer{
+
+    text-align:center;
+
+    color:#ff5c9d;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
    MOBILE
-========================== */
+========================= */
 
 
 @media(max-width:480px){
 
 
-
 .app{
 
-
     padding:12px;
-
 
 }
 
@@ -1038,9 +943,7 @@ footer{
 
 .hero h1{
 
-
     font-size:28px;
-
 
 }
 
@@ -1048,9 +951,7 @@ footer{
 
 #wheel{
 
-
     width:300px;
-
 
 }
 
@@ -1058,9 +959,7 @@ footer{
 
 .result-box{
 
-
     flex-direction:column;
-
 
 }
 
@@ -1068,12 +967,9 @@ footer{
 
 .mode-group{
 
-
     flex-direction:column;
 
-
 }
-
 
 
 }

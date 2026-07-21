@@ -1,16 +1,12 @@
 /* =================================
- Dinner Roulette V15 ❤️
- Smart Chompu AI System 🧠💕
+ Dinner Roulette Chompu V17 ❤️
+ Smart Food Memory System 🧠💕
 ================================= */
 
 
-
-const smartKey =
-
-"smartFoods";
-
-
-
+// ===============================
+// STORAGE
+// ===============================
 
 
 let smartFoods =
@@ -18,15 +14,12 @@ let smartFoods =
 JSON.parse(
 
 localStorage.getItem(
-smartKey
+"smartFoods"
 )
 
-)||[];
+)
 
-
-
-
-
+||[];
 
 
 
@@ -42,9 +35,8 @@ function saveLikeFood(food){
 
 if(!food || food==="-")
 
+
 return;
-
-
 
 
 
@@ -52,13 +44,11 @@ let item =
 
 smartFoods.find(
 
-f =>
+f=>
 
-f.food === food
+f.name===food
 
 );
-
-
 
 
 
@@ -67,7 +57,9 @@ f.food === food
 if(item){
 
 
-item.count++;
+
+item.score++;
+
 
 
 }
@@ -75,11 +67,12 @@ item.count++;
 else{
 
 
+
 smartFoods.push({
 
-food:food,
+name:food,
 
-count:1
+score:1
 
 });
 
@@ -90,9 +83,17 @@ count:1
 
 
 
+localStorage.setItem(
+
+"smartFoods",
+
+JSON.stringify(
+smartFoods
+)
+
+);
 
 
-saveSmart();
 
 
 
@@ -100,15 +101,12 @@ renderSmart();
 
 
 
-updateSmartMessage();
-
-
-
 }
 
 
 
-window.saveLikeFood = saveLikeFood;
+window.saveLikeFood =
+saveLikeFood;
 
 
 
@@ -119,142 +117,15 @@ window.saveLikeFood = saveLikeFood;
 
 
 // ===============================
-// SAVE DATA
+// SMART RANDOM 💕
 // ===============================
 
 
-function saveSmart(){
+function smartRandom(list){
 
 
 
-localStorage.setItem(
-
-smartKey,
-
-JSON.stringify(
-smartFoods
-
-)
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// GET TOP FOOD 🏆
-// ===============================
-
-
-function getTopFood(){
-
-
-
-return smartFoods
-
-.sort(
-
-(a,b)=>
-
-b.count-a.count
-
-)
-
-.slice(0,3);
-
-
-
-}
-
-
-
-window.getTopFood = getTopFood;
-
-
-
-
-
-
-
-
-
-// ===============================
-// SMART SCORE 🎯
-// ใช้ช่วยวงล้อ
-// ===============================
-
-
-function smartScore(food){
-
-
-
-let item=
-
-smartFoods.find(
-
-f=>
-
-f.food===food
-
-);
-
-
-
-
-
-if(!item)
-
-return 0;
-
-
-
-
-
-return item.count;
-
-
-
-}
-
-
-
-window.smartScore = smartScore;
-
-
-
-
-
-
-
-
-
-// ===============================
-// RECOMMEND 🧠
-// ===============================
-
-
-function smartRecommend(){
-
-
-
-let top=
-
-getTopFood();
-
-
-
-
-
-if(top.length===0)
+if(!list || list.length===0)
 
 
 return null;
@@ -263,9 +134,55 @@ return null;
 
 
 
+let memory =
+
+smartFoods;
 
 
-return top[0].food;
+
+
+
+// หาเมนูที่เคยชอบ
+
+let liked =
+
+list.filter(food=>
+
+
+memory.some(
+
+m=>
+
+m.name===food.name
+
+)
+
+
+);
+
+
+
+
+
+// ถ้ามีเมนูที่ชอบ
+
+if(liked.length>0){
+
+
+
+return liked[
+
+Math.floor(
+
+Math.random()
+
+*
+
+liked.length
+
+)
+
+];
 
 
 
@@ -273,7 +190,32 @@ return top[0].food;
 
 
 
-window.smartRecommend = smartRecommend;
+
+
+// ถ้าไม่มี
+
+return list[
+
+Math.floor(
+
+Math.random()
+
+*
+
+list.length
+
+)
+
+];
+
+
+
+}
+
+
+
+window.smartRandom =
+smartRandom;
 
 
 
@@ -284,7 +226,33 @@ window.smartRecommend = smartRecommend;
 
 
 // ===============================
-// RENDER UI
+// GET SMART LIST
+// ===============================
+
+
+function getSmartFoods(){
+
+
+return smartFoods;
+
+
+}
+
+
+
+window.getSmartFoods =
+getSmartFoods;
+
+
+
+
+
+
+
+
+
+// ===============================
+// RENDER SMART
 // ===============================
 
 
@@ -292,13 +260,11 @@ function renderSmart(){
 
 
 
-const list=
+const list =
 
 document.getElementById(
 "smartList"
 );
-
-
 
 
 
@@ -310,12 +276,7 @@ return;
 
 
 
-
-
 list.innerHTML="";
-
-
-
 
 
 
@@ -331,7 +292,7 @@ list.innerHTML=
 
 <li>
 
-🧠 กำลังเรียนรู้ Chompu ❤️
+กำลังเรียนรู้ ❤️
 
 </li>
 
@@ -348,46 +309,18 @@ return;
 
 
 
+// เรียงคะแนนมากไปน้อย
 
+let sort =
 
-let top=
+[...smartFoods]
 
-getTopFood();
+.sort(
 
+(a,b)=>
 
+b.score-a.score
 
-
-
-
-
-top.forEach(
-
-(item,index)=>{
-
-
-
-let medal=
-
-[
-
-"🥇",
-
-"🥈",
-
-"🥉"
-
-][index];
-
-
-
-
-
-
-
-let li=
-
-document.createElement(
-"li"
 );
 
 
@@ -395,30 +328,30 @@ document.createElement(
 
 
 
+sort.forEach(
+
+food=>{
+
+
+let li =
+
+document.createElement(
+"li"
+);
+
+
 
 li.innerHTML=
 
 `
 
-${medal}
-
-<strong>
-
-${item.food}
-
-</strong>
-
+💕 ${food.name}
 
 <br>
 
-
-💕 ชอบ ${item.count} ครั้ง
-
+❤️ ความชอบ ${food.score} ครั้ง
 
 `;
-
-
-
 
 
 
@@ -443,84 +376,11 @@ list.appendChild(li);
 
 
 // ===============================
-// SMART MESSAGE
+// REMOVE MEMORY
 // ===============================
 
 
-function updateSmartMessage(){
-
-
-
-const message=
-
-document.getElementById(
-"mainMessage"
-);
-
-
-
-
-
-let food=
-
-smartRecommend();
-
-
-
-
-
-
-
-if(message && food){
-
-
-
-message.innerHTML=
-
-`
-
-🧠 Chompu น่าจะชอบ
-
-<br>
-
-❤️ ${food}
-
-<br>
-
-ลองไหม?
-
-💕
-
-
-`;
-
-
-
-}
-
-
-
-}
-
-
-
-window.updateSmartMessage =
-updateSmartMessage;
-
-
-
-
-
-
-
-
-
-// ===============================
-// RESET
-// ===============================
-
-
-function resetSmart(){
+function clearSmart(){
 
 
 
@@ -529,10 +389,8 @@ smartFoods=[];
 
 
 localStorage.removeItem(
-smartKey
+"smartFoods"
 );
-
-
 
 
 
@@ -540,122 +398,12 @@ renderSmart();
 
 
 
-
-
-const message=
-
-document.getElementById(
-"mainMessage"
-);
-
-
-
-
-
-if(message){
-
-
-
-message.innerHTML=
-
-"🧠 เริ่มเรียนรู้ Chompu ใหม่ ❤️";
-
-
-
 }
 
 
 
-}
-
-
-
-window.resetSmart = resetSmart;
-
-
-
-
-
-
-
-
-
-// ===============================
-// SMART WEIGHT RANDOM
-// ใช้ใน wheel.js
-// ===============================
-
-
-function smartRandom(list){
-
-
-
-let pool=[];
-
-
-
-
-
-
-list.forEach(food=>{
-
-
-
-let score=
-
-smartScore(
-food.name
-);
-
-
-
-
-
-// เพิ่มโอกาสเมนูที่ชอบ
-
-let weight=
-
-score+1;
-
-
-
-
-
-
-for(let i=0;i<weight;i++){
-
-
-pool.push(food);
-
-
-}
-
-
-
-});
-
-
-
-
-
-
-return pool[
-
-Math.floor(
-
-Math.random()*pool.length
-
-)
-
-];
-
-
-
-}
-
-
-
-window.smartRandom = smartRandom;
+window.clearSmart =
+clearSmart;
 
 
 
@@ -680,7 +428,6 @@ document.addEventListener(
 renderSmart();
 
 
-updateSmartMessage();
+}
 
-
-});
+);

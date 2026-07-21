@@ -1,22 +1,31 @@
 /* =================================
-   Dinner Roulette ❤️
-   History System 📜
+   Dinner Roulette V2 ❤️
+   history.js 📜
 ================================= */
+
+
+
+let historyData =
+
+JSON.parse(
+
+localStorage.getItem("history")
+
+)
+
+|| [];
+
+
+
 
 
 const historyList =
 
-document.getElementById("historyList");
+document.getElementById(
 
+"historyList"
 
-
-
-
-let historyData = JSON.parse(
-
-localStorage.getItem("history")
-
-) || [];
+);
 
 
 
@@ -24,122 +33,208 @@ localStorage.getItem("history")
 
 
 
-function addHistory(food){
-
-
-    const date =
-
-    new Date()
-
-    .toLocaleDateString("th-TH");
-
-
-
-    historyData.unshift({
-
-
-        food: food,
-
-        date: date
-
-
-    });
-
-
-
-
-
-    // เก็บแค่ 10 รายการ
-
-    historyData =
-
-    historyData.slice(0,10);
-
-
-
-
-
-    localStorage.setItem(
-
-    "history",
-
-    JSON.stringify(historyData)
-
-    );
-
-
-
-    showHistory();
-
-
-
-}
-
-
-
-
-
+// ===============================
+// แสดงประวัติ 📜
+// ===============================
 
 
 function showHistory(){
 
 
 
-    if(!historyList)
+if(!historyList)
 
-    return;
-
-
-
-    historyList.innerHTML="";
+return;
 
 
 
 
 
-    if(historyData.length===0){
-
-
-        historyList.innerHTML=
-
-        "<li>ยังไม่มีประวัติ</li>";
-
-        return;
-
-    }
+historyList.innerHTML="";
 
 
 
 
 
 
-    historyData.forEach(item=>{
 
-
-        const li =
-
-        document.createElement("li");
+if(historyData.length===0){
 
 
 
-        li.innerHTML =
+historyList.innerHTML =
 
 
-        `${item.food}<br>
-
-        <small>${item.date}</small>`;
-
-
-
-        historyList.appendChild(li);
+`
+<li>
+ยังไม่มีประวัติ 📜
+</li>
+`;
 
 
 
-    });
+return;
+
+
+}
+
+
+
+
+
+
+
+historyData.forEach((item)=>{
+
+
+
+const li =
+
+document.createElement("li");
+
+
+
+
+
+li.innerHTML =
+
+
+
+`
+❤️ ${item.food}
+
+<br>
+
+🥤 ${item.drink}
+
+<br>
+
+🍰 ${item.dessert}
+
+<br>
+
+<small>
+
+📅 ${item.date}
+
+</small>
+
+`;
+
+
+
+
+
+historyList.appendChild(li);
+
+
+
+
+});
+
 
 
 
 }
+
+
+
+
+
+
+
+
+
+// ===============================
+// บันทึกประวัติ
+// ===============================
+
+
+
+function saveHistory(dinner){
+
+
+
+if(!dinner)
+
+return;
+
+
+
+
+
+
+const newHistory = {
+
+
+
+food:dinner.food,
+
+
+drink:dinner.drink,
+
+
+dessert:dinner.bessert || dinner.dessert,
+
+
+
+date:
+
+new Date()
+
+.toLocaleString(
+
+"th-TH"
+
+)
+
+
+};
+
+
+
+
+
+
+
+historyData.unshift(
+
+newHistory
+
+);
+
+
+
+
+
+
+// เก็บแค่ 10 รายการ
+
+
+if(historyData.length>10){
+
+
+
+historyData.pop();
+
+
+
+}
+
+
+
+
+
+
+localStorage.setItem(
+
+"history",
+
+JSON.stringify(historyData)
+
+);
+
+
 
 
 
@@ -148,23 +243,31 @@ showHistory();
 
 
 
+}
 
 
 
-// รับผลจากวงล้อ
-
-window.addEventListener(
-
-"foodSelected",
-
-(e)=>{
 
 
-    addHistory(
-
-    e.detail
-
-    );
 
 
-});
+
+
+// ===============================
+// รับค่าจาก wheel.js
+// ===============================
+
+
+
+window.saveDinnerHistory =
+
+saveHistory;
+
+
+
+
+
+
+// โหลดตอนเปิดเว็บ
+
+showHistory();

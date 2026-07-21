@@ -1,6 +1,6 @@
 /* =================================
-   Dinner Roulette V2.5 ❤️
-   script.js
+   Dinner Roulette V4 ❤️
+   Main Controller
 ================================= */
 
 
@@ -9,43 +9,55 @@
 // SOUND
 // ===============================
 
-const clickSound = 
-new Audio("sounds/click.mp3");
+
+const clickSound =
+
+new Audio(
+"sounds/click.mp3"
+);
 
 
 
 
 
 // ===============================
-// START SCREEN
+// START
 // ===============================
 
 
 const startBtn =
-document.getElementById("startBtn");
+
+document.getElementById(
+"startBtn"
+);
+
 
 
 const startScreen =
-document.getElementById("startScreen");
+
+document.getElementById(
+"startScreen"
+);
+
 
 
 const bgMusic =
-document.getElementById("bgMusic");
+
+document.getElementById(
+"bgMusic"
+);
+
 
 
 
 
 if(startBtn){
 
-startBtn.addEventListener("click",()=>{
+
+startBtn.onclick = ()=>{
 
 
-    if(startScreen){
-
-        startScreen.style.display="none";
-
-    }
-
+    startScreen.style.display="none";
 
 
     if(bgMusic){
@@ -61,111 +73,8 @@ startBtn.addEventListener("click",()=>{
 
 
 
-});
+};
 
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// MUSIC SYSTEM 🎵
-// ===============================
-
-
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-
-const musicSelect =
-document.getElementById("musicSelect");
-
-
-
-let musicPlaying=false;
-
-
-
-
-
-if(musicBtn){
-
-
-musicBtn.addEventListener("click",()=>{
-
-
-    if(!bgMusic)return;
-
-
-
-    if(musicPlaying){
-
-
-        bgMusic.pause();
-
-
-        musicBtn.innerHTML=
-        "🎵 เปิดเพลง";
-
-
-        musicPlaying=false;
-
-
-    }
-
-    else{
-
-
-        bgMusic.play();
-
-
-        musicBtn.innerHTML=
-        "🔇 ปิดเพลง";
-
-
-        musicPlaying=true;
-
-
-    }
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-if(musicSelect){
-
-
-musicSelect.addEventListener("change",()=>{
-
-
-    bgMusic.src =
-    musicSelect.value;
-
-
-
-    if(musicPlaying){
-
-        bgMusic.play();
-
-    }
-
-
-});
 
 
 }
@@ -179,29 +88,46 @@ musicSelect.addEventListener("change",()=>{
 
 
 // ===============================
-// MODE SELECT 👫
+// MODE SYSTEM 👫
 // ===============================
 
 
 
 const modeButtons =
-document.querySelectorAll(".mode");
+
+document.querySelectorAll(
+".mode"
+);
 
 
-const partnerInput =
-document.getElementById("partnerName");
+
+const partnerNameInput =
+
+document.getElementById(
+"partnerName"
+);
+
 
 
 const chooserMessage =
-document.getElementById("chooserMessage");
+
+document.getElementById(
+"chooserMessage"
+);
+
+
+
+const mainMessage =
+
+document.getElementById(
+"mainMessage"
+);
 
 
 
 
-let chooseMode="ฉัน";
 
-
-// ส่งให้ wheel.js ใช้
+let chooseMode = "ฉัน";
 
 window.chooseMode="ฉัน";
 
@@ -209,11 +135,11 @@ window.chooseMode="ฉัน";
 
 
 
-// ชื่อแฟน
-
 let partnerName =
 
-localStorage.getItem("partnerName")
+localStorage.getItem(
+"partnerName"
+)
 
 || "Chompu";
 
@@ -222,20 +148,20 @@ localStorage.getItem("partnerName")
 
 
 
-if(partnerInput){
+
+if(partnerNameInput){
 
 
-partnerInput.value = partnerName;
+partnerNameInput.value = partnerName;
 
 
 
-partnerInput.addEventListener("input",()=>{
+partnerNameInput.oninput = ()=>{
 
 
 partnerName =
 
-partnerInput.value;
-
+partnerNameInput.value;
 
 
 localStorage.setItem(
@@ -247,11 +173,11 @@ partnerName
 );
 
 
+updateMessage();
 
-updateChooser();
 
 
-});
+};
 
 
 
@@ -264,17 +190,17 @@ updateChooser();
 
 
 
+
 modeButtons.forEach(btn=>{
 
 
-btn.addEventListener("click",()=>{
+btn.onclick = ()=>{
 
 
 
 clickSound.currentTime=0;
 
 clickSound.play();
-
 
 
 
@@ -302,9 +228,6 @@ chooseMode="ฉัน";
 
 }
 
-
-
-
 else if(btn.innerText.includes("แฟน")){
 
 
@@ -312,9 +235,6 @@ chooseMode="แฟน";
 
 
 }
-
-
-
 
 else{
 
@@ -338,25 +258,20 @@ Math.random()>0.5
 
 
 
+
 window.chooseMode = chooseMode;
 
 
 
 
 
-updateChooser();
 
-
-cuteMessage();
-
-
-createHearts();
+updateMessage();
 
 
 
 
 
-// วาดวงล้อใหม่ตามสี
 
 if(typeof drawWheel==="function"){
 
@@ -366,7 +281,12 @@ drawWheel();
 
 
 
-});
+
+createHearts();
+
+
+
+};
 
 
 
@@ -381,22 +301,18 @@ drawWheel();
 
 
 // ===============================
-// SWEET MESSAGE 💕
+// MESSAGE ❤️
 // ===============================
 
 
 
-function updateChooser(){
-
-
-if(!chooserMessage)return;
+function updateMessage(){
 
 
 
-let name =
+if(!chooserMessage)
 
-partnerName || "Chompu";
-
+return;
 
 
 
@@ -404,19 +320,30 @@ partnerName || "Chompu";
 if(chooseMode==="แฟน"){
 
 
+
 chooserMessage.innerHTML =
 
 
 `
-❤️ วันนี้คุณ ${name}
+❤️ วันนี้คุณ ${partnerName}
 
-เลือกให้กินนะ 🍽️
+เลือกให้กินนะ
 
 <br>
 
-💕
+🍽️ ลุ้นกันเลย
+`;
 
-เตรียมท้องไว้เลยนะ
+
+
+mainMessage.innerHTML =
+
+
+`
+💖 ${partnerName}
+
+กำลังเลือกเมนูให้คุณ
+
 `;
 
 
@@ -425,7 +352,10 @@ chooserMessage.innerHTML =
 
 
 
+
+
 else if(chooseMode==="ฉัน"){
+
 
 
 chooserMessage.innerHTML =
@@ -436,7 +366,17 @@ chooserMessage.innerHTML =
 
 <br>
 
-❤️ ขอให้ถูกใจนะ
+💕 ขอให้ถูกใจนะ
+`;
+
+
+
+mainMessage.innerHTML =
+
+
+`
+🌸 วันนี้ฉันขอเลือกเอง
+
 `;
 
 
@@ -445,7 +385,10 @@ chooserMessage.innerHTML =
 
 
 
+
+
 else{
+
 
 
 chooserMessage.innerHTML =
@@ -454,9 +397,16 @@ chooserMessage.innerHTML =
 `
 🎲 ให้โชคชะตาเลือก
 
-<br>
+`;
 
-✨ ลุ้นไปด้วยกัน
+
+
+mainMessage.innerHTML =
+
+
+`
+💜 มาลุ้นพร้อมกัน
+
 `;
 
 
@@ -465,6 +415,7 @@ chooserMessage.innerHTML =
 
 
 
+
 }
 
 
@@ -474,88 +425,102 @@ chooserMessage.innerHTML =
 
 
 
-function cuteMessage(){
 
 
-const message =
+// ===============================
+// AUTO REROLL 💖
+// ===============================
+
+
+
+const autoBtn =
 
 document.getElementById(
-
-"mainMessage"
-
+"autoBtn"
 );
 
 
 
-if(!message)return;
+
+
+let autoRunning=false;
 
 
 
 
 
-if(chooseMode==="แฟน"){
+
+if(autoBtn){
 
 
-message.innerHTML =
+autoBtn.onclick = ()=>{
 
 
-`
-❤️ วันนี้ ${partnerName}
+if(autoRunning)
 
-เป็นคนเลือกให้
+return;
 
-<br>
 
-🍽️ มาดูกันว่าจะได้อะไรนะ
-`;
 
+autoRunning=true;
+
+
+
+
+let count=0;
+
+
+
+
+
+let timer = setInterval(()=>{
+
+
+
+if(typeof spinWheel==="function"){
+
+spinWheel();
+
+}
+
+
+
+count++;
+
+
+
+
+
+if(count>=3){
+
+
+clearInterval(timer);
+
+
+autoRunning=false;
+
+
+
+document.getElementById(
+
+"statusMessage"
+
+).innerHTML =
+
+
+"❤️ ได้แล้ว เมนูนี้น่าจะใช่";
 
 
 }
 
 
 
-
-
-else if(chooseMode==="ฉัน"){
-
-
-
-message.innerHTML =
-
-
-`
-🌸 วันนี้ฉันเลือกให้เอง
-
-<br>
-
-💕 ขอให้เป็นมื้อพิเศษ
-`;
-
-
-
-}
+},5500);
 
 
 
 
-else{
-
-
-message.innerHTML =
-
-
-`
-💜 ให้โชคชะตาเลือก
-
-<br>
-
-✨ ลุ้นพร้อมกัน
-`;
-
-
-
-}
+};
 
 
 
@@ -570,96 +535,16 @@ message.innerHTML =
 
 
 // ===============================
-// HEART EFFECT ❤️
+// LIKE BUTTON 👍
 // ===============================
-
-
-
-function createHeart(){
-
-
-
-const heart =
-
-document.createElement("div");
-
-
-
-heart.className="heart";
-
-
-heart.innerHTML="❤️";
-
-
-
-heart.style.left =
-
-Math.random()*100+"%";
-
-
-
-document.body.appendChild(heart);
-
-
-
-setTimeout(()=>{
-
-
-heart.remove();
-
-
-},2000);
-
-
-
-}
-
-
-
-
-
-
-function createHearts(){
-
-
-
-for(let i=0;i<15;i++){
-
-
-
-setTimeout(()=>{
-
-
-createHeart();
-
-
-},i*100);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-// ===============================
-// RESULT BUTTON
-// ===============================
-
 
 
 const likeBtn =
-document.getElementById("likeBtn");
+
+document.getElementById(
+"likeBtn"
+);
+
 
 
 
@@ -679,11 +564,12 @@ document.getElementById(
 ).innerHTML =
 
 
-"❤️ เยี่ยมเลย เมนูนี้แหละ!";
+"❤️ เยี่ยมเลย กินเมนูนี้กัน";
 
 
 
 };
+
 
 
 }
@@ -694,12 +580,24 @@ document.getElementById(
 
 
 
+
+
+// ===============================
+// REROLL 🙅
+// ===============================
+
+
+
 const rerollBtn =
-document.getElementById("rerollBtn");
+
+document.getElementById(
+"rerollBtn"
+);
 
 
 
 if(rerollBtn){
+
 
 
 rerollBtn.onclick=()=>{
@@ -712,17 +610,14 @@ document.getElementById(
 ).innerHTML =
 
 
-"🎡 สุ่มใหม่กันนะที่รัก ❤️";
-
+"🎡 ลองใหม่อีกครั้งนะ";
 
 
 
 
 if(typeof spinWheel==="function"){
 
-
 spinWheel();
-
 
 }
 
@@ -749,7 +644,12 @@ spinWheel();
 
 
 const shareBtn =
-document.getElementById("shareBtn");
+
+document.getElementById(
+"shareBtn"
+);
+
+
 
 
 
@@ -767,39 +667,23 @@ window.currentDinnerSet;
 
 
 
+
 let text =
 
-"❤️ Dinner Roulette\n\n";
+`
+❤️ Dinner Roulette
 
+วันนี้ ${partnerName} เลือกให้ 🍽️
 
+${dinner ? dinner.food:"ยังไม่ได้สุ่ม"}
 
+${dinner ? dinner.drink:""}
 
+${dinner ? dinner.dessert:""}
 
-if(dinner){
+💕 กินด้วยกันนะ
+`;
 
-
-text +=
-
-dinner.food+"\n"+
-
-dinner.drink+"\n"+
-
-dinner.drink+"\n"+
-
-dinner.dessert;
-
-
-}
-
-else{
-
-
-text +=
-
-"ยังไม่ได้สุ่มเมนู 🍽️";
-
-
-}
 
 
 
@@ -807,6 +691,7 @@ text +=
 
 
 if(navigator.share){
+
 
 
 navigator.share({
@@ -843,8 +728,95 @@ alert(text);
 
 
 
-// โหลดข้อความแรก
 
-updateChooser();
 
-cuteMessage();
+
+// ===============================
+// HEART EFFECT ❤️
+// ===============================
+
+
+
+function createHeart(){
+
+
+
+const heart =
+
+document.createElement(
+"div"
+);
+
+
+
+heart.className="heart";
+
+
+heart.innerHTML="❤️";
+
+
+
+heart.style.left=
+
+Math.random()*100+"%";
+
+
+
+document.body.appendChild(heart);
+
+
+
+
+
+setTimeout(()=>{
+
+
+heart.remove();
+
+
+},2000);
+
+
+
+}
+
+
+
+
+
+
+function createHearts(){
+
+
+
+for(let i=0;i<12;i++){
+
+
+
+setTimeout(()=>{
+
+
+createHeart();
+
+
+},i*100);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// START
+
+updateMessage();

@@ -1,7 +1,8 @@
 /* =================================
- Dinner Roulette V14 ❤️
- Daily Mission + Streak System 💌
+ Dinner Roulette Chompu V17 ❤️
+ Daily Mission + Couple Streak 💌
 ================================= */
+
 
 
 const missionKey =
@@ -21,9 +22,13 @@ const streakKey =
 
 function getToday(){
 
+
 return new Date()
+
 .toISOString()
+
 .split("T")[0];
+
 
 }
 
@@ -41,7 +46,9 @@ localStorage.getItem(
 missionKey
 )
 
-)||null;
+)
+
+||null;
 
 
 
@@ -50,26 +57,35 @@ missionKey
 
 
 // ===============================
-// CREATE
+// CREATE MISSION
 // ===============================
 
 
 function createMission(){
 
 
+
 missions={
+
 
 date:getToday(),
 
+
 open:false,
+
 
 spin:false,
 
+
 like:false,
+
 
 share:false,
 
+
 reward:false
+
+
 
 };
 
@@ -78,7 +94,10 @@ reward:false
 saveMission();
 
 
+
 }
+
+
 
 
 
@@ -89,19 +108,22 @@ saveMission();
 function saveMission(){
 
 
+
 localStorage.setItem(
 
 missionKey,
 
 JSON.stringify(
 missions
-
 )
 
 );
 
 
+
 }
+
+
 
 
 
@@ -122,7 +144,7 @@ if(
 
 !missions ||
 
-missions.date !== getToday()
+missions.date!==getToday()
 
 ){
 
@@ -134,11 +156,13 @@ createMission();
 
 
 
-
 updateMissionUI();
 
 
+
 }
+
+
 
 
 
@@ -161,7 +185,6 @@ createMission();
 
 
 
-
 missions[type]=true;
 
 
@@ -171,7 +194,6 @@ saveMission();
 
 
 updateMissionUI();
-
 
 
 
@@ -188,9 +210,12 @@ checkComplete();
 
 
 
+
 function completeOpenMission(){
 
+
 completeMission("open");
+
 
 }
 
@@ -198,7 +223,9 @@ completeMission("open");
 
 function completeSpinMission(){
 
+
 completeMission("spin");
+
 
 }
 
@@ -206,7 +233,9 @@ completeMission("spin");
 
 function completeLikeMission(){
 
+
 completeMission("like");
+
 
 }
 
@@ -214,7 +243,9 @@ completeMission("like");
 
 function completeShareMission(){
 
+
 completeMission("share");
+
 
 }
 
@@ -222,19 +253,19 @@ completeMission("share");
 
 
 
-window.completeOpenMission=
+window.completeOpenMission =
 completeOpenMission;
 
 
-window.completeSpinMission=
+window.completeSpinMission =
 completeSpinMission;
 
 
-window.completeLikeMission=
+window.completeLikeMission =
 completeLikeMission;
 
 
-window.completeShareMission=
+window.completeShareMission =
 completeShareMission;
 
 
@@ -244,8 +275,9 @@ completeShareMission;
 
 
 
+
 // ===============================
-// UI
+// UPDATE UI
 // ===============================
 
 
@@ -254,22 +286,27 @@ function updateMissionUI(){
 
 
 if(!missions)
-
 return;
 
 
 
 
-const list={
+
+const map={
+
 
 
 open:"openMission",
 
+
 spin:"spinMission",
+
 
 like:"likeMission",
 
+
 share:"shareMission"
+
 
 
 };
@@ -278,7 +315,9 @@ share:"shareMission"
 
 
 
-Object.keys(list)
+
+
+Object.keys(map)
 
 .forEach(type=>{
 
@@ -287,7 +326,7 @@ Object.keys(list)
 const el=
 
 document.getElementById(
-list[type]
+map[type]
 );
 
 
@@ -302,11 +341,13 @@ missions[type]
 
 ?
 
-"✅"
+"❤️"
 
 :
 
 "⬜";
+
+
 
 }
 
@@ -320,19 +361,21 @@ missions[type]
 
 
 
-const score=
 
-Object.values({
 
-open:missions.open,
+let score=
 
-spin:missions.spin,
+[
 
-like:missions.like,
+missions.open,
 
-share:missions.share
+missions.spin,
 
-})
+missions.like,
+
+missions.share
+
+]
 
 .filter(Boolean)
 
@@ -343,8 +386,7 @@ share:missions.share
 
 
 
-
-const box=
+const scoreBox=
 
 document.getElementById(
 "missionScore"
@@ -352,34 +394,29 @@ document.getElementById(
 
 
 
-if(box){
+if(scoreBox){
 
 
 
-box.innerHTML=
+scoreBox.innerHTML=
+
+score===4
+
+?
+
+"🎉 Mission Complete ❤️"
+
+:
 
 `${score}/4 ❤️`;
 
 
 
-if(score===4){
-
-
-box.innerHTML=
-
-"🎉 Mission Complete ❤️";
-
-
 }
 
 
 
 }
-
-
-
-}
-
 
 
 
@@ -390,7 +427,7 @@ box.innerHTML=
 
 
 // ===============================
-// COMPLETE REWARD
+// COMPLETE CHECK
 // ===============================
 
 
@@ -398,7 +435,7 @@ function checkComplete(){
 
 
 
-const complete =
+if(
 
 missions.open &&
 
@@ -406,15 +443,7 @@ missions.spin &&
 
 missions.like &&
 
-missions.share;
-
-
-
-
-
-if(
-
-complete &&
+missions.share &&
 
 !missions.reward
 
@@ -425,6 +454,7 @@ complete &&
 missions.reward=true;
 
 
+
 saveMission();
 
 
@@ -432,19 +462,28 @@ saveMission();
 showMissionReward();
 
 
+
 addStreak();
 
 
-}
-
-
 
 }
 
 
 
+}
 
 
+
+
+
+
+
+
+
+// ===============================
+// POPUP
+// ===============================
 
 
 function showMissionReward(){
@@ -468,7 +507,8 @@ return;
 
 
 
-const box=
+
+const popup=
 
 document.createElement(
 "div"
@@ -476,18 +516,19 @@ document.createElement(
 
 
 
-box.className=
+popup.className=
 "mission-popup";
 
 
 
-box.innerHTML=
+popup.innerHTML=
 
 `
 
 <h2>
 🎉 เก่งมาก!
 </h2>
+
 
 <p>
 
@@ -502,14 +543,28 @@ Daily Mission ครบแล้ว ❤️
 
 </p>
 
+
 `;
 
 
 
 
+
 document.body.appendChild(
-box
+popup
 );
+
+
+
+
+
+if(typeof createHeart==="function"){
+
+
+createHeart();
+
+
+}
 
 
 
@@ -518,10 +573,11 @@ box
 setTimeout(()=>{
 
 
-box.remove();
+popup.remove();
 
 
 },4000);
+
 
 
 
@@ -550,17 +606,20 @@ JSON.parse(
 
 localStorage.getItem(
 streakKey
+)
 
 )
 
-)||{
+||{
 
 
 count:0,
 
 last:null
 
+
 };
+
 
 
 
@@ -569,14 +628,15 @@ last:null
 if(data.last!==getToday()){
 
 
+
 data.count++;
 
 
 data.last=getToday();
 
 
-
 }
+
 
 
 
@@ -597,6 +657,10 @@ JSON.stringify(data)
 
 
 
+
+
+
+
 function getStreak(){
 
 
@@ -605,10 +669,11 @@ return JSON.parse(
 
 localStorage.getItem(
 streakKey
+)
 
 )
 
-)||{
+||{
 
 
 count:0
@@ -621,7 +686,8 @@ count:0
 
 
 
-window.getStreak=getStreak;
+window.getStreak =
+getStreak;
 
 
 
@@ -646,8 +712,7 @@ document.addEventListener(
 loadMission();
 
 
-
-// เปิดเว็บวันนี้
+// เปิดเว็บสำเร็จ
 
 completeOpenMission();
 

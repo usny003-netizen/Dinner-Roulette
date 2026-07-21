@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V13 ❤️
+ Dinner Roulette V15 ❤️
  Couple Share Card System 📸💕
 ================================= */
 
@@ -11,7 +11,6 @@
 
 
 function updateShareCard(data){
-
 
 
 if(!data)
@@ -28,6 +27,7 @@ document.getElementById(
 );
 
 
+
 const drink =
 
 document.getElementById(
@@ -35,11 +35,13 @@ document.getElementById(
 );
 
 
+
 const dessert =
 
 document.getElementById(
 "shareDessert"
 );
+
 
 
 const date =
@@ -51,29 +53,47 @@ document.getElementById(
 
 
 
-if(food)
+
+if(food){
+
 
 food.innerHTML=
 
-"🍜 "+data.food;
+"🍜 "+
+
+(data.food || "-");
+
+
+}
 
 
 
+if(drink){
 
-if(drink)
 
 drink.innerHTML=
 
-data.drink || "🥤 น้ำหวาน";
+data.drink ||
+
+"🥤 น้ำหวาน";
+
+
+}
 
 
 
+if(dessert){
 
-if(dessert)
 
 dessert.innerHTML=
 
-data.dessert || "🍰 ของหวาน";
+data.dessert ||
+
+"🍰 ของหวาน";
+
+
+}
+
 
 
 
@@ -89,7 +109,6 @@ date.innerHTML=
 new Date()
 
 .toLocaleDateString(
-
 "th-TH",
 
 {
@@ -109,13 +128,12 @@ day:"numeric"
 
 
 
-
-
 }
 
 
 
-window.updateShareCard =
+window.updateShareCard=
+
 updateShareCard;
 
 
@@ -127,7 +145,7 @@ updateShareCard;
 
 
 // ===============================
-// SAVE IMAGE
+// SAVE IMAGE 📸
 // ===============================
 
 
@@ -144,18 +162,11 @@ document.getElementById(
 
 
 
-if(!card)
-
-return;
+if(!card){
 
 
-
-
-if(typeof html2canvas==="undefined"){
-
-
-alert(
-"❌ ระบบบันทึกรูปยังไม่พร้อม"
+showToast(
+"❌ ไม่พบ Share Card"
 );
 
 
@@ -168,11 +179,34 @@ return;
 
 
 
-html2canvas(card,{
+
+if(typeof html2canvas==="undefined"){
+
+
+
+showToast(
+"❌ ไม่พบระบบสร้างรูป"
+);
+
+
+
+return;
+
+
+}
+
+
+
+
+
+html2canvas(card,
+
+{
 
 scale:2,
 
-backgroundColor:"#ffffff"
+backgroundColor:null
+
 
 })
 
@@ -182,9 +216,7 @@ backgroundColor:"#ffffff"
 
 const link=
 
-document.createElement(
-"a"
-);
+document.createElement("a");
 
 
 
@@ -206,6 +238,15 @@ link.click();
 
 
 
+
+showToast(
+
+"📸 บันทึกรูปแล้ว ❤️"
+
+);
+
+
+
 });
 
 
@@ -214,6 +255,12 @@ link.click();
 
 
 
+window.saveShareImage=
+
+saveShareImage;
+
+
+
 
 
 
@@ -221,7 +268,7 @@ link.click();
 
 
 // ===============================
-// SHARE MOBILE
+// SHARE TO CHOMPU 💕
 // ===============================
 
 
@@ -229,11 +276,14 @@ function shareToChompu(){
 
 
 
-const food =
+const food=
 
 document.getElementById(
 "shareFood"
-)?.innerText || "-";
+)?.innerText ||
+
+"🍜 -";
+
 
 
 
@@ -245,7 +295,7 @@ const text=
 ❤️ Dinner Roulette
 
 
-💕 วันนี้ Chompu เลือกให้
+วันนี้ Chompu เลือกให้ 💕
 
 
 ${food}
@@ -253,7 +303,9 @@ ${food}
 
 กินด้วยกันนะ ❤️
 
+
 `;
+
 
 
 
@@ -289,11 +341,12 @@ navigator.clipboard.writeText(text);
 
 
 
-alert(
+showToast(
 
-"❤️ คัดลอกข้อความแล้ว"
+"📋 คัดลอกข้อความแล้ว ❤️"
 
 );
+
 
 
 }
@@ -305,14 +358,10 @@ alert(
 if(typeof completeShareMission==="function"){
 
 
+
 completeShareMission();
 
 
-}
-
-
-
-
 
 }
 
@@ -320,7 +369,12 @@ completeShareMission();
 
 
 
-window.shareToChompu =
+}
+
+
+
+window.shareToChompu=
+
 shareToChompu;
 
 
@@ -355,11 +409,13 @@ document.getElementById(
 if(saveBtn){
 
 
+saveBtn.onclick=()=>{
 
-saveBtn.onclick=
 
-saveShareImage;
+saveShareImage();
 
+
+};
 
 
 }
@@ -380,14 +436,17 @@ document.getElementById(
 if(shareBtn){
 
 
+shareBtn.onclick=()=>{
 
-shareBtn.onclick=
 
-shareToChompu;
+shareToChompu();
 
+
+};
 
 
 }
+
 
 
 
@@ -402,10 +461,9 @@ drink:"🥤 น้ำหวาน",
 
 dessert:"🍰 ของหวาน"
 
+
 });
 
 
 
-}
-
-);
+});

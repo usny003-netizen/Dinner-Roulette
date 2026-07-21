@@ -1,6 +1,6 @@
 /* =================================
-   Dinner Roulette V2.5 ❤️
-   Cute Love Game Style
+   Dinner Roulette V7 ❤️
+   Cute Mobile Game Style
 ================================= */
 
 
@@ -29,28 +29,23 @@ body{
     linear-gradient(
         135deg,
         #ffd6e7,
-        #fff3d6
+        #fff4d6
     );
 
 
     color:#555;
 
 
-    transition:.5s;
-
-
     overflow-x:hidden;
+
+    transition:.5s;
 
 }
 
 
 
-
-
-
-
 /* =========================
- START SCREEN ❤️
+   START SCREEN
 ========================= */
 
 
@@ -59,7 +54,6 @@ body{
     position:fixed;
 
     inset:0;
-
 
     display:flex;
 
@@ -72,7 +66,7 @@ body{
 
     linear-gradient(
         135deg,
-        #ff8fba,
+        #ff9fc5,
         #ffd6e7
     );
 
@@ -107,15 +101,15 @@ body{
 
     0 20px 50px
 
-    rgba(0,0,0,.2);
+    rgba(0,0,0,.15);
 
 
     animation:
 
-    pop .7s ease;
+    pop .6s ease;
+
 
 }
-
 
 
 
@@ -123,7 +117,7 @@ body{
 
     color:#ff5c9d;
 
-    font-size:36px;
+    font-size:35px;
 
     margin-bottom:15px;
 
@@ -143,10 +137,6 @@ body{
 
 
 
-
-
-
-
 /* =========================
  APP
 ========================= */
@@ -154,9 +144,7 @@ body{
 
 .app{
 
-
     width:100%;
-
 
     max-width:480px;
 
@@ -164,12 +152,9 @@ body{
     margin:auto;
 
 
-    padding:18px;
-
+    padding:20px;
 
 }
-
-
 
 
 
@@ -185,29 +170,34 @@ body{
 
     background:
 
-    rgba(255,255,255,.9);
+    rgba(255,255,255,.92);
+
 
 
     padding:22px;
 
 
+
     margin-bottom:20px;
 
 
+
     border-radius:30px;
+
 
 
     box-shadow:
 
     0 15px 35px
 
-    rgba(255,92,157,.18);
+    rgba(255,92,157,.15);
 
 
 
     backdrop-filter:
 
     blur(10px);
+
 
 
     animation:
@@ -223,12 +213,12 @@ body{
 
 
 
-
-/* HEADER */
+/* =========================
+ HEADER
+========================= */
 
 
 .hero{
-
 
     text-align:center;
 
@@ -239,22 +229,19 @@ body{
 .hero h1{
 
 
-    font-size:35px;
+    font-size:36px;
 
 
     color:#ff5c9d;
 
 
 }
+
 
 
 .hero p{
 
-
     margin-top:10px;
-
-
-    line-height:1.5;
 
 }
 
@@ -262,23 +249,18 @@ body{
 
 
 
-
-
-
-
-/* TEXT */
+/* =========================
+ TEXT
+========================= */
 
 
 h2{
 
-
     text-align:center;
 
+    margin-bottom:20px;
 
     color:#ff5c9d;
-
-
-    margin-bottom:20px;
 
 }
 
@@ -286,15 +268,11 @@ h2{
 
 h3{
 
-
     color:#ff5c9d;
 
+    font-size:22px;
 
 }
-
-
-
-
 
 
 
@@ -323,28 +301,23 @@ button{
     border-radius:50px;
 
 
-    font-size:17px;
-
-
     color:white;
 
 
+    font-size:17px;
 
-    cursor:pointer;
 
 
     background:
 
-
     linear-gradient(
-
         135deg,
-
         #ff8fba,
-
         #ff5c9d
-
     );
+
+
+    cursor:pointer;
 
 
 
@@ -352,14 +325,14 @@ button{
 
     0 8px 20px
 
-    rgba(255,92,157,.35);
+    rgba(255,92,157,.3);
+
 
 
     transition:.3s;
 
 
 }
-
 
 
 
@@ -389,20 +362,20 @@ button:active{
 
 
 
-
-
-
-
 /* =========================
  MODE
 ========================= */
 
 
-.mode-group{
+.mode-group,
+
+
+.category-group{
 
 
     display:flex;
 
+    flex-wrap:wrap;
 
     gap:10px;
 
@@ -411,12 +384,15 @@ button:active{
 
 
 
+.mode,
 
-.mode{
+
+.category{
 
 
     flex:1;
 
+    min-width:90px;
 
     font-size:14px;
 
@@ -425,10 +401,23 @@ button:active{
 
 
 
-.mode.active{
+.mode.active,
 
 
-    background:#ff5c9d;
+.category.active{
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #ff5c9d,
+
+    #ff9fc5
+
+    );
 
 
 }
@@ -437,31 +426,28 @@ button:active{
 
 
 
-
-
-
-#partnerName{
+input{
 
 
     width:100%;
 
 
+    margin-top:15px;
+
+
     padding:14px;
 
 
-    margin-top:15px;
+    border-radius:25px;
 
 
     border:none;
 
 
-    border-radius:30px;
+    background:#fff0f6;
 
 
     text-align:center;
-
-
-    background:#fff0f6;
 
 
     font-size:16px;
@@ -473,35 +459,9 @@ button:active{
 
 
 
-#chooserMessage,
-
-
-#statusMessage{
-
-
-    text-align:center;
-
-
-    margin-top:15px;
-
-
-    color:#ff5c9d;
-
-
-    font-weight:bold;
-
-}
-
-
-
-
-
-
-
-
 
 /* =========================
- WHEEL 🎡
+ WHEEL
 ========================= */
 
 
@@ -517,12 +477,10 @@ button:active{
     justify-content:center;
 
 
-    margin:25px 0;
+    margin:20px 0;
 
 
 }
-
-
 
 
 
@@ -538,58 +496,16 @@ button:active{
     border-radius:50%;
 
 
-    animation:
 
-    wheelGlow 3s infinite;
-
-
-}
+    box-shadow:
 
 
+    0 20px 40px
 
-
-
-@keyframes wheelGlow{
-
-
-0%{
-
-
-box-shadow:
-
-0 0 15px #ffb6d9;
+    rgba(0,0,0,.15);
 
 
 }
-
-
-
-50%{
-
-
-box-shadow:
-
-0 0 40px #ff5c9d;
-
-
-}
-
-
-
-100%{
-
-
-box-shadow:
-
-0 0 15px #ffb6d9;
-
-
-}
-
-
-
-}
-
 
 
 
@@ -602,7 +518,7 @@ box-shadow:
     top:-20px;
 
 
-    z-index:10;
+    z-index:5;
 
 
     font-size:40px;
@@ -610,11 +526,8 @@ box-shadow:
 
     color:#ff5c9d;
 
+
 }
-
-
-
-
 
 
 
@@ -633,6 +546,10 @@ box-shadow:
 
     gap:10px;
 
+
+    text-align:center;
+
+
 }
 
 
@@ -643,18 +560,17 @@ box-shadow:
     flex:1;
 
 
+    background:#fff0f6;
+
+
     padding:15px;
 
 
     border-radius:20px;
 
 
-    background:#fff0f6;
-
-
-    text-align:center;
-
 }
+
 
 
 
@@ -663,11 +579,8 @@ box-shadow:
 
     font-size:13px;
 
+
 }
-
-
-
-
 
 
 
@@ -679,7 +592,6 @@ box-shadow:
 
 
 ul{
-
 
     list-style:none;
 
@@ -693,41 +605,16 @@ li{
     background:#fff0f6;
 
 
-    padding:12px;
-
-
     margin:10px 0;
+
+
+    padding:12px;
 
 
     border-radius:18px;
 
-}
-
-
-
-
-
-
-
-.deleteFavorite{
-
-
-    width:auto;
-
-
-    padding:5px 10px;
-
-
-    float:right;
-
-
-    margin:0;
 
 }
-
-
-
-
 
 
 
@@ -745,6 +632,7 @@ audio{
 }
 
 
+
 select{
 
 
@@ -757,10 +645,10 @@ select{
     margin-top:15px;
 
 
-    border:none;
-
-
     border-radius:20px;
+
+
+    border:none;
 
 
 }
@@ -771,10 +659,115 @@ select{
 
 
 
+/* =========================
+ WIN EFFECT 🎉
+========================= */
+
+
+.winner-popup{
+
+
+    position:fixed;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+
+    width:85%;
+
+
+    max-width:350px;
+
+
+    background:white;
+
+
+    padding:30px;
+
+
+    border-radius:35px;
+
+
+    text-align:center;
+
+
+    z-index:9999;
+
+
+    box-shadow:
+
+    0 20px 60px
+
+    rgba(0,0,0,.25);
+
+
+
+    animation:
+
+    winnerPop .5s ease;
+
+
+}
+
+
+
+.winner-popup h1{
+
+
+    color:#ff5c9d;
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+
+.floating-heart,
+
+
+.confetti{
+
+
+    position:fixed;
+
+
+    top:-50px;
+
+
+    font-size:35px;
+
+
+    z-index:9998;
+
+
+    pointer-events:none;
+
+
+    animation:
+
+    fall 3s linear forwards;
+
+
+}
+
+
+
 
 
 /* =========================
- HEART EFFECT ❤️
+ HEART OLD
 ========================= */
 
 
@@ -784,68 +777,15 @@ select{
     position:fixed;
 
 
-    bottom:20px;
-
-
     font-size:35px;
-
-
-    z-index:999;
-
-
-    pointer-events:none;
 
 
     animation:
 
-    heartUp 2s forwards;
-
-}
-
-
-
-
-@keyframes heartUp{
-
-
-from{
-
-
-transform:
-
-translateY(0)
-
-scale(1);
-
-
-opacity:1;
+    floatHeart 2s ease-out forwards;
 
 
 }
-
-
-to{
-
-
-transform:
-
-translateY(-300px)
-
-scale(1.5);
-
-
-opacity:0;
-
-
-}
-
-
-
-}
-
-
-
-
 
 
 
@@ -859,33 +799,32 @@ opacity:0;
 body.dark{
 
 
-background:
+    background:
 
-linear-gradient(
+    linear-gradient(
 
-135deg,
+    135deg,
 
-#1c1029,
+    #21152d,
 
-#542a72
+    #542a72
 
-);
+    );
 
 
-color:white;
+    color:white;
 
 
 }
 
 
 
-
 body.dark .card{
 
 
-background:
+    background:
 
-rgba(40,20,60,.92);
+    rgba(40,20,60,.92);
 
 
 }
@@ -899,7 +838,7 @@ body.dark h2,
 body.dark h3{
 
 
-color:#ffb7df;
+    color:#ffb7e0;
 
 
 }
@@ -911,49 +850,58 @@ body.dark li,
 body.dark .result-box div{
 
 
-background:
+    background:
 
-rgba(255,255,255,.12);
-
-
-color:white;
+    rgba(255,255,255,.12);
 
 
 }
 
-
-
-body.dark #partnerName{
-
-
-background:#352044;
-
-color:white;
-
-
-}
 
 
 
 body.dark button{
 
 
-background:
+    background:
 
-linear-gradient(
+    linear-gradient(
 
-135deg,
+    135deg,
 
-#9b5de5,
+    #9b5de5,
 
-#f15bb5
+    #f15bb5
 
-);
+    );
 
 
 }
 
 
+
+
+
+
+
+/* =========================
+ FOOTER
+========================= */
+
+
+footer{
+
+
+    text-align:center;
+
+
+    color:#ff5c9d;
+
+
+    font-size:14px;
+
+
+}
 
 
 
@@ -971,7 +919,7 @@ linear-gradient(
 
 from{
 
-transform:scale(.7);
+transform:scale(.5);
 
 opacity:0;
 
@@ -998,9 +946,7 @@ from{
 
 opacity:0;
 
-transform:
-
-translateY(20px);
+transform:translateY(20px);
 
 }
 
@@ -1016,13 +962,95 @@ opacity:1;
 
 
 
+@keyframes winnerPop{
+
+
+from{
+
+transform:
+
+translate(-50%,-50%)
+
+scale(.5);
+
+opacity:0;
+
+
+}
+
+
+to{
+
+
+transform:
+
+translate(-50%,-50%)
+
+scale(1);
+
+opacity:1;
+
+
+}
+
+
+}
+
+
+
+@keyframes fall{
+
+
+to{
+
+
+transform:
+
+translateY(110vh)
+
+rotate(360deg);
+
+
+opacity:0;
+
+
+}
+
+
+}
+
+
+
+@keyframes floatHeart{
+
+
+to{
+
+
+transform:
+
+translateY(-300px)
+
+scale(1.5);
+
+
+opacity:0;
+
+
+}
+
+
+}
 
 
 
 
 
 
-/* MOBILE */
+
+/* =========================
+ MOBILE
+========================= */
 
 
 @media(max-width:480px){
@@ -1031,7 +1059,7 @@ opacity:1;
 
 .app{
 
-padding:12px;
+    padding:12px;
 
 }
 
@@ -1039,7 +1067,7 @@ padding:12px;
 
 .hero h1{
 
-font-size:28px;
+    font-size:28px;
 
 }
 
@@ -1047,7 +1075,7 @@ font-size:28px;
 
 #wheel{
 
-width:300px;
+    width:300px;
 
 }
 
@@ -1055,15 +1083,16 @@ width:300px;
 
 .result-box{
 
-flex-direction:column;
+    flex-direction:column;
 
 }
 
 
+.mode-group,
 
-.mode-group{
+.category-group{
 
-flex-direction:column;
+    flex-direction:column;
 
 }
 

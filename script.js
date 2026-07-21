@@ -1,167 +1,504 @@
-// =========================
-// 🍜 รายการอาหาร
-// =========================
+/* =================================
+   Dinner Roulette ❤️
+   Main Controller 
+================================= */
 
-const foods = [
-    "🥘 หมูกระทะ",
-    "🍲 ชาบู",
-    "🐷 หมูย่างจิ้มแจ่ว",
-    "🍗 ไก่ทอด",
-    "🍜 ก๋วยเตี๋ยว",
-    "🍛 ข้าวมันไก่",
-    "🍚 ข้าวผัด",
-    "🍝 สปาเกตตี",
-    "🍕 พิซซ่า",
-    "🍔 แฮมเบอร์เกอร์",
-    "🍣 ซูชิ",
-    "🍱 อาหารญี่ปุ่น",
-    "🥩 ปิ้งย่าง",
-    "🍜 ราเมง",
-    "🌶️ อาหารเกาหลี",
-    "🍗 ไก่เกาหลี",
-    "🍤 ต้มยำกุ้ง",
-    "🥗 สลัด",
-    "🍧 ของหวาน",
-    "🧋 ชานมไข่มุก"
-];
 
 
 // =========================
-// 🎯 เชื่อมกับ HTML
+// ELEMENT
 // =========================
 
-const randomBtn = document.getElementById("randomBtn");
-const result = document.getElementById("result");
 
-const bgMusic = document.getElementById("bgMusic");
+const startBtn = document.getElementById("startBtn");
+
+const startScreen = document.getElementById("startScreen");
+
+const app = document.getElementById("app");
+
+
+const music = document.getElementById("bgMusic");
+
 const musicBtn = document.getElementById("musicBtn");
 
+const muteBtn = document.getElementById("muteBtn");
+
+const musicSelect = document.getElementById("musicSelect");
+
+
+
+const clickSound = new Audio("click.mp3");
+
+
+
+
+
 
 // =========================
-// 🎲 สุ่มอาหาร
+// START APP
 // =========================
 
-randomBtn.addEventListener("click", () => {
 
-    randomBtn.disabled = true;
+if(startBtn){
 
-    result.classList.remove("pop");
 
-    result.innerHTML = `
-        🎲 กำลังสุ่ม...
-        <br>
-        💕 รอแป๊บนะ
-    `;
+startBtn.addEventListener("click",()=>{
 
-    createHeart();
 
-    setTimeout(() => {
+    playClick();
 
-        const randomFood =
-            foods[Math.floor(Math.random() * foods.length)];
 
-        result.innerHTML = `
-            🎉 วันนี้กิน...
-            <br><br>
-            ❤️ ${randomFood}
-        `;
+    startScreen.style.display="none";
 
-        result.classList.add("pop");
 
-        createConfetti();
+    app.style.display="block";
 
-        randomBtn.disabled = false;
 
-    }, 1000);
+    music.play()
+    .catch(()=>{});
+
+
 
 });
 
 
-// =========================
-// ❤️ หัวใจลอย
-// =========================
-
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-        (20 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 3000);
-
 }
 
 
+
+
+
+
+
 // =========================
-// 🎊 Confetti
+// MUSIC CONTROL
 // =========================
 
-function createConfetti() {
 
-    for (let i = 0; i < 30; i++) {
 
-        const confetti = document.createElement("div");
+if(musicBtn){
 
-        confetti.className = "confetti";
 
-        confetti.innerHTML = "🎊";
+musicBtn.addEventListener("click",()=>{
 
-        confetti.style.left =
-            Math.random() * 100 + "vw";
 
-        confetti.style.animationDuration =
-            (2 + Math.random() * 2) + "s";
+    playClick();
 
-        document.body.appendChild(confetti);
 
-        setTimeout(() => {
+    if(music.paused){
 
-            confetti.remove();
 
-        }, 3000);
+        music.play();
+
+
+        musicBtn.innerHTML =
+        "⏸️ หยุดเพลง";
+
 
     }
 
+    else{
+
+
+        music.pause();
+
+
+        musicBtn.innerHTML =
+        "🎵 เปิดเพลง";
+
+
+    }
+
+
+
+});
+
+
+
 }
 
 
+
+
+
+if(muteBtn){
+
+
+muteBtn.addEventListener("click",()=>{
+
+
+    playClick();
+
+
+    music.muted = !music.muted;
+
+
+
+    muteBtn.innerHTML =
+
+    music.muted
+
+    ?
+
+    "🔊 เปิดเสียง"
+
+    :
+
+    "🔇 ปิดเสียง";
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
 // =========================
-// 🎵 เพลง
+// CHANGE MUSIC
 // =========================
 
-if (musicBtn && bgMusic) {
 
-    musicBtn.addEventListener("click", () => {
 
-        if (bgMusic.paused) {
+if(musicSelect){
 
-            bgMusic.play();
 
-            musicBtn.textContent = "🔇 ปิดเพลง";
+musicSelect.addEventListener("change",()=>{
 
-        } else {
 
-            bgMusic.pause();
+    playClick();
 
-            musicBtn.textContent = "🎵 เปิดเพลง";
+
+    music.src =
+
+    musicSelect.value;
+
+
+
+    music.play()
+    .catch(()=>{});
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =========================
+// BUTTON SOUND
+// =========================
+
+
+
+function playClick(){
+
+
+    clickSound.currentTime = 0;
+
+
+    clickSound.play()
+
+    .catch(()=>{});
+
+
+}
+
+
+
+
+
+
+
+
+
+// =========================
+// ALL BUTTON CLICK EFFECT
+// =========================
+
+
+
+document.querySelectorAll("button")
+
+.forEach(button=>{
+
+
+    button.addEventListener(
+
+    "click",
+
+    ()=>{
+
+
+        playClick();
+
+
+    }
+
+    );
+
+
+});
+
+
+
+
+
+
+
+
+
+
+// =========================
+// REROLL
+// =========================
+
+
+
+const rerollBtn =
+
+document.getElementById("rerollBtn");
+
+
+
+if(rerollBtn){
+
+
+rerollBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+    playClick();
+
+
+
+    const spin =
+
+    document.getElementById("spinBtn");
+
+
+
+    if(spin){
+
+        spin.click();
+
+    }
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+// =========================
+// AUTO RANDOM
+// =========================
+
+
+
+const autoBtn =
+
+document.getElementById("autoBtn");
+
+
+
+if(autoBtn){
+
+
+
+autoBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+    playClick();
+
+
+
+    let count = 0;
+
+
+
+    let timer = setInterval(()=>{
+
+
+        const spin =
+
+        document.getElementById("spinBtn");
+
+
+
+        if(spin){
+
+            spin.click();
 
         }
 
-    });
+
+
+        count++;
+
+
+
+
+        if(count>=3){
+
+
+            clearInterval(timer);
+
+
+        }
+
+
+
+    },5500);
+
+
+
+});
+
 
 }
 
-console.log("✅ script.js โหลดสำเร็จ");
+
+
+
+
+
+
+
+// =========================
+// LIKE RESULT
+// =========================
+
+
+
+const likeBtn =
+
+document.getElementById("likeBtn");
+
+
+
+if(likeBtn){
+
+
+likeBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+    playClick();
+
+
+    alert(
+
+    "❤️ ตกลง! วันนี้กินเมนูนี้กัน"
+
+    );
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+// =========================
+// SHARE
+// =========================
+
+
+
+const shareBtn =
+
+document.getElementById("shareBtn");
+
+
+
+if(shareBtn){
+
+
+shareBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+const food =
+
+window.currentFood ||
+
+"อาหารอร่อย";
+
+
+
+if(navigator.share){
+
+
+navigator.share({
+
+title:"❤️ Dinner Roulette",
+
+text:
+
+`วันนี้กิน ${food} กัน 🍽️`
+
+});
+
+
+}
+
+else{
+
+
+alert(
+
+`❤️ วันนี้กิน ${food}`
+
+);
+
+
+}
+
+
+
+});
+
+
+}

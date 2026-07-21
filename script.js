@@ -216,3 +216,37 @@ function createConfetti(){
 
 
 }
+// =======================
+// 🎵 ระบบเพลง
+// =======================
+
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let musicPlaying = false;
+
+musicBtn.addEventListener("click", function () {
+
+    if (!musicPlaying) {
+
+        bgMusic.play()
+            .then(() => {
+                musicBtn.textContent = "🔇 ปิดเพลง";
+                musicPlaying = true;
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("ไม่สามารถเล่นเพลงได้");
+            });
+
+    } else {
+
+        bgMusic.pause();
+
+        musicBtn.textContent = "🎵 เปิดเพลง";
+
+        musicPlaying = false;
+
+    }
+
+});

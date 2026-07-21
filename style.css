@@ -1,53 +1,42 @@
 /* =================================
- Dinner Roulette Chompu V17 ❤️
- Perfect Couple Style FINAL
+ Dinner Roulette Chompu V19 ❤️
+ Cute Couple UI
+ PART 5
 ================================= */
 
 
+/* ===============================
+ RESET
+=============================== */
 
 *{
-
 box-sizing:border-box;
-
 }
 
 
-
 body{
-
 
 margin:0;
 
 padding:20px;
 
-
 font-family:
 
-"Tahom",
-
+"Tah​oma",
 "Arial",
-
 sans-serif;
-
 
 background:
 
 linear-gradient(
-
 135deg,
-
-#fff0f5,
-
-#ffe5ec
-
+#ffe5ec,
+#fff0f5
 );
-
 
 color:#555;
 
-
-transition:.4s;
-
+transition:.3s;
 
 }
 
@@ -56,108 +45,31 @@ transition:.4s;
 
 
 /* ===============================
- DARK MODE 🌙
-=============================== */
-
-
-body.dark{
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#1f1f2e,
-
-#352f44
-
-);
-
-
-color:#eee;
-
-
-}
-
-
-
-body.dark .card{
-
-
-background:
-
-rgba(40,40,55,.95);
-
-
-color:white;
-
-
-}
-
-
-
-body.dark h1,
-
-body.dark h2,
-
-body.dark h3{
-
-
-color:#ffd6e7;
-
-
-}
-
-
-
-
-
-/* ===============================
- START SCREEN 💕
+ START SCREEN
 =============================== */
 
 
 #startScreen{
 
-
 position:fixed;
 
-
-top:0;
-
-left:0;
-
-
-width:100%;
-
-height:100%;
-
+inset:0;
 
 background:
 
 linear-gradient(
-
 135deg,
-
 #ffafcc,
-
 #ffc8dd
-
 );
-
 
 display:flex;
 
-
 align-items:center;
-
 
 justify-content:center;
 
-
-z-index:9999;
+z-index:999;
 
 
 }
@@ -169,56 +81,27 @@ z-index:9999;
 
 background:white;
 
+padding:40px 30px;
 
-width:90%;
-
-
-max-width:380px;
-
-
-padding:40px 25px;
-
-
-border-radius:40px;
-
+border-radius:35px;
 
 text-align:center;
 
-
 box-shadow:
 
-0 20px 50px
-
-rgba(0,0,0,.15);
-
-
-animation:
-
-popupShow .5s;
+0 20px 50px rgba(0,0,0,.15);
 
 
 }
+
 
 
 
 .start-box h1{
 
-
-font-size:32px;
-
-
 color:#ff5d8f;
 
-
-}
-
-
-
-.start-box p{
-
-
-font-size:18px;
-
+font-size:35px;
 
 }
 
@@ -226,65 +109,61 @@ font-size:18px;
 
 
 
-#startBtn{
+button{
 
 
 border:none;
 
+cursor:pointer;
+
+font-size:16px;
+
+padding:12px 22px;
+
+border-radius:30px;
 
 background:
 
 linear-gradient(
-
 135deg,
-
 #ff8fab,
-
 #ff5d8f
-
 );
-
 
 color:white;
 
+margin:5px;
 
-font-size:20px;
-
-
-padding:15px 40px;
-
-
-border-radius:40px;
-
-
-cursor:pointer;
-
-
-box-shadow:
-
-0 10px 25px
-
-rgba(255,93,143,.4);
-
-
-transition:.3s;
-
+transition:.25s;
 
 }
 
 
 
-#startBtn:hover{
+button:hover{
 
 
 transform:
 
-scale(1.05);
+translateY(-3px)
+scale(1.03);
 
 
 }
 
 
+
+
+
+button:disabled{
+
+
+opacity:.5;
+
+cursor:not-allowed;
+
+
+}
 
 
 
@@ -300,15 +179,12 @@ scale(1.05);
 .app{
 
 
-max-width:600px;
-
+max-width:500px;
 
 margin:auto;
 
 
 }
-
-
 
 
 
@@ -322,104 +198,39 @@ margin:auto;
 .card{
 
 
-background:
+background:white;
 
-rgba(255,255,255,.9);
+padding:20px;
 
+margin-bottom:20px;
 
 border-radius:30px;
 
 
-padding:25px;
-
-
-margin-bottom:20px;
-
-
 box-shadow:
 
-
-0 10px 30px
-
-rgba(0,0,0,.08);
-
-
-backdrop-filter:
-
-blur(10px);
+0 10px 30px rgba(0,0,0,.08);
 
 
 }
 
 
 
-
-
-.card h1{
-
-
-margin-top:0;
-
-
-text-align:center;
-
-
-color:#ff5d8f;
-
-
-}
-
-
-
-.card h2{
-
-
-text-align:center;
-
-
-color:#ff7096;
-
-
-font-size:24px;
-
-
-}
-
-
-
-.card p{
-
-
-text-align:center;
-
-
-}
-
-
-
-
-
-/* ===============================
- HERO
-=============================== */
 
 
 .hero{
 
 
+text-align:center;
+
 background:
 
 linear-gradient(
-
 135deg,
-
 #ffafcc,
-
 #ffc8dd
-
 );
 
-
 color:white;
 
 
@@ -427,14 +238,11 @@ color:white;
 
 
 
-.hero h1,
+.hero h1{
 
+font-size:34px;
 
-.hero p{
-
-
-color:white;
-
+margin:5px;
 
 }
 
@@ -445,129 +253,56 @@ color:white;
 
 
 /* ===============================
- BUTTON GLOBAL
+ TITLE
 =============================== */
 
 
-button{
-
-
-font-family:inherit;
-
-
-cursor:pointer;
-
-
-transition:.25s;
-
-
-}
-
-
-
-button:hover{
-
-
-transform:
-
-translateY(-2px);
-
-
-}
-
-
-
-button:active{
-
-
-transform:
-
-scale(.95);
-
-
-}
-/* ===============================
- MODE SYSTEM 👫
-=============================== */
-
-
-.mode-group{
-
-
-display:flex;
-
-
-gap:10px;
-
-
-justify-content:center;
-
-
-flex-wrap:wrap;
-
-
-}
-
-
-
-
-.mode{
-
-
-border:none;
-
-
-padding:12px 18px;
-
-
-border-radius:25px;
-
-
-background:#ffe5ec;
+h2{
 
 
 color:#ff5d8f;
 
-
-font-size:15px;
-
-
-font-weight:bold;
+text-align:center;
 
 
 }
 
 
 
-.mode.active{
 
 
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff8fab,
-
-#ff5d8f
-
-);
 
 
-color:white;
+/* ===============================
+ MODE
+=============================== */
 
 
-box-shadow:
+.mode-group,
+.category-group{
 
-0 8px 20px
 
-rgba(255,93,143,.35);
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
 
 
 }
 
 
+
+.mode.active,
+.category.active{
+
+
+background:#ff5d8f;
+
+transform:scale(1.05);
+
+
+}
 
 
 
@@ -578,28 +313,19 @@ rgba(255,93,143,.35);
 
 width:100%;
 
-
-margin-top:15px;
-
-
 padding:14px;
-
 
 border-radius:20px;
 
-
 border:2px solid #ffd6e7;
 
+margin-top:10px;
+
+text-align:center;
 
 font-size:16px;
 
 
-text-align:center;
-
-
-outline:none;
-
-
 }
 
 
@@ -607,76 +333,7 @@ outline:none;
 
 
 /* ===============================
- CATEGORY 🍽️
-=============================== */
-
-
-.category-group{
-
-
-display:flex;
-
-
-gap:8px;
-
-
-justify-content:center;
-
-
-flex-wrap:wrap;
-
-
-}
-
-
-
-.category{
-
-
-border:none;
-
-
-padding:10px 16px;
-
-
-border-radius:20px;
-
-
-background:#fff0f5;
-
-
-color:#ff7096;
-
-
-font-weight:bold;
-
-
-}
-
-
-
-
-.category.active{
-
-
-background:#ff8fab;
-
-
-color:white;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- WHEEL AREA 🎡
+ WHEEL
 =============================== */
 
 
@@ -685,24 +342,16 @@ color:white;
 
 position:relative;
 
-
-width:100%;
-
-
 display:flex;
-
 
 justify-content:center;
 
-
 align-items:center;
 
-
-margin:20px auto;
+margin:20px;
 
 
 }
-
 
 
 
@@ -711,38 +360,19 @@ margin:20px auto;
 
 width:100%;
 
-
 max-width:420px;
-
-
-height:auto;
-
 
 border-radius:50%;
 
 
 box-shadow:
 
-
-0 15px 40px
-
-rgba(255,93,143,.25);
-
-
-transition:
-
-transform 6s cubic-bezier(.17,.67,.24,1);
+0 15px 40px rgba(0,0,0,.15);
 
 
 }
 
 
-
-
-
-
-
-/* POINTER */
 
 
 #pointer{
@@ -750,172 +380,18 @@ transform 6s cubic-bezier(.17,.67,.24,1);
 
 position:absolute;
 
-
-top:-15px;
-
-
-left:50%;
-
-
-transform:
-
-translateX(-50%);
-
-
-font-size:45px;
-
-
-color:#ff5d8f;
-
+top:-10px;
 
 z-index:10;
 
-
-filter:
-
-drop-shadow(
-
-0 5px 5px
-
-rgba(0,0,0,.2)
-
-);
-
-
-}
-
-
-
-
-
-
-
-/* ===============================
- STATUS
-=============================== */
-
-
-#mainMessage,
-
-
-#statusMessage{
-
-
-font-size:17px;
-
-
-color:#ff7096;
-
-
-font-weight:bold;
-
-
-}
-
-
-
-
-
-/* ===============================
- SPIN BUTTON 🎡
-=============================== */
-
-
-#spinBtn{
-
-
-display:block;
-
-
-width:100%;
-
-
-border:none;
-
-
-padding:18px;
-
-
-border-radius:30px;
-
-
-font-size:20px;
-
-
-font-weight:bold;
-
-
-color:white;
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff8fab,
-
-#ff5d8f
-
-);
-
-
-box-shadow:
-
-
-0 10px 25px
-
-rgba(255,93,143,.35);
-
-
-}
-
-
-
-
-#spinBtn:disabled{
-
-
-opacity:.5;
-
-
-}
-
-
-
-
-#autoBtn{
-
-
-display:block;
-
-
-width:100%;
-
-
-margin-top:12px;
-
-
-border:none;
-
-
-padding:15px;
-
-
-border-radius:30px;
-
-
-font-size:17px;
-
-
-background:#ffe5ec;
-
+font-size:45px;
 
 color:#ff5d8f;
 
 
-font-weight:bold;
+text-shadow:
+
+0 3px 5px rgba(0,0,0,.2);
 
 
 }
@@ -927,54 +403,30 @@ font-weight:bold;
 
 
 /* ===============================
- RESULT 🍽️
+ RESULT
 =============================== */
 
 
 .result-box{
 
 
-display:grid;
+background:#fff0f5;
 
+padding:20px;
 
-gap:15px;
-
+border-radius:25px;
 
 text-align:center;
 
 
 }
-
-
-
-.result-box div{
-
-
-background:#fff5f8;
-
-
-border-radius:25px;
-
-
-padding:15px;
-
-
-border:2px solid #ffd6e7;
-
-
-}
-
 
 
 
 .result-box h3{
 
 
-margin:8px;
-
-
 color:#ff5d8f;
-
 
 font-size:22px;
 
@@ -986,338 +438,37 @@ font-size:22px;
 
 
 
+
+
 /* ===============================
- LIKE / FAVORITE BUTTON
+ LIST
 =============================== */
 
 
-#likeBtn,
-
-
-#rerollBtn,
-
-
-#favoriteBtn{
-
-
-width:100%;
-
-
-margin-top:10px;
-
-
-padding:14px;
-
-
-border:none;
-
-
-border-radius:25px;
-
-
-font-size:17px;
-
-
-font-weight:bold;
-
-
-}
-
-
-
-#likeBtn{
-
-
-background:#caffbf;
-
-
-color:#277a20;
-
-
-}
-
-
-
-#rerollBtn{
-
-
-background:#ffd6d6;
-
-
-color:#d33;
-
-
-}
-
-
-
-#favoriteBtn{
-
-
-background:#ffe69c;
-
-
-color:#8a6500;
-
-
-}
-/* ===============================
- FAVORITE ⭐
-=============================== */
-
-
-#favoriteList,
-
-
-#historyList,
-
-
-#smartList,
-
-
-#avoidList{
-
-
-list-style:none;
+ul{
 
 
 padding:0;
 
-
-margin:0;
+list-style:none;
 
 
 }
 
 
 
+li{
 
 
-#favoriteList li,
-
-
-#smartList li,
-
-
-#avoidList li{
-
-
-background:#fff5f8;
-
-
-margin-bottom:10px;
-
+background:#fff5fa;
 
 padding:15px;
 
+margin:10px 0;
 
 border-radius:20px;
 
 
-border-left:5px solid #ff8fab;
-
-
-}
-
-
-
-
-
-#favoriteList button,
-
-
-#historyList button{
-
-
-border:none;
-
-
-background:#ff8fab;
-
-
-color:white;
-
-
-padding:8px 15px;
-
-
-border-radius:20px;
-
-
-margin-top:10px;
-
-
-}
-
-
-
-
-
-/* ===============================
- TIMELINE 📜
-=============================== */
-
-
-.history-card{
-
-
-overflow:hidden;
-
-
-}
-
-
-
-
-
-.history-sub{
-
-
-color:#ff8fab;
-
-
-font-style:italic;
-
-
-}
-
-
-
-
-
-.timeline{
-
-
-position:relative;
-
-
-padding-left:20px;
-
-
-}
-
-
-
-.timeline::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-left:5px;
-
-
-top:0;
-
-
-bottom:0;
-
-
-width:3px;
-
-
-background:#ffb3c6;
-
-
-}
-
-
-
-
-.timeline-item{
-
-
-position:relative;
-
-
-margin-bottom:20px;
-
-
-}
-
-
-
-
-
-.timeline-item::before{
-
-
-content:"❤️";
-
-
-position:absolute;
-
-
-left:-25px;
-
-
-top:10px;
-
-
-font-size:14px;
-
-
-}
-
-
-
-
-
-.timeline-content{
-
-
-background:#fff5f8;
-
-
-padding:18px;
-
-
-border-radius:25px;
-
-
-box-shadow:
-
-
-0 5px 15px
-
-rgba(0,0,0,.05);
-
-
-}
-
-
-
-
-
-.timeline-content h3{
-
-
-color:#ff5d8f;
-
-
-margin-top:0;
-
-
-}
-
-
-
-
-
-
-
-.timeline-content span{
-
-
-font-size:13px;
-
-
-color:#999;
-
-
 }
 
 
@@ -1327,112 +478,7 @@ color:#999;
 
 
 /* ===============================
- MISSION 💌
-=============================== */
-
-
-#missionScore{
-
-
-text-align:center;
-
-
-font-size:28px;
-
-
-color:#ff5d8f;
-
-
-}
-
-
-
-
-.card p span{
-
-
-float:right;
-
-
-font-size:22px;
-
-
-}
-
-
-
-
-
-/* ===============================
- MISSION POPUP
-=============================== */
-
-
-.mission-popup{
-
-
-position:fixed;
-
-
-top:50%;
-
-
-left:50%;
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-background:white;
-
-
-padding:30px;
-
-
-border-radius:30px;
-
-
-z-index:9999;
-
-
-text-align:center;
-
-
-box-shadow:
-
-0 20px 50px
-
-rgba(0,0,0,.25);
-
-
-animation:
-
-popupShow .4s;
-
-
-}
-
-
-
-.mission-popup h2{
-
-
-color:#ff5d8f;
-
-
-}
-
-
-
-
-
-
-
-
-/* ===============================
- SHARE CARD 📸
+ SHARE CARD
 =============================== */
 
 
@@ -1442,212 +488,142 @@ color:#ff5d8f;
 background:
 
 linear-gradient(
-
 135deg,
-
 #ffafcc,
-
 #ffc8dd
-
 );
 
-
-border-radius:35px;
-
-
-padding:30px 20px;
-
-
-text-align:center;
-
-
 color:white;
 
-
-box-shadow:
-
-
-0 15px 35px
-
-rgba(255,93,143,.3);
-
-
-}
-
-
-
-#shareCard h1{
-
-
-color:white;
-
-
-font-size:28px;
-
-
-}
-
-
-
-#shareCard p{
-
-
-background:
-
-rgba(255,255,255,.25);
-
-
-padding:12px;
-
-
-border-radius:20px;
-
-
-margin:10px 0;
-
-
-font-size:18px;
-
-
-}
-
-
-
-
-
-
-
-#saveImageBtn,
-
-
-#shareBtn{
-
-
-width:100%;
-
-
-margin-top:15px;
-
-
-padding:15px;
-
-
-border:none;
-
+padding:25px;
 
 border-radius:30px;
 
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#ff8fab,
-
-#ff5d8f
-
-);
-
-
-color:white;
-
-
-font-size:18px;
-
-
-font-weight:bold;
-
-
-}
-
-
-
-
-/* ===============================
- MUSIC 🎵
-=============================== */
-
-
-#musicBtn{
-
-
-width:100%;
-
-
-padding:15px;
-
-
-border:none;
-
-
-border-radius:30px;
-
-
-background:#ffd6e7;
-
-
-color:#ff5d8f;
-
-
-font-size:18px;
-
-
-}
-
-
-
-#musicSelect{
-
-
-width:100%;
-
-
-margin-top:15px;
-
-
-padding:12px;
-
-
-border-radius:20px;
-
-
-border:2px solid #ffd6e7;
-
-
 text-align:center;
 
 
-font-size:16px;
-
-
 }
 
 
 
 
 
+
+
 /* ===============================
- FOOTER
+ HEART EFFECT
 =============================== */
 
 
-footer{
+.heart{
 
 
-text-align:center;
+position:fixed;
 
+font-size:25px;
 
-color:#ff8fab;
+z-index:9999;
 
+animation:
 
-font-weight:bold;
+heartFloat 2s linear forwards;
 
 
 }
+
+
+
+@keyframes heartFloat{
+
+
+from{
+
+transform:
+
+translateY(0);
+
+opacity:1;
+
+}
+
+
+to{
+
+transform:
+
+translateY(-300px);
+
+opacity:0;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
 /* ===============================
- MOBILE RESPONSIVE 📱
+ DARK MODE
+=============================== */
+
+
+body.dark{
+
+
+background:#222;
+
+color:#eee;
+
+
+}
+
+
+
+body.dark .card{
+
+
+background:#333;
+
+color:#eee;
+
+
+}
+
+
+
+body.dark h2{
+
+
+color:#ffafcc;
+
+
+}
+
+
+
+
+body.dark li{
+
+
+background:#444;
+
+
+}
+
+
+
+
+
+
+
+
+/* ===============================
+ MOBILE
 =============================== */
 
 
@@ -1657,593 +633,48 @@ font-weight:bold;
 
 body{
 
-padding:12px;
+padding:10px;
 
 }
-
 
 
 
 .card{
 
-padding:18px;
+padding:15px;
 
 border-radius:25px;
 
-}
-
-
-
-
-.card h1{
-
-font-size:26px;
 
 }
 
 
 
-.card h2{
+.hero h1{
 
-font-size:21px;
+font-size:28px;
 
 }
 
 
 
+button{
 
-
-.mode{
-
-
-padding:10px 14px;
-
+width:auto;
 
 font-size:14px;
 
-
 }
-
-
-
-
-.category{
-
-
-padding:8px 12px;
-
-
-font-size:13px;
-
-
-}
-
 
 
 
 #wheel{
 
 
-max-width:340px;
-
-
-}
-
-
-
-
-#pointer{
-
-
-font-size:38px;
-
-
-top:-10px;
-
-
-}
-
-
-
-
-.result-box h3{
-
-
-font-size:20px;
-
-
-}
-
-
-
-
-#shareCard h1{
-
-
-font-size:24px;
-
-
-}
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- DARK MODE FIX 🌙
-=============================== */
-
-
-body.dark .start-box{
-
-
-background:#29283a;
-
-
-color:white;
-
-
-}
-
-
-
-body.dark .result-box div{
-
-
-background:#333244;
-
-
-border-color:#555;
-
-
-}
-
-
-
-
-body.dark .timeline-content{
-
-
-background:#333244;
-
-
-}
-
-
-
-
-body.dark #favoriteList li,
-
-
-body.dark #smartList li,
-
-
-body.dark #avoidList li{
-
-
-background:#333244;
-
-
-}
-
-
-
-
-
-body.dark input,
-
-
-body.dark select{
-
-
-background:#333244;
-
-
-color:white;
-
-
-border-color:#777;
-
-
-}
-
-
-
-
-body.dark .mission-popup,
-
-
-body.dark .win-popup{
-
-
-background:#29283a;
-
-
-color:white;
-
-
-}
-
-
-
-
-
-body.dark #shareCard{
-
-
-box-shadow:
-
-0 15px 40px
-
-rgba(0,0,0,.5);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- HEART FLOAT ❤️
-=============================== */
-
-
-.heart{
-
-
-position:fixed;
-
-
-bottom:20px;
-
-
-font-size:30px;
-
-
-z-index:9999;
-
-
-pointer-events:none;
-
-
-animation:
-
-heartFloat 2s ease forwards;
-
-
-}
-
-
-
-
-
-@keyframes heartFloat{
-
-
-0%{
-
-
-opacity:1;
-
-
-transform:
-
-translateY(0)
-
-scale(1);
-
-
-}
-
-
-
-100%{
-
-
-opacity:0;
-
-
-transform:
-
-translateY(-250px)
-
-scale(1.5);
+width:320px;
 
 
 }
 
 
 }
-
-
-
-
-
-
-
-
-
-/* ===============================
- BUTTON ANIMATION 💕
-=============================== */
-
-
-button{
-
-
-position:relative;
-
-
-overflow:hidden;
-
-
-}
-
-
-
-
-button::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:0;
-
-
-height:0;
-
-
-background:
-
-rgba(255,255,255,.5);
-
-
-border-radius:50%;
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-transition:.5s;
-
-
-}
-
-
-
-button:active::after{
-
-
-width:200px;
-
-
-height:200px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- THEME TRANSITION 🌙
-=============================== */
-
-
-.theme-change{
-
-
-animation:
-
-themeFlash .5s;
-
-
-}
-
-
-
-@keyframes themeFlash{
-
-
-0%{
-
-
-filter:
-
-brightness(1);
-
-
-}
-
-
-
-50%{
-
-
-filter:
-
-brightness(1.4);
-
-
-}
-
-
-
-100%{
-
-
-filter:
-
-brightness(1);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- SMOOTH SCROLL
-=============================== */
-
-
-html{
-
-
-scroll-behavior:
-
-smooth;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- EMPTY STATE
-=============================== */
-
-
-.empty-history{
-
-
-text-align:center;
-
-
-padding:20px;
-
-
-color:#ff8fab;
-
-
-font-size:18px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- LOADING SPIN
-=============================== */
-
-
-.loading{
-
-
-animation:
-
-loadingRotate 1s linear infinite;
-
-
-}
-
-
-
-@keyframes loadingRotate{
-
-
-from{
-
-
-transform:rotate(0deg);
-
-
-}
-
-
-
-to{
-
-
-transform:rotate(360deg);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
- LOVE BADGE
-=============================== */
-
-
-.love-badge{
-
-
-display:inline-block;
-
-
-background:#ff8fab;
-
-
-color:white;
-
-
-padding:8px 18px;
-
-
-border-radius:30px;
-
-
-font-weight:bold;
-
-
-}
-
-

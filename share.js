@@ -1,5 +1,5 @@
 /* =================================
- Dinner Roulette V12 ❤️
+ Dinner Roulette V13 ❤️
  Couple Share Card System 📸💕
 ================================= */
 
@@ -11,6 +11,7 @@
 
 
 function updateShareCard(data){
+
 
 
 if(!data)
@@ -27,13 +28,11 @@ document.getElementById(
 );
 
 
-
 const drink =
 
 document.getElementById(
 "shareDrink"
 );
-
 
 
 const dessert =
@@ -43,14 +42,11 @@ document.getElementById(
 );
 
 
-
 const date =
 
 document.getElementById(
 "shareDate"
 );
-
-
 
 
 
@@ -63,11 +59,13 @@ food.innerHTML=
 
 
 
+
 if(drink)
 
 drink.innerHTML=
 
-data.drink;
+data.drink || "🥤 น้ำหวาน";
+
 
 
 
@@ -75,20 +73,41 @@ if(dessert)
 
 dessert.innerHTML=
 
-data.drink;
+data.dessert || "🍰 ของหวาน";
 
 
 
-if(date)
+
+
+if(date){
+
 
 date.innerHTML=
 
 "📅 "+
+
 new Date()
 
 .toLocaleDateString(
-"th-TH"
+
+"th-TH",
+
+{
+
+year:"numeric",
+
+month:"long",
+
+day:"numeric"
+
+}
+
 );
+
+
+}
+
+
 
 
 
@@ -108,7 +127,7 @@ updateShareCard;
 
 
 // ===============================
-// SAVE IMAGE 📸
+// SAVE IMAGE
 // ===============================
 
 
@@ -132,14 +151,36 @@ return;
 
 
 
+if(typeof html2canvas==="undefined"){
 
-html2canvas(card)
+
+alert(
+"❌ ระบบบันทึกรูปยังไม่พร้อม"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+html2canvas(card,{
+
+scale:2,
+
+backgroundColor:"#ffffff"
+
+})
 
 .then(canvas=>{
 
 
 
-const link =
+const link=
 
 document.createElement(
 "a"
@@ -192,20 +233,19 @@ const food =
 
 document.getElementById(
 "shareFood"
-)?.innerText;
+)?.innerText || "-";
 
 
 
 
-
-const text =
+const text=
 
 `
 
 ❤️ Dinner Roulette
 
 
-วันนี้ Chompu เลือกให้ 💕
+💕 วันนี้ Chompu เลือกให้
 
 
 ${food}
@@ -219,17 +259,24 @@ ${food}
 
 
 
+
 if(navigator.share){
+
 
 
 navigator.share({
 
 title:
+
 "Dinner Roulette ❤️",
 
 text:text
 
-});
+
+})
+
+.catch(()=>{});
+
 
 
 }
@@ -237,15 +284,20 @@ text:text
 else{
 
 
+
 navigator.clipboard.writeText(text);
 
 
+
 alert(
+
 "❤️ คัดลอกข้อความแล้ว"
+
 );
 
 
 }
+
 
 
 
@@ -260,7 +312,16 @@ completeShareMission();
 
 
 
+
+
 }
+
+
+
+
+
+window.shareToChompu =
+shareToChompu;
 
 
 
@@ -294,19 +355,16 @@ document.getElementById(
 if(saveBtn){
 
 
+
 saveBtn.onclick=
 
-()=>{
-
-
-saveShareImage();
-
-
-};
+saveShareImage;
 
 
 
 }
+
+
 
 
 
@@ -325,16 +383,13 @@ if(shareBtn){
 
 shareBtn.onclick=
 
-()=>{
+shareToChompu;
 
-
-shareToChompu();
-
-
-};
 
 
 }
+
+
 
 
 
@@ -347,9 +402,10 @@ drink:"🥤 น้ำหวาน",
 
 dessert:"🍰 ของหวาน"
 
-
 });
 
 
 
-});
+}
+
+);

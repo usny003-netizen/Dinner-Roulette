@@ -1,42 +1,60 @@
 /* =================================
- Dinner Roulette Chompu V19 ❤️
- Share System
- PART 4.3
+ Dinner Roulette Chompu V20 ❤️
+ Share System FINAL
 ================================= */
 
+
+// ================================
+// UPDATE SHARE CARD
+// ================================
 
 function updateShareCard(data){
 
 
-if(!data)
-return;
+if(!data) return;
 
 
 
-document.getElementById(
-"shareFood"
-).innerHTML=
-"🍜 "+data.food;
+const food =
+document.getElementById("shareFood");
+
+
+const drink =
+document.getElementById("shareDrink");
+
+
+const dessert =
+document.getElementById("shareDessert");
+
+
+const date =
+document.getElementById("shareDate");
 
 
 
-document.getElementById(
-"shareDrink"
-).innerHTML=
+if(food)
+food.innerHTML =
+"🍜 " + data.food;
+
+
+
+if(drink)
+drink.innerHTML =
 data.drink;
 
 
 
-document.getElementById(
-"shareDessert"
-).innerHTML=
-data.dessert;
+if(dessert)
+dessert.innerHTML =
+data.food ?
+data.dessert :
+"-";
 
 
 
-document.getElementById(
-"shareDate"
-).innerHTML=
+if(date)
+
+date.innerHTML =
 "📅 "+
 new Date()
 .toLocaleDateString("th-TH");
@@ -46,8 +64,7 @@ new Date()
 }
 
 
-
-window.updateShareCard=
+window.updateShareCard =
 updateShareCard;
 
 
@@ -56,22 +73,145 @@ updateShareCard;
 
 
 
+// ================================
+// SAVE IMAGE 📸
+// ================================
+
+
+const saveImageBtn =
+document.getElementById(
+"saveImageBtn"
+);
+
+
+
+if(saveImageBtn){
+
+
+saveImageBtn.onclick=function(){
+
+
+
+const card =
+document.getElementById(
+"shareCard"
+);
+
+
+
+if(!card){
+
+alert(
+"ไม่พบ Share Card"
+);
+
+return;
+
+}
+
+
+
+
+if(typeof html2canvas==="undefined"){
+
+
+alert(
+"โหลดระบบรูปไม่สำเร็จ"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+html2canvas(card,{
+
+scale:3,
+
+backgroundColor:"#ffffff"
+
+})
+
+.then(canvas=>{
+
+
+
+const link =
+document.createElement("a");
+
+
+
+link.download =
+"Dinner-Roulette-Chompu.png";
+
+
+
+link.href =
+canvas.toDataURL(
+"image/png"
+);
+
+
+
+link.click();
+
+
+
+if(typeof completeShareMission==="function"){
+
+completeShareMission();
+
+}
+
+
+
+});
+
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+// ================================
+// SHARE CHOMPU
+// ================================
+
+
 function shareToChompu(){
 
 
-let text=
+
+const food =
+document.getElementById(
+"shareFood"
+)?.innerText
+||"-";
+
+
+
+const text =
 
 `
 ❤️ Dinner Roulette
 
 วันนี้กิน
 
-${
-document.getElementById("shareFood")
-.innerText
-}
+${food}
 
-กินด้วยกันนะ 💕
+กินด้วยกันนะ Chompu 💕
 
 `;
 
@@ -81,41 +221,83 @@ document.getElementById("shareFood")
 if(navigator.share){
 
 
+
 navigator.share({
 
-title:"Dinner Roulette",
+title:
+"Dinner Roulette ❤️",
 
 text:text
 
-});
+
+})
+
+.catch(()=>{});
 
 
 
 }
+
 else{
 
 
-navigator.clipboard.writeText(text);
+navigator.clipboard
+.writeText(text);
 
 
 
 alert(
-"📋 คัดลอกแล้ว"
+"📋 คัดลอกข้อความแล้ว"
 );
 
 
+
 }
 
 
 
+
+if(typeof completeShareMission==="function"){
 
 completeShareMission();
 
+}
 
 
 }
 
 
 
-window.shareToChompu=
+window.shareToChompu =
 shareToChompu;
+
+
+
+
+
+
+// ================================
+// AUTO CONNECT BUTTON
+// ================================
+
+
+const shareBtn =
+document.getElementById(
+"shareBtn"
+);
+
+
+
+if(shareBtn){
+
+
+shareBtn.onclick=function(){
+
+
+shareToChompu();
+
+
+};
+
+
+}

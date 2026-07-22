@@ -1,13 +1,13 @@
 /* =================================
- Dinner Roulette Chompu V19 ❤️
- Main Controller CLEAN
- PART 2
+ Dinner Roulette Chompu V20 ❤️
+ Main Controller FINAL
 ================================= */
 
 
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
+
 
 
 // ===============================
@@ -42,7 +42,6 @@ const music =
 document.getElementById("bgMusic");
 
 
-
 if(music){
 
 music.volume=0.5;
@@ -73,7 +72,10 @@ completeOpenMission();
 };
 
 
+
 }
+
+
 
 
 
@@ -108,8 +110,9 @@ if(typeof window.spinWheel==="function"){
 window.spinWheel();
 
 
-
 }
+
+
 
 else{
 
@@ -118,6 +121,212 @@ console.error(
 "ไม่พบ wheel.js"
 );
 
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// LIKE BUTTON 👍
+// ===============================
+
+
+const likeBtn =
+document.getElementById("likeBtn");
+
+
+
+if(likeBtn){
+
+
+likeBtn.onclick=()=>{
+
+
+if(!window.currentFood){
+
+
+alert(
+"❤️ หมุนวงล้อก่อน"
+);
+
+
+return;
+
+
+}
+
+
+
+if(typeof saveFavorite==="function"){
+
+
+saveFavorite({
+
+food:
+window.currentFood.name,
+
+drink:
+window.currentFood.drink,
+
+dessert:
+window.currentFood.dessert
+
+});
+
+
+}
+
+
+
+if(typeof completeLikeMission==="function"){
+
+completeLikeMission();
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// REROLL BUTTON 🙅
+// ===============================
+
+
+const rerollBtn =
+document.getElementById("rerollBtn");
+
+
+
+if(rerollBtn){
+
+
+
+rerollBtn.onclick=()=>{
+
+
+if(typeof spinWheel==="function"){
+
+
+spinWheel();
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// SAVE IMAGE 📸
+// ===============================
+
+
+const saveBtn =
+document.getElementById("saveImageBtn");
+
+
+
+if(saveBtn){
+
+
+
+saveBtn.onclick=()=>{
+
+
+console.log(
+"📸 CLICK SAVE"
+);
+
+
+
+if(typeof saveShareImage==="function"){
+
+
+saveShareImage();
+
+
+}
+
+
+
+else{
+
+
+console.error(
+"ไม่พบ saveShareImage"
+);
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// SHARE BUTTON 📤
+// ===============================
+
+
+const shareBtn =
+document.getElementById("shareBtn");
+
+
+
+if(shareBtn){
+
+
+
+shareBtn.onclick=()=>{
+
+
+if(typeof shareToChompu==="function"){
+
+
+shareToChompu();
 
 
 }
@@ -149,9 +358,7 @@ document.querySelectorAll(".mode");
 modeButtons.forEach(btn=>{
 
 
-
 btn.onclick=function(){
-
 
 
 modeButtons.forEach(b=>{
@@ -161,7 +368,6 @@ b.classList.remove("active");
 
 
 });
-
 
 
 this.classList.add("active");
@@ -174,18 +380,15 @@ this.dataset.mode;
 
 
 const name =
-document.getElementById(
-"partnerName"
-)?.value
+document.getElementById("partnerName")
+?.value
 ||
 "Chompu";
 
 
 
 const msg =
-document.getElementById(
-"chooserMessage"
-);
+document.getElementById("chooserMessage");
 
 
 
@@ -202,7 +405,6 @@ msg.innerHTML=
 
 }
 
-
 else if(window.currentMode==="แฟน"){
 
 
@@ -211,7 +413,6 @@ msg.innerHTML=
 
 
 }
-
 
 else{
 
@@ -257,9 +458,7 @@ document.getElementById("musicBtn");
 if(musicBtn && music){
 
 
-
 musicBtn.onclick=()=>{
-
 
 
 if(music.paused){
@@ -273,6 +472,7 @@ musicBtn.innerHTML=
 
 
 }
+
 
 else{
 
@@ -291,7 +491,6 @@ musicBtn.innerHTML=
 };
 
 
-
 }
 
 
@@ -301,86 +500,7 @@ musicBtn.innerHTML=
 
 
 // ===============================
-// SAVE IMAGE BUTTON
-// ===============================
-
-
-const saveBtn =
-document.getElementById("saveImageBtn");
-
-
-
-if(saveBtn){
-
-
-
-saveBtn.onclick=()=>{
-
-
-
-if(typeof saveShareImage==="function"){
-
-
-saveShareImage();
-
-
-}
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-// ===============================
-// SHARE BUTTON
-// ===============================
-
-
-const shareBtn =
-document.getElementById("shareBtn");
-
-
-
-if(shareBtn){
-
-
-
-shareBtn.onclick=()=>{
-
-
-if(typeof shareToChompu==="function"){
-
-
-shareToChompu();
-
-
-}
-
-
-
-};
-
-
-
-}
-
-
-
-
-
-
-
-// ===============================
-// THEME
+// THEME 🌙
 // ===============================
 
 
@@ -388,9 +508,7 @@ const themeBtn =
 document.getElementById("themeBtn");
 
 
-
 if(themeBtn){
-
 
 
 themeBtn.onclick=()=>{
@@ -405,9 +523,7 @@ toggleTheme();
 }
 
 
-
 };
-
 
 
 }
@@ -419,17 +535,15 @@ toggleTheme();
 
 
 // ===============================
-// HEART EFFECT
+// HEART EFFECT ❤️
 // ===============================
 
 
 window.createHeart=function(){
 
 
-
 const heart =
 document.createElement("div");
-
 
 
 heart.className="heart";
@@ -439,10 +553,8 @@ heart.innerHTML=
 "❤️";
 
 
-
 heart.style.left=
 Math.random()*90+"%";
-
 
 
 heart.style.bottom=
@@ -472,8 +584,9 @@ heart.remove();
 
 
 
+
 console.log(
-"❤️ Script V19 Ready"
+"❤️ Script V20 FINAL Ready"
 );
 
 

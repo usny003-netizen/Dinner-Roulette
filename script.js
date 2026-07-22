@@ -1,12 +1,17 @@
 /* =================================
- Dinner Roulette Chompu V20 ❤️
- Main Controller FINAL
+ Dinner Roulette Chompu V21 ❤️
+ Main Controller FINAL CLEAN
 ================================= */
 
 
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
+
+
+console.log(
+"❤️ Script V21 Ready"
+);
 
 
 
@@ -23,6 +28,10 @@ const startScreen =
 document.getElementById("startScreen");
 
 
+const music =
+document.getElementById("bgMusic");
+
+
 
 if(startBtn){
 
@@ -36,10 +45,6 @@ startScreen.style.display="none";
 
 }
 
-
-
-const music =
-document.getElementById("bgMusic");
 
 
 if(music){
@@ -79,8 +84,6 @@ completeOpenMission();
 
 
 
-
-
 // ===============================
 // SPIN BUTTON 🎡
 // ===============================
@@ -92,7 +95,6 @@ document.getElementById("spinBtn");
 
 
 if(spinBtn){
-
 
 
 spinBtn.onclick=()=>{
@@ -112,8 +114,6 @@ window.spinWheel();
 
 }
 
-
-
 else{
 
 
@@ -129,17 +129,14 @@ console.error(
 };
 
 
-
 }
 
 
 
 
 
-
-
 // ===============================
-// LIKE BUTTON 👍
+// LIKE BUTTON ⭐
 // ===============================
 
 
@@ -158,7 +155,7 @@ if(!window.currentFood){
 
 
 alert(
-"❤️ หมุนวงล้อก่อน"
+"❤️ กรุณาหมุนวงล้อก่อน"
 );
 
 
@@ -208,10 +205,8 @@ completeLikeMission();
 
 
 
-
-
 // ===============================
-// REROLL BUTTON 🙅
+// REROLL 🙅
 // ===============================
 
 
@@ -223,14 +218,13 @@ document.getElementById("rerollBtn");
 if(rerollBtn){
 
 
-
 rerollBtn.onclick=()=>{
 
 
-if(typeof spinWheel==="function"){
+if(typeof window.spinWheel==="function"){
 
 
-spinWheel();
+window.spinWheel();
 
 
 }
@@ -242,8 +236,6 @@ spinWheel();
 
 
 }
-
-
 
 
 
@@ -262,12 +254,11 @@ document.getElementById("saveImageBtn");
 if(saveBtn){
 
 
-
 saveBtn.onclick=()=>{
 
 
 console.log(
-"📸 CLICK SAVE"
+"📸 SAVE IMAGE"
 );
 
 
@@ -280,13 +271,11 @@ saveShareImage();
 
 }
 
-
-
 else{
 
 
 console.error(
-"ไม่พบ saveShareImage"
+"ไม่มี share.js saveShareImage"
 );
 
 
@@ -304,10 +293,8 @@ console.error(
 
 
 
-
-
 // ===============================
-// SHARE BUTTON 📤
+// SHARE 📤
 // ===============================
 
 
@@ -317,7 +304,6 @@ document.getElementById("shareBtn");
 
 
 if(shareBtn){
-
 
 
 shareBtn.onclick=()=>{
@@ -332,6 +318,66 @@ shareToChompu();
 }
 
 
+};
+
+
+
+}
+
+
+
+
+
+// ===============================
+// MUSIC SYSTEM 🎵
+// ===============================
+
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+
+const musicSelect =
+document.getElementById("musicSelect");
+
+
+
+
+// เปิดปิดเพลง
+
+
+if(musicBtn && music){
+
+
+musicBtn.onclick=()=>{
+
+
+if(music.paused){
+
+
+music.play()
+.catch(()=>{});
+
+
+musicBtn.innerHTML=
+"⏸️ ปิดเพลง";
+
+
+}
+
+else{
+
+
+music.pause();
+
+
+musicBtn.innerHTML=
+"🎵 เปิดเพลง";
+
+
+}
+
+
 
 };
 
@@ -343,6 +389,55 @@ shareToChompu();
 
 
 
+// เปลี่ยนเพลง
+
+
+if(musicSelect && music){
+
+
+musicSelect.onchange=function(){
+
+
+
+music.src=this.value;
+
+
+music.load();
+
+
+
+music.play()
+.catch(()=>{});
+
+
+
+if(musicBtn){
+
+musicBtn.innerHTML=
+"⏸️ ปิดเพลง";
+
+}
+
+
+
+if(typeof showToast==="function"){
+
+showToast(
+"🎵 เปลี่ยนเพลงแล้ว"
+);
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
 
 
 // ===============================
@@ -350,24 +445,24 @@ shareToChompu();
 // ===============================
 
 
-const modeButtons =
+const modes =
 document.querySelectorAll(".mode");
 
 
 
-modeButtons.forEach(btn=>{
+modes.forEach(btn=>{
 
 
 btn.onclick=function(){
 
 
-modeButtons.forEach(b=>{
 
+modes.forEach(b=>{
 
 b.classList.remove("active");
 
-
 });
+
 
 
 this.classList.add("active");
@@ -388,12 +483,13 @@ document.getElementById("partnerName")
 
 
 const msg =
-document.getElementById("chooserMessage");
+document.getElementById(
+"chooserMessage"
+);
 
 
 
 if(msg){
-
 
 
 if(window.currentMode==="ฉัน"){
@@ -442,70 +538,13 @@ msg.innerHTML=
 
 
 // ===============================
-// MUSIC 🎵
-// ===============================
-
-
-const music =
-document.getElementById("bgMusic");
-
-
-const musicBtn =
-document.getElementById("musicBtn");
-
-
-
-if(musicBtn && music){
-
-
-musicBtn.onclick=()=>{
-
-
-if(music.paused){
-
-
-music.play();
-
-
-musicBtn.innerHTML=
-"⏸️ ปิดเพลง";
-
-
-}
-
-
-else{
-
-
-music.pause();
-
-
-musicBtn.innerHTML=
-"🎵 เปิดเพลง";
-
-
-}
-
-
-
-};
-
-
-}
-
-
-
-
-
-
-
-// ===============================
 // THEME 🌙
 // ===============================
 
 
 const themeBtn =
 document.getElementById("themeBtn");
+
 
 
 if(themeBtn){
@@ -526,9 +565,8 @@ toggleTheme();
 };
 
 
+
 }
-
-
 
 
 
@@ -542,8 +580,10 @@ toggleTheme();
 window.createHeart=function(){
 
 
+
 const heart =
 document.createElement("div");
+
 
 
 heart.className="heart";
@@ -553,11 +593,12 @@ heart.innerHTML=
 "❤️";
 
 
-heart.style.left=
+
+heart.style.left =
 Math.random()*90+"%";
 
 
-heart.style.bottom=
+heart.style.bottom =
 "20px";
 
 
@@ -574,20 +615,13 @@ setTimeout(()=>{
 heart.remove();
 
 
-},2000);
+},2500);
 
 
 
 };
 
 
-
-
-
-
-console.log(
-"❤️ Script V20 FINAL Ready"
-);
 
 
 

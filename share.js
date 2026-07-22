@@ -4,128 +4,74 @@
 ================================= */
 
 
-// ================================
-// UPDATE SHARE CARD
-// ================================
-
 function updateShareCard(data){
-
 
 if(!data) return;
 
 
-
-const food =
-document.getElementById("shareFood");
-
-
-const drink =
-document.getElementById("shareDrink");
-
-
-const dessert =
-document.getElementById("shareDessert");
-
-
-const date =
-document.getElementById("shareDate");
-
-
-
-if(food)
-food.innerHTML =
+document.getElementById("shareFood").innerHTML =
 "🍜 " + data.food;
 
 
-
-if(drink)
-drink.innerHTML =
+document.getElementById("shareDrink").innerHTML =
 data.drink;
 
 
-
-if(dessert)
-dessert.innerHTML =
-data.food ?
-data.dessert :
-"-";
+document.getElementById("shareDessert").innerHTML =
+data.dessert;
 
 
-
-if(date)
-
-date.innerHTML =
-"📅 "+
-new Date()
-.toLocaleDateString("th-TH");
-
+document.getElementById("shareDate").innerHTML =
+"📅 " + new Date().toLocaleDateString("th-TH");
 
 
 }
 
 
-window.updateShareCard =
-updateShareCard;
+window.updateShareCard = updateShareCard;
 
 
 
 
 
+document.addEventListener("DOMContentLoaded",()=>{
 
 
-// ================================
-// SAVE IMAGE 📸
-// ================================
+// ==========================
+// SAVE IMAGE
+// ==========================
+
+const saveBtn =
+document.getElementById("saveImageBtn");
 
 
-const saveImageBtn =
-document.getElementById(
-"saveImageBtn"
-);
+if(saveBtn){
 
 
-
-if(saveImageBtn){
-
-
-saveImageBtn.onclick=function(){
-
+saveBtn.onclick=function(){
 
 
 const card =
-document.getElementById(
-"shareCard"
-);
-
+document.getElementById("shareCard");
 
 
 if(!card){
 
-alert(
-"ไม่พบ Share Card"
-);
+alert("ไม่พบ Share Card");
 
 return;
 
 }
-
 
 
 
 if(typeof html2canvas==="undefined"){
 
-
-alert(
-"โหลดระบบรูปไม่สำเร็จ"
-);
-
+alert("html2canvas โหลดไม่สำเร็จ");
 
 return;
 
-
 }
-
-
 
 
 
@@ -140,22 +86,16 @@ backgroundColor:"#ffffff"
 .then(canvas=>{
 
 
-
 const link =
 document.createElement("a");
-
 
 
 link.download =
 "Dinner-Roulette-Chompu.png";
 
 
-
 link.href =
-canvas.toDataURL(
-"image/png"
-);
-
+canvas.toDataURL("image/png");
 
 
 link.click();
@@ -173,7 +113,6 @@ completeShareMission();
 });
 
 
-
 };
 
 
@@ -183,109 +122,13 @@ completeShareMission();
 
 
 
-
-
-// ================================
-// SHARE CHOMPU
-// ================================
-
-
-function shareToChompu(){
-
-
-
-const food =
-document.getElementById(
-"shareFood"
-)?.innerText
-||"-";
-
-
-
-const text =
-
-`
-❤️ Dinner Roulette
-
-วันนี้กิน
-
-${food}
-
-กินด้วยกันนะ Chompu 💕
-
-`;
-
-
-
-
-if(navigator.share){
-
-
-
-navigator.share({
-
-title:
-"Dinner Roulette ❤️",
-
-text:text
-
-
-})
-
-.catch(()=>{});
-
-
-
-}
-
-else{
-
-
-navigator.clipboard
-.writeText(text);
-
-
-
-alert(
-"📋 คัดลอกข้อความแล้ว"
-);
-
-
-
-}
-
-
-
-
-if(typeof completeShareMission==="function"){
-
-completeShareMission();
-
-}
-
-
-}
-
-
-
-window.shareToChompu =
-shareToChompu;
-
-
-
-
-
-
-// ================================
-// AUTO CONNECT BUTTON
-// ================================
+// ==========================
+// SHARE BUTTON
+// ==========================
 
 
 const shareBtn =
-document.getElementById(
-"shareBtn"
-);
-
+document.getElementById("shareBtn");
 
 
 if(shareBtn){
@@ -294,10 +137,49 @@ if(shareBtn){
 shareBtn.onclick=function(){
 
 
-shareToChompu();
+let text =
+
+`
+❤️ Dinner Roulette
+
+${document.getElementById("shareFood").innerText}
+
+กินด้วยกันนะ Chompu 💕
+
+`;
+
+
+
+if(navigator.share){
+
+
+navigator.share({
+
+title:"Dinner Roulette",
+
+text:text
+
+});
+
+
+}else{
+
+
+navigator.clipboard.writeText(text);
+
+
+alert("📋 คัดลอกแล้ว");
+
+
+}
+
 
 
 };
 
 
 }
+
+
+
+});

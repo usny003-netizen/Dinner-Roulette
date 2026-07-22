@@ -1,20 +1,17 @@
 /* =================================
  Dinner Roulette Chompu V20 ❤️
- Wheel Engine FINAL
+ Wheel Engine FINAL FIX
  1/6
 ================================= */
 
 
-const canvas =
-document.getElementById("wheel");
-
+const canvas = document.getElementById("wheel");
 
 
 if(canvas){
 
 
-const ctx =
-canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 
 
@@ -99,26 +96,21 @@ dessert:"🍰 เค้ก"
 
 
 
+
 // ===============================
-// SYSTEM VARIABLE
+// VARIABLE
 // ===============================
 
 
 let wheelFoods = [...foods];
 
-
 window.currentFood = null;
-
 
 let rotation = 0;
 
-
 let spinning = false;
 
-
-
 window.currentMode = "ฉัน";
-
 
 
 
@@ -159,33 +151,25 @@ canvas.height
 
 
 if(wheelFoods.length===0)
-
 return;
 
 
 
-const center =
-canvas.width/2;
+const center = canvas.width / 2;
 
-
-const radius =
-canvas.width/2;
-
+const radius = canvas.width / 2;
 
 
 const slice =
-(Math.PI*2)
-/wheelFoods.length;
+(Math.PI*2) / wheelFoods.length;
 
 
 
 
-wheelFoods.forEach(
-(food,index)=>{
+wheelFoods.forEach((food,index)=>{
 
 
 ctx.beginPath();
-
 
 ctx.moveTo(
 center,
@@ -194,25 +178,19 @@ center
 
 
 ctx.arc(
-
 center,
 center,
 radius,
-
 index*slice,
-
 (index+1)*slice
-
 );
 
 
-
 ctx.fillStyle =
-colors[index%colors.length];
+colors[index % colors.length];
 
 
 ctx.fill();
-
 
 
 ctx.strokeStyle="#fff";
@@ -223,9 +201,6 @@ ctx.stroke();
 
 
 
-
-// TEXT
-
 ctx.save();
 
 
@@ -235,11 +210,9 @@ center
 );
 
 
-
 ctx.rotate(
-index*slice+slice/2
+index*slice + slice/2
 );
-
 
 
 ctx.textAlign="right";
@@ -251,17 +224,11 @@ ctx.fillStyle="#555";
 ctx.font="15px Tahoma";
 
 
-
 ctx.fillText(
-
 food.name,
-
 radius-20,
-
 0
-
 );
-
 
 
 ctx.restore();
@@ -278,23 +245,18 @@ ctx.restore();
 
 ctx.beginPath();
 
-
 ctx.arc(
-
 center,
 center,
 35,
 0,
 Math.PI*2
-
 );
-
 
 
 ctx.fillStyle="#fff";
 
 ctx.fill();
-
 
 
 ctx.font="28px Arial";
@@ -305,27 +267,23 @@ ctx.textBaseline="middle";
 
 
 ctx.fillText(
-
 "❤️",
-
 center,
-
 center
-
 );
-
 
 
 }
 
 
 
-window.drawWheel =
-drawWheel;
+window.drawWheel = drawWheel;
 
 
 
 drawWheel();
+
+
 
 
 
@@ -337,12 +295,9 @@ drawWheel();
 window.changeCategory=function(category){
 
 
-
 if(category==="all"){
 
-
 wheelFoods=[...foods];
-
 
 }
 
@@ -351,20 +306,18 @@ else{
 
 wheelFoods =
 foods.filter(food=>
-
 food.category===category
-
 );
 
 
 }
 
 
-
 drawWheel();
 
 
 };
+
 
 
 
@@ -378,16 +331,18 @@ drawWheel();
 function spinWheel(){
 
 
-
 if(spinning)
-
 return;
 
 
 
-if(wheelFoods.length===0)
+if(wheelFoods.length===0){
+
+alert("🚫 ไม่มีเมนู");
 
 return;
+
+}
 
 
 
@@ -395,16 +350,10 @@ spinning=true;
 
 
 
-
 const index =
 Math.floor(
-
-Math.random()
-*
-wheelFoods.length
-
+Math.random()*wheelFoods.length
 );
-
 
 
 
@@ -413,24 +362,13 @@ wheelFoods[index];
 
 
 
-
-
-
 const slice =
-
-360 /
-wheelFoods.length;
-
-
+360 / wheelFoods.length;
 
 
 const target =
-
 360*8 -
-
-(index*slice)
-
--
+(index*slice) -
 (slice/2);
 
 
@@ -439,11 +377,12 @@ rotation += target;
 
 
 
+canvas.style.transition =
+"transform 6s cubic-bezier(.17,.67,.24,1)";
+
 
 canvas.style.transform =
-
 `rotate(${rotation}deg)`;
-
 
 
 
@@ -453,20 +392,18 @@ document.getElementById(
 );
 
 
+if(status){
 
-if(status)
-
-status.innerHTML=
+status.innerHTML =
 "🎡 กำลังเลือกให้ Chompu ❤️";
 
+}
 
 
 
 setTimeout(()=>{
 
-
 finishSpin();
-
 
 },6000);
 
@@ -476,11 +413,15 @@ finishSpin();
 
 
 
-window.spinWheel =
-spinWheel;
+window.spinWheel = spinWheel;
 
 
 
+
+
+// ===============================
+// FINISH
+// ===============================
 
 
 function finishSpin(){
@@ -492,15 +433,18 @@ spinning=false;
 showResult();
 
 
-
 }
 
 
 
 
+// ===============================
+// RESULT
+// ===============================
 
 
 function showResult(){
+
 
 
 const food =
@@ -509,29 +453,50 @@ window.currentFood;
 
 
 if(!food)
-
 return;
 
 
 
+
+const foodBox =
 document.getElementById(
 "foodResult"
-).innerHTML =
+);
+
+
+const drinkBox =
+document.getElementById(
+"drinkResult"
+);
+
+
+const dessertBox =
+document.getElementById(
+"dessertResult"
+);
+
+
+
+if(foodBox)
+
+foodBox.innerHTML =
 food.name;
 
 
 
-document.getElementById(
-"drinkResult"
-).innerHTML =
+if(drinkBox)
+
+drinkBox.innerHTML =
 food.drink;
 
 
 
-document.getElementById(
-"desserResult"
-)?.innerHTML =
+if(dessertBox)
+
+dessertBox.innerHTML =
 food.dessert;
+
+
 
 
 
@@ -542,19 +507,22 @@ document.getElementById(
 
 
 
-if(msg)
+if(msg){
 
-msg.innerHTML=
-
+msg.innerHTML =
 `
 ❤️ วันนี้เลือกได้แล้ว
 <br>
 ${food.name}
 `;
 
+}
 
 
-// SHARE
+
+
+
+// SHARE CONNECT
 
 if(typeof updateShareCard==="function"){
 
@@ -574,7 +542,9 @@ dessert:food.dessert
 
 
 
-// HISTORY
+
+
+// HISTORY CONNECT
 
 if(typeof saveHistory==="function"){
 
@@ -596,11 +566,10 @@ mode:window.currentMode
 
 
 
+
 if(typeof winEffect==="function"){
 
-
 winEffect();
-
 
 }
 

@@ -109,6 +109,20 @@ let rotation = 0;
 
 let spinning = false;
 
+// ===============================
+// SOUND SYSTEM 🔊
+// ===============================
+
+const tickSound = new Audio("tick.mp3");
+
+tickSound.volume = 0.35;
+tickSound.preload = "auto";
+
+
+const winSound = new Audio("win.mp3");
+
+winSound.volume = 0.7;
+winSound.preload = "auto";
 
 
 window.currentFood = null;

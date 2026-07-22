@@ -909,6 +909,16 @@ winEffect();
 
 
 }
+ 
+ // WIN SOUND 🔊
+
+const winSound =
+new Audio("win.mp3");
+
+winSound.volume = 0.7;
+
+winSound.play()
+.catch(()=>{});
 
 
 

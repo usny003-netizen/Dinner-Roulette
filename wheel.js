@@ -1,18 +1,27 @@
 /* =========================================
  Dinner Roulette Chompu V19 ❤️
  Wheel Engine FINAL
- PART 1/4
+ Single File Version
 ========================================= */
+
+
+document.addEventListener("DOMContentLoaded",()=>{
 
 
 const canvas = document.getElementById("wheel");
 
 
-if(canvas){
+if(!canvas){
+
+console.warn("ไม่พบ canvas wheel");
+
+return;
+
+}
+
 
 
 const ctx = canvas.getContext("2d");
-
 
 
 
@@ -98,8 +107,6 @@ dessert:"🍰 เค้ก"
 
 
 
-
-
 // =========================================
 // VARIABLES
 // =========================================
@@ -117,10 +124,7 @@ let spinning = false;
 let rotation = 0;
 
 
-
 window.currentMode = "ฉัน";
-
-
 
 
 
@@ -130,7 +134,7 @@ window.currentMode = "ฉัน";
 // =========================================
 
 
-const colors = [
+const colors=[
 
 "#ffafcc",
 "#ffc8dd",
@@ -139,8 +143,6 @@ const colors = [
 "#ffd1dc"
 
 ];
-
-
 
 
 
@@ -156,21 +158,19 @@ function drawWheel(){
 ctx.clearRect(
 
 0,
-
 0,
-
 canvas.width,
-
 canvas.height
 
 );
 
 
 
-if(wheelFoods.length===0)
+if(wheelFoods.length===0){
 
 return;
 
+}
 
 
 
@@ -180,16 +180,9 @@ const center = canvas.width / 2;
 const radius = canvas.width / 2;
 
 
-
 const slice =
 
-(Math.PI*2)
-
-/ 
-
-wheelFoods.length;
-
-
+(Math.PI * 2) / wheelFoods.length;
 
 
 
@@ -198,9 +191,7 @@ wheelFoods.length;
 wheelFoods.forEach((food,index)=>{
 
 
-
 ctx.beginPath();
-
 
 
 ctx.moveTo(
@@ -221,7 +212,7 @@ center,
 
 radius,
 
-index*slice,
+index * slice,
 
 (index+1)*slice
 
@@ -229,10 +220,7 @@ index*slice,
 
 
 
-ctx.fillStyle =
-
-colors[index % colors.length];
-
+ctx.fillStyle = colors[index % colors.length];
 
 
 ctx.fill();
@@ -250,11 +238,7 @@ ctx.stroke();
 
 
 
-
-
-
 // TEXT
-
 
 ctx.save();
 
@@ -268,13 +252,11 @@ center
 );
 
 
-
 ctx.rotate(
 
 index*slice + slice/2
 
 );
-
 
 
 ctx.textAlign="right";
@@ -287,7 +269,6 @@ ctx.fillStyle="#555";
 
 
 ctx.font="16px Tahoma";
-
 
 
 ctx.fillText(
@@ -311,10 +292,6 @@ ctx.restore();
 
 
 
-
-
-
-
 // CENTER ❤️
 
 
@@ -334,7 +311,6 @@ center,
 Math.PI*2
 
 );
-
 
 
 ctx.fillStyle="#fff";
@@ -367,24 +343,16 @@ center
 
 }
 
-
-
-
+// =========================================
+// EXPORT DRAW
+// =========================================
 
 window.drawWheel = drawWheel;
 
 
 
-drawWheel();
-/* =========================================
-   PART 2/4
-   CATEGORY + AVOID SYSTEM 🍽️🚫
-========================================= */
-
-
-
 // =========================================
-// GET AVOID LIST
+// AVOID SYSTEM 🚫
 // =========================================
 
 
@@ -399,31 +367,23 @@ localStorage.getItem("avoidList")
 
 ||[];
 
-
 }
 
 
 
 
 
-
-// =========================================
-// APPLY AVOID
-// =========================================
-
-
 function applyAvoid(){
 
 
-
-const avoidList = getAvoidList();
+const avoid = getAvoidList();
 
 
 
 wheelFoods = wheelFoods.filter(food=>{
 
 
-return !avoidList.includes(food.name);
+return !avoid.includes(food.name);
 
 
 });
@@ -451,14 +411,14 @@ window.applyAvoid = applyAvoid;
 // =========================================
 
 
-window.changeCategory = function(category){
+window.changeCategory=function(category){
 
 
 
 if(category==="all"){
 
 
-wheelFoods = [...foods];
+wheelFoods=[...foods];
 
 
 }
@@ -469,15 +429,13 @@ else{
 wheelFoods = foods.filter(food=>{
 
 
-return food.category === category;
+return food.category===category;
 
 
 });
 
 
 }
-
-
 
 
 
@@ -494,7 +452,7 @@ applyAvoid();
 
 
 // =========================================
-// RESET AVOID BUTTON
+// RESET AVOID
 // =========================================
 
 
@@ -506,12 +464,11 @@ document.getElementById(
 
 
 
-
 if(resetAvoidBtn){
 
 
 
-resetAvoidBtn.onclick = ()=>{
+resetAvoidBtn.onclick=function(){
 
 
 
@@ -521,26 +478,10 @@ localStorage.removeItem(
 
 
 
-
-wheelFoods = [...foods];
-
+wheelFoods=[...foods];
 
 
 drawWheel();
-
-
-
-
-
-if(typeof showToast==="function"){
-
-
-showToast(
-"🔄 ล้างรายการไม่กินแล้ว"
-);
-
-
-}
 
 
 
@@ -554,15 +495,9 @@ showToast(
 
 
 
-/* =========================================
-   PART 3/4
-   PERFECT POINTER SPIN ENGINE 🎡🎯
-========================================= */
-
-
 
 // =========================================
-// SPIN WHEEL
+// SPIN ENGINE 🎡
 // =========================================
 
 
@@ -574,6 +509,9 @@ if(spinning)
 
 return;
 
+
+
+applyAvoid();
 
 
 
@@ -590,7 +528,7 @@ return;
 
 
 
-spinning = true;
+spinning=true;
 
 
 
@@ -605,7 +543,7 @@ document.getElementById(
 
 if(spinBtn)
 
-spinBtn.disabled = true;
+spinBtn.disabled=true;
 
 
 
@@ -613,10 +551,7 @@ spinBtn.disabled = true;
 
 
 
-// =========================================
-// RANDOM FOOD
-// =========================================
-
+// RANDOM RESULT
 
 if(typeof smartRandom==="function"){
 
@@ -635,9 +570,7 @@ wheelFoods[
 
 Math.floor(
 
-Math.random() *
-
-wheelFoods.length
+Math.random()*wheelFoods.length
 
 )
 
@@ -645,7 +578,6 @@ wheelFoods.length
 
 
 }
-
 
 
 
@@ -660,9 +592,6 @@ wheelFoods.indexOf(currentFood);
 
 
 
-
-// 1 ช่อง = กี่องศา
-
 const slice =
 
 360 / wheelFoods.length;
@@ -670,47 +599,33 @@ const slice =
 
 
 
-
-
-// กลางช่องอาหาร
-
 const foodCenter =
 
 (index * slice)
 
 +
 
-(slice / 2);
+(slice/2);
 
 
 
 
 
-
-// Pointer อยู่ด้านบน
+// pointer ด้านบน
 
 const pointer = 270;
 
 
 
-
-
-
 const target =
 
-pointer - foodCenter;
+pointer-foodCenter;
 
 
-
-
-
-
-
-// หมุน 8 รอบ
 
 rotation +=
 
-(360 * 8) + target;
+(360*8)+target;
 
 
 
@@ -733,7 +648,6 @@ canvas.style.transform =
 
 
 
-
 const status =
 
 document.getElementById(
@@ -745,13 +659,12 @@ document.getElementById(
 if(status){
 
 
-status.innerHTML =
+status.innerHTML=
 
 "🎡 กำลังเลือกเมนูให้ Chompu ❤️";
 
 
 }
-
 
 
 
@@ -779,13 +692,8 @@ window.spinWheel = spinWheel;
 
 
 
-
-
-
-
-
 // =========================================
-// FINISH SPIN
+// FINISH SPIN 🎉
 // =========================================
 
 
@@ -793,8 +701,7 @@ function finishSpin(){
 
 
 
-spinning = false;
-
+spinning=false;
 
 
 
@@ -808,13 +715,32 @@ document.getElementById(
 
 if(spinBtn)
 
-spinBtn.disabled = false;
-
+spinBtn.disabled=false;
 
 
 
 
 showResult();
+
+
+
+if(typeof completeSpinMission==="function"){
+
+
+completeSpinMission();
+
+
+}
+
+
+
+if(typeof createHeart==="function"){
+
+
+createHeart();
+
+
+}
 
 
 
@@ -826,10 +752,8 @@ showResult();
 
 
 
-
-
 // =========================================
-// SHOW RESULT
+// SHOW RESULT 🍽️
 // =========================================
 
 
@@ -871,24 +795,22 @@ document.getElementById(
 
 
 
-
 if(food)
 
-food.innerHTML = currentFood.name;
-
+food.innerHTML=currentFood.name;
 
 
 
 if(drink)
 
-drink.innerHTML = currentFood.drink;
-
+drink.innerHTML=currentFood.drink;
 
 
 
 if(dessert)
 
-dessert.innerHTML = currentFood.dessert;
+dessert.innerHTML=currentFood.dessert;
+
 
 
 
@@ -907,8 +829,7 @@ document.getElementById(
 if(message){
 
 
-
-message.innerHTML =
+message.innerHTML=
 
 `
 
@@ -929,9 +850,7 @@ ${currentFood.name}
 
 
 
-
-
-// SHARE CARD
+// SHARE
 
 if(typeof updateShareCard==="function"){
 
@@ -980,6 +899,7 @@ mode:window.currentMode
 
 
 
+
 // EFFECT
 
 if(typeof winEffect==="function"){
@@ -996,21 +916,16 @@ winEffect();
 
 
 
-/* =========================================
-   PART 4/4
-   AUTO SPIN + SYSTEM CONNECT ❤️
-========================================= */
-
 
 
 
 
 // =========================================
-// AUTO SPIN 🎡
+// AUTO SPIN 💖
 // =========================================
 
 
-let autoRunning = false;
+let autoRunning=false;
 
 
 
@@ -1022,13 +937,11 @@ document.getElementById(
 
 
 
-
-
 if(autoBtn){
 
 
 
-autoBtn.onclick = ()=>{
+autoBtn.onclick=function(){
 
 
 
@@ -1039,28 +952,27 @@ return;
 
 
 
-autoRunning = true;
+autoRunning=true;
 
 
 
-autoBtn.disabled = true;
+autoBtn.disabled=true;
 
 
 
-autoBtn.innerHTML =
+autoBtn.innerHTML=
 
 "🎡 กำลังสุ่ม...";
 
 
 
 
+let count=0;
 
 
-let count = 0;
 
 
-
-const timer = setInterval(()=>{
+const timer=setInterval(()=>{
 
 
 
@@ -1074,7 +986,7 @@ count++;
 
 
 
-if(count >= 3){
+if(count>=3){
 
 
 
@@ -1082,18 +994,17 @@ clearInterval(timer);
 
 
 
-autoRunning = false;
+autoRunning=false;
 
 
 
-autoBtn.disabled = false;
+autoBtn.disabled=false;
 
 
 
-autoBtn.innerHTML =
+autoBtn.innerHTML=
 
 "💖 สุ่มจนกว่าจะถูกใจ";
-
 
 
 }
@@ -1101,8 +1012,6 @@ autoBtn.innerHTML =
 
 
 },6500);
-
-
 
 
 
@@ -1117,89 +1026,8 @@ autoBtn.innerHTML =
 
 
 
-
-
-
 // =========================================
-// CONNECT MISSION 💌
-// =========================================
-
-
-function completeSpin(){
-
-
-
-if(typeof completeSpinMission==="function"){
-
-
-completeSpinMission();
-
-
-}
-
-
-
-}
-
-
-
-
-window.completeSpin = completeSpin;
-
-
-
-
-
-
-
-
-
-// =========================================
-// CONNECT EFFECT ❤️
-// =========================================
-
-
-function createLoveEffect(){
-
-
-
-if(typeof createHeart==="function"){
-
-
-createHeart();
-
-
-}
-
-
-
-if(typeof createHeartBurst==="function"){
-
-
-createHeartBurst();
-
-
-}
-
-
-
-}
-
-
-
-
-window.createLoveEffect = createLoveEffect;
-
-
-
-
-
-
-
-
-
-// =========================================
-// INITIAL DRAW
+// INITIAL
 // =========================================
 
 
@@ -1209,6 +1037,5 @@ drawWheel();
 
 
 
-
-}
-// END CANVAS CHECK
+});
+// END DOM CONTENT LOADED

@@ -1,65 +1,57 @@
 /* =================================
  Dinner Roulette Chompu V19 ❤️
  Share System FINAL
+ PART 3/6
 ================================= */
 
 
-// ===============================
+// =================================
 // UPDATE SHARE CARD
-// ===============================
+// =================================
 
 function updateShareCard(data){
 
-
-if(!data) return;
-
-
-
-const food =
-document.getElementById("shareFood");
+    if(!data)
+    return;
 
 
-const drink =
-document.getElementById("shareDrink");
+    const food =
+    document.getElementById("shareFood");
 
+    const drink =
+    document.getElementById("shareDrink");
 
-const dessert =
-document.getElementById("shareDessert");
+    const dessert =
+    document.getElementById("shareDessert");
 
-
-const date =
-document.getElementById("shareDate");
+    const date =
+    document.getElementById("shareDate");
 
 
 
-if(food)
-
-food.innerHTML =
-"🍜 " + data.food;
-
-
-
-if(drink)
-
-drink.innerHTML =
-data.drink;
+    if(food)
+    food.innerHTML =
+    "🍜 " + data.food;
 
 
 
-if(dessert)
-
-dessert.innerHTML =
-data.dessert;
-
+    if(drink)
+    drink.innerHTML =
+    data.drink;
 
 
-if(date)
 
-date.innerHTML =
-"📅 " +
-new Date()
-.toLocaleDateString("th-TH");
+    if(dessert)
+    dessert.innerHTML =
+    data.dessert;
 
+
+
+    if(date)
+    date.innerHTML =
+    "📅 " +
+    new Date()
+    .toLocaleDateString("th-TH");
 
 
 }
@@ -73,112 +65,116 @@ updateShareCard;
 
 
 
-
-
-// ===============================
+// =================================
 // SAVE IMAGE 📸
-// ===============================
+// =================================
 
 
 function saveShareImage(){
 
 
-const card =
-document.getElementById("shareCard");
+    const card =
+    document.getElementById(
+        "shareCard"
+    );
+
+
+    if(!card){
+
+        alert(
+        "ไม่พบ Share Card"
+        );
+
+        return;
+
+    }
 
 
 
-if(!card){
+    if(typeof html2canvas !== "function"){
 
 
-alert(
-"ไม่พบ Share Card"
-);
+        alert(
+        "ไม่พบระบบบันทึกรูป html2canvas"
+        );
 
 
-return;
+        return;
 
-
-}
-
-
-
-if(typeof html2canvas === "undefined"){
-
-
-alert(
-"html2canvas ยังไม่โหลด"
-);
-
-
-return;
-
-
-}
+    }
 
 
 
-html2canvas(card,{
-
-scale:3,
-
-backgroundColor:"#ffffff"
-
-})
-
-.then(canvas=>{
 
 
-const link =
-document.createElement("a");
+    html2canvas(card,{
+
+        scale:2,
+
+        backgroundColor:null
+
+    })
+
+    .then(canvas=>{
 
 
+        const link =
+        document.createElement(
+            "a"
+        );
 
-link.download =
-"Dinner-Roulette-Chompu.png";
 
-
-
-link.href =
-canvas.toDataURL(
-"image/png"
-);
+        link.download =
+        "Dinner-Roulette-Chompu.png";
 
 
 
-link.click();
+        link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
 
 
 
-console.log(
-"📸 SAVE IMAGE SUCCESS"
-);
+        link.click();
 
 
 
-if(typeof completeShareMission==="function"){
+        if(typeof completeShareMission==="function"){
 
+            completeShareMission();
 
-completeShareMission();
-
-
-}
+        }
 
 
 
-})
+        if(typeof showToast==="function"){
+
+            showToast(
+            "📸 บันทึกรูปแล้ว"
+            );
+
+        }
 
 
-.catch(err=>{
+
+    })
+
+    .catch(err=>{
 
 
-console.error(
-"Save Image Error:",
-err
-);
+        console.error(
+            "SAVE IMAGE ERROR",
+            err
+        );
 
 
-});
+        alert(
+        "บันทึกรูปไม่สำเร็จ"
+        );
+
+
+    });
 
 
 
@@ -196,10 +192,9 @@ saveShareImage;
 
 
 
-
-// ===============================
-// SHARE TO CHOMPU 💕
-// ===============================
+// =================================
+// SHARE CHOMPU 💕
+// =================================
 
 
 function shareToChompu(){
@@ -207,23 +202,27 @@ function shareToChompu(){
 
 
 const food =
-document.getElementById("shareFood")
-?.innerText
+
+document.getElementById(
+"shareFood"
+)?.innerText
 ||
-"วันนี้ยังไม่ได้เลือกเมนู";
+"วันนี้กินอะไรดี ❤️";
 
 
 
 const text =
 
 `
-❤️ Dinner Roulette
+❤️ Dinner Roulette Chompu
 
 ${food}
 
-กินด้วยกันนะ Chompu 💕
+กินด้วยกันนะ 💕
 
 `;
+
+
 
 
 
@@ -233,37 +232,42 @@ if(navigator.share){
 navigator.share({
 
 title:
-"Dinner Roulette",
+"Dinner Roulette Chompu",
 
 text:text
 
 
-});
+})
 
+.catch(()=>{});
 
 
 }
 
-else if(navigator.clipboard){
+else{
 
 
 navigator.clipboard.writeText(text);
 
 
-alert(
+
+if(typeof showToast==="function"){
+
+showToast(
 "📋 คัดลอกข้อความแล้ว"
 );
+
+}
 
 
 }
 
 
 
+
 if(typeof completeShareMission==="function"){
 
-
 completeShareMission();
-
 
 }
 

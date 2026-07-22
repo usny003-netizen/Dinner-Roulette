@@ -687,20 +687,11 @@ status.innerHTML =
 
 
 
+// เสียงหมุน 🎵
 
-// เสียงหมุน
+tickSound.currentTime = 0;
 
-const tick =
-
-new Audio(
-"tick.mp3"
-);
-
-
-tick.volume = 0.4;
-
-
-tick.play()
+tickSound.play()
 .catch(()=>{});
 
 
